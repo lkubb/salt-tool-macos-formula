@@ -1,0 +1,12 @@
+{%- set u = user.macos.touch %}
+{%- from tpldir ~ '/../three/map.jinja' import three_finger_conflicts with context %}
+
+{%- set status = False %}
+
+{%- if u.get('swipe_fullscreen') %}
+  {%- if 'four' == u.get('swipe_fullscreen') or three_finger_conflicts %}
+    {%- set status = 2 %}
+  {%- else %}
+    {%- set status = 0 %}
+  {%- endif %}
+{%- endif %}

@@ -1,0 +1,26 @@
+{%- set u = user.macos.behavior.media_inserted -%}
+{%- set user_settings = {
+      'blank_cd': False,
+      'blank_dvd': False,
+      'music': False,
+      'picture': False,
+      'video': False
+  } -%}
+
+{%- set options = {
+  'ignore': 1,
+  'ask': 2,
+  'finder': 100,
+  'itunes': 101,
+  'disk_utility': 102
+  } -%}
+
+{%- if u is string -%}
+  {%- for key in user_settings.keys() -%}
+    {%- do user_settings.update({key: options.get(u, False)}) -%}
+  {%- endfor -%}
+{%- else -%}
+  {%- for key in user_settings.keys() -%}
+    {%- do user_settings.update({key: options.get(u.get(key), False)}) -%}
+  {%- endfor -%}
+{%- endif -%}

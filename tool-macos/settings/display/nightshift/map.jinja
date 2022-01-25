@@ -1,0 +1,32 @@
+{%- set u = user.macos.display.nightshift %}
+{%- set user_settings = {} %}
+
+{%- if u.enabled is defined %}
+  {%- set enabled = u.enabled | int %}
+  {%- if enabled and u.schedule is defined %}
+     {%- set enabled = 2 %}
+  {%- endif %}
+  {%- do user_settings | update_dict_key_value('CBBlueReductionStatus', {'BlueReductionMode': enabled}) %}
+{%- endif %}
+
+{%- if u.schedule is defined %}
+  {%- for type, val in {'Night': u.schedule.get('start'), 'Day': u.schedule.get('stop')}.items() %}
+    {%- if val %}
+      {%- if ':' in val | string %}
+        {%- set h, m = (val | string).split(':') %}
+        {%- set h = h | int %}
+        {%- set m = m | int %}
+      {%- else %}
+        {%- set h = val | int %}
+        {%- set m = 0 %}
+      {%- endif %}
+      {%- do user_settings | update_dict_key_value('CBBlueReductionStatus:BlueLightReductionSchedule',
+                                            {type ~ 'StartHour': h | int, type ~ 'StartMinute': m | int}) %}
+    {%- endif %}
+  {%- endfor %}
+{%- endif %}
+
+
+{%- if user.macos.display.nightshift.get('temperature') %}
+  {%- do user_settings.update({'CBBlueLightReductionCCTTargetRaw': user.macos.display.nightshift.temperature | float}) %}
+{%- endif %}

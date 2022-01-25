@@ -1,0 +1,14 @@
+{%- set label = item.get('label') -%}
+{%- if not label -%}
+  {%- set normalized = item.path | regex_replace('/$', '') -%}
+  {%- set label = normalized.split('/')[-1] | regex_replace('.app$', '') -%}
+{%- endif -%}
+
+GUID: {{ range(10000, 99999) | random }}{{ range(10000, 99999) | random }}
+tile-data:
+  file-data:
+    _CFURLString: file://{{ item.path }}
+    _CFURLStringType: 0
+  file-label: '{{ label }}'
+  file-type: 32
+tile-type: file-tile

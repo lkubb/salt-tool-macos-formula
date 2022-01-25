@@ -1,0 +1,22 @@
+{%- set u = user.macos.finder.fileinfo_popup %}
+{%- set user_settings = {} %}
+
+{%- if u.comments is defined %}
+    {%- do user_settings.update({'Comments': u.comments | to_bool}) %}
+{%- endif %}
+
+{%- if u.metadata is defined %}
+    {%- do user_settings.update({'MetaData': u.metadata | to_bool}) %}
+{%- endif %}
+
+{%- if u.name is defined %}
+    {%- do user_settings.update({'Name': u.name | to_bool}) %}
+{%- endif %}
+
+{%- if u.openwith is defined %}
+    {%- do user_settings.update({'OpenWith': u.openwith | to_bool}) %}
+{%- endif %}
+
+{%- if u.privileges is defined %}
+    {%- do user_settings.update({'Privileges': u.privileges | to_bool}) %}
+{%- endif %}

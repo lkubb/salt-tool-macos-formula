@@ -1,0 +1,37 @@
+{%- set sort_options = {
+    'name': 'name',
+    'kind': 'kind',
+    'last_opened': 'dateLastOpened',
+    'added': 'dateAdded',
+    'modified': 'dateModified',
+    'created': 'dateCreated',
+    'size': 'size',
+    'tags': 'label',
+} -%}
+
+{%- set u = user.macos.finder.view_list %}
+{%- set user_settings = {} %}
+
+{%- if u.calc_all_sizes is defined %}
+    {%- do user_options.update({'calculateAllSizes':  bool(u.calc_all_sizes) }) %}
+{%- endif %}
+
+{%- if u.icon_size is defined %}
+    {%- do user_settings.update({'iconSize': float(u.icon_size)}) %}
+{%- endif %}
+
+{%- if u.preview is defined %}
+    {%- do user_settings.update({'showIconPreview':  bool(u.preview) }) %}
+{%- endif %}
+
+{%- if u.sort_col is defined %}
+    {%- do user_settings.update({'sortColumn': sort.get(u.arrange, 'name')}) %}
+{%- endif %}
+
+{%- if u.text_size is defined %}
+    {%- do user_settings.update({'textSize': float(u.text_size)}) %}
+{%- endif %}
+
+{%- if u.relative_dates is defined %}
+    {%- do user_options.update({'useRelativeDates':  bool(u.relative_dates) }) %}
+{%- endif %}

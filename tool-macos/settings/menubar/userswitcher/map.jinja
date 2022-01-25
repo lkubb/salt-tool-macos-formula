@@ -1,0 +1,24 @@
+{#-
+    Status values correspond to both Menu Bar and Control Center settings:
+    4321
+    0011 =  3: both on
+    0110 =  6: menubar on
+    1001 =  9: control center on
+    1100 = 12: both off
+
+    bit 1/3 control center on / off
+    bit 2/4 menubar        on / off
+
+    Default: 6 (menu on, center off)
+ -#}
+
+{%- set u = user.macos.menubar.userswitcher %}
+{#- default is both off -#}
+{%- set status = 12 %}
+
+{%- if u.menu is defined and u.menu %}
+  {%- set status = status - 6  %}
+{%- endif %}
+{%- if u.center is defined and u.center %}
+  {%- set status = status - 3 %}
+{%- endif %}

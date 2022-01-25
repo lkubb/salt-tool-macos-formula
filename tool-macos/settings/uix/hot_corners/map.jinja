@@ -1,0 +1,43 @@
+{%- set user_settings = {} -%}
+{%- set u = user.macos.uix.hot_corners -%}
+
+{%- set actions = {
+  'none': 0,
+  'mission-control': 2,
+  'app-windows': 3,
+  'desktop': 4,
+  'screensaver': 5,
+  'stop-screensaver': 6,
+  'displaysleep': 10,
+  'launchpad': 11,
+  'notification-center': 12,
+  'lock-screen': 13,
+  'quick-note': 14
+} -%}
+
+{#- modifiers values: Shift (2^17), Ctrl (2^18), Opt (2^19), Cmd (2^20) -#}
+
+{%- set modifiers = {
+  'none': 0,
+  'shift': 131072,
+  'ctrl': 262144,
+  'opt': 524288,
+  'cmd': 1048576
+} -%}
+
+{%- set corners = ['top_left', 'top_right', 'bottom_left', 'bottom_right'] -%}
+
+{%- for corner in corners -%}
+  {%- set corner_settings = {'action': 0, 'modifier': 0} -%}
+  {%- if u.get(corner) -%}
+    {%- if u[corner] is string %}
+      {%- set corner_settings = {'action': u[corner], 'modifier': 0} %}
+    {%- else %}
+      {%- set corner_settings = {
+        'action': actions.get(u[corner].action, 0),
+        'modifier': modifiers.get(u.get('modifier', 0))
+      } -%}
+    {%- endif %}
+  {%- endif -%}
+  {%- do user_settings.update({corner: corner_settings}) %}
+{%- endfor -%}

@@ -1,0 +1,43 @@
+{%- set user_settings = {
+  'enabled': False,
+  'follow_keyboard_focus': 0,
+  'modifier': 262144,
+  'zoom_mode': 0,
+} %}
+
+{%- set u = user.macos.uix.zoom_scroll_ui %}
+
+{%- set zoom_modes = {
+  'full': 0,
+  'split': 2,
+  'in_picture': 1
+} %}
+
+{%- set modifiers = {
+  'ctrl': 262144,
+  'opt': 524288,
+  'cmd': 1048576
+} -%}
+
+{%- set keyboard_modes = {
+  'never': 0,
+  'always': 1,
+  'when_typing': 2
+} %}
+
+{%- if u is boolean %}
+  {%- do user_settings.update({'enabled': u}) %}
+{%- else %}
+  {%- if u.enabled is defined %}
+    {%- do user_settings.update({'enabled': u.enabled}) %}
+  {%- endif %}
+  {%- if u.follow_mode is defined %}
+    {%- do user_settings.update({'follow_keyboard_focus': keyboard_modes.get(u.follow_keyboard_focus, 0)}) %}
+  {%- endif %}
+  {%- if u.modifier is defined %}
+    {%- do user_settings.update({'modifier': modifiers.get(u.modifier, 262144)}) %}
+  {%- endif %}
+  {%- if u.zoom_mode is defined %}
+    {%- do user_settings.update({'zoom_mode': zoom_modes.get(u.zoom_mode, 0)}) %}
+  {%- endif %}
+{%- endif %}

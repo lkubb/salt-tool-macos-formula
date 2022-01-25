@@ -1,0 +1,27 @@
+{%- set user_items = {
+  'applications': {'name': 'APPLICATIONS', 'enabled': False},
+  'bookmarks-history': {'name': 'BOOKMARKS', 'enabled': False},
+  'calculator': {'name': 'MENU_EXPRESSION', 'enabled': False},
+  'contacts': {'name': 'CONTACT', 'enabled': False},
+  'conversion': {'name': 'MENU_CONVERSION', 'enabled': False},
+  'definition': {'name': 'MENU_DEFINITION', 'enabled': False},
+  'developer': {'name': 'SOURCE', 'enabled': False},
+  'documents': {'name': 'DOCUMENTS', 'enabled': False},
+  'events-reminders': {'name': 'EVENT_TODO', 'enabled': False},
+  'folders': {'name': 'DIRECTORIES', 'enabled': False},
+  'fonts': {'name': 'FONTS', 'enabled': False},
+  'images': {'name': 'IMAGES', 'enabled': False},
+  'mail-messages': {'name': 'MESSAGES', 'enabled': False},
+  'movies': {'name': 'MOVIES', 'enabled': False},
+  'music': {'name': 'MUSIC', 'enabled': False},
+  'other': {'name': 'MENU_OTHER', 'enabled': False},
+  'pdf': {'name': 'PDF', 'enabled': False},
+  'presentations': {'name': 'PRESENTATIONS', 'enabled': False},
+  'siri': {'name': 'MENU_SPOTLIGHT_SUGGESTIONS', 'enabled': False},
+  'spreadsheets': {'name': 'SPREADSHEETS', 'enabled': False},
+  'system-preferences': {'name': 'SYSTEM_PREFS', 'enabled': False},
+} %}
+
+{%- for item in user.macos.uix.spotlight_index %}
+  {%- do user_items[item].update({'enabled': True}) %}
+{%- endfor %}

@@ -1,0 +1,30 @@
+{%- set m = macos.security.autoupdate -%}
+{%- set system_settings = {
+    'AutomaticCheckEnabled': False,
+    'AutomaticDownload': False,
+    'ConfigDataInstall': False,
+    'CriticalUpdateInstall': False,
+    } -%}
+{%- set appstore_setting = False -%}
+
+{%- if m.get('check', True) -%}
+  {%- do system_settings.update({'AutomaticCheckEnabled': True}) -%}
+  {%- if m.get('schedule') -%}
+    {%- do system_settings.update({'ScheduleFrequency': m.schedule | int}) -%}
+  {%- endif -%}
+  {%- if m.get('download', True) -%}
+    {%- do system_settings.update({'AutomaticDownload': True}) -%}
+    {%- if m.get('install_app', True) -%}
+      {%- set appstore_setting = True -%}
+    {%- endif -%}
+    {%- if m.get('install_config', True) -%}
+      {%- do system_settings.update({'ConfigDataInstall': True}) -%}
+    {%- endif -%}
+    {%- if m.get('install_critical', True) -%}
+      {%- do system_settings.update({'CriticalUpdateInstall': True}) -%}
+    {%- endif -%}
+    {%- if m.get('install_system', True) -%}
+      {%- do system_settings.update({'AutomaticallyInstallMacOSUpdates': True}) -%}
+    {%- endif -%}
+  {%- endif -%}
+{%- endif -%}

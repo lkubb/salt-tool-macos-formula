@@ -1,0 +1,35 @@
+{#- get dict of user configurations -#}
+{%- set macos = salt['pillar.get']('tool:macos', {'users': {}}, merge=True) -%}
+{%- set users = {} -%}
+
+{%- set console_user = salt['cmd.run_stdout']('id -n -u $(stat -f "%u" /dev/console)', python_shell=True) %}
+{%- do macos.update({'_console_user': console_user}) %}
+
+{#- rejectattr filter does not fit with mapping. need to filter out users before merging default values -#}
+{%- for tool_user, tool_user_conf in salt['pillar.get']('tool:users', {}).items() -%}
+{#- by default, install tool if it was targeted. explicitly deny for a specific user to override -#}
+  {%- if tool_user_conf.get('macos', True) -%}
+    {%- do users.update({tool_user: tool_user_conf}) -%}
+  {%- endif -%}
+{%- endfor -%}
+
+{%- do salt['defaults.merge'](users, macos.get('users', {})) -%}
+
+{#- update all user configuration for macos with its defaults -#}
+{%- do salt['defaults.update'](users, {'macos': macos.get('defaults', {})}) -%}
+
+{#- embed user information that will be reused (home, primary group, shell, paths) -#}
+{%- for user in users.keys() -%}
+  {%- do users[user].update({'_macos': {}}) -%}
+  {%- do users[user].update({'name': user}) -%}
+  {%- set user_info = salt['user.info'](user) -%}
+  {%- load_yaml as user_info -%}
+group: {{ salt['user.primary_group'](user) }}
+home: {{ user_info.home }}
+shell: {{ user_info.shell.split('/')[-1] }}
+guid: {{ salt['cmd.run_stdout']("dscl . -read ~ GeneratedUID | sed 's/GeneratedUID: //'", runas=user) }}
+  {%- endload -%}
+  {%- do users[user].update(salt['defaults.merge'](user_info, users[user], in_place=False)) -%}
+{%- endfor -%}
+
+{%- do macos.update({'users': users.values() | list}) -%}
