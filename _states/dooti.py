@@ -4,7 +4,7 @@ URL schemes on macOS 12.0+.
 
 """
 import logging
-
+import salt.utils.platform
 from salt.exceptions import CommandExecutionError
 
 log = logging.getLogger(__name__)
