@@ -148,12 +148,17 @@ tiles
 -----
     Customizes dock tiles (items).
 
+    .. warning::
+
+        This currently only supports syncing, not appending.
+        Applying this state will delete the previous configuration.
+
     Values:
         - dict
 
             * apps: list of items
             * others: list of items
-            * sync: bool [default: true, false = append]
+            * sync: true [appending is currently very broken]
 
     Single item possible values:
         - type: [possibly autodetected if unspecified]
@@ -199,7 +204,7 @@ tiles
           sync: true # don't append, make it exactly like specified
           apps:
             - /Applications/TextEdit.app  # paths can be specified, type will be autodetected
-            -                             # empty items are spacers
+            -                             # empty items are small spacers
             - type: file                  # this is the verbose variant for app definition
               path: /Applications/Sublime Text.app
               label: Sublime              # the label will otherwise equal app name without .app
@@ -213,7 +218,7 @@ tiles
               arrangement: added          # name / added / modified / created / kind
               label: DL                   # the label would be set to Downloads otherwise
               type: directory             # will be autodetected as well
-            - spacer                      # spacers can be defined like this as well
+            - spacer
             - /Users/user/Documents       # defaults: stack + auto + added. label: Documents.
             - flex-spacer
             - https://www.github.com      # urls can be added as well

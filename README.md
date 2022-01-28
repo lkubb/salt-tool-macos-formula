@@ -141,10 +141,10 @@ user:
       spring_loading: false
       stack_hover: false
       tiles:
-        sync: true                  # don't append, make it exactly like specified
+        sync: true # don't append, make it exactly like specified. currently forced to true
         apps:
           - /Applications/TextEdit.app  # paths can be specified, type will be autodetected
-          -                             # empty items are spacers
+          -                             # empty items are small-spacer[s]
           - type: file                  # this is the verbose variant for app definition
             path: /Applications/Sublime Text.app
             label: Sublime              # the label will otherwise equal app name without .app
@@ -158,7 +158,7 @@ user:
             arrangement: added          # name / added / modified / created / kind
             label: DL                   # the label would be set to Downloads otherwise
             type: directory             # will be autodetected as well
-          - spacer                      # spacers can be defined like this as well
+          - spacer
           - /Users/user/Documents       # defaults: stack + auto + added. label: Documents.
           - flex-spacer
           - https://www.github.com      # urls can be added as well

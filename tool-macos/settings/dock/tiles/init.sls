@@ -1,12 +1,17 @@
 {#-
     Customizes dock tiles (items).
 
+    .. warning::
+
+        This currently only supports syncing, not appending.
+        Applying this state will delete the previous configuration.
+
     Values:
         - dict
 
             * apps: list of items
             * others: list of items
-            * sync: bool [default: true, false = append]
+            * sync: true [appending is currently very broken]
 
     Single item possible values:
         - type: [possibly autodetected if unspecified]
@@ -52,7 +57,7 @@
           sync: true # don't append, make it exactly like specified
           apps:
             - /Applications/TextEdit.app  # paths can be specified, type will be autodetected
-            -                             # empty items are spacers
+            -                             # empty items are small spacers
             - type: file                  # this is the verbose variant for app definition
               path: /Applications/Sublime Text.app
               label: Sublime              # the label will otherwise equal app name without .app
@@ -66,11 +71,10 @@
               arrangement: added          # name / added / modified / created / kind
               label: DL                   # the label would be set to Downloads otherwise
               type: directory             # will be autodetected as well
-            - spacer                      # spacers can be defined like this as well
+            - spacer
             - /Users/user/Documents       # defaults: stack + auto + added. label: Documents.
             - flex-spacer
             - https://www.github.com      # urls can be added as well
-
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}
@@ -82,7 +86,9 @@ include:
 
 {%- for user in macos.users | selectattr('macos.dock', 'defined') | selectattr('macos.dock.tiles', 'defined') %}
   {%- from tpldir ~ '/map.jinja' import user_settings with context %}
-  {%- set sync = user.macos.dock.tiles.get('sync', False) %}
+  {#- appending is currently not supported, need to fix macosdefaults.append A LOT #}
+  {#- set sync = user.macos.dock.tiles.get('sync', False) #}
+  {%- set sync = True %}
 
 Dock items are customized for user {{ user.name }}:
   macosdefaults.{{ 'write' if sync else 'extend' }}:
@@ -102,10 +108,12 @@ Dock items are customized for user {{ user.name }}:
           - vtype: list
     {%- endif %}
   {%- endif %}
-    # - skeleton:
-    #     persistent-apps: []
-    #     persistent-others: []
-    #     version: 1
+  {%- if not sync %}
+    - skeleton:
+        persistent-apps: []
+        persistent-others: []
+        version: 1
+  {%- endif %}
     - user: {{ user.name }}
     - require:
       - System Preferences is not running

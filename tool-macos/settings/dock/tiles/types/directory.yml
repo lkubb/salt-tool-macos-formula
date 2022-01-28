@@ -31,7 +31,7 @@ tile-data:
   displayas: {{ display_opts[item.get('displayas', 'stack')] }}
   file-data:
     _CFURLString: {{ item.path }}
-    _CFURLStringType': 0
+    _CFURLStringType: 0
   file-label: '{{ label }}'
   file-type: 2
   showas: {{ show_opts[item.get('showas', 'auto')] }}

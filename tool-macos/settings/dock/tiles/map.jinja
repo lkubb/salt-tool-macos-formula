@@ -5,9 +5,9 @@
   {%- if user.macos.dock.tiles[space] is defined %}
     {%- for item in user.macos.dock.tiles[space] %}
 
-      {#- empty items are mapped to spacer -#}
+      {#- empty items are mapped to small-spacer -#}
       {%- if not item %}
-        {%- set item = {'type': 'spacer'} %}
+        {%- set item = {'type': 'small-spacer'} %}
       {%- elif item is string %}
         {#- other spacers can be defined as a string -#}
         {%- if item in ['spacer', 'small-spacer', 'flex-spacer'] %}

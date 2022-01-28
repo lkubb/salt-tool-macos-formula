@@ -522,7 +522,7 @@
 <span class="sd">    user</span>
 <span class="sd">        Specifies the user to associate the handler for. Defaults to salt process user.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">_call_dooti</span><span class="p">(</span><span class="s1">&#39;set_default_uti&#39;</span><span class="p">,</span> <span class="p">[</span><span class="n">handler</span><span class="p">],</span> <span class="n">user</span><span class="p">)</span></div>
+    <span class="n">_call_dooti</span><span class="p">(</span><span class="s1">&#39;set_default_uti&#39;</span><span class="p">,</span> <span class="p">[</span><span class="n">uti</span><span class="p">,</span> <span class="n">handler</span><span class="p">],</span> <span class="n">user</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="scheme"><a class="viewcode-back" href="../../modules/dooti.html#_modules.dooti.scheme">[docs]</a><span class="k">def</span> <span class="nf">scheme</span><span class="p">(</span><span class="n">scheme</span><span class="p">,</span> <span class="n">handler</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
@@ -550,7 +550,7 @@
 <span class="sd">    user</span>
 <span class="sd">        Specifies the user to associate the handler for. Defaults to salt process user.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">_call_dooti</span><span class="p">(</span><span class="s1">&#39;set_default_scheme&#39;</span><span class="p">,</span> <span class="p">[</span><span class="n">handler</span><span class="p">],</span> <span class="n">user</span><span class="p">)</span></div>
+    <span class="n">_call_dooti</span><span class="p">(</span><span class="s1">&#39;set_default_scheme&#39;</span><span class="p">,</span> <span class="p">[</span><span class="n">scheme</span><span class="p">,</span> <span class="n">handler</span><span class="p">],</span> <span class="n">user</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="get_ext"><a class="viewcode-back" href="../../modules/dooti.html#_modules.dooti.get_ext">[docs]</a><span class="k">def</span> <span class="nf">get_ext</span><span class="p">(</span><span class="n">ext</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
@@ -631,11 +631,9 @@
 <span class="sd">        Specifies the user to retrieve the application for. Defaults to salt process user.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">path</span> <span class="o">=</span> <span class="n">_call_dooti</span><span class="p">(</span><span class="s1">&#39;get_app_path&#39;</span><span class="p">,</span> <span class="p">[</span><span class="n">app</span><span class="p">],</span> <span class="n">user</span><span class="p">)</span>
-    <span class="c1"># trim file:// from beginning and / from end to sync output with other functions</span>
-    <span class="c1"># it&#39;s formatted differently because the underlying function returns the actual URL</span>
-    <span class="c1"># object for use in other parts of the script</span>
-    <span class="k">return</span> <span class="n">path</span><span class="p">[</span><span class="mi">7</span><span class="p">:]</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span></div>
+    <span class="c1"># we need the application&#39;s path, not the URL, so pass anything as second argument</span>
+    <span class="c1"># to set as_path to True</span>
+    <span class="k">return</span> <span class="n">_call_dooti</span><span class="p">(</span><span class="s1">&#39;get_app_path&#39;</span><span class="p">,</span> <span class="p">[</span><span class="n">app</span><span class="p">,</span> <span class="s1">&#39;true&#39;</span><span class="p">],</span> <span class="n">user</span><span class="p">)</span></div>
 
 
 <span class="n">program</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;</span>
@@ -794,26 +792,35 @@
 
 <span class="s1">        return handler.fileSystemRepresentation().decode()</span>
 
-<span class="s1">    def get_app_path(self, app):</span>
+<span class="s1">    def get_app_path(self, app, as_path=False):</span>
 <span class="s1">        &quot;&quot;&quot;</span>
 <span class="s1">        Returns a URL (filesystem path prefixed with &#39;file://&#39; scheme) to an</span>
 <span class="s1">        application specified by name, absolute path or bundle ID.</span>
 
 <span class="s1">        :param str app: name, absolute filesystem path or bundle ID to look up the URL for</span>
+<span class="s1">        :param bool as_path: return absolute path instead of URL</span>
 
 <span class="s1">        :raises:</span>
 <span class="s1">            ApplicationNotFound: when no matching application was found</span>
 <span class="s1">        &quot;&quot;&quot;</span>
 <span class="s1">        if &quot;/&quot; == app[0]:</span>
+<span class="s1">            if as_path:</span>
+<span class="s1">                return app</span>
 <span class="s1">            return NSURL.fileURLWithPath_(app)</span>
 
 <span class="s1">        try:</span>
-<span class="s1">            return self.bundle_to_url(app)</span>
+<span class="s1">            ret = self.bundle_to_url(app)</span>
+<span class="s1">            if as_path:</span>
+<span class="s1">                return ret.fileSystemRepresentation().decode()</span>
+<span class="s1">            return ret</span>
 <span class="s1">        except BundleURLNotFound:</span>
 <span class="s1">            pass</span>
 
 <span class="s1">        try:</span>
-<span class="s1">            return self.name_to_url(app)</span>
+<span class="s1">            ret = self.name_to_url(app)</span>
+<span class="s1">            if as_path:</span>
+<span class="s1">                return ret.fileSystemRepresentation().decode()</span>
+<span class="s1">            return ret</span>
 <span class="s1">        except ApplicationNotFound:</span>
 <span class="s1">            raise ApplicationNotFound(</span>
 <span class="s1">                &quot;Could not find an application matching the description &#39;</span><span class="si">{}</span><span class="s1">&#39;.&quot;.format(</span>
