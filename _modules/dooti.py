@@ -236,11 +236,9 @@ def get_path(app, user=None):
         Specifies the user to retrieve the application for. Defaults to salt process user.
     """
 
-    path = _call_dooti('get_app_path', [app], user)
-    # trim file:// from beginning and / from end to sync output with other functions
-    # it's formatted differently because the underlying function returns the actual URL
-    # object for use in other parts of the script
-    return path[7:].rstrip('/')
+    # we need the application's path, not the URL, so pass anything as second argument
+    # to set as_path to True
+    return _call_dooti('get_app_path', [app, 'true'], user)
 
 
 program = '''
@@ -399,26 +397,35 @@ class dooti:
 
         return handler.fileSystemRepresentation().decode()
 
-    def get_app_path(self, app):
+    def get_app_path(self, app, as_path=False):
         """
         Returns a URL (filesystem path prefixed with 'file://' scheme) to an
         application specified by name, absolute path or bundle ID.
 
         :param str app: name, absolute filesystem path or bundle ID to look up the URL for
+        :param bool as_path: return absolute path instead of URL
 
         :raises:
             ApplicationNotFound: when no matching application was found
         """
         if "/" == app[0]:
+            if as_path:
+                return app
             return NSURL.fileURLWithPath_(app)
 
         try:
-            return self.bundle_to_url(app)
+            ret = self.bundle_to_url(app)
+            if as_path:
+                return ret.fileSystemRepresentation().decode()
+            return ret
         except BundleURLNotFound:
             pass
 
         try:
-            return self.name_to_url(app)
+            ret = self.name_to_url(app)
+            if as_path:
+                return ret.fileSystemRepresentation().decode()
+            return ret
         except ApplicationNotFound:
             raise ApplicationNotFound(
                 "Could not find an application matching the description '{}'.".format(
