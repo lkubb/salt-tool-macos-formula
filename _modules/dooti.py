@@ -127,7 +127,7 @@ def uti(uti, handler, user=None):
     user
         Specifies the user to associate the handler for. Defaults to salt process user.
     """
-    _call_dooti('set_default_uti', [handler], user)
+    _call_dooti('set_default_uti', [uti, handler], user)
 
 
 def scheme(scheme, handler, user=None):
@@ -155,7 +155,7 @@ def scheme(scheme, handler, user=None):
     user
         Specifies the user to associate the handler for. Defaults to salt process user.
     """
-    _call_dooti('set_default_scheme', [handler], user)
+    _call_dooti('set_default_scheme', [scheme, handler], user)
 
 
 def get_ext(ext, user=None):
