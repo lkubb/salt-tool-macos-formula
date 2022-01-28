@@ -1,7 +1,8 @@
 {#-
     Customizes Mission Control window grouping behavior.
 
-    Values: bool [default: true = group windows by application]
+    Values:
+        - bool [default: true = group windows by application]
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

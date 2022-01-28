@@ -2,9 +2,12 @@
     Customizes default state of function keys. Enabling this will
     make F1 to F12 behave like standard F1 to F12, not as system function keys.
 
-    You might need to reboot after applying.
+    .. note::
 
-    Values: bool [default: false]
+        You might need to reboot after applying.
+
+    Values:
+        - bool [default: false]
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

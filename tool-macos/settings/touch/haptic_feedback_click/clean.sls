@@ -1,5 +1,5 @@
 {#-
-    Resets Click feedback to default (enabled).
+    Resets click feedback to default (enabled).
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

@@ -1,9 +1,12 @@
 {#-
     Customizes whether to display date and time in overview.
 
-    Needs Full Disk Access to work (https://lapcatsoftware.com/articles/containers.html).
+    .. note::
 
-    Values: bool [default: false]
+        Needs Full Disk Access to work (https://lapcatsoftware.com/articles/containers.html).
+
+    Values:
+        - bool [default: false]
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

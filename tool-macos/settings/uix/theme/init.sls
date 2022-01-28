@@ -1,9 +1,16 @@
 {#-
     Customizes system theme.
 
-    Currently needs a logout to apply.
+    .. note::
 
-    Values: string [dark, light, auto. default: light]
+        Currently needs a logout to apply.
+
+    Values:
+        - string [default: light]
+
+            * dark
+            * light
+            * auto
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

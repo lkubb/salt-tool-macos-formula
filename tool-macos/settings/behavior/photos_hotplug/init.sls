@@ -1,10 +1,9 @@
 {#-
-    Customizes Photos hotplug behavior.
+    Customizes Photos hotplug behavior (open Photos.app when media is inserted,
+    might apply to plugging in iPhone as well).
 
-    Mind that the actual setting is called "disable...". For consistency,
-    the pillar value is inverted. pillar False => disabled True
-
-    Values: bool [default: true]
+    Values:
+        - bool [default: true]
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}
@@ -21,6 +20,8 @@ Photos hotplug behavior is managed for user {{ user.name }}:
     - host: current
     - domain: com.apple.ImageCapture
     - name: disableHotPlug
+    {#- Mind that the actual setting is called "disable...". For consistency,
+    the pillar value is inverted. pillar False => disabled True #}
     - value: {{ False == user.macos.behavior.photos_hotplug }}
     - vtype: bool
     - user: {{ user.name }}

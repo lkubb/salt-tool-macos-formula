@@ -1,14 +1,26 @@
 {#-
     Customizes dock autohide behavior.
+
     Values:
-      enabled: bool [default: false]
-      time: float [default: 0.5]
-      delay: float [default: 0.5]
+        - dict
+
+            * enabled: bool [default: false]
+            * time: float [default: 0.5]
+            * delay: float [default: 0.5]
+
+    Example:
+
+    .. code-block:: yaml
+
+        autohide:
+          enabled: true
+          time: 0.01
+          delay: 0.01
 
     References:
-      https://macos-defaults.com/dock/autohide.html
-      https://macos-defaults.com/dock/autohide-time-modifier.html
-      https://macos-defaults.com/dock/autohide-delay.html
+        * https://macos-defaults.com/dock/autohide.html
+        * https://macos-defaults.com/dock/autohide-time-modifier.html
+        * https://macos-defaults.com/dock/autohide-delay.html
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

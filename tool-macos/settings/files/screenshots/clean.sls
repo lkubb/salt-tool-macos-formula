@@ -1,9 +1,5 @@
 {#-
-    Resets screenshot settings to default values.
-
-    References:
-      https://ss64.com/osx/screencapture.html
-      https://github.com/joeyhoer/starter/blob/master/apps/screenshot.sh
+    Resets screenshot creation settings to defaults.
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

@@ -1,10 +1,13 @@
 {#-
     Customizes Siri activation status.
 
-    Note that System Preferences does much more when toggling
-    the option. This might be very incomplete.
+    .. note::
 
-    Values: bool [default: false]
+        Note that System Preferences does much more when toggling
+        the option. This might be very incomplete.
+
+    Values:
+        - bool [default: false]
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

@@ -1,7 +1,8 @@
 {#-
     Customizes availability of Live Text (select text in pictures).
 
-    Values: bool [default: true]
+    Values:
+        - bool [default: true]
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

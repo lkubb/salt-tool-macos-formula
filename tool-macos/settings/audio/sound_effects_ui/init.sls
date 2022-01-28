@@ -1,13 +1,17 @@
 {#-
     Customizes global UI sound effect behavior.
-    Values: bool [default: true]
 
-    This manages global UI sound effects. For macOS system only, see sound_effects_system.
+    Values:
+        - bool [default: true]
+
+    .. hint::
+
+        This manages global UI sound effects. For macOS system only, see sound_effects_system.
 
     References:
-      https://superuser.com/questions/278537/disable-sounds-in-10-5-and-10-6
-      https://github.com/joeyhoer/starter/blob/master/system/sound.sh
-      https://discussions.apple.com/thread/253125795
+        * https://superuser.com/questions/278537/disable-sounds-in-10-5-and-10-6
+        * https://github.com/joeyhoer/starter/blob/master/system/sound.sh
+        * https://discussions.apple.com/thread/253125795
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

@@ -2,14 +2,36 @@
     Customizes power settings.
 
     Values:
-      dict of <scope> => {name: val, othername: otherval} mappings
-        where scope is in [all, ac, battery, ups].
+        - dict of <scope> => {name: val, othername: otherval} mappings
+          where scope is in [all, ac, battery, ups].
 
-    This could be managed with macosdefaults as well, the files are
-    /Library/Preferences/com.apple.PowerManagement.plist and
-    /Library/Preferences/com.apple.PowerManagement.<UUID>.plist
+    Example:
 
-    (before Sierra 10.12.3)
+    ... code-block:: yaml
+
+        power:
+          all:
+            standby: 1
+            destroyfvkeysonstandby: 0
+          ac:
+            displaysleep: 10
+            halfdim: 1
+          battery:
+            displaysleep: 5
+            halfdim: 0
+            lessbright: 1
+
+    References:
+        * man pmset
+        * https://en.wikipedia.org/wiki/Pmset
+        * https://apple.stackexchange.com/a/262593
+-#}
+
+{#- This could be managed with macosdefaults as well, the files are
+        * /Library/Preferences/com.apple.PowerManagement.plist and
+        * /Library/Preferences/com.apple.PowerManagement.<UUID>.plist
+
+    or before Sierra 10.12.3:
     /Library/Preferences/SystemConfiguration/com.apple.PowerManagement.plist
 
     and would need `sudo pmset touch` to be applied.
@@ -56,12 +78,7 @@
           TCPKeepAlivePref = 1;
           TTYSPreventSleep = 1;
       };
-
-    References:
-      man pmset
-      https://en.wikipedia.org/wiki/Pmset
-      https://apple.stackexchange.com/a/262593
--#}
+#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}
 {%- from tplroot ~ "/map.jinja" import macos -%}

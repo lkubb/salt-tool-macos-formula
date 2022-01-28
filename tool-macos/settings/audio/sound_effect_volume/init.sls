@@ -1,9 +1,11 @@
 {#-
     Customizes sound effect volume (in parts of current output volume).
-    Values: real [default: 1]
+
+    Values:
+        - float [default: 1]
 
     References:
-      https://github.com/joeyhoer/starter/blob/master/system/sound.sh
+        * https://github.com/joeyhoer/starter/blob/master/system/sound.sh
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

@@ -1,7 +1,8 @@
 {#-
     Customizes Mission Control animation duration.
 
-    Values: float [default: 0.5?]
+    Values:
+        - float [default: 0.5?]
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

@@ -1,13 +1,32 @@
 {#-
     Customizes activation status of UI zoom by modifier + scrolling feature.
 
-    Mind that setting this needs Full Disk Access on your terminal emulator application.
+    .. note::
 
-    Values: bool [default: false] or mapping:
-      enabled: bool [default: false]
-      follow_keyboard_focus: string [always, never, when_typing. default: never]
-      zoom_mode: string [full, split, in_picture. default: full]
-      modifier: string [ctrl, opt, cmd. default: ctrl]
+        Mind that setting this needs Full Disk Access on your terminal emulator application.
+
+    Values:
+        - bool [default: false]
+        - or mapping
+
+            * enabled: bool [default: false]
+            * follow_keyboard_focus: string [default: never]
+
+                - always
+                - never
+                - when_typing
+
+            * zoom_mode: string [default: full]
+
+                - full
+                - split
+                - in_picture
+
+            * modifier: string [default: ctrl]
+
+                - ctrl
+                - opt
+                - cmd
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

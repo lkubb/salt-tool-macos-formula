@@ -1,10 +1,8 @@
 {#-
     Customizes wallpaper tinting of windows behavior.
 
-    Mind that the actual setting is called "...Reduce...",
-    so for consistency, the pillar value is inverted.
-
-    Values: bool [default: true]
+    Values:
+        - bool [default: true]
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}
@@ -19,6 +17,8 @@ include:
 Wallpaper tinting of windows behavior is managed for user {{ user.name }}:
   macosdefaults.write:
     - name: AppleReduceDesktopTinting # in NSGlobalDomain
+    {#- Mind that the actual setting is called "...Reduce...",
+    so for consistency, the pillar value is inverted. #}
     - value: {{ False == user.macos.uix.wallpaper_tinting | to_bool }}
     - vtype: bool
     - user: {{ user.name }}

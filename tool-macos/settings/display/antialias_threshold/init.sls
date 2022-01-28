@@ -2,13 +2,14 @@
     Sets global antialiasing threshold font size.
 
     Values:
-      antialias_threshold: int (font size in pixels)
-          [default: 4]
+        - int [font size in pixels, default: 4]
 
-    Needs reboot (probably).
+    .. note::
+
+        Needs reboot (probably).
 
     References:
-      https://github.com/kevinSuttle/macOS-Defaults/issues/17
+        * https://github.com/kevinSuttle/macOS-Defaults/issues/17
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

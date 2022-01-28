@@ -1,8 +1,19 @@
 {#-
     Customizes dock behavior on hover (magnification).
+
     Values:
-      enabled: bool [default: false]
-      size: int [default: 128]
+        - dict
+
+            * enabled: bool [default: false]
+            * size: int [default: 128]
+
+    Example:
+
+    .. code-block:: yaml
+
+        magnification:
+          enabled: true
+          size: 64
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

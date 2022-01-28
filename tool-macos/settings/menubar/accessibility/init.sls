@@ -1,8 +1,11 @@
 {#-
     Customizes display status of Accesibility Shortcuts widget in Menu Bar and Control Center.
+
     Values:
-      menu: bool [default: false]
-      control: bool [default: false]
+        - dict
+
+            * menu: bool [default: false]
+            * control: bool [default: false]
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

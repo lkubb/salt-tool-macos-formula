@@ -1,6 +1,9 @@
 {#-
     Customizes display status of Now Playing widget in Menu Bar.
-    Values: bool or when_active [default: when_active]
+
+    Values:
+        - when_active [default: when_active]
+        - or bool
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

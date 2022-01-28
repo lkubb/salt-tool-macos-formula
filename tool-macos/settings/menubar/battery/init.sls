@@ -1,12 +1,15 @@
 {#-
     Customizes display behavior of Battery widget in Menu Bar and Control Center.
-    Values:
-      menu: bool [default: true]
-      control: bool [default: false]
-      percent: bool [default: false]
 
-    Before Big Sur, percent status was found in com.apple.menuextra.battery as ShowPercent.
+    Values:
+        - dict
+
+            * menu: bool [default: true]
+            * control: bool [default: false]
+            * percent: bool [default: false]
 -#}
+
+{#- Before Big Sur, percent status was found in com.apple.menuextra.battery as ShowPercent. -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}
 {%- from tplroot ~ "/map.jinja" import macos -%}

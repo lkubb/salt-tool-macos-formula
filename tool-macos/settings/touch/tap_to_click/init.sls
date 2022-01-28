@@ -1,9 +1,12 @@
 {#-
     Customizes tap-to-click activation status.
-    Values: bool [default: false]
 
-    Note that this has to be active when you enable
-    tap to click.
+    Values:
+        - bool [default: false]
+
+    .. note::
+
+        Note that this has to be active when you enable three finger drag.
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

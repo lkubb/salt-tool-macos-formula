@@ -1,13 +1,15 @@
 {#-
     Customizes charging sound (chime) behavior.
-    Values: bool [default: true since 10.13/High Sierra]
 
-    Up until Sierra, this was turned of by default and could be enabled with ChimeOnAllHardware.
+    Values:
+        - bool [default: true since 10.13/High Sierra]
+
+    .. hint::
+
+        Up until Sierra, this was turned of by default and could be enabled with ChimeOnAllHardware.
 
     References:
-      https://apple.stackexchange.com/questions/168092/disable-os-x-startup-sound
-      https://apple.stackexchange.com/questions/409521/how-to-stop-startup-chime-on-boot-up
-      https://git.herrbischoff.com/awesome-macos-command-line/about/
+        * https://git.herrbischoff.com/awesome-macos-command-line/about/
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

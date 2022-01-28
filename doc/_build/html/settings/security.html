@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Security &mdash; salt-tool-macos-config 0.1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Siri" href="siri.html" />
+    <link rel="prev" title="Privacy" href="privacy.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> salt-tool-macos-config
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../overview.html#settings">Settings</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Available settings</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="animations.html">Animations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="animations.html#cursor-blinking">cursor_blinking</a></li>
+<li class="toctree-l3"><a class="reference internal" href="animations.html#dock-bounce">dock_bounce</a></li>
+<li class="toctree-l3"><a class="reference internal" href="animations.html#dock-launch">dock_launch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="animations.html#dock-minimize">dock_minimize</a></li>
+<li class="toctree-l3"><a class="reference internal" href="animations.html#finder-windows">finder_windows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="animations.html#focus-ring">focus_ring</a></li>
+<li class="toctree-l3"><a class="reference internal" href="animations.html#macos-windows">macos_windows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="animations.html#mission-control">mission_control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="animations.html#motion-reduced">motion_reduced</a></li>
+<li class="toctree-l3"><a class="reference internal" href="animations.html#multidisplay-swoosh">multidisplay_swoosh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="animations.html#window-resize-time">window_resize_time</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="audio.html">Audio</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="audio.html#boot-sound">boot_sound</a></li>
+<li class="toctree-l3"><a class="reference internal" href="audio.html#charging-sound">charging_sound</a></li>
+<li class="toctree-l3"><a class="reference internal" href="audio.html#devices">devices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="audio.html#sound-effect-alert">sound_effect_alert</a></li>
+<li class="toctree-l3"><a class="reference internal" href="audio.html#sound-effect-volume">sound_effect_volume</a></li>
+<li class="toctree-l3"><a class="reference internal" href="audio.html#sound-effect-volumechange">sound_effect_volumechange</a></li>
+<li class="toctree-l3"><a class="reference internal" href="audio.html#sound-effects-system">sound_effects_system</a></li>
+<li class="toctree-l3"><a class="reference internal" href="audio.html#sound-effects-ui">sound_effects_ui</a></li>
+<li class="toctree-l3"><a class="reference internal" href="audio.html#spatial-follow-head">spatial_follow_head</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="behavior.html">Behavior</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="behavior.html#confirm-on-close">confirm_on_close</a></li>
+<li class="toctree-l3"><a class="reference internal" href="behavior.html#crashreporter">crashreporter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="behavior.html#feedback-assistant-autogather">feedback_assistant_autogather</a></li>
+<li class="toctree-l3"><a class="reference internal" href="behavior.html#handoff-allow">handoff_allow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="behavior.html#help-window-floats">help_window_floats</a></li>
+<li class="toctree-l3"><a class="reference internal" href="behavior.html#media-inserted">media_inserted</a></li>
+<li class="toctree-l3"><a class="reference internal" href="behavior.html#mission-control-grouping">mission_control_grouping</a></li>
+<li class="toctree-l3"><a class="reference internal" href="behavior.html#notification-display-time">notification_display_time</a></li>
+<li class="toctree-l3"><a class="reference internal" href="behavior.html#photos-hotplug">photos_hotplug</a></li>
+<li class="toctree-l3"><a class="reference internal" href="behavior.html#power-button-sleep">power_button_sleep</a></li>
+<li class="toctree-l3"><a class="reference internal" href="behavior.html#print-panel-expanded">print_panel_expanded</a></li>
+<li class="toctree-l3"><a class="reference internal" href="behavior.html#printqueue-autoquit">printqueue_autoquit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="behavior.html#resume-app">resume_app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="behavior.html#save-panel-expanded">save_panel_expanded</a></li>
+<li class="toctree-l3"><a class="reference internal" href="behavior.html#spaces-rearrange-recent">spaces_rearrange_recent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="behavior.html#spaces-span-displays">spaces_span_displays</a></li>
+<li class="toctree-l3"><a class="reference internal" href="behavior.html#spaces-switch-running">spaces_switch_running</a></li>
+<li class="toctree-l3"><a class="reference internal" href="behavior.html#tab-preference">tab_preference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="bluetooth.html">Bluetooth</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="bluetooth.html#enabled">enabled</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bluetooth.html#enabled-airplane">enabled_airplane</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bluetooth.html#ignored">ignored</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="display.html">Display</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="display.html#antialias-subpixel">antialias_subpixel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="display.html#antialias-threshold">antialias_threshold</a></li>
+<li class="toctree-l3"><a class="reference internal" href="display.html#font-smoothing">font_smoothing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="display.html#nightshift">nightshift</a></li>
+<li class="toctree-l3"><a class="reference internal" href="display.html#truetone">truetone</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="dock.html">Dock</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dock.html#autohide">autohide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dock.html#hint-hidden">hint_hidden</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dock.html#hint-running">hint_running</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dock.html#magnification">magnification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dock.html#minimize-to-icon">minimize_to_icon</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dock.html#persistent-tiles">persistent_tiles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dock.html#position">position</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dock.html#recently-opened">recently_opened</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dock.html#scroll-to-open">scroll_to_open</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dock.html#single-app">single_app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dock.html#size">size</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dock.html#spring-loading">spring_loading</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dock.html#stack-hover">stack_hover</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dock.html#tiles">tiles</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="files.html">Files</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="files.html#default-handlers">default_handlers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="files.html#dsstore-avoid">dsstore_avoid</a></li>
+<li class="toctree-l3"><a class="reference internal" href="files.html#save-icloud">save_icloud</a></li>
+<li class="toctree-l3"><a class="reference internal" href="files.html#screenshots">screenshots</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="finder.html">Finder</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="finder.html#airdrop-extended">airdrop_extended</a></li>
+<li class="toctree-l3"><a class="reference internal" href="finder.html#desktop-icons">desktop_icons</a></li>
+<li class="toctree-l3"><a class="reference internal" href="finder.html#dmg-verify">dmg_verify</a></li>
+<li class="toctree-l3"><a class="reference internal" href="finder.html#fileinfo-popup">fileinfo_popup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="finder.html#folders-on-top">folders_on_top</a></li>
+<li class="toctree-l3"><a class="reference internal" href="finder.html#home">home</a></li>
+<li class="toctree-l3"><a class="reference internal" href="finder.html#new-window-on-mount">new_window_on_mount</a></li>
+<li class="toctree-l3"><a class="reference internal" href="finder.html#pathbar-home-is-root">pathbar_home_is_root</a></li>
+<li class="toctree-l3"><a class="reference internal" href="finder.html#prefer-tabs">prefer_tabs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="finder.html#quittable">quittable</a></li>
+<li class="toctree-l3"><a class="reference internal" href="finder.html#search-scope-default">search_scope_default</a></li>
+<li class="toctree-l3"><a class="reference internal" href="finder.html#show-ext-hdd">show_ext_hdd</a></li>
+<li class="toctree-l3"><a class="reference internal" href="finder.html#show-extensions">show_extensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="finder.html#show-hidden">show_hidden</a></li>
+<li class="toctree-l3"><a class="reference internal" href="finder.html#show-int-hdd">show_int_hdd</a></li>
+<li class="toctree-l3"><a class="reference internal" href="finder.html#show-library">show_library</a></li>
+<li class="toctree-l3"><a class="reference internal" href="finder.html#show-nas">show_nas</a></li>
+<li class="toctree-l3"><a class="reference internal" href="finder.html#show-pathbar">show_pathbar</a></li>
+<li class="toctree-l3"><a class="reference internal" href="finder.html#show-statusbar">show_statusbar</a></li>
+<li class="toctree-l3"><a class="reference internal" href="finder.html#show-volumes">show_volumes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="finder.html#spring-loading">spring_loading</a></li>
+<li class="toctree-l3"><a class="reference internal" href="finder.html#title-hover-delay">title_hover_delay</a></li>
+<li class="toctree-l3"><a class="reference internal" href="finder.html#title-path">title_path</a></li>
+<li class="toctree-l3"><a class="reference internal" href="finder.html#trash-old-auto">trash_old_auto</a></li>
+<li class="toctree-l3"><a class="reference internal" href="finder.html#view-column">view_column</a></li>
+<li class="toctree-l3"><a class="reference internal" href="finder.html#view-gallery">view_gallery</a></li>
+<li class="toctree-l3"><a class="reference internal" href="finder.html#view-icon">view_icon</a></li>
+<li class="toctree-l3"><a class="reference internal" href="finder.html#view-list">view_list</a></li>
+<li class="toctree-l3"><a class="reference internal" href="finder.html#view-preferred">view_preferred</a></li>
+<li class="toctree-l3"><a class="reference internal" href="finder.html#warn-on-extchange">warn_on_extchange</a></li>
+<li class="toctree-l3"><a class="reference internal" href="finder.html#warn-on-icloud-remove">warn_on_icloud_remove</a></li>
+<li class="toctree-l3"><a class="reference internal" href="finder.html#warn-on-trash">warn_on_trash</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="keyboard.html">Keyboard</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="keyboard.html#brightness-adjustment">brightness_adjustment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="keyboard.html#fn-action">fn_action</a></li>
+<li class="toctree-l3"><a class="reference internal" href="keyboard.html#function-keys-standard">function_keys_standard</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="localization.html">Localization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="localization.html#force-124h">force_124h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="localization.html#hostname">hostname</a></li>
+<li class="toctree-l3"><a class="reference internal" href="localization.html#languages">languages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="localization.html#measurements">measurements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="localization.html#timezone">timezone</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="mail.html">Mail</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="mail.html#animation-reply">animation_reply</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mail.html#animation-sent">animation_sent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mail.html#attachments-inline">attachments_inline</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mail.html#auto-resend-later">auto_resend_later</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mail.html#conv-mark-all-read">conv_mark_all_read</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mail.html#conv-most-recent-top">conv_most_recent_top</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mail.html#dock-unread-count">dock_unread_count</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mail.html#downloads-remove">downloads_remove</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mail.html#format-match-reply">format_match_reply</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mail.html#format-preferred">format_preferred</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mail.html#highlight-related">highlight_related</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mail.html#include-names-oncopy">include_names_oncopy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mail.html#include-related">include_related</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mail.html#new-message-notifications">new_message_notifications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mail.html#new-message-sound">new_message_sound</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mail.html#poll">poll</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mail.html#remote-content">remote_content</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mail.html#respond-with-quote">respond_with_quote</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mail.html#shortcut-send">shortcut_send</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mail.html#unread-bold">unread_bold</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mail.html#view-conversations">view_conversations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mail.html#view-conversations-highlight">view_conversations_highlight</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mail.html#view-date-time">view_date_time</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mail.html#view-fullscreen-split">view_fullscreen_split</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mail.html#view-message-size">view_message_size</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="menubar.html">Menubar</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="menubar.html#accessibility">accessibility</a></li>
+<li class="toctree-l3"><a class="reference internal" href="menubar.html#airdrop">airdrop</a></li>
+<li class="toctree-l3"><a class="reference internal" href="menubar.html#autohide-desktop">autohide_desktop</a></li>
+<li class="toctree-l3"><a class="reference internal" href="menubar.html#autohide-fullscreen">autohide_fullscreen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="menubar.html#battery">battery</a></li>
+<li class="toctree-l3"><a class="reference internal" href="menubar.html#bluetooth">bluetooth</a></li>
+<li class="toctree-l3"><a class="reference internal" href="menubar.html#clock">clock</a></li>
+<li class="toctree-l3"><a class="reference internal" href="menubar.html#display">display</a></li>
+<li class="toctree-l3"><a class="reference internal" href="menubar.html#focus">focus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="menubar.html#keyboard-brightness">keyboard_brightness</a></li>
+<li class="toctree-l3"><a class="reference internal" href="menubar.html#now-playing">now_playing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="menubar.html#screen-mirroring">screen_mirroring</a></li>
+<li class="toctree-l3"><a class="reference internal" href="menubar.html#siri">siri</a></li>
+<li class="toctree-l3"><a class="reference internal" href="menubar.html#sound">sound</a></li>
+<li class="toctree-l3"><a class="reference internal" href="menubar.html#spotlight">spotlight</a></li>
+<li class="toctree-l3"><a class="reference internal" href="menubar.html#timemachine">timemachine</a></li>
+<li class="toctree-l3"><a class="reference internal" href="menubar.html#userswitcher">userswitcher</a></li>
+<li class="toctree-l3"><a class="reference internal" href="menubar.html#wifi">wifi</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="performance.html">Performance</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="performance.html#app-nap">app_nap</a></li>
+<li class="toctree-l3"><a class="reference internal" href="performance.html#auto-termination">auto_termination</a></li>
+<li class="toctree-l3"><a class="reference internal" href="performance.html#screensaver">screensaver</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="power.html">Power</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="power.html#id1">power</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="privacy.html">Privacy</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="privacy.html#allow-targeted-ads">allow_targeted_ads</a></li>
+<li class="toctree-l3"><a class="reference internal" href="privacy.html#crashreporter-allow">crashreporter_allow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="privacy.html#siri-share-recordings">siri_share_recordings</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Security</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#airdrop-disabled">airdrop_disabled</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#autologin">autologin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#autoupdate">autoupdate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#captive-portal-detection">captive_portal_detection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cupsd">cupsd</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#filevault-autologin">filevault_autologin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#filevault-evict-keys-standby">filevault_evict_keys_standby</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#firewall">firewall</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gatekeeper">gatekeeper</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#guest-account">guest_account</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#internet-sharing">internet_sharing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ipv6">ipv6</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mdns">mdns</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ntp">ntp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#password-hint-after">password_hint_after</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#printer-sharing">printer_sharing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#quarantine-logs">quarantine_logs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#remote-apple-events">remote_apple_events</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#remote-desktop-disabled">remote_desktop_disabled</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#remote-login">remote_login</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#require-admin-for-system-settings">require_admin_for_system_settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#root-disabled-check">root_disabled_check</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#smartcard-only-auth">smartcard-only-auth</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#user-hidden">user-hidden</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#user-no-filevault">user_no_filevault</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#wake-on-lan">wake_on_lan</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="siri.html">Siri</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="siri.html#enabled">enabled</a></li>
+<li class="toctree-l3"><a class="reference internal" href="siri.html#keyboard-shortcut">keyboard_shortcut</a></li>
+<li class="toctree-l3"><a class="reference internal" href="siri.html#language">language</a></li>
+<li class="toctree-l3"><a class="reference internal" href="siri.html#voice-feedback">voice_feedback</a></li>
+<li class="toctree-l3"><a class="reference internal" href="siri.html#voice-variety">voice_variety</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="textinput.html">Textinput</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="textinput.html#autocapitalization">autocapitalization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="textinput.html#autocorrection">autocorrection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="textinput.html#dictation">dictation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="textinput.html#press-and-hold">press_and_hold</a></li>
+<li class="toctree-l3"><a class="reference internal" href="textinput.html#repeat">repeat</a></li>
+<li class="toctree-l3"><a class="reference internal" href="textinput.html#slow-keys">slow_keys</a></li>
+<li class="toctree-l3"><a class="reference internal" href="textinput.html#smart-dashes">smart_dashes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="textinput.html#smart-periods">smart_periods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="textinput.html#smart-quotes">smart_quotes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="timemachine.html">Time Machine</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="timemachine.html#backup-on-battery">backup_on_battery</a></li>
+<li class="toctree-l3"><a class="reference internal" href="timemachine.html#offer-new-disks">offer_new_disks</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="touch.html">Touch</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="touch.html#app-expose">app_expose</a></li>
+<li class="toctree-l3"><a class="reference internal" href="touch.html#drag">drag</a></li>
+<li class="toctree-l3"><a class="reference internal" href="touch.html#force-click">force_click</a></li>
+<li class="toctree-l3"><a class="reference internal" href="touch.html#haptic-feedback-click">haptic_feedback_click</a></li>
+<li class="toctree-l3"><a class="reference internal" href="touch.html#haptic-resistance-click">haptic_resistance_click</a></li>
+<li class="toctree-l3"><a class="reference internal" href="touch.html#launchpad">launchpad</a></li>
+<li class="toctree-l3"><a class="reference internal" href="touch.html#lookup">lookup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="touch.html#mission-control">mission_control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="touch.html#natural-scrolling">natural_scrolling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="touch.html#notification-center">notification_center</a></li>
+<li class="toctree-l3"><a class="reference internal" href="touch.html#rotate">rotate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="touch.html#secondary-click">secondary_click</a></li>
+<li class="toctree-l3"><a class="reference internal" href="touch.html#show-desktop">show_desktop</a></li>
+<li class="toctree-l3"><a class="reference internal" href="touch.html#smart-zoom">smart_zoom</a></li>
+<li class="toctree-l3"><a class="reference internal" href="touch.html#swipe-fullscreen">swipe_fullscreen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="touch.html#swipe-pages">swipe_pages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="touch.html#tap-to-click">tap_to_click</a></li>
+<li class="toctree-l3"><a class="reference internal" href="touch.html#tracking-speed">tracking_speed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="touch.html#zoom">zoom</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="uix.html">UI/UX</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="uix.html#colors">colors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uix.html#doubleclick-title">doubleclick_title</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uix.html#hot-corners">hot_corners</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uix.html#live-text">live_text</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uix.html#locate-pointer">locate_pointer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uix.html#login-window-input-menu">login_window_input_menu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uix.html#scrollbar-jump-click">scrollbar_jump_click</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uix.html#scrollbars-visibility">scrollbars_visibility</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uix.html#sidebar-iconsize">sidebar_iconsize</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uix.html#spotlight-index">spotlight_index</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uix.html#tab-ui-elements">tab_ui_elements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uix.html#theme">theme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uix.html#toolbar-button-shapes">toolbar_button_shapes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uix.html#transparency-reduced">transparency_reduced</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uix.html#wallpaper-tinting">wallpaper_tinting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uix.html#zoom-scroll-ui">zoom_scroll_ui</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/index.html">execution modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../modules/macosdefaults.html">macosdefaults execution module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../modules/macprofile.html">macprofile execution module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../modules/macprofile.html#macprofiles-module">Macprofiles Module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../modules/macsettings.html">macsettings execution module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../modules/pmset.html">pmset execution module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../states/index.html">state modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../states/macosdefaults.html">macosdefaults state module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../states/macosdefaults.html#manage-system-configuration-values-on-macos">Manage (system) configuration values on MacOS.</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../states/macprofile.html">macprofile state module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../states/pmset.html">pmset state module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../states/pmset.html#manage-power-configuration-values-with-pmset-on-macos">Manage power configuration values with pmset on MacOS.</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">salt-tool-macos-config</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Available settings</a> &raquo;</li>
+      <li>Security</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/settings/security.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="security">
+<h1>Security<a class="headerlink" href="#security" title="Permalink to this headline"></a></h1>
+<section id="airdrop-disabled">
+<h2>airdrop_disabled<a class="headerlink" href="#airdrop-disabled" title="Permalink to this headline"></a></h2>
+<blockquote>
+<div><p>Customizes state of AirDrop.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Mind that many security settings should be set via policy (configuration profile).</p>
+</div>
+<dl class="simple">
+<dt>Values:</dt><dd><ul class="simple">
+<li><p>bool [default: true]</p></li>
+</ul>
+</dd>
+<dt>References:</dt><dd><ul class="simple">
+<li><p><a class="reference external" href="https://github.com/usnistgov/macos_security/blob/main/rules/os/os_airdrop_disable.yaml">https://github.com/usnistgov/macos_security/blob/main/rules/os/os_airdrop_disable.yaml</a></p></li>
+</ul>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="autologin">
+<h2>autologin<a class="headerlink" href="#autologin" title="Permalink to this headline"></a></h2>
+<blockquote>
+<div><p>Customizes automatic login.</p>
+<dl class="simple">
+<dt>Values:</dt><dd><ul class="simple">
+<li><p>false or string [= username. default: false]</p></li>
+</ul>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="autoupdate">
+<h2>autoupdate<a class="headerlink" href="#autoupdate" title="Permalink to this headline"></a></h2>
+<blockquote>
+<div><p>Customizes automatic update settings.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>This works without a configuration profile and is how System Preferences
+writes the settings. The references are for MDM.</p>
+</div>
+<dl>
+<dt>Values:</dt><dd><ul>
+<li><p>dict</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>check: bool [default: true]</p></li>
+<li><p>download: bool [default: true]</p></li>
+<li><p>install_app: bool [default: true]</p></li>
+<li><p>install_config: bool [default: true]</p></li>
+<li><p>install_critical: bool [default: true]</p></li>
+<li><p>install_system: bool [default: true]</p></li>
+<li><p>schedule: int [every i day(s), default: 1]</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>check &gt; download &gt; install (requisites)</p></li>
+<li><p>install_config and install_critical are combined in System Preferences.</p></li>
+</ul>
+</div>
+<dl class="simple">
+<dt>References:</dt><dd><ul class="simple">
+<li><p><a class="reference external" href="https://developer.apple.com/documentation/devicemanagement/softwareupdate">https://developer.apple.com/documentation/devicemanagement/softwareupdate</a></p></li>
+<li><p><a class="reference external" href="https://derflounder.wordpress.com/2019/10/10/enable-automatic-macos-and-app-store-updates-on-macos-catalina-with-a-profile/">https://derflounder.wordpress.com/2019/10/10/enable-automatic-macos-and-app-store-updates-on-macos-catalina-with-a-profile/</a></p></li>
+</ul>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="captive-portal-detection">
+<h2>captive_portal_detection<a class="headerlink" href="#captive-portal-detection" title="Permalink to this headline"></a></h2>
+<blockquote>
+<div><p>Customizes automatic detection of captive portals.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You might need to reboot to apply changed settings.</p>
+</div>
+<dl class="simple">
+<dt>Values:</dt><dd><ul class="simple">
+<li><p>bool [default: true]</p></li>
+</ul>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="cupsd">
+<h2>cupsd<a class="headerlink" href="#cupsd" title="Permalink to this headline"></a></h2>
+<blockquote>
+<div><p>Customizes activation of cupsd.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>Webinterface can be found at <a class="reference external" href="http://127.0.0.1:631">http://127.0.0.1:631</a> if enabled.</p>
+</div>
+<dl class="simple">
+<dt>Values:</dt><dd><ul class="simple">
+<li><p>bool [default: true]</p></li>
+</ul>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="filevault-autologin">
+<h2>filevault_autologin<a class="headerlink" href="#filevault-autologin" title="Permalink to this headline"></a></h2>
+<blockquote>
+<div><p>Customizes automatic login of FileVault authenticated user.</p>
+<p>Values: bool [default: true]</p>
+</div></blockquote>
+</section>
+<section id="filevault-evict-keys-standby">
+<h2>filevault_evict_keys_standby<a class="headerlink" href="#filevault-evict-keys-standby" title="Permalink to this headline"></a></h2>
+<blockquote>
+<div><p>Customizes eviction of FileVault keys on standby. When enabled,
+that means you need to re-enter your encryption password during wakeup
+from hibernation.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This might not make a big difference on current M1 Macs and those with
+T2 security chip:</p>
+<blockquote>
+<div><p><a class="reference external" href="https://discussions.apple.com/thread/253568420">https://discussions.apple.com/thread/253568420</a></p>
+</div></blockquote>
+<p>This configuration might be redundant on APFS volumes, see
+<a class="reference external" href="https://github.com/drduh/macOS-Security-and-Privacy-Guide/issues/283">https://github.com/drduh/macOS-Security-and-Privacy-Guide/issues/283</a></p>
+<dl class="simple">
+<dt>Mind that this might make problems, at least on older Macs:</dt><dd><p>If you choose to evict FileVault keys in standby mode, you should also modify
+your standby and power nap settings. Otherwise, your machine may wake while in
+standby mode and then power off due to the absence of the FileVault key.
+(<a class="reference external" href="https://github.com/drduh/macOS-Security-and-Privacy-Guide">https://github.com/drduh/macOS-Security-and-Privacy-Guide</a>)</p>
+</dd>
+</dl>
+</div>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>It is always better to power off completely when not in use.</p>
+</div>
+<dl class="simple">
+<dt>Values:</dt><dd><ul class="simple">
+<li><p>bool [default: false]</p></li>
+</ul>
+</dd>
+<dt>References:</dt><dd><ul class="simple">
+<li><p>man pmset</p></li>
+<li><p><a class="reference external" href="https://eclecticlight.co/2017/01/20/power-management-in-detail-using-pmset/">https://eclecticlight.co/2017/01/20/power-management-in-detail-using-pmset/</a></p></li>
+<li><p><a class="reference external" href="https://github.com/drduh/macOS-Security-and-Privacy-Guide">https://github.com/drduh/macOS-Security-and-Privacy-Guide</a></p></li>
+</ul>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="firewall">
+<h2>firewall<a class="headerlink" href="#firewall" title="Permalink to this headline"></a></h2>
+<blockquote>
+<div><p>Customizes state of inbuilt application firewall (blocks incoming connections only).</p>
+<dl>
+<dt>Values:</dt><dd><ul>
+<li><p>dict</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>apple_signed_ok: bool [default: true]</p></li>
+<li><p>download_signed_ok: bool [default: false]</p></li>
+<li><p>enabled: bool [default: true]</p></li>
+<li><p>incoming_block: bool [default: false]</p></li>
+<li><p>logging: bool [default: true]</p></li>
+<li><p>stealth: bool [default: false]</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</dd>
+</dl>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>stealth mode: ignore ICMP ping or TCP/UDP connection attempts to closed ports</p>
+</div>
+</div></blockquote>
+</section>
+<section id="gatekeeper">
+<h2>gatekeeper<a class="headerlink" href="#gatekeeper" title="Permalink to this headline"></a></h2>
+<blockquote>
+<div><p>Customizes Gatekeeper activation status.</p>
+<dl class="simple">
+<dt>Values:</dt><dd><ul class="simple">
+<li><p>bool [default: true]</p></li>
+</ul>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="guest-account">
+<h2>guest_account<a class="headerlink" href="#guest-account" title="Permalink to this headline"></a></h2>
+<blockquote>
+<div><p>Customizes Guest account availability.</p>
+<dl class="simple">
+<dt>Values:</dt><dd><ul class="simple">
+<li><p>bool [default: false]</p></li>
+</ul>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="internet-sharing">
+<h2>internet_sharing<a class="headerlink" href="#internet-sharing" title="Permalink to this headline"></a></h2>
+<blockquote>
+<div><p>Customizes Internet Sharing status.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Not sure which service needs restarting, if any.</p>
+</div>
+<dl class="simple">
+<dt>Values:</dt><dd><ul class="simple">
+<li><p>bool [default: false]</p></li>
+</ul>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="ipv6">
+<h2>ipv6<a class="headerlink" href="#ipv6" title="Permalink to this headline"></a></h2>
+<blockquote>
+<div><p>Customizes IPv6 availability on all interfaces.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is for documentation mostly. Debatable if sensible.</p>
+</div>
+<dl class="simple">
+<dt>Values:</dt><dd><ul class="simple">
+<li><p>bool [default: true]</p></li>
+</ul>
+</dd>
+<dt>References:</dt><dd><ul class="simple">
+<li><p><a class="reference external" href="https://github.com/SummitRoute/osxlockdown/blob/master/commands.yaml">https://github.com/SummitRoute/osxlockdown/blob/master/commands.yaml</a></p></li>
+</ul>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="mdns">
+<h2>mdns<a class="headerlink" href="#mdns" title="Permalink to this headline"></a></h2>
+<blockquote>
+<div><p>Customizes activation status of multicast DNS advertisements.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The old method described in Awesome MacOS Command Line does not
+work on modern systems with System Integrity Protection.</p>
+</div>
+<dl class="simple">
+<dt>References:</dt><dd><p><a class="reference external" href="https://git.herrbischoff.com/awesome-macos-command-line/about/#bonjour-service">https://git.herrbischoff.com/awesome-macos-command-line/about/#bonjour-service</a>
+<a class="reference external" href="https://old.reddit.com/r/macsysadmin/comments/poxv5q/disabling_bonjour_on_bigsur/">https://old.reddit.com/r/macsysadmin/comments/poxv5q/disabling_bonjour_on_bigsur/</a></p>
+</dd>
+<dt>Values:</dt><dd><ul class="simple">
+<li><p>bool [default: true]</p></li>
+</ul>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="ntp">
+<h2>ntp<a class="headerlink" href="#ntp" title="Permalink to this headline"></a></h2>
+<blockquote>
+<div><p>Customizes NTP synchronization activation status and server.</p>
+<dl>
+<dt>Values:</dt><dd><ul>
+<li><p>dict</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>enabled: bool [default: true]</p></li>
+<li><p>server: string [default: time.apple.com]</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="password-hint-after">
+<h2>password_hint_after<a class="headerlink" href="#password-hint-after" title="Permalink to this headline"></a></h2>
+<blockquote>
+<div><p>Customizes display of password hint (number of tries).</p>
+<dl class="simple">
+<dt>Values:</dt><dd><ul class="simple">
+<li><p>int [0 to disable, default 3?]</p></li>
+</ul>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="printer-sharing">
+<h2>printer_sharing<a class="headerlink" href="#printer-sharing" title="Permalink to this headline"></a></h2>
+<blockquote>
+<div><p>Customizes state of printer sharing.</p>
+<dl class="simple">
+<dt>Values:</dt><dd><ul class="simple">
+<li><p>bool [default: false]</p></li>
+</ul>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="quarantine-logs">
+<h2>quarantine_logs<a class="headerlink" href="#quarantine-logs" title="Permalink to this headline"></a></h2>
+<blockquote>
+<div><p>Customizes keeping of Quarantine logs.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>It’s a bit surprising the logs are never cleared.</p>
+<dl class="simple">
+<dt>See for yourself:</dt><dd><dl class="simple">
+<dt>echo ‘SELECT datetime(LSQuarantineTimeStamp + 978307200, “unixepoch”) as LSQuarantineTimeStamp, ‘ </dt><dd><p>‘LSQuarantineAgentName, LSQuarantineOriginURLString, LSQuarantineDataURLString from LSQuarantineEvent;’ | sqlite3 /Users/$USER/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV2</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</div>
+<dl>
+<dt>Values:</dt><dd><ul>
+<li><p>dict</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>clear: bool [default: false]</p></li>
+<li><p>enabled: bool [default: true]</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="remote-apple-events">
+<h2>remote_apple_events<a class="headerlink" href="#remote-apple-events" title="Permalink to this headline"></a></h2>
+<blockquote>
+<div><p>Customizes activation state of Remote Apple Events.</p>
+<dl class="simple">
+<dt>Values:</dt><dd><ul class="simple">
+<li><p>bool [default: false]</p></li>
+</ul>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="remote-desktop-disabled">
+<h2>remote_desktop_disabled<a class="headerlink" href="#remote-desktop-disabled" title="Permalink to this headline"></a></h2>
+<blockquote>
+<div><p>Allows to <strong>disable</strong> Remote Desktop services.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Enabling this might not work on MacOS Monterey 12.1 (from CLI) anyways.
+Disabling should work (from CLI).</p>
+</div>
+<dl class="simple">
+<dt>Values:</dt><dd><ul class="simple">
+<li><p>bool [default: true]</p></li>
+</ul>
+</dd>
+<dt>References:</dt><dd><ul class="simple">
+<li><p><a class="reference external" href="https://support.apple.com/guide/remote-desktop/enable-remote-management-apd8b1c65bd/mac">https://support.apple.com/guide/remote-desktop/enable-remote-management-apd8b1c65bd/mac</a></p></li>
+<li><p><a class="reference external" href="https://support.apple.com/en-us/HT209161">https://support.apple.com/en-us/HT209161</a></p></li>
+</ul>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="remote-login">
+<h2>remote_login<a class="headerlink" href="#remote-login" title="Permalink to this headline"></a></h2>
+<blockquote>
+<div><p>Customizes activation state of Remote Login (SSH server).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This used to be settable with systemsetup -setremotelogin,
+but that requires Full Disk Access now. Currently, a workaround
+is to manually load/unload the plist with launchctl.</p>
+</div>
+<dl class="simple">
+<dt>Values:</dt><dd><ul class="simple">
+<li><p>bool [default: false]</p></li>
+</ul>
+</dd>
+<dt>References:</dt><dd><ul class="simple">
+<li><p><a class="reference external" href="https://www.alansiu.net/2020/09/02/scripting-ssh-off-on-without-needing-a-pppc-tcc-profile/">https://www.alansiu.net/2020/09/02/scripting-ssh-off-on-without-needing-a-pppc-tcc-profile/</a></p></li>
+</ul>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="require-admin-for-system-settings">
+<h2>require_admin_for_system_settings<a class="headerlink" href="#require-admin-for-system-settings" title="Permalink to this headline"></a></h2>
+<blockquote>
+<div><p>Customizes the requirement to authenticate as an admin to change
+system-wide settings.</p>
+<dl class="simple">
+<dt>Values:</dt><dd><ul class="simple">
+<li><p>bool [default: true]</p></li>
+</ul>
+</dd>
+<dt>References:</dt><dd><ul class="simple">
+<li><p><a class="reference external" href="https://github.com/SummitRoute/osxlockdown/blob/master/commands.yaml">https://github.com/SummitRoute/osxlockdown/blob/master/commands.yaml</a></p></li>
+</ul>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="root-disabled-check">
+<h2>root_disabled_check<a class="headerlink" href="#root-disabled-check" title="Permalink to this headline"></a></h2>
+<blockquote>
+<div><p>Checks if the root user is disabled.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>As an administrator, you can run <cite>/usr/sbin/dsenableroot</cite> to enable
+and <cite>/usr/sbin/dsenableroot -d</cite> to disable. The process is interactive.</p>
+</div>
+<dl class="simple">
+<dt>Values:</dt><dd><ul class="simple">
+<li><p>bool [default: false]</p></li>
+</ul>
+</dd>
+<dt>References:</dt><dd><ul class="simple">
+<li><p><a class="reference external" href="https://unix.stackexchange.com/questions/232491/how-to-test-if-root-user-is-enabled-in-mac">https://unix.stackexchange.com/questions/232491/how-to-test-if-root-user-is-enabled-in-mac</a></p></li>
+</ul>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="smartcard-only-auth">
+<h2>smartcard-only-auth<a class="headerlink" href="#smartcard-only-auth" title="Permalink to this headline"></a></h2>
+<blockquote>
+<div><p>Customizes state of forced smart card authentication.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You might need to reboot to apply changed settings. macOS 10.13.2 or later.</p>
+</div>
+<dl class="simple">
+<dt>Values:</dt><dd><ul class="simple">
+<li><p>bool [default: false]</p></li>
+</ul>
+</dd>
+<dt>References;</dt><dd><ul class="simple">
+<li><p><a class="reference external" href="https://support.apple.com/guide/deployment/configure-macos-smart-cardonly-authentication-depfce8de48b/1/web/1.0">https://support.apple.com/guide/deployment/configure-macos-smart-cardonly-authentication-depfce8de48b/1/web/1.0</a></p></li>
+<li><p><a class="reference external" href="https://support.apple.com/HT208372">https://support.apple.com/HT208372</a></p></li>
+</ul>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="user-hidden">
+<h2>user-hidden<a class="headerlink" href="#user-hidden" title="Permalink to this headline"></a></h2>
+<blockquote>
+<div><p>Manages visibility of user accounts.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<dl class="simple">
+<dt>When turned on, this does three things:</dt><dd><ol class="arabic simple">
+<li><p>Hides the user account from the login window (not FileVault necessarily).</p></li>
+<li><p>Hides the home folder.</p></li>
+<li><p>Hides the public share folder.</p></li>
+</ol>
+</dd>
+</dl>
+<p>Handy for e.g. complex FileVault password that’s different from your usual account
+(in combination with user_no_filevault).</p>
+</div>
+<dl class="simple">
+<dt>Values:</dt><dd><ul class="simple">
+<li><p>bool [default: false]</p></li>
+</ul>
+</dd>
+<dt>References:</dt><dd><ul class="simple">
+<li><p><a class="reference external" href="https://support.apple.com/en-gb/HT203998">https://support.apple.com/en-gb/HT203998</a></p></li>
+</ul>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="user-no-filevault">
+<h2>user_no_filevault<a class="headerlink" href="#user-no-filevault" title="Permalink to this headline"></a></h2>
+<blockquote>
+<div><p>Removes FileVault unlock privileges from an account.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The reverse is interactive:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>`sudo fdesetup add -usertoadd username`
+</pre></div>
+</div>
+<p>Handy for e.g. complex FileVault password that’s different from your usual account.</p>
+</div>
+<dl class="simple">
+<dt>Values:</dt><dd><ul class="simple">
+<li><p>bool [default: false]</p></li>
+</ul>
+</dd>
+<dt>References:</dt><dd><ul class="simple">
+<li><p><a class="reference external" href="https://support.apple.com/en-gb/HT203998">https://support.apple.com/en-gb/HT203998</a></p></li>
+</ul>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="wake-on-lan">
+<h2>wake_on_lan<a class="headerlink" href="#wake-on-lan" title="Permalink to this headline"></a></h2>
+<blockquote>
+<div><p>Manages state of Wake-on-LAN. This setting could be managed in macos.power
+settings as well.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>Furthermore, this can be set with /usr/sbin/systemsetup setwakeonnetworkaccess</p>
+</div>
+<dl class="simple">
+<dt>Values:</dt><dd><ul class="simple">
+<li><p>bool [default: on ac true, on battery false]</p></li>
+</ul>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="privacy.html" class="btn btn-neutral float-left" title="Privacy" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="siri.html" class="btn btn-neutral float-right" title="Siri" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, jeanluc.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

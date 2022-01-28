@@ -1,8 +1,14 @@
 {#-
     Customizes status of dictation.
-    Values: bool [default: false]
 
-    @TODO
+    Values:
+        - bool [default: false]
+
+    References:
+        * https://github.com/joeyhoer/starter/blob/master/system/keyboard.sh
+-#}
+
+{#- @TODO
     Use Enhanced Dictation
     Allows offline use and continuous dictation with live feedback
     if [ -d '/System/Library/Speech/Recognizers/SpeechRecognitionCoreLanguages/en_US.SpeechRecognition' ]; then
@@ -13,10 +19,7 @@
       defaults write com.apple.speech.recognition.AppleSpeechRecognition.prefs \
         DictationIMUseOnlyOfflineDictation -bool true
     fi
-
-    References:
-      https://github.com/joeyhoer/starter/blob/master/system/keyboard.sh
--#}
+#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}
 {%- from tplroot ~ "/map.jinja" import macos -%}

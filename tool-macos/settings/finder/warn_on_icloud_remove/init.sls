@@ -1,6 +1,8 @@
 {#-
     Customizes warning when removing files from iCloud Drive.
-    Values: bool [default: true]
+
+    Values:
+        - bool [default: true]
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

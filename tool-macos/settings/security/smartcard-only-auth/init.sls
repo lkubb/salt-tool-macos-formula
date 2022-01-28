@@ -1,13 +1,16 @@
 {#-
     Customizes state of forced smart card authentication.
 
-    You might need to reboot to apply changed settings. macOS 10.13.2 or later.
+    .. note::
 
-    Values: bool [default: false]
+        You might need to reboot to apply changed settings. macOS 10.13.2 or later.
+
+    Values:
+        - bool [default: false]
 
     References;
-      https://support.apple.com/guide/deployment/configure-macos-smart-cardonly-authentication-depfce8de48b/1/web/1.0
-      https://support.apple.com/HT208372
+        * https://support.apple.com/guide/deployment/configure-macos-smart-cardonly-authentication-depfce8de48b/1/web/1.0
+        * https://support.apple.com/HT208372
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

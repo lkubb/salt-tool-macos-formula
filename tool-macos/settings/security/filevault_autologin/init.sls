@@ -1,9 +1,6 @@
 {#-
     Customizes automatic login of FileVault authenticated user.
 
-    Mind that the actual setting is called "Disable...". For consistency,
-    the pillar value is inverted. pillar False => disabled True
-
     Values: bool [default: true]
 -#}
 
@@ -22,6 +19,8 @@ Automatic login of FileVault authenticated user is managed:
     # because root preferences are in /var/root/Library/Preferences
     - domain: /Library/Preferences/com.apple.loginwindow
     - name: DisableFDEAutoLogin
+    {#- Mind that the actual setting is called "Disable...". For consistency,
+    the pillar value is inverted. pillar False => disabled True #}
     - value: {{ False == macos.security.filevault_autologin | to_bool }}
     - vtype: bool
     - user: root

@@ -1,6 +1,14 @@
 {#-
     Customizes secondary click touch gesture activation status.
-    Values: false, two [fingers], corner-right [bottom], corner-left [bottom] [default: two]
+
+    Values:
+        - string [default: two]
+
+            * two [fingers]
+            * corner-right [bottom]
+            * corner-left [bottom]
+
+        - or false
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

@@ -1,9 +1,15 @@
 {#-
     Customizes window minimize animation to dock.
-    Values: string [default: genie]
+
+    Values:
+      - string [default: genie]
+
+        * genie
+        * scale
+        * suck
 
     References:
-      https://macos-defaults.com/dock/mineffect.html
+        * https://macos-defaults.com/dock/mineffect.html
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

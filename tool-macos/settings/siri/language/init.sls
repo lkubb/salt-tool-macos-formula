@@ -1,7 +1,8 @@
 {#-
     Customizes Siri language.
 
-    Values: string [default: maybe depending on system locale? otherwise en-US]
+    Values:
+        - string [default: maybe depending on system locale? otherwise en-US]
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

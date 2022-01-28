@@ -1,6 +1,8 @@
 {#-
     Customizes Finder warning when emptying trash.
-    Values: bool [default: true]
+
+    Values:
+        - bool [default: true]
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

@@ -1,7 +1,8 @@
 {#-
-    Customizes behavior when all print jobs are finished.
+    Customizes behavior of print queue when all print jobs are finished (quit or keep running).
 
-    Values: bool [default: false]
+    Values:
+        - bool [default: false]
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

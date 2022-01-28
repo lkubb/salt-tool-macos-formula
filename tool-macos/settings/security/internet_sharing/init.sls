@@ -1,9 +1,12 @@
 {#-
     Customizes Internet Sharing status.
 
-    Not sure which service needs restarting, if any.
+    .. note::
 
-    Values: bool [default: false]
+        Not sure which service needs restarting, if any.
+
+    Values:
+        - bool [default: false]
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

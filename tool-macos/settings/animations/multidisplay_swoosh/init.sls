@@ -1,13 +1,11 @@
 {#-
     Customizes multidisplay swoosh animation activation status.
 
-    Mind that the actual setting is called "...off",
-    so the pillar value is inverted for consistency.
-
-    There's also workspaces-auto-swoosh that disables the underlying behavior.
-
-    Values: bool [default: true]
+    Values:
+        - bool [default: true]
 -#}
+
+{#- There's also workspaces-auto-swoosh that disables the underlying behavior. #}
 
 {%- set tplroot = tpldir.split('/')[0] -%}
 {%- from tplroot ~ "/map.jinja" import macos -%}
@@ -22,6 +20,8 @@ Multidisplay swoosh animation activation status is managed for user {{ user.name
   macosdefaults.write:
     - domain: com.apple.dock
     - name: workspaces-swoosh-animation-off
+    {#- Mind that the actual setting is called "...off",
+    so the pillar value is inverted for consistency. #}
     - value: {{ False == user.macos.animations.multidisplay_swoosh | to_bool }}
     - vtype: bool
     - user: {{ user.name }}

@@ -1,12 +1,12 @@
 {#-
     Customizes activation status of loading remote content.
 
-    Needs Full Disk Access to work (https://lapcatsoftware.com/articles/containers.html).
+    .. note::
 
-    Mind that the actual setting is called "Disable...", so the
-    pillar value is inverted for consistency.
+        Needs Full Disk Access to work (https://lapcatsoftware.com/articles/containers.html).
 
-    Values: bool [default: true]
+    Values:
+        - bool [default: true]
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}
@@ -22,6 +22,8 @@ Activation status of loading remote content in Mail.app is managed for user {{ u
   macosdefaults.write:
     - domain: com.apple.mail-shared
     - name: DisableURLLoading
+    {#- Mind that the actual setting is called "Disable...", so the
+    pillar value is inverted for consistency. #}
     - value: {{ False == user.macos.mail.remote_content | to_bool }}
     - vtype: bool
     - user: {{ user.name }}

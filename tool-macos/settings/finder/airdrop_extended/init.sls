@@ -1,6 +1,8 @@
 {#-
     Customizes AirDrop over Ethernet (and on unsupported old Macs).
-    Values: bool [default: false]
+
+    Values:
+        - bool [default: false]
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

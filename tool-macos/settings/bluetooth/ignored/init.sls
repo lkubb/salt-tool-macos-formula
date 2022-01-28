@@ -1,11 +1,31 @@
 {#-
     Adds/syncs bluetooth device MAC (to) ignore list.
 
-    Note that this might be dysfunctional in Monterey.
+    .. warning::
+
+        Note that this might be dysfunctional in Monterey.
 
     Values:
-      devices: list (default: [])
-      sync: bool (default: false)
+      - dict:
+
+          * devices: list (default: [])
+          * sync: bool (default: false)
+
+    Example:
+
+    .. code-block:: yaml
+
+        ignored:
+          devices:
+            - <MAC1>
+            - <MAC2>
+          # syncs ignored devices with above list
+          sync: true
+          # false would make sure they are added to the list
+
+    .. hint::
+
+        Needs to run as root.
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

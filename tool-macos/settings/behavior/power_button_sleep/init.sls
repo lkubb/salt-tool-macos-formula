@@ -1,9 +1,15 @@
 {#-
     Customizes behavior when pressing the power button.
 
-    Might need a reboot to apply.
+    .. note:
 
-    Values: bool [default: true = put system to sleep, false = show prompt]
+        Might need a reboot to apply.
+
+    Values:
+        - bool [default: true]
+
+            * true = put system to sleep
+            * false = show prompt
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

@@ -1,13 +1,34 @@
 {#-
     Customizes default system colors for accents and highlights.
 
-    This currently does not support custom highlight colors (not allowed for accent colors).
+    .. note::
+
+        This currently does not support custom highlight colors (not allowed for accent colors).
 
     Values:
-      accent: string
-        [multi, blue, purple, pink, red, orange, yellow, green, graphite. default: multi]
-      highlight: string
-        [accent_color, blue, purple, pink, red, orange, yellow, green, graphite. default: accent_color]
+        - dict
+
+            * accent: string [default: multi]
+                - multi
+                - blue
+                - purple
+                - pink
+                - red
+                - orange
+                - yellow
+                - green
+                - graphite
+
+            * highlight: string [default: accent_color]
+                - accent_color
+                - blue
+                - purple
+                - pink
+                - red
+                - orange
+                - yellow
+                - green
+                - graphite
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

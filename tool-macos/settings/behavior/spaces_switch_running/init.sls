@@ -1,7 +1,8 @@
 {#-
-    Customizes switching of spaces when clicking a running app icon in the Dock.
+    Customizes switching of spaces when clicking a running app icon in the Dock (switch vs new window).
 
-    Values: bool [default: true]
+    Values:
+        - bool [default: true]
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

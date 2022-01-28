@@ -3,13 +3,34 @@
     that means you need to re-enter your encryption password during wakeup
     from hibernation.
 
-    This might not make a big difference on current M1 Macs and those with
-    T2 security chip:
-      https://discussions.apple.com/thread/253568420
+    .. note::
 
-    It is always better to power off completely when not in use.
+        This might not make a big difference on current M1 Macs and those with
+        T2 security chip:
+          https://discussions.apple.com/thread/253568420
 
-    MacOS terminology is a bit all over the place and I'm not sure if I
+        This configuration might be redundant on APFS volumes, see
+        https://github.com/drduh/macOS-Security-and-Privacy-Guide/issues/283
+
+        Mind that this might make problems, at least on older Macs:
+          If you choose to evict FileVault keys in standby mode, you should also modify
+          your standby and power nap settings. Otherwise, your machine may wake while in
+          standby mode and then power off due to the absence of the FileVault key.
+          (https://github.com/drduh/macOS-Security-and-Privacy-Guide)
+
+    .. hint::
+        It is always better to power off completely when not in use.
+
+    Values:
+        - bool [default: false]
+
+    References:
+        * man pmset
+        * https://eclecticlight.co/2017/01/20/power-management-in-detail-using-pmset/
+        * https://github.com/drduh/macOS-Security-and-Privacy-Guide
+-#}
+
+{#- MacOS terminology is a bit all over the place and I'm not sure if I
     understood everything correctly. From what I understood, there are
     different Standby modes:
 
@@ -31,23 +52,7 @@
       autopoweroffdelay: x [in seconds]
 
     For an overview, see https://apple.stackexchange.com/a/262593
-
-    Mind that this might make problems, at least on older Macs:
-      If you choose to evict FileVault keys in standby mode, you should also modify
-      your standby and power nap settings. Otherwise, your machine may wake while in
-      standby mode and then power off due to the absence of the FileVault key.
-      (https://github.com/drduh/macOS-Security-and-Privacy-Guide)
-
-    This configuration might be redundant on APFS volumes, see
-    https://github.com/drduh/macOS-Security-and-Privacy-Guide/issues/283
-
-    Values: bool [default: false]
-
-    References:
-      man pmset
-      https://eclecticlight.co/2017/01/20/power-management-in-detail-using-pmset/
-      https://github.com/drduh/macOS-Security-and-Privacy-Guide
--#}
+#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}
 {%- from tplroot ~ "/map.jinja" import macos -%}

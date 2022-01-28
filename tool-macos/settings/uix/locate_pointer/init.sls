@@ -1,10 +1,8 @@
 {#-
     Customizes pointer locating by shaking setting.
 
-    Mind that the actual setting is called "...Disable...", so the pillar
-    value is inverted for consistency.
-
-    Values: bool [default: false]
+    Values:
+        - bool [default: false]
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}
@@ -19,7 +17,9 @@ include:
 Pointer locating by shaking setting is managed for user {{ user.name }}:
   macosdefaults.write:
     - name: CGDisableCursorLocationMagnification # in NSGlobalDomain
-    - value: {{ user.macos.uix.locate_pointer | to_bool }}
+    {#- Mind that the actual setting is called "...Disable...", so the pillar
+    value is inverted for consistency. #}
+    - value: {{ False == user.macos.uix.locate_pointer | to_bool }}
     - vtype: bool
     - user: {{ user.name }}
     - require:

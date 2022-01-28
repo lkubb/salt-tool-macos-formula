@@ -1,9 +1,8 @@
 {#-
     Customizes disk image integrity verification behavior.
-    Values: bool [default: true]
 
-    Mind that the actual setting is called "Skip...". For consistency,
-    the pillar value is inverted. pillar False => disabled True
+    Values:
+        - bool [default: true]
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}
@@ -22,6 +21,8 @@ Disk image integrity verification behavior is managed for user {{ user.name }}:
       - skip-verify
       - skip-verify-locked
       - skip-verify-remote
+    {#- Mind that the actual setting is called "Skip...". For consistency,
+    the pillar value is inverted. pillar False => disabled True#}
     - value: {{ False == user.macos.finder.dmg_verify | to_bool }}
     - vtype: bool
     - user: {{ user.name }}

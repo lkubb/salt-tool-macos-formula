@@ -1,7 +1,8 @@
 {#-
     Customizes transparency in menus and windows setting.
 
-    Values: bool [default: false]
+    Values:
+        - bool [default: false]
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

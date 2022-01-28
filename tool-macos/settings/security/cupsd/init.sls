@@ -1,9 +1,12 @@
 {#-
     Customizes activation of cupsd.
 
-    Interface can be found at http://127.0.0.1:631 if enabled.
+    .. hint::
 
-    Values: bool [default: true]
+        Webinterface can be found at http://127.0.0.1:631 if enabled.
+
+    Values:
+        - bool [default: true]
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

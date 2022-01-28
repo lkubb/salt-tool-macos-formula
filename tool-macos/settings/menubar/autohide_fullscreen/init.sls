@@ -1,6 +1,8 @@
 {#-
     Customizes autohide behavior of MacOS Menu Bar (top bar) in fullscreen mode.
-    Values: bool [default: true]
+
+    Values:
+        - bool [default: true]
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

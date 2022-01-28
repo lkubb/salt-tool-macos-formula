@@ -1,14 +1,17 @@
 {#-
     Customizes activation state of Remote Login (SSH server).
 
-    Note: This used to be settable with systemsetup -setremotelogin,
-    but that requires Full Disk Access now. Currently, a workaround
-    is to manually load/unload the plist with launchctl.
+    .. note::
 
-    Values: bool [default: false]
+        This used to be settable with systemsetup -setremotelogin,
+        but that requires Full Disk Access now. Currently, a workaround
+        is to manually load/unload the plist with launchctl.
+
+    Values:
+        - bool [default: false]
 
     References:
-      https://www.alansiu.net/2020/09/02/scripting-ssh-off-on-without-needing-a-pppc-tcc-profile/
+        * https://www.alansiu.net/2020/09/02/scripting-ssh-off-on-without-needing-a-pppc-tcc-profile/
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

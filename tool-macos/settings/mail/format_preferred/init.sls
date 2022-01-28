@@ -1,9 +1,15 @@
 {#-
     Customizes whether to prefer sending plaintext or richtext messages.
 
-    Needs Full Disk Access to work (https://lapcatsoftware.com/articles/containers.html).
+    .. note::
 
-    Values: string [plain, rich. default: rich]
+        Needs Full Disk Access to work (https://lapcatsoftware.com/articles/containers.html).
+
+    Values:
+        - string [default: rich]
+
+            * plain
+            * rich
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

@@ -2,15 +2,18 @@
     Customizes default Finder List View settings for all folders.
 
     Values:
-      calc_all_sizes: bool [default: false]
-      icon_size: real [default: 16]
-      preview: bool [default: true]
-      sort_col: string [default: name]
-      text_size: float [default: 13]
-      relative_dates: bool [default: true]
+        - dict
 
-    Note: Not sure about all the settings and no validation currently.
-     @TODO: specify custom column layout
+            * calc_all_sizes: bool [default: false]
+            * icon_size: float [default: 16]
+            * preview: bool [default: true]
+            * sort_col: string [default: name]
+            * text_size: float [default: 13]
+            * relative_dates: bool [default: true]
+
+    .. warning::
+
+        This was not tested at all. Proceed with care.
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}
@@ -20,6 +23,7 @@ include:
   - {{ tplroot }}.onchanges
   - {{ tplroot }}.require
 
+# @TODO: specify custom column layout
 {%- for user in macos.users | selectattr('macos.finder', 'defined') | selectattr('macos.finder.view_list', 'defined') %}
   {%- from tpldir ~ '/map.jinja' import user_settings with context %}
 

@@ -1,19 +1,41 @@
 {#-
     Customizes behavior when inserting a new CD/DVD.
 
-    Values, for each type:
-      ignore / ask / finder / itunes / disk_utility [application 5 @TODO]
+    Possible values, global or per type:
+        * ignore
+        * ask
+        * finder
+        * itunes
+        * disk_utility
 
-    Values: string [to set all, see above]
-        OR
-      blank_cd: string [see above]
-      blank_dvd: string [see above]
-      music: string [see above]
-      picture: string [see above]
-      video: string [see above]
+    .. note::
+        There is also the possibility to open an application, which
+        is currently not implemented.
+        For this, use -int 5. @TODO
+
+    Values:
+        - string [one value for all, see above]
+        - or dict
+
+            * blank_cd: string [see above]
+            * blank_dvd: string [see above]
+            * music: string [see above]
+            * picture: string [see above]
+            * video: string [see above]
+
+    Example:
+
+    .. code-block:: yaml
+
+        media_inserted:
+          blank_cd: disk_utility
+          blank_dvd: ask
+          music: itunes
+          pictures: finder
+          video: ask
 
     References:
-      https://github.com/joeyhoer/starter/blob/master/system/cds-dvds.sh
+        * https://github.com/joeyhoer/starter/blob/master/system/cds-dvds.sh
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

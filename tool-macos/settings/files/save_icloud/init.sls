@@ -1,6 +1,8 @@
 {#-
     Customizes default "Save as" location of save panel (iCloud vs local).
-    Values: bool [default: true]
+
+    Values:
+        - bool [default: true = iCloud]
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

@@ -1,6 +1,8 @@
 {#-
     Customizes automatic emptying of Trash after 30 days.
-    Values: bool [default: true]
+
+    Values:
+        - bool [default: true]
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

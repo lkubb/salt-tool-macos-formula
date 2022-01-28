@@ -1,7 +1,8 @@
 {#-
     Customizes rearrangement of spaces based on recency.
 
-    Values: bool [default: true]
+    Values:
+        - bool [default: true]
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

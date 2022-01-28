@@ -2,10 +2,15 @@
     Customizes state of targeted ads.
 
     This probably superseded com.apple.AdLib forceLimitAdTracking (on Monterey?).
-    There is still allowIdentifierForAdvertising to be found, but I could not
-    find a GUI to set this value.
 
-    Values: bool [default: true - wtf]
+    .. note::
+
+        There is still allowIdentifierForAdvertising to be found, but I could not
+        find a GUI to set this value.
+
+    Values:
+
+        - bool [default: true - wtf]
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

@@ -1,8 +1,12 @@
 {#-
     Customizes three finger drag touch gesture activation status.
-    Values: bool [default: false]
 
-    Tap to click needs to be active as well for this to be active.
+    Values:
+        - bool [default: false]
+
+    .. note::
+
+        Tap to click needs to be active as well for this to be active.
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

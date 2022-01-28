@@ -1,7 +1,11 @@
 {#-
     Customizes forcing of 12h / 24h format.
 
-    Values: string [12h / 24h]
+    Values:
+        - string [default: none]
+
+             * 12h
+             * 24h
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

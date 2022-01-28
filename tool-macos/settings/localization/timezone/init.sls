@@ -1,7 +1,14 @@
 {#-
     Customizes timezone.
 
-    Values: string
+    Values:
+        - string
+
+    Example:
+
+    .. code-block:: yaml
+
+        timezone: Europe/Paris
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

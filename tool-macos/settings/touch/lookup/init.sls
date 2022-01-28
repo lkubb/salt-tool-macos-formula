@@ -1,6 +1,12 @@
 {#-
     Customizes lookup touch gesture.
-    Values: bool [default: true = force click]
+
+    Values:
+        - bool [default: true = force click]
+        - or string
+
+            * three
+            * four
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

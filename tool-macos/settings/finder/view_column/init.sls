@@ -2,21 +2,52 @@
     Customizes default Finder Column View settings for all folders.
 
     Values:
-      arrange: string [default: name]
-          none, grid, name, kind, last_opened, added, modified, created, size, tags
-      col_width: int [default: 245]
-      folder_arrow: bool [default: true]
-      icons: bool [default: true]
-      preview: bool [default: true]
-      preview_disclosure: bool [default: true]
-      shared_arrange: string [default: none]
-          none, grid, name, kind, last_opened, added, modified, created, size, tags
-      text_size: int [default: 13]
-      thumbnails: bool [default: true]
+        - dict
 
+            * arrange: string [default: name]
+
+                - none
+                - name
+                - kind
+                - last_opened
+                - added
+                - modified
+                - created
+                - size
+                - tags
+
+            * col_width: int [default: 245]
+            * folder_arrow: bool [default: true]
+            * icons: bool [default: true]
+            * preview: bool [default: true]
+            * preview_disclosure: bool [default: true]
+            * shared_arrange: string [default: none]
+
+                - none
+                - name
+                - kind
+                - last_opened
+                - added
+                - modified
+                - created
+                - size
+                - tags
+
+            * text_size: int [default: 13]
+            * thumbnails: bool [default: true]
+
+    Example:
+
+    .. code-block:: yaml
+
+        view_column:
+          arrange: added
+          col_width: 200
+          icons: false
+          shared_arrange: last_opened
 
     References:
-      https://github.com/joeyhoer/starter/blob/master/apps/finder.sh
+        * https://github.com/joeyhoer/starter/blob/master/apps/finder.sh
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

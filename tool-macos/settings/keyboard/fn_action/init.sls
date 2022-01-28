@@ -1,8 +1,16 @@
 {#-
     Customizes action when pressing Fn key.
-    You might need to reboot after applying.
 
-    Values: string [none, dictation, emoji, input_source. default: input_source ?]
+    .. note::
+        You might need to reboot after applying.
+
+    Values:
+        - string [default: input_source ?]
+
+            * none
+            * dictation
+            * emoji
+            * input_source
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

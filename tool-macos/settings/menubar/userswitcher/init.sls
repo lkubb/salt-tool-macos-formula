@@ -1,12 +1,19 @@
 {#-
     Customizes display status of User Switcher widget in Menu Bar and Control Center.
+
     Values:
-      menu: bool [default: false]
-      control: bool [default: false]
-      menu_show: string [icon, username, fullname, default: icon]
+        - dict
+
+            * menu: bool [default: false]
+            * control: bool [default: false]
+            * menu_show: string [default: icon]
+
+                - icon
+                - username
+                - fullname
 
     References:
-      https://github.com/joeyhoer/starter/blob/master/system/users-groups.sh
+        * https://github.com/joeyhoer/starter/blob/master/system/users-groups.sh
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

@@ -1,10 +1,9 @@
 {#-
     Customizes whether to show attachments inline.
 
-    Needs Full Disk Access to work (https://lapcatsoftware.com/articles/containers.html).
+    .. note::
 
-    Mind that the actual setting is called "Disable...", so the
-    pillar value is inverted for consistency.
+        Needs Full Disk Access to work (https://lapcatsoftware.com/articles/containers.html).
 
     Values: bool [default: true]
 -#}
@@ -22,6 +21,8 @@ Activation status of inline attachments in Mail.app is managed for user {{ user.
   macosdefaults.write:
     - domain: com.apple.mail
     - name: DisableInlineAttachmentViewing
+    {#- Mind that the actual setting is called "Disable...", so the
+    pillar value is inverted for consistency. #}
     - value: {{ False == user.macos.mail.attachments_inline | to_bool }}
     - vtype: bool
     - user: {{ user.name }}

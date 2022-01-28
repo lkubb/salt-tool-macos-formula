@@ -1,10 +1,13 @@
 {#-
     Customizes scrolling direction (natural/analog).
 
-    Note: Until I get to finalize macsettings, all of the touch
-    settings need a restart. @TODO
+    .. note::
 
-    Values: bool [default: true]
+        Until I get to finalize macsettings, all of the touch
+        settings need a restart. @TODO
+
+    Values:
+        - bool [default: true]
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

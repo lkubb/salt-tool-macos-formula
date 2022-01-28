@@ -1,9 +1,11 @@
 {#-
-    Customizes Click feedback (seen in "Silent clicking").
-    Values: bool [default: true]
+    Customizes click feedback (seen in "Silent clicking").
+
+    Values:
+        - bool [default: true]
 
     References:
-      https://github.com/joeyhoer/starter/blob/master/system/trackpad.sh
+        * https://github.com/joeyhoer/starter/blob/master/system/trackpad.sh
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

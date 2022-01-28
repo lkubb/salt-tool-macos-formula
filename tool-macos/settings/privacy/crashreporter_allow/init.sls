@@ -1,7 +1,12 @@
 {#-
     Customizes state of sending analytics and crash reports.
 
-    Values: string [none - apple - third_party]
+    Values:
+        - string
+
+            * none
+            * apple
+            * third_party
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

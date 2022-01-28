@@ -1,9 +1,15 @@
 {#-
     Customizes default search scope.
-    Values: string [mac, current, previous] [default: mac]
+
+    Values:
+        - string [default: mac]
+
+            * mac
+            * current
+            * previous
 
     References:
-      https://github.com/joeyhoer/starter/blob/master/apps/finder.sh
+        * https://github.com/joeyhoer/starter/blob/master/apps/finder.sh
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

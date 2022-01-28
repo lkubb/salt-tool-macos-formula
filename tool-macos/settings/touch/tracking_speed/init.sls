@@ -1,9 +1,13 @@
 {#-
     Customizes tracking speed.
-    Values: float [0-3, default: 1?]
 
-    In System Preferences, the discrete values are:
-    0 - 0.125 - 0.5 - 0.685 - 0.875 - 1 - 1.5 - 2 - 2.5 - 3
+    Values:
+        - float [0-3, default: 1?]
+
+    .. note::
+
+        In System Preferences, the discrete values are:
+        0 - 0.125 - 0.5 - 0.685 - 0.875 - 1 - 1.5 - 2 - 2.5 - 3
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

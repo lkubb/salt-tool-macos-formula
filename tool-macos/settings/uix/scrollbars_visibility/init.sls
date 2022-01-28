@@ -1,7 +1,12 @@
 {#-
     Customizes when scrollbars are visible.
 
-    Values: str [always, automatic, when_scrolling. default: automatic]
+    Values:
+        - str [default: automatic]]
+
+            * always
+            * automatic
+            * when_scrolling
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

@@ -1,7 +1,8 @@
 {#-
     Customizes global toolbar button shape visibility.
 
-    Values: bool [default: false]
+    Values:
+        - bool [default: false]
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

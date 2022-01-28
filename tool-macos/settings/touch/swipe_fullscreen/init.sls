@@ -1,6 +1,13 @@
 {#-
     Customizes swipe fullscreen apps touch gesture activation status.
-    Values: three / four / false [default: three]
+
+    Values:
+        - string [default: three]
+
+            * three
+            * four
+
+        - or false
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

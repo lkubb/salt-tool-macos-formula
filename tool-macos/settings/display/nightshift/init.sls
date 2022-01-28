@@ -1,15 +1,35 @@
 {#-
     Customizes NightShift behavior.
+
     Values:
-      enabled: bool [default: true]
-      temperature: 2700-6000 [default: 4100]
-      schedule.start: HH:mm or HH [default: 22:00]
-      schedule.end:   HH:mm or HH [default: 07:00]
+        - dict
+
+            * enabled: bool [default: true]
+            * temperature: float [2700-6000, default: 4100]
+            * schedule: dict
+                - start: HH:mm or HH [default: 22:00]
+                - end:   HH:mm or HH [default: 07:00]
+
+    .. note::
+
+        When specifying in HH:mm format, remember quote it, otherwise
+        yaml might incite chaos.
+
+    Example:
+
+    .. code-block:: yaml
+
+        nightshift:
+          enabled: true
+          temperature: 4500
+          schedule:
+            start: '05:17'
+            end:   '13:37'
 
     References:
-      https://web.archive.org/web/20200316123016/https://github.com/aethys256/notes/blob/master/macOS_defaults.md
-      https://www.reddit.com/r/osx/comments/6334ac/toggling_night_shift_from_script/
-      https://github.com/LukeChannings/dotfiles/blob/main/install.macos#L418-L438
+        * https://web.archive.org/web/20200316123016/https://github.com/aethys256/notes/blob/master/macOS_defaults.md
+        * https://www.reddit.com/r/osx/comments/6334ac/toggling_night_shift_from_script/
+        * https://github.com/LukeChannings/dotfiles/blob/main/install.macos#L418-L438
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

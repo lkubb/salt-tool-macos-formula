@@ -1,14 +1,31 @@
 {#-
     Customizes alert sound.
-    Values: string [default: Tink = Boop in System Preferences]
-        Basso, Blow, Bottle, Frog, Funk, Glass, Hero, Morse,
-        Ping, Pop, Purr, Sosumi, Submarine, Tink
 
-    Find available ones in /System/Library/Sounds/*.aiff.
-    Listen to them via `afplay /System/Library/Sounds/<name>.aiff`.
+    Values:
+        - string [default: Tink = Boop in System Preferences]
+
+            * Basso
+            * Blow
+            * Bottle
+            * Frog
+            * Funk
+            * Glass
+            * Hero
+            * Morse,
+            * Ping
+            * Pop
+            * Purr
+            * Sosumi
+            * Submarine
+            * Tink
+
+    .. hint::
+
+        Find available ones in ``/System/Library/Sounds/*.aiff``.
+        Listen to them via ``afplay /System/Library/Sounds/<name>.aiff``.
 
     References:
-      https://github.com/joeyhoer/starter/blob/master/system/sound.sh
+        * https://github.com/joeyhoer/starter/blob/master/system/sound.sh
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

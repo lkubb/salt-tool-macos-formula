@@ -1,9 +1,20 @@
 {#-
     Customizes cursor blinking on/off periods. False to disable. Else specify on/off periods.
 
-    Values: false OR dict:
-      on: float [default: ?]
-      off: float [default: ?]
+    Values:
+        - false to disable
+        - or dict
+
+            * on: float [default: ?]
+            * off: float [default: ?]
+
+    Example:
+
+    .. code-block:: yaml
+
+        cursor_blinking:
+          on: 2.5
+          off: .5
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

@@ -1,14 +1,19 @@
 {#-
     Removes FileVault unlock privileges from an account.
-    The reverse is interactive:
-      `sudo fdesetup add -usertoadd username`
 
-    Handy for e.g. complex FileVault password that's different from your usual account.
+    .. note::
 
-    Values: bool [default: false]
+        The reverse is interactive::
+
+            `sudo fdesetup add -usertoadd username`
+
+        Handy for e.g. complex FileVault password that's different from your usual account.
+
+    Values:
+        - bool [default: false]
 
     References:
-      https://support.apple.com/en-gb/HT203998
+        * https://support.apple.com/en-gb/HT203998
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

@@ -1,7 +1,8 @@
 {#-
     Customizes Siri recording sharing status.
 
-    Values: bool [default: none]
+    Values:
+        - bool [default: none]
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

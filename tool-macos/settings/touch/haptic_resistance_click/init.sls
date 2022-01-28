@@ -1,6 +1,12 @@
 {#-
     Customizes resistance and haptic feedback strength for clicks.
-    Values: low (=light) / medium / high (=firm) [default: medium]
+
+    Values:
+        - string [default: medium]
+
+            * low
+            * medium
+            * high
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

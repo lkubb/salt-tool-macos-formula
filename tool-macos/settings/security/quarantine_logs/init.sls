@@ -1,16 +1,20 @@
 {#-
     Customizes keeping of Quarantine logs.
 
-    It's a bit surprising the logs are never cleared.
+    .. hint::
 
-    See for yourself:
-      echo 'SELECT datetime(LSQuarantineTimeStamp + 978307200, "unixepoch") as LSQuarantineTimeStamp, ' \
-        'LSQuarantineAgentName, LSQuarantineOriginURLString, LSQuarantineDataURLString from LSQuarantineEvent;' | \
-        sqlite3 /Users/$USER/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV2
+        It's a bit surprising the logs are never cleared.
+
+        See for yourself:
+          echo 'SELECT datetime(LSQuarantineTimeStamp + 978307200, "unixepoch") as LSQuarantineTimeStamp, ' \
+            'LSQuarantineAgentName, LSQuarantineOriginURLString, LSQuarantineDataURLString from LSQuarantineEvent;' | \
+            sqlite3 /Users/$USER/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV2
 
     Values:
-      clear: bool [default: false]
-      enabled: bool [default: true]
+        - dict
+
+            * clear: bool [default: false]
+            * enabled: bool [default: true]
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

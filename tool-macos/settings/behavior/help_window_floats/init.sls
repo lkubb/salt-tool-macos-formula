@@ -1,7 +1,8 @@
 {#-
     Customizes Help viewer window floating status.
 
-    Values: bool [default: true]
+    Values:
+        - bool [default: true]
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

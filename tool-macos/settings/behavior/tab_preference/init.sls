@@ -1,7 +1,12 @@
 {#-
     Customizes global preference for tabs.
 
-    Values: string [manual, fullscreen or always, default: fullscreen]
+    Values:
+        - string [default: fullscreen]
+
+            * manual
+            * fullscreen
+            * always
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

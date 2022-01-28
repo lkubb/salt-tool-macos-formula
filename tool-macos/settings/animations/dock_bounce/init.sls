@@ -1,9 +1,8 @@
 {#-
     Customizes bounce animation in dock (alert on changes/needs attention).
-    Values: bool [default: true]
 
-    Mind that the actual setting is called "no-bouncing". For consistency,
-    the pillar value is inverted. pillar False => disabled True
+    Values:
+        - bool [default: true]
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}
@@ -19,6 +18,8 @@ Dock bounce animation is managed for user {{ user.name }}:
   macosdefaults.write:
     - domain: com.apple.dock
     - name: no-bouncing
+    {#- Mind that the actual setting is called "no-bouncing". For consistency,
+    the pillar value is inverted. pillar False => disabled True #}
     - value: {{ False == user.macos.animations.dock_bounce | to_bool }}
     - vtype: bool
     - user: {{ user.name }}

@@ -1,13 +1,17 @@
 {#-
     Customizes boot sound (chime) behavior.
-    Values: bool [default: false since 2016 models]
 
-    Earlier, this could be set with SystemAudioVolume=" " / =%80.
+    Values:
+        - bool [default: false since 2016 models]
+
+    .. hint::
+
+        Earlier, this could be set with `nvram SystemAudioVolume=" " / =%80.`
 
     References:
-      https://apple.stackexchange.com/questions/168092/disable-os-x-startup-sound
-      https://apple.stackexchange.com/questions/409521/how-to-stop-startup-chime-on-boot-up
-      https://git.herrbischoff.com/awesome-macos-command-line/about/
+        * https://apple.stackexchange.com/questions/168092/disable-os-x-startup-sound
+        * https://apple.stackexchange.com/questions/409521/how-to-stop-startup-chime-on-boot-up
+        * https://git.herrbischoff.com/awesome-macos-command-line/about/
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

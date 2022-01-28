@@ -2,8 +2,10 @@
     Customizes screensaver behavior.
 
     Values:
-      after: int  [active after x seconds] [default: 1200 / 20min. 0 to disable]
-      clock: bool [default: false]
+        - dict
+
+            * after: int [active after x seconds. default: 1200 / 20min. 0 to disable]
+            * clock: bool [default: false]
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

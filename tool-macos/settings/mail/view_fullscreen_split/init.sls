@@ -1,9 +1,12 @@
 {#-
     Customizes whether to prefer to preview messages in split view when in fullscreen mode.
 
-    Needs Full Disk Access to work (https://lapcatsoftware.com/articles/containers.html).
+    .. note::
 
-    Values: bool [default: true]
+        Needs Full Disk Access to work (https://lapcatsoftware.com/articles/containers.html).
+
+    Values:
+        - bool [default: true]
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

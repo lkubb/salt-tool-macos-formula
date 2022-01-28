@@ -1,12 +1,12 @@
 {#-
     Customizes whether to quote the original mail when sending a reply.
 
-    Needs Full Disk Access to work (https://lapcatsoftware.com/articles/containers.html).
+    .. note::
 
-    The other setting ("Increase quote level") is mapped to SupressQuoteBarsInComposeWindows INVERTED.
-    @TODO
+        Needs Full Disk Access to work (https://lapcatsoftware.com/articles/containers.html).
 
-    Values: bool [default: true]
+    Values:
+        - bool [default: true]
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}
@@ -16,6 +16,8 @@ include:
   - {{ tplroot }}.onchanges
   - {{ tplroot }}.require
 
+{#- The other setting ("Increase quote level") is mapped to SupressQuoteBarsInComposeWindows INVERTED.
+    @TODO #}
 {%- for user in macos.users | selectattr('macos.mail', 'defined') | selectattr('macos.mail.respond_with_quote', 'defined') %}
 
 Quote original message setting in Mail.app is managed for user {{ user.name }}:

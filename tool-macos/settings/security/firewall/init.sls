@@ -2,12 +2,21 @@
     Customizes state of inbuilt application firewall (blocks incoming connections only).
 
     Values:
-      apple_signed_ok: bool [default: true]
-      download_signed_ok: bool [default: false]
-      enabled: bool [default: true]
-      incoming_block: bool [default: false]
-      logging: bool [default: true]
-      stealth: bool [default: false] (ignore ICMP ping or TCP/UDP connection attempts to closed ports)
+        - dict
+
+            * apple_signed_ok: bool [default: true]
+            * download_signed_ok: bool [default: false]
+            * enabled: bool [default: true]
+            * incoming_block: bool [default: false]
+            * logging: bool [default: true]
+            * stealth: bool [default: false]
+
+    .. hint::
+
+        stealth mode: ignore ICMP ping or TCP/UDP connection attempts to closed ports
+-#}
+
+{#- This could also be set like this:
 
     /usr/libexec/ApplicationFirewall/socketfilterfw --setallowsigned on/off
     /usr/libexec/ApplicationFirewall/socketfilterfw --setallowsignedapp on/off
@@ -16,8 +25,7 @@
     /usr/libexec/ApplicationFirewall/socketfilterfw --setloggingmode on/off
     /usr/libexec/ApplicationFirewall/socketfilterfw --setstealthmode on/off
     pkill -HUP socketfilterfw
-
--#}
+#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}
 {%- from tplroot ~ "/map.jinja" import macos -%}

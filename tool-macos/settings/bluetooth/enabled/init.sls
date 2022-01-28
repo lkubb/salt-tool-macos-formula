@@ -1,11 +1,12 @@
 {#-
     Customizes power state of Bluetooth.
 
-    Up to Sierra, the daemon was called blued.
-    Up to Big Sur (?), the key was found in /Library/Preferences/com.apple.Bluetooth
-      as ControllerPowerState with vtype int.
+    Values:
+        - bool [default: true]
 
-    Values: bool [default: true]
+    .. note::
+
+        Needs to run as root.
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}
@@ -16,6 +17,9 @@ include:
   - {{ tplroot }}.require
 
 {%- if macos.bluetooth is defined and macos.bluetooth.enabled is defined %}
+
+# Up to Big Sur (?), the key was found in /Library/Preferences/com.apple.Bluetooth
+# as ControllerPowerState with vtype int.
 
 Bluetooth power state is managed:
   macosdefaults.write:
@@ -28,5 +32,6 @@ Bluetooth power state is managed:
       - System Preferences is not running
     - watch_in:
       - cfprefsd was reloaded
+  # Up to Sierra, the daemon was called blued.
       - bluetoothd was reloaded
 {%- endif %}

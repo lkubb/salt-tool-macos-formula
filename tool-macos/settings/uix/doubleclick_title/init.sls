@@ -1,7 +1,12 @@
 {#-
     Customizes action when doubleclicking a window's title.
 
-    Values: str [none, minimize, maximize. default: maximize]
+    Values:
+        - str [default: maximize]
+
+            * none
+            * minimize
+            * maximize
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

@@ -1,9 +1,12 @@
 {#-
     Customizes spaces separation of different displays.
 
-    Needs a logout to apply.
+    .. note::
 
-    Values: bool [default: false]
+        Needs a logout to apply.
+
+    Values:
+        - bool [default: false]
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

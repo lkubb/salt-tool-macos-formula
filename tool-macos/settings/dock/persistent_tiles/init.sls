@@ -1,9 +1,8 @@
 {#-
     Customizes availability of persistent dock tiles.
-    Values: bool [default: true]
 
-    Mind that the actual setting is called "static-only". For consistency,
-    the pillar value is inverted. pillar False => disabled True
+    Values:
+        - bool [default: true]
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}
@@ -19,6 +18,8 @@ Availability of persistent dock tiles is managed for user {{ user.name }}:
   macosdefaults.write:
     - domain: com.apple.dock
     - name: static-only
+    {#- Mind that the actual setting is called "static-only". For consistency,
+    the pillar value is inverted. pillar False => disabled True #}
     - value: {{ False == user.macos.dock.persistent_tiles | to_bool }}
     - vtype: bool
     - user: {{ user.name }}

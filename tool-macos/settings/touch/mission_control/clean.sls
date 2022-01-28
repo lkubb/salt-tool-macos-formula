@@ -1,7 +1,7 @@
 {#-
     Resets Mission Control touch gesture settings to default (enabled).
 
-    Warning: This might reset more than just App Exposé gesture. @TODO
+    Warning: This might reset more than just Mission Control gesture. @TODO
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

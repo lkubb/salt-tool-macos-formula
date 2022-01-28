@@ -1,7 +1,8 @@
 {#-
     Customizes behavior when closing a window with unconfirmed changes.
 
-    Values: bool [default: false = save silently and close]
+    Values:
+        - bool [default: false = save silently and close]
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

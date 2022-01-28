@@ -1,17 +1,21 @@
 {#-
     Manages visibility of user accounts.
 
-    When turned on, this does three things:
-      1) Hides the user account from the login window (not FileVault necessarily).
-      2) Hides the home folder.
-      3) Hides the public share folder.
+    .. hint::
 
-    Handy for e.g. complex FileVault password that's different from your usual account.
+        When turned on, this does three things:
+            1) Hides the user account from the login window (not FileVault necessarily).
+            2) Hides the home folder.
+            3) Hides the public share folder.
 
-    Values: bool [default: false]
+        Handy for e.g. complex FileVault password that's different from your usual account
+        (in combination with user_no_filevault).
+
+    Values:
+        - bool [default: false]
 
     References:
-      https://support.apple.com/en-gb/HT203998
+        * https://support.apple.com/en-gb/HT203998
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

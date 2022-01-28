@@ -1,13 +1,16 @@
 {#-
     Checks if the root user is disabled.
 
-    As an administrator, you can run `/usr/sbin/dsenableroot` to enable
-    and `/usr/sbin/dsenableroot -d` to disable. The process is interactive.
+    .. hint::
 
-    Values: bool [default: false]
+        As an administrator, you can run `/usr/sbin/dsenableroot` to enable
+        and `/usr/sbin/dsenableroot -d` to disable. The process is interactive.
+
+    Values:
+        - bool [default: false]
 
     References:
-      https://unix.stackexchange.com/questions/232491/how-to-test-if-root-user-is-enabled-in-mac
+        * https://unix.stackexchange.com/questions/232491/how-to-test-if-root-user-is-enabled-in-mac
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

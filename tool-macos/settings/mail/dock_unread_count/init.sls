@@ -1,12 +1,20 @@
 {#-
     Customizes dock unread messages count of Mail.app.
 
-    This is implemented as string because in theory, it allows
-    to select smart mailboxes etc. (status of 4, set MailDockBadgeMailbox to smartmailbox://<UID>) @TODO?
+    .. note::
 
-    Needs Full Disk Access to work (https://lapcatsoftware.com/articles/containers.html).
+        Needs Full Disk Access to work (https://lapcatsoftware.com/articles/containers.html).
 
-    Values: string [inbox, all. default: inbox]
+    .. hint::
+
+        This is implemented as string because in theory, it allows
+        to select smart mailboxes etc. (status of 4, set MailDockBadgeMailbox to smartmailbox://<UID>) @TODO?
+
+    Values:
+        - string [default: inbox]
+
+            * all
+            * inbox
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

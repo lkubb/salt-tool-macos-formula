@@ -1,12 +1,12 @@
 {#-
     Customizes activation status of sent animation.
 
-    Needs Full Disk Access to work (https://lapcatsoftware.com/articles/containers.html).
+    .. note::
 
-    Mind that the actual setting is called "Disable...", so the
-    pillar value is inverted for consistency.
+        Needs Full Disk Access to work (https://lapcatsoftware.com/articles/containers.html).
 
-    Values: bool [default: true]
+    Values:
+        - bool [default: true]
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}
@@ -22,6 +22,8 @@ Activation status of sent animation in Mail.app is managed for user {{ user.name
   macosdefaults.write:
     - domain: com.apple.mail
     - name: DisableSendAnimations
+    {#- Mind that the actual setting is called "Disable...", so the
+    pillar value is inverted for consistency. #}
     - value: {{ False == user.macos.mail.animation_sent | to_bool }}
     - vtype: bool
     - user: {{ user.name }}

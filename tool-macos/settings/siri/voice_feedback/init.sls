@@ -1,7 +1,8 @@
 {#-
     Customizes Siri voice feedback.
 
-    Values: bool [default: true]
+    Values:
+        - bool [default: true]
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

@@ -1,11 +1,27 @@
 {#-
     Customizes Mail.app new message alert sound.
 
-    Needs Full Disk Access to work (https://lapcatsoftware.com/articles/containers.html).
+    .. note::
 
-    Values: str [default: New Mail]
-      [Basso, Blow, Bottle, Frog, Funk, Glass, Hero, Morse,
-        Ping, Pop, Purr, Sosumi, Submarine, Tink]
+        Needs Full Disk Access to work (https://lapcatsoftware.com/articles/containers.html).
+
+    Values:
+        - string [default: New Mail]
+
+              * Basso
+              * Blow
+              * Bottle
+              * Frog
+              * Funk
+              * Glass
+              * Hero
+              * Morse
+              * Ping
+              * Pop
+              * Purr
+              * Sosumi
+              * Submarine
+              * Tink
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

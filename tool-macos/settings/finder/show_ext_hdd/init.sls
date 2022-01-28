@@ -1,6 +1,8 @@
 {#-
     Customizes display status of external HDD on desktop.
-    Values: bool [default: true]
+
+    Values:
+        - bool [default: true]
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

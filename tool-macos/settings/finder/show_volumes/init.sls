@@ -1,6 +1,8 @@
 {#-
     Customizes display status of /Volumes folder.
-    Values: bool [default: false]
+
+    Values:
+        - bool [default: false]
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

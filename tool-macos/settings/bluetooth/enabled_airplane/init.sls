@@ -1,7 +1,12 @@
 {#-
     Customizes power state of Bluetooth in Airplane Mode.
 
-    Values: bool [default: true]
+    Values:
+        - bool [default: true]
+
+    .. note::
+
+        Needs to run as root.
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

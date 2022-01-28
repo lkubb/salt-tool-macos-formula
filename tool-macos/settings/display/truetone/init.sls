@@ -1,8 +1,8 @@
 {#-
     Customizes TrueTone behavior.
-    Values: bool [default: true]
 
-    This might be unfinished. @TODO
+    Values:
+        - bool [default: true]
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

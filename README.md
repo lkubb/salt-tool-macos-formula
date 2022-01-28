@@ -7,71 +7,10 @@ Applying `tool-macos` will make sure MacOS is configured as specified.
 To manage defaults for sandboxed applications (like Mail, Messages), your terminal emulator will need `Full Disk Access` (grant it in System Preferences -> Security & Privacy). This is also true for Time Machine configuration and some other protected files.
 
 ## Execution modules and states
-This formula provides several execution modules and states to manage `defaults`, profiles and power management settings as well as default handlers for files and URL schemes. Please see the source code for proper docs atm.
+This formula provides several execution modules and states to manage `defaults`, profiles and power management settings as well as default handlers for files and URL schemes.
 
-### macosdefaults
-#### Execution Module
-Differences from official Salt execution module macdefaults:
-
-+ adds host parameter to eg run `defaults -currentHost write`
-+ adds data encoding in xml (fixes broken functionality regarding composites)
-+ adds set/update/append/extend/read_more/delete_less/delete_from function to properly allow working with nested dicts
-+ adds optional domain, defaults to global domain
-+ adds some kind of support for data and date types
-+ adds literal data type to skip xml encoding
-
-Provides the following methods (prefix with `macosdefaults`):
-* `write(key, value, vtype="string", domain=None, user=None, host=None)`
-* `set(keys, value, vtype=None, domain=None, skeleton=None, user=None, host=None, delimiter=':')`
-* `update(keys, value, domain=None, skeleton=None, merge=True, merge_lists=False, user=None, host=None, delimiter=':')`
-* `append(keys, value, domain=None, skeleton=None, user=None, host=None, delimiter=':')`
-* `extend(keys, value, domain=None, skeleton=None, user=None, host=None, delimiter=':')`
-* `read(key, domain=None, user=None, host=None)`
-* `read_all(domain=None, user=None, host=None)`
-* `read_more(keys, domain=None, user=None, host=None, delimiter=':')`
-* `delete(key, domain=None, user=None, host=None)`
-* `delete_less(keys, domain=None, user=None, host=None, delimiter=':')`
-* `delete_from(keys, value, domain=None, user=None, host=None, delimiter=':')`
-* `exists(keys, domain=None, user=None, host=None, delimiter=':')`
-
-#### State Module
-Differences from official Salt execution module macdefaults:
-* supports test=1
-
-Methods mostly follow execution module.
-
-### macprofile
-Modified from [mosen's implementation](https://github.com/mosen/salt-osx/). Changes can be summarised as follows:
-- adds support for macOS 11+: Profiles can no longer be silently installed. Workaround is interactive.
-- Adds default ptype (why again?).
-- Drops support for python2.
-
-#### Execution Module
-* `validate(identifier, profile_dict)`
-* `items()`
-* `exists(identifier)`
-* `generate(identifier, profile_uuid=None, ptype=None, **kwargs)`
-* `install(path, name=None, content=None)`
-* `remove(identifier)`
-* `item_keys(identifier)`
-
-#### State Module
-* `installed(name, force=None, ptype=None, validate=True, **kwargs)`
-* `absent(name)`
-
-### pmset
-Allows setting `pmset` stuff.
-
-#### Execution Module
-* `set(value, name=None, scope='all')`
-* `get(name, scope='current')`
-* `get_all(name)`
-* `get_scope(scope='current')`
-* `get_capabilities()`
-* `restore_defaults()`
-
-#### State Module
-* `set(name, value, scope='all')`
+## Docs
+Documentation is currently found in doc/\_build/html.
 
 ## Configuration
 ### General Remarks

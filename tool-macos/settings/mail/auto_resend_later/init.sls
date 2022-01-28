@@ -2,9 +2,12 @@
     Customizes whether to automatically resend outgoing messages when the server
     was not available (does not warn about failed sends).
 
-    Needs Full Disk Access to work (https://lapcatsoftware.com/articles/containers.html).
+    .. note::
 
-    Values: bool [default: true?]
+        Needs Full Disk Access to work (https://lapcatsoftware.com/articles/containers.html).
+
+    Values:
+        - bool [default: true?]
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

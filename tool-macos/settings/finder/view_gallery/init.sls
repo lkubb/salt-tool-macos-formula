@@ -2,12 +2,33 @@
     Customizes default Finder Gallery View settings for all folders.
 
     Values:
-      arrange: string [default: name]
-          none, grid, name, kind, last_opened, added, modified, created, size, tags
-      icon_size: real [default: 48]
-      preview: bool [default: true]
-      preview_pane: bool [default: true]
-      titles: bool [default: false]
+        - dict
+
+            * arrange: string [default: name]
+
+                - none
+                - name
+                - kind
+                - last_opened
+                - added
+                - modified
+                - created
+                - size
+                - tags
+
+            * icon_size: float [default: 48]
+            * preview: bool [default: true]
+            * preview_pane: bool [default: true]
+            * titles: bool [default: false]
+
+    Example:
+
+    .. code-block:: yaml
+
+        view_gallery:
+          arrange: kind
+          icon_size: 32
+          titles: true
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

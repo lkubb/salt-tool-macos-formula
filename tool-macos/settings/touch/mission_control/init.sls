@@ -1,11 +1,15 @@
 {#-
     Customizes Mission Control touch gesture.
-    Values: bool [default: true]
 
-    Select number of fingers for vertical swipe by setting
-    app_expose_mission_control = three / four. Take care with
-    three finger settings, they can conflict easily. This formula
-    will try to automatically fall back to sensible values.
+    Values:
+        - bool [default: true]
+
+    .. note::
+
+        Select the number of fingers for vertical swipes by setting
+        app_expose_mission_control = three / four. Take care with
+        three finger settings, they can conflict easily. This formula
+        will try to automatically fall back to sensible values.
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

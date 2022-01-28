@@ -1,7 +1,8 @@
 {#-
     Customizes behavior when apps have crashed.
 
-    Values: bool [default: true = show Crash Reporter]
+    Values:
+        - bool [default: true = show Crash Reporter]
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

@@ -1,11 +1,19 @@
 {#-
     Customizes new Finder window default path.
 
-    Values: string [default: recent]
-        [computer / volume / home / desktop / documents / recent / </my/custom/path>]
+    Values:
+        - string [default: recent]
+
+            * computer
+            * volume
+            * home
+            * desktop
+            * documents
+            * recent
+            * </my/custom/path>
 
     References:
-      https://github.com/joeyhoer/starter/blob/master/apps/finder.sh
+        * https://github.com/joeyhoer/starter/blob/master/apps/finder.sh
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

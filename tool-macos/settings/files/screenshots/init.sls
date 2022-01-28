@@ -1,15 +1,36 @@
 {#-
-    Customizes screenshot settings.
+    Customizes screenshot creation settings.
+
     Values:
-      basename: Screenshot
-      format: png / bmp / gif / jp(e)g / pdf / tiff [default: png]
-      include_date:
-      location: path [default: ~/Desktop]
-      shadow: bool [default: true]
+        - dict
+
+            * basename: string [default: Screenshot]
+            * format: string [default: png]
+                - png
+                - bmp
+                - gif
+                - jp(e)g
+                - pdf
+                - tiff
+
+            * include_date: bool [default: true]
+            * location: string [default: $HOME/Desktop]
+            * shadow: bool [default: true]
+
+    Example:
+
+    .. code-block:: yaml
+
+        screenshots:
+          basename: s1(k
+          format: bmp
+          include_date: true
+          location: /Users/h4xx0r/screenshots
+          shadow: false
 
     References:
-      https://ss64.com/osx/screencapture.html
-      https://github.com/joeyhoer/starter/blob/master/apps/screenshot.sh
+        * https://ss64.com/osx/screencapture.html
+        * https://github.com/joeyhoer/starter/blob/master/apps/screenshot.sh
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

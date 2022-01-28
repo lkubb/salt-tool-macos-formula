@@ -2,11 +2,24 @@
     Customizes file info popup expanded panes.
 
     Values:
-      comments: bool [default: false]
-      metadata: bool [default: true]
-      name: bool [default: false]
-      openwith: bool [default: true]
-      privileges: bool [default: true]
+        - dict
+
+            * comments: bool [default: false]
+            * metadata: bool [default: true]
+            * name: bool [default: false]
+            * openwith: bool [default: true]
+            * privileges: bool [default: true]
+
+    Example:
+
+    .. code-block:: yaml
+
+        fileinfo_popup:
+          comments: true
+          metadata: false
+          name: false
+          openwith: true
+          privileges: true
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

@@ -2,7 +2,8 @@
     Customizes motion reducing mode.
     This e.g. changes the animation when swiping between spaces to fade/blend.
 
-    Values: bool [default: false]
+    Values:
+        - bool [default: false]
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

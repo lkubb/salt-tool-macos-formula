@@ -1,15 +1,27 @@
 {#-
     Customizes available system languages.
 
-    Some more settings that could be set:
-      Week begins on Monday/Tuesday etc: AppleFirstWeekday -dict {gregorian: -int 2/3} etc
-      Locale: AppleLocale, eg: en_US@currency=USD@calendar=buddhist
-      Country: Country -string "US"
-    Values: str
+    Values:
+        - list of strings (name and country are separated by a dash))
+
+    Example:
+
+    .. code-block:: yaml
+
+        languages:
+          - en-US
+          - en-AU
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}
 {%- from tplroot ~ "/map.jinja" import macos -%}
+
+{#-
+    Some more settings that could be set:
+      Week begins on Monday/Tuesday etc: AppleFirstWeekday -dict {gregorian: -int 2/3} etc
+      Locale: AppleLocale, eg: en_US@currency=USD@calendar=buddhist
+      Country: Country -string "US"
+ #}
 
 include:
   - {{ tplroot }}.onchanges

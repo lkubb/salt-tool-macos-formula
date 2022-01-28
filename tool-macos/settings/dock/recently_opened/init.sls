@@ -1,6 +1,8 @@
 {#-
-    Customizes dock behavior regarding recently opened apps.
-    Values: bool [default: true]
+    Customizes dock behavior regarding showing recently opened apps.
+
+    Values:
+        - bool [default: true]
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}
@@ -12,7 +14,7 @@ include:
 
 {%- for user in macos.users | selectattr('macos.dock', 'defined') | selectattr('macos.dock.recently_opened', 'defined') %}
 
-Dock behavior regarding recently opened applications is managed for user {{ user.name }}:
+Dock behavior regarding showing recently opened applications is managed for user {{ user.name }}:
   macosdefaults.write:
     - domain: com.apple.dock
     - name: show-recents

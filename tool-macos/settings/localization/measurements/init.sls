@@ -1,7 +1,12 @@
 {#-
     Customizes measurement units.
 
-    Values: metric, US, UK.
+    Values:
+        - string
+
+            * metric
+            * US
+            * UK
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

@@ -1,7 +1,8 @@
 {#-
     Customizes display of password hint (number of tries).
 
-    Values: int [0 to disable, default ?]
+    Values:
+        - int [0 to disable, default 3?]
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

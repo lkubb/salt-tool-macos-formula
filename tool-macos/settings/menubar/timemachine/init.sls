@@ -1,6 +1,8 @@
 {#-
     Customizes display status of Time Machine widget in Menu Bar.
-    Values: bool [default: false]
+
+    Values:
+        - bool [default: false]
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

@@ -1,9 +1,12 @@
 {#-
     Customizes automatic detection of captive portals.
 
-    You might need to reboot to apply changed settings.
+    .. note::
 
-    Values: bool [default: true]
+        You might need to reboot to apply changed settings.
+
+    Values:
+        - bool [default: true]
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

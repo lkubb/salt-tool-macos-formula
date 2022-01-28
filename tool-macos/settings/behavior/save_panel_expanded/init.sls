@@ -1,7 +1,8 @@
 {#-
-    Customizes default state of save panel.
+    Customizes default state of save panel (expanded vs collapsed).
 
-    Values: bool [default: false]
+    Values:
+        - bool [default: false]
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

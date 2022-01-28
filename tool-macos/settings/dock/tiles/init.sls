@@ -1,14 +1,76 @@
 {#-
     Customizes dock tiles (items).
-    Values:
-      apps: list of items
-      others: list of items
-      sync: bool [default: true] (sync dock items instead of appending)
 
-      single item:
-        type: app / folder / url / spacer / small-spacer / flex-spacer
-        name: Something different than default
-        path: /Some/absolute/path or some://url
+    Values:
+        - dict
+
+            * apps: list of items
+            * others: list of items
+            * sync: bool [default: true, false = append]
+
+    Single item possible values:
+        - type: [possibly autodetected if unspecified]
+
+            * app
+            * folder
+            * url
+            * spacer
+            * small-spacer
+            * flex-spacer
+
+        - label: string [will be automapped if unspecified]
+        - path: string [required]
+
+            * /some/absolute/path
+            * some://url
+
+        - displayas: string [directories only, default: stack]
+
+            * folder
+            * stack
+
+        - showas: string [directories only, default: auto]
+
+            * auto
+            * fan
+            * grid
+            * list
+
+        - arrangeby: string [directories only, default: added]
+
+            * name
+            * added
+            * modified
+            * created
+            * kind
+
+    Example:
+
+    .. code-block:: yaml
+
+        tiles:
+          sync: true # don't append, make it exactly like specified
+          apps:
+            - /Applications/TextEdit.app  # paths can be specified, type will be autodetected
+            -                             # empty items are spacers
+            - type: file                  # this is the verbose variant for app definition
+              path: /Applications/Sublime Text.app
+              label: Sublime              # the label will otherwise equal app name without .app
+            - small-spacer                # add different spacers with [small-/flex-]spacer
+            - path: /Applications/Firefox.app
+              label: FF                   # type will be autodetected as above
+          others:
+            - path: /Users/user/Downloads
+              displayas: stack            # stack / folder
+              showas: grid                # auto / fan / grid / list
+              arrangement: added          # name / added / modified / created / kind
+              label: DL                   # the label would be set to Downloads otherwise
+              type: directory             # will be autodetected as well
+            - spacer                      # spacers can be defined like this as well
+            - /Users/user/Documents       # defaults: stack + auto + added. label: Documents.
+            - flex-spacer
+            - https://www.github.com      # urls can be added as well
+
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

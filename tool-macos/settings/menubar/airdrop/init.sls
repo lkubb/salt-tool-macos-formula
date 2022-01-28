@@ -1,6 +1,8 @@
 {#-
     Customizes display status of Airdorp widget in Menu Bar.
-    Values: bool [default: false]
+
+    Values:
+        - bool [default: false]
 -#}
 
 {#-

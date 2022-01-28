@@ -2,8 +2,10 @@
     Customizes NTP synchronization activation status and server.
 
     Values:
-      enabled: bool [default: true]
-      server: string [default: time.apple.com]
+        - dict
+
+            * enabled: bool [default: true]
+            * server: string [default: time.apple.com]
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

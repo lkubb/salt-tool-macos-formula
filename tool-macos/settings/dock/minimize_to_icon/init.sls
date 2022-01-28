@@ -1,6 +1,8 @@
 {#-
     Customizes window minimization behavior (to application icon or separate dock tile).
-    Values: bool [default: false]
+
+    Values:
+        - bool [default: false = minimize to separate dock tile]
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

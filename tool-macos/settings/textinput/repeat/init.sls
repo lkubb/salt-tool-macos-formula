@@ -2,11 +2,15 @@
     Customizes delay and rate of key repeats.
     To make this have an effect, turn press and hold off.
 
-    You might need to reboot after applying.
+    .. note::
+
+        You might need to reboot after applying.
 
     Values:
-      rate: int [default: ?]
-      delay: int [default: ?]
+        - dict
+
+            * rate: int [default: ?]
+            * delay: int [default: ?]
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

@@ -1,14 +1,17 @@
 {#-
-    Allows to disable Remote Desktop services.
+    Allows to **disable** Remote Desktop services.
 
-    Enabling this might not work on MacOS Monterey 12.1 (from CLI) anyways.
-    Disabling should work (from CLI).
+    .. note::
 
-    Values: bool [default: true]
+        Enabling this might not work on MacOS Monterey 12.1 (from CLI) anyways.
+        Disabling should work (from CLI).
+
+    Values:
+        - bool [default: true]
 
     References:
-      https://support.apple.com/guide/remote-desktop/enable-remote-management-apd8b1c65bd/mac
-      https://support.apple.com/en-us/HT209161
+        * https://support.apple.com/guide/remote-desktop/enable-remote-management-apd8b1c65bd/mac
+        * https://support.apple.com/en-us/HT209161
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

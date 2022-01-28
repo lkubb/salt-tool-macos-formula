@@ -1,8 +1,12 @@
 {#-
     Customizes Show Desktop touch gesture activation status.
-    Values: bool [default: true]
 
-    Pinch gestures need to be active for Launchpad or Show Desktop actions.
+    Values:
+        - bool [default: true]
+
+    .. note::
+
+        Pinch gestures need to be active for Launchpad or Show Desktop actions.
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

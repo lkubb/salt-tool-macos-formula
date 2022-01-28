@@ -1,7 +1,8 @@
 {#-
     Customizes automatic login.
 
-    Values: false or string [username] [default: false]
+    Values:
+        - false or string [= username. default: false]
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

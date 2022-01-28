@@ -1,6 +1,8 @@
 {#-
     Customizes Finder quittable status (Quit menu item and Cmd + q).
-    Values: bool [default: false]
+
+    Values:
+        - bool [default: false]
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

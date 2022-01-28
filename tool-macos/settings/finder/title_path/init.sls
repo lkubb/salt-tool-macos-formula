@@ -2,7 +2,8 @@
     Customizes presence of full POSIX path to current working directory
     in Finder window title.
 
-    Values: bool [default: false]
+    Values:
+        - bool [default: false]
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

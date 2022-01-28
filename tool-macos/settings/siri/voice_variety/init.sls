@@ -2,8 +2,10 @@
     Customizes Siri voice variety.
 
     Values:
-      language: string [e.g. en-AU]
-      speaker: string [e.g. gordon]
+        - dict
+
+            * language: string [e.g. en-AU]
+            * speaker: string [e.g. gordon]
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

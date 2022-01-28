@@ -1,14 +1,17 @@
 {#-
     Customizes shortcut to send mails.
 
-    Needs Full Disk Access to work (https://lapcatsoftware.com/articles/containers.html).
+    .. note::
 
-    Values: string [example: '@\U21a9' for Cmd+Enter]
+        Needs Full Disk Access to work (https://lapcatsoftware.com/articles/containers.html).
+
+    Values:
+        - string [example: '@\U21a9' for Cmd+Enter]
 
     References:
-      https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/EventOverview/TextDefaultsBindings/TextDefaultsBindings.html
-      https://web.archive.org/web/20160314030051/http://osxnotes.net/keybindings.html
-      https://github.com/ttscoff/KeyBindings
+        * https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/EventOverview/TextDefaultsBindings/TextDefaultsBindings.html
+        * https://web.archive.org/web/20160314030051/http://osxnotes.net/keybindings.html
+        * https://github.com/ttscoff/KeyBindings
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

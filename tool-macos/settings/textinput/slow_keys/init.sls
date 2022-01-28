@@ -2,9 +2,12 @@
     Customizes state of slow keys accessibility feature (delay before
     accepting keypresses).
 
-    Needs Full Disk Access.
+    .. note::
 
-    Values: bool [default: false]
+        Needs Full Disk Access.
+
+    Values:
+        - bool [default: false]
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

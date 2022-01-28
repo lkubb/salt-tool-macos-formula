@@ -1,12 +1,16 @@
 {#-
     Customizes system UI sound effect behavior.
-    Values: bool [default: true]
 
-    This manages system UI sound effects. For all apps, see sound_effects_ui.
+    Values:
+        - bool [default: true]
+
+    .. hint::
+
+        This manages system UI sound effects. For all apps, see sound_effects_ui.
 
     References:
-      https://github.com/joeyhoer/starter/blob/master/system/sound.sh
-      https://discussions.apple.com/thread/253125795
+        * https://github.com/joeyhoer/starter/blob/master/system/sound.sh
+        * https://discussions.apple.com/thread/253125795
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

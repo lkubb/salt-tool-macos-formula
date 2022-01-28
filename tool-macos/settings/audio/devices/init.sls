@@ -3,12 +3,18 @@
     default settings for specific devices. @TODO preferred_devices
     management.
 
-    Example:
-      - "device.AppleUSBAudioEngine:Native Instruments:Komplete Audio 6 MK2:ABCD1EF2:1,2":
-          output.stereo.left: 5
-          output.stereo.right: 6
+    Values:
+        - list of dicts:
 
-    Values: list of dicts [ {device_uid: { setting: value } } ]
+            [ {device_uid: { setting: value } } ]
+
+    Example:
+
+    .. code-block:: yaml
+
+        - "device.AppleUSBAudioEngine:Native Instruments:Komplete Audio 6 MK2:ABCD1EF2:1,2":
+            output.stereo.left: 5
+            output.stereo.right: 6
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

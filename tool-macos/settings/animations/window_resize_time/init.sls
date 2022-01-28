@@ -1,9 +1,12 @@
 {#-
     Customizes MacOS window resize time.
 
-    Might take a reboot to apply.
+    .. note::
 
-    Values: float [default: 0.5?]
+        Might take a reboot to apply.
+
+    Values:
+        - float [default: 0.5?]
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

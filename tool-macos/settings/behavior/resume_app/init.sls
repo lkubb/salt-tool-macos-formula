@@ -1,7 +1,8 @@
 {#-
     Customizes default app resume behavior when reopening an app that was quit with open windows.
 
-    Values: bool [default: true]
+    Values:
+      - bool [default: true]
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

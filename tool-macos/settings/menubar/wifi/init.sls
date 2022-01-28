@@ -1,6 +1,8 @@
 {#-
     Customizes display status of Wifi status widget in Menu Bar.
-    Values: bool [default: true]
+
+    Values:
+        - bool [default: true]
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

@@ -1,0 +1,223 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>macsettings &#8212; salt-tool-macos-config 0.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for macsettings</h1><div class="highlight"><pre>
+<span></span><span class="c1"># https://assert.cc/posts/maybe-dont-script-macos-prefs/</span>
+<span class="c1"># https://shadowfacts.net/2021/scrollswitcher/</span>
+<span class="c1"># this does not work with salt installed by Homebrew</span>
+<span class="c1"># https://github.com/Homebrew/homebrew-core/pull/52835#issuecomment-617502578</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">objc</span>
+    <span class="kn">import</span> <span class="nn">CoreFoundation</span>
+    <span class="kn">import</span> <span class="nn">AppKit</span>
+
+    <span class="n">LIBS_AVAILABLE</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="n">LIBS_AVAILABLE</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="kn">import</span> <span class="nn">salt.utils.platform</span>
+
+<span class="c1"># from salt.exceptions import CommandExecutionError</span>
+
+<span class="n">log</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<span class="n">__virtualname__</span> <span class="o">=</span> <span class="s2">&quot;macsettings&quot;</span>
+
+
+<span class="k">def</span> <span class="nf">__virtual__</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This only works on MacOS (duh)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">salt</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">platform</span><span class="o">.</span><span class="n">is_darwin</span><span class="p">():</span>
+        <span class="k">return</span> <span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;This only runs on MacOS.&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">LIBS_AVAILABLE</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;Failed importing necessary libraries.&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">__virtualname__</span>
+
+
+<div class="viewcode-block" id="natural_scroll"><a class="viewcode-back" href="../modules/macsettings.html#macsettings.natural_scroll">[docs]</a><span class="k">def</span> <span class="nf">natural_scroll</span><span class="p">(</span><span class="n">enabled</span><span class="p">):</span>
+    <span class="n">pps</span> <span class="o">=</span> <span class="n">_load_pps</span><span class="p">()</span>
+    <span class="n">pps</span><span class="p">[</span><span class="s2">&quot;setSwipeScrollDirection&quot;</span><span class="p">](</span><span class="n">enabled</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">)</span>
+    <span class="k">return</span> <span class="kc">True</span></div>
+
+
+<span class="c1"># example for other touch stuff</span>
+<span class="c1"># app = &#39;com.apple.driver.AppleBluetoothMultitouch.trackpad&#39;</span>
+<span class="c1"># CoreFoundation.CFPreferencesSetAppValue(&#39;TrackpadThreeFingerHorizSwipeGesture&#39;,</span>
+<span class="c1">#                                         1,</span>
+<span class="c1">#                                         app)</span>
+<span class="c1"># CoreFoundation.CFPreferencesAppSynchronize(app)</span>
+<span class="c1"># # bs[&#39;BSKernelPreferenceChanged&#39;](app)</span>
+<span class="c1"># # bs[&#39;BSKernelPreferenceChanged&#39;](&#39;com.apple.AppleMultitouchTrackpad&#39;)</span>
+
+<span class="c1"># CoreFoundation.CFPreferencesSetValue(</span>
+<span class="c1">#     &#39;AppleEnableSwipeNavigateWithScrolls&#39;,</span>
+<span class="c1">#     0,</span>
+<span class="c1">#     CoreFoundation.kCFPreferencesAnyApplication,</span>
+<span class="c1">#     CoreFoundation.kCFPreferencesCurrentUser,</span>
+<span class="c1">#     CoreFoundation.kCFPreferencesAnyHost,</span>
+<span class="c1"># )</span>
+<span class="c1"># CoreFoundation.CFPreferencesSynchronize(</span>
+<span class="c1">#     CoreFoundation.kCFPreferencesAnyApplication,</span>
+<span class="c1">#     CoreFoundation.kCFPreferencesCurrentUser,</span>
+<span class="c1">#     CoreFoundation.kCFPreferencesAnyHost,</span>
+<span class="c1"># )</span>
+
+<span class="c1"># pps = {}</span>
+<span class="c1"># pps_bundle = objc.initFrameworkWrapper(</span>
+<span class="c1">#     &#39;PreferencePanesSupport&#39;,</span>
+<span class="c1">#     &#39;/System/Library/PrivateFrameworks/PreferencePanesSupport.framework&#39;,</span>
+<span class="c1">#     None,</span>
+<span class="c1">#     pps,</span>
+<span class="c1"># )</span>
+<span class="c1"># backend = pps[&#39;MTTGestureBackEnd&#39;].sharedInstance()</span>
+<span class="c1"># backend.setThreeFingerHorizSwipe_(1)</span>
+
+<span class="c1"># noti = AppKit.NSNotificationCenter.defaultCenter()</span>
+<span class="c1"># noti.postNotificationName_object_userInfo_(</span>
+<span class="c1">#     &#39;AppleEnableSwipeNavigateWithScrollsDidChangeNotification&#39;,</span>
+<span class="c1">#     None,</span>
+<span class="c1">#     None,</span>
+<span class="c1"># )</span>
+<span class="c1"># dnot = AppKit.NSDistributedNotificationCenter.defaultCenter()</span>
+<span class="c1"># dnot.postNotificationName_object_userInfo_(</span>
+<span class="c1">#     &#39;AppleEnableSwipeNavigateWithScrollsDidChangeNotification&#39;,</span>
+<span class="c1">#     None,</span>
+<span class="c1">#     None,</span>
+<span class="c1"># )</span>
+
+
+<span class="k">def</span> <span class="nf">_load_pps</span><span class="p">():</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">pps</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+        <span class="n">pps_path</span> <span class="o">=</span> <span class="s2">&quot;/System/Library/PrivateFrameworks/PreferencePanesSupport.framework&quot;</span>
+
+        <span class="c1"># load PreferencePanesSupport classes into pps</span>
+        <span class="n">__bundle__</span> <span class="o">=</span> <span class="n">objc</span><span class="o">.</span><span class="n">initFrameworkWrapper</span><span class="p">(</span>
+            <span class="s2">&quot;PreferencePanesSupport&quot;</span><span class="p">,</span>
+            <span class="nb">globals</span><span class="o">=</span><span class="n">pps</span><span class="p">,</span>
+            <span class="n">frameworkIdentifier</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">frameworkPath</span><span class="o">=</span><span class="n">objc</span><span class="o">.</span><span class="n">pathForFramework</span><span class="p">(</span><span class="n">pps_path</span><span class="p">),</span>
+        <span class="p">)</span>
+
+        <span class="c1"># to set natural swipe stuff, we need this global function</span>
+        <span class="c1"># (setSwipeScrollDirection) from the library.</span>
+        <span class="c1"># b&#39;iZ&#39; is the Objective C raw signature.</span>
+        <span class="c1"># i = return type (int), Z = first argument (bool)</span>
+        <span class="c1"># see objc._C_INT and objc._C_NSBOOL</span>
+        <span class="c1"># reference:</span>
+        <span class="c1"># https://pyobjc.readthedocs.io/en/latest/api/module-objc.html#objective-c-type-strings</span>
+        <span class="n">objc</span><span class="o">.</span><span class="n">loadBundleFunctions</span><span class="p">(</span>
+            <span class="n">__bundle__</span><span class="p">,</span> <span class="n">pps</span><span class="p">,</span> <span class="p">[(</span><span class="s2">&quot;setSwipeScrollDirection&quot;</span><span class="p">,</span> <span class="sa">b</span><span class="s2">&quot;iZ&quot;</span><span class="p">)],</span> <span class="n">skip_undefined</span><span class="o">=</span><span class="kc">False</span>
+        <span class="p">)</span>
+    <span class="k">except</span> <span class="n">objc</span><span class="o">.</span><span class="n">error</span><span class="p">:</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Could not load PreferencePanesSupport.&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pps</span>
+
+
+<span class="k">def</span> <span class="nf">_get_noti</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">AppKit</span><span class="o">.</span><span class="n">NSNotificationCenter</span><span class="o">.</span><span class="n">defaultCenter</span><span class="p">()</span>
+
+
+<span class="k">def</span> <span class="nf">_get_dnoti</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">AppKit</span><span class="o">.</span><span class="n">NSDistributedNotificationCenter</span><span class="o">.</span><span class="n">defaultCenter</span><span class="p">()</span>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">salt-tool-macos-config</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2022, jeanluc.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.3.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

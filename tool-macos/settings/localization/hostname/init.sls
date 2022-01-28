@@ -1,7 +1,8 @@
 {#-
     Customizes hostname.
 
-    Values: string
+    Values:
+        - string
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

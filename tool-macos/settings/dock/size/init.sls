@@ -1,11 +1,14 @@
 {#-
     Customizes dock tile (icon) size and mutability.
+
     Values:
-      immutable: bool [default: false]
-      tiles: int [default: 48]
+        - dict
+
+            * immutable: bool [default: false]
+            * tiles: int [default: 48]
 
     References:
-      https://macos-defaults.com/dock/tilesize.html
+        * https://macos-defaults.com/dock/tilesize.html
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

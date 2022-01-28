@@ -1,6 +1,8 @@
 {#-
     Customizes display status of mounted network drives on desktop.
-    Values: bool [default: true]
+
+    Values:
+        - bool [default: true]
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

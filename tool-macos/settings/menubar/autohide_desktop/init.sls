@@ -1,6 +1,8 @@
 {#-
     Customizes autohide behavior of MacOS Menu Bar (top bar) on Desktop.
-    Values: bool [default: false]
+
+    Values:
+        - bool [default: false]
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

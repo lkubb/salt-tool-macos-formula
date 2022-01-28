@@ -1,9 +1,17 @@
 {#-
     Customizes Mail.app polling behavior.
 
-    Needs Full Disk Access to work (https://lapcatsoftware.com/articles/containers.html).
+    .. note::
 
-    Values: str/int [auto, manual, int = minutes between. default: auto]
+        Needs Full Disk Access to work (https://lapcatsoftware.com/articles/containers.html).
+
+    Values:
+        - str [default: auto]
+
+            * auto
+            * manual
+
+        - or int [minutes between polls]
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

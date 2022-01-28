@@ -2,10 +2,11 @@
     Customizes the requirement to authenticate as an admin to change
     system-wide settings.
 
-    Values: bool [default: true]
+    Values:
+        - bool [default: true]
 
     References:
-      https://github.com/SummitRoute/osxlockdown/blob/master/commands.yaml
+        * https://github.com/SummitRoute/osxlockdown/blob/master/commands.yaml
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

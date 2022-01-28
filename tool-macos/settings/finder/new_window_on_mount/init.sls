@@ -1,7 +1,18 @@
 {#-
     Customizes Finder behavior when a new volume/disk is mounted.
+
     Values:
-      new_window_on_mount: list [ro, rw, disk] [default: all]
+        - list [default: all]
+
+            * ro
+            * rw
+            * disk
+
+    Example:
+
+    .. code-block:: yaml
+
+        new_window_on_mount: [] # never open a new window
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

@@ -1,13 +1,16 @@
 {#-
     Customizes Siri keyboard shortcut.
 
-    Note that custom keyboard shortcuts are currently not supported here.
-    Needs a logout to apply.
+    .. note::
 
-    Values: bool [default: false]
+        Note that custom keyboard shortcuts are currently not supported here.
+        Needs a logout to apply.
+
+    Values:
+        - bool [default: false]
 
     References:
-      https://github.com/joeyhoer/starter/blob/master/system/siri.sh
+        * https://github.com/joeyhoer/starter/blob/master/system/siri.sh
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

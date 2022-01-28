@@ -1,6 +1,9 @@
 {#-
-    Customizes Finder sorting behavior regarding folders (separate on top/in line with files).
-    Values: bool [default: false]
+    Customizes Finder sorting behavior regarding folders
+    (separate on top ~ Windows Explorer vs in line with files).
+
+    Values:
+        - bool [default: false]
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

@@ -1,8 +1,19 @@
 {#-
     Customizes Finder spring loading behavior (open folder on drag).
+
     Values:
-      enabled: bool (default: true)
-      delay: float (default: 0.5)
+        - dict
+
+            * enabled: bool (default: true)
+            * delay: float (default: 0.5)
+
+    Example:
+
+    .. code-block:: yaml
+
+        spring_loading:
+          enabled: true
+          delay: 0.1
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

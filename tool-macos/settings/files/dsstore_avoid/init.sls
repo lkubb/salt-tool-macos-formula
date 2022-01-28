@@ -1,7 +1,12 @@
 {#-
     Customizes creation of .DS_Store files on network shares and USB devices.
-    Values: string [default: none]
-        none / network / usb / all
+
+    Values:
+        - string [default: none = dump everywhere]
+            * none
+            * network
+            * usb
+            * all
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

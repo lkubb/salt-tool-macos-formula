@@ -1,12 +1,15 @@
 {#-
     Customizes IPv6 availability on all interfaces.
 
-    This is for documentation mostly. Debatable if sensible.
+    .. note::
 
-    Values: bool [default: true]
+        This is for documentation mostly. Debatable if sensible.
+
+    Values:
+        - bool [default: true]
 
     References:
-      https://github.com/SummitRoute/osxlockdown/blob/master/commands.yaml
+        * https://github.com/SummitRoute/osxlockdown/blob/master/commands.yaml
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

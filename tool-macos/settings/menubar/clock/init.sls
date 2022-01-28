@@ -1,12 +1,17 @@
 {#-
     Customizes display behavior of Clock widget in Menu Bar.
-    Values:
-      analog: bool [default: false]
-      flash_seconds: bool [default: false]
-      format: string [default: 'EEE HH:mm' for EU]
 
-    This force-sets the format string. It will work, but applying something
-    in System Preferences will reset everything. @TODO parse format string
+    Values:
+        - dict
+
+            * analog: bool [default: false]
+            * flash_seconds: bool [default: false]
+            * format: string [default: 'EEE HH:mm' for EU]
+
+    .. note::
+
+        This force-sets the format string. It will work, but applying something
+        in System Preferences will reset everything. @TODO parse format string
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

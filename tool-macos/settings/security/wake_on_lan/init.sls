@@ -2,9 +2,12 @@
     Manages state of Wake-on-LAN. This setting could be managed in macos.power
     settings as well.
 
-    Furthermore, this can be set with /usr/sbin/systemsetup setwakeonnetworkaccess
+    .. hint::
 
-    Values: bool [default: on ac true, on battery false]
+        Furthermore, this can be set with /usr/sbin/systemsetup setwakeonnetworkaccess
+
+    Values:
+        - bool [default: on ac true, on battery false]
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

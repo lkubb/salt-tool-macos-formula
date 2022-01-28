@@ -1,13 +1,56 @@
 {#-
     Customizes hot corner settings.
 
-    Values: mapping. top-left/top-right/bottom-left/bottom-right: {action: string, modifier: string}
-      top-left:
-        action: string
-          [none, mission-control, app-windows, desktop, screensaver,
-          stop-screensaver, displaysleep, launchpad, notification-center,
-          lock-screen, quick-note]
-        modifier: string [none, shift, ctrl, opt, cmd]
+    Values:
+        - dict {action: string, modifier: string}
+
+            * action:
+
+                - none
+                - mission-control
+                - app-windows
+                - desktop
+                - screensaver
+                - stop-screensaver
+                - displaysleep
+                - launchpad
+                - notification-center
+                - lock-screen
+                - quick-note
+
+            * modifier: string
+
+                - none
+                - shift
+                - ctrl
+                - opt
+                - cmd
+
+        - corners:
+
+            * top-left
+            * top-right
+            * bottom-left
+            * bottom-right
+
+    Example:
+
+    .. code-block:: yaml
+
+        hot_corners:
+          top-left:
+            action: displaysleep
+            modifier: none
+          top-right:
+            action: launchpad
+            modifier: cmd
+          bottom-left:
+            action: desktop
+            modifier: shift
+          bottom-right:
+            action: lock-screen
+            modifier: opt
+
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

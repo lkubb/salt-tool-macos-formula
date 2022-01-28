@@ -2,9 +2,12 @@
     Customizes activation of press-and-hold behavior for special keys.
     Turn this off to enable faster key repeats.
 
-    You might need to reboot after applying.
+    .. note::
 
-    Values: bool [default: true]
+        You might need to reboot after applying.
+
+    Values:
+        - bool [default: true]
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

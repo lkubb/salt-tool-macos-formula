@@ -1,34 +1,39 @@
 {#-
     Customizes automatic update settings.
 
-    This works without a configuration profile and is how System Preferences
-    writes the settings. The references are for MDM.
+    .. hint::
+
+        This works without a configuration profile and is how System Preferences
+        writes the settings. The references are for MDM.
 
     Values:
-      check: bool [default: true]
-      download: bool [default: true]
-      install_app: bool [default: true]
-      install_config: bool [default: true]
-      install_critical: bool [default: true]
-      install_system: bool [default: true]
-      schedule: int [every i day(s)] [default: 1]
+        - dict
 
-      check > download > install (requisites)
+            * check: bool [default: true]
+            * download: bool [default: true]
+            * install_app: bool [default: true]
+            * install_config: bool [default: true]
+            * install_critical: bool [default: true]
+            * install_system: bool [default: true]
+            * schedule: int [every i day(s), default: 1]
 
-      install_config and install_critical are combined in System Preferences.
+    .. note::
 
-    com.apple.appstore should have
-      DisableSoftwareUpdateNotifications
-      restrict-store-disable-app-adoption
-      restrict-store-mdm-install-softwareupdate-only
-      restrict-store-require-admin-to-install
-      restrict-store-softwareupdate-only
+        * check > download > install (requisites)
+        * install_config and install_critical are combined in System Preferences.
 
     References:
-      https://developer.apple.com/documentation/devicemanagement/softwareupdate
-      https://derflounder.wordpress.com/2019/10/10/enable-automatic-macos-and-app-store-updates-on-macos-catalina-with-a-profile/
-
+        * https://developer.apple.com/documentation/devicemanagement/softwareupdate
+        * https://derflounder.wordpress.com/2019/10/10/enable-automatic-macos-and-app-store-updates-on-macos-catalina-with-a-profile/
 -#}
+
+{#- com.apple.appstore should have
+        DisableSoftwareUpdateNotifications
+        restrict-store-disable-app-adoption
+        restrict-store-mdm-install-softwareupdate-only
+        restrict-store-require-admin-to-install
+        restrict-store-softwareupdate-only
+#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}
 {%- from tplroot ~ "/map.jinja" import macos -%}

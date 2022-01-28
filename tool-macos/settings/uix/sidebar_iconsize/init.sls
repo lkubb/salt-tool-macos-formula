@@ -1,6 +1,12 @@
 {#-
     Customizes global prefered sidebar icon size.
-    Values: small / medium / large [default: medium]
+
+    Values:
+        - str [default: medium]
+
+            * small
+            * medium
+            * large
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

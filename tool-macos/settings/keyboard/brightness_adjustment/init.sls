@@ -1,12 +1,24 @@
 {#-
     Customizes keyboard brightness adjustment behavior.
-    Values:
-      low_light: bool [default: true]
-      after: int [seconds of inactivity, default: 0. 0 to disable]
 
-    This was found in /Library/Preferences/com.apple.iokit.AmbientLightSensor
-    as Automatic Keyboard Enabled and com.apple.BezelServices as kdim.
+    Values:
+        - dict
+
+            * low_light: bool [default: true]
+            * after: int [seconds of inactivity, default: 0 = disabled]
+
+    Example:
+
+    .. code-block:: yaml
+
+        brightness_adjustment:
+          low_light: true # adjust in low light
+          after: 30       # adjust after x seconds of inactivity
 -#}
+
+{#- Earlier, this was found in /Library/Preferences/com.apple.iokit.AmbientLightSensor
+    as "Automatic Keyboard Enabled" and com.apple.BezelServices as kdim.
+#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}
 {%- from tplroot ~ "/map.jinja" import macos -%}

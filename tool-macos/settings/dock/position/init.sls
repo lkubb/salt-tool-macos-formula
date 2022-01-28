@@ -1,9 +1,15 @@
 {#-
     Customizes dock position.
-    Values: string (bottom, left, right) [default: bottom]
+
+    Values:
+        - string [default: bottom]
+
+            * bottom
+            * left
+            * right
 
     References:
-      https://macos-defaults.com/dock/orientation.html
+        * https://macos-defaults.com/dock/orientation.html
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

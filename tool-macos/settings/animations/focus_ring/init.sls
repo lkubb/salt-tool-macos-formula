@@ -1,7 +1,8 @@
 {#-
     Customizes global focus ring blend-in animation activation status.
 
-    Values: bool [default: true]
+    Values:
+        - bool [default: true]
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

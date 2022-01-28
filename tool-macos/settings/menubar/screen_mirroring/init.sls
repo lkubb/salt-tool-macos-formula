@@ -1,9 +1,12 @@
 {#-
     Customizes display status of Screen Mirroring widget in Menu Bar.
-    Values: bool or when_active [default: when_active]
 
-    Was found as showInMenuBarIfPresent in com.apple.airplay.
+    Values:
+        - when_active [default: when_active]
+        - or bool
 -#}
+
+{#- Was found as showInMenuBarIfPresent in com.apple.airplay. #}
 
 {%- set tplroot = tpldir.split('/')[0] -%}
 {%- from tplroot ~ "/map.jinja" import macos -%}

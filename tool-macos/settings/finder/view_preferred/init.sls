@@ -2,17 +2,53 @@
     Customizes preferred Finder view settings.
 
     Values:
-      groupby: str  # none, name, app, kind, last_opened, added, modified, created, size, tags
-      style: str    # icon / list / gallery / column [coverflow deprecated?]
+        - dict
 
-    Those values are set when selecting from View menu.
-    They are different from [FK_][Standard,Default]ViewSettings.
+            * groupby: string [default: none]
 
-    Note: This would need to delete per-folder settings to apply to all directories:
-          # find $HOME -name ".DS_Store" --delete
+                - none
+                - name
+                - app
+                - kind
+                - last_opened
+                - added
+                - modified
+                - created
+                - size
+                - tags
+
+            * style: string [default: icon]
+
+                - icon
+                - list
+                - gallery [coverflow deprecated?]
+                - column
+
+    .. note::
+
+        Those values are set when selecting from View menu.
+
+        They are different from [FK_][Standard,Default]ViewSettings.
+
+    .. note::
+
+        Currently, already customized folder views will not be synchronized.
+        This would need to delete per-folder settings to apply to all directories:
+
+        .. code-block: bash
+
+            find $HOME -name ".DS_Store" --delete
+
+    Example:
+
+    .. code-block:: yaml
+
+        view_preferred:
+          groupby: none
+          style: list
 
     References:
-      https://github.com/joeyhoer/starter/blob/master/apps/finder.sh
+        * https://github.com/joeyhoer/starter/blob/master/apps/finder.sh
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

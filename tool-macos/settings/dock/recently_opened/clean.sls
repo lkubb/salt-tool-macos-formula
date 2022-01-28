@@ -11,7 +11,7 @@ include:
 
 {%- for user in macos.users | selectattr('macos.dock', 'defined') | selectattr('macos.dock.recently_opened', 'defined') %}
 
-Dock behavior regarding recently opened applications is reset to default for user {{ user.name }}:
+Dock behavior regarding showing recently opened applications is reset to default for user {{ user.name }}:
   macosdefaults.absent:
     - domain: com.apple.dock
     - name: show-recents

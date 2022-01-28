@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dock &mdash; salt-tool-macos-config 0.1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Files" href="files.html" />
+    <link rel="prev" title="Display" href="display.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> salt-tool-macos-config
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../overview.html#settings">Settings</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Available settings</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="animations.html">Animations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="animations.html#cursor-blinking">cursor_blinking</a></li>
+<li class="toctree-l3"><a class="reference internal" href="animations.html#dock-bounce">dock_bounce</a></li>
+<li class="toctree-l3"><a class="reference internal" href="animations.html#dock-launch">dock_launch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="animations.html#dock-minimize">dock_minimize</a></li>
+<li class="toctree-l3"><a class="reference internal" href="animations.html#finder-windows">finder_windows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="animations.html#focus-ring">focus_ring</a></li>
+<li class="toctree-l3"><a class="reference internal" href="animations.html#macos-windows">macos_windows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="animations.html#mission-control">mission_control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="animations.html#motion-reduced">motion_reduced</a></li>
+<li class="toctree-l3"><a class="reference internal" href="animations.html#multidisplay-swoosh">multidisplay_swoosh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="animations.html#window-resize-time">window_resize_time</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="audio.html">Audio</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="audio.html#boot-sound">boot_sound</a></li>
+<li class="toctree-l3"><a class="reference internal" href="audio.html#charging-sound">charging_sound</a></li>
+<li class="toctree-l3"><a class="reference internal" href="audio.html#devices">devices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="audio.html#sound-effect-alert">sound_effect_alert</a></li>
+<li class="toctree-l3"><a class="reference internal" href="audio.html#sound-effect-volume">sound_effect_volume</a></li>
+<li class="toctree-l3"><a class="reference internal" href="audio.html#sound-effect-volumechange">sound_effect_volumechange</a></li>
+<li class="toctree-l3"><a class="reference internal" href="audio.html#sound-effects-system">sound_effects_system</a></li>
+<li class="toctree-l3"><a class="reference internal" href="audio.html#sound-effects-ui">sound_effects_ui</a></li>
+<li class="toctree-l3"><a class="reference internal" href="audio.html#spatial-follow-head">spatial_follow_head</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="behavior.html">Behavior</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="behavior.html#confirm-on-close">confirm_on_close</a></li>
+<li class="toctree-l3"><a class="reference internal" href="behavior.html#crashreporter">crashreporter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="behavior.html#feedback-assistant-autogather">feedback_assistant_autogather</a></li>
+<li class="toctree-l3"><a class="reference internal" href="behavior.html#handoff-allow">handoff_allow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="behavior.html#help-window-floats">help_window_floats</a></li>
+<li class="toctree-l3"><a class="reference internal" href="behavior.html#media-inserted">media_inserted</a></li>
+<li class="toctree-l3"><a class="reference internal" href="behavior.html#mission-control-grouping">mission_control_grouping</a></li>
+<li class="toctree-l3"><a class="reference internal" href="behavior.html#notification-display-time">notification_display_time</a></li>
+<li class="toctree-l3"><a class="reference internal" href="behavior.html#photos-hotplug">photos_hotplug</a></li>
+<li class="toctree-l3"><a class="reference internal" href="behavior.html#power-button-sleep">power_button_sleep</a></li>
+<li class="toctree-l3"><a class="reference internal" href="behavior.html#print-panel-expanded">print_panel_expanded</a></li>
+<li class="toctree-l3"><a class="reference internal" href="behavior.html#printqueue-autoquit">printqueue_autoquit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="behavior.html#resume-app">resume_app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="behavior.html#save-panel-expanded">save_panel_expanded</a></li>
+<li class="toctree-l3"><a class="reference internal" href="behavior.html#spaces-rearrange-recent">spaces_rearrange_recent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="behavior.html#spaces-span-displays">spaces_span_displays</a></li>
+<li class="toctree-l3"><a class="reference internal" href="behavior.html#spaces-switch-running">spaces_switch_running</a></li>
+<li class="toctree-l3"><a class="reference internal" href="behavior.html#tab-preference">tab_preference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="bluetooth.html">Bluetooth</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="bluetooth.html#enabled">enabled</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bluetooth.html#enabled-airplane">enabled_airplane</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bluetooth.html#ignored">ignored</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="display.html">Display</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="display.html#antialias-subpixel">antialias_subpixel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="display.html#antialias-threshold">antialias_threshold</a></li>
+<li class="toctree-l3"><a class="reference internal" href="display.html#font-smoothing">font_smoothing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="display.html#nightshift">nightshift</a></li>
+<li class="toctree-l3"><a class="reference internal" href="display.html#truetone">truetone</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Dock</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#autohide">autohide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#hint-hidden">hint_hidden</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#hint-running">hint_running</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#magnification">magnification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#minimize-to-icon">minimize_to_icon</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#persistent-tiles">persistent_tiles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#position">position</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#recently-opened">recently_opened</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#scroll-to-open">scroll_to_open</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#single-app">single_app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#size">size</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spring-loading">spring_loading</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#stack-hover">stack_hover</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tiles">tiles</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="files.html">Files</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="files.html#default-applications">default-applications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="files.html#dsstore-avoid">dsstore_avoid</a></li>
+<li class="toctree-l3"><a class="reference internal" href="files.html#save-icloud">save_icloud</a></li>
+<li class="toctree-l3"><a class="reference internal" href="files.html#screenshots">screenshots</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/index.html">execution modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../modules/macosdefaults.html">macosdefaults execution module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../modules/macprofile.html">macprofile execution module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../modules/macprofile.html#macprofiles-module">Macprofiles Module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../modules/macsettings.html">macsettings execution module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../modules/pmset.html">pmset execution module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../states/index.html">state modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../states/macosdefaults.html">macosdefaults state module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../states/macosdefaults.html#manage-system-configuration-values-on-macos">Manage (system) configuration values on MacOS.</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../states/macprofile.html">macprofile state module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../states/pmset.html">pmset state module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../states/pmset.html#manage-power-configuration-values-with-pmset-on-macos">Manage power configuration values with pmset on MacOS.</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">salt-tool-macos-config</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Available settings</a> &raquo;</li>
+      <li>Dock</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/settings/dock.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="dock">
+<h1>Dock<a class="headerlink" href="#dock" title="Permalink to this headline"></a></h1>
+<section id="autohide">
+<h2>autohide<a class="headerlink" href="#autohide" title="Permalink to this headline"></a></h2>
+<blockquote>
+<div><p>Customizes dock autohide behavior.</p>
+<dl>
+<dt>Values:</dt><dd><ul>
+<li><p>dict</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>enabled: bool [default: false]</p></li>
+<li><p>time: float [default: 0.5]</p></li>
+<li><p>delay: float [default: 0.5]</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</dd>
+</dl>
+<p>Example:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">autohide</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
+<span class="w">  </span><span class="nt">time</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.01</span><span class="w"></span>
+<span class="w">  </span><span class="nt">delay</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.01</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>References:</dt><dd><ul class="simple">
+<li><p><a class="reference external" href="https://macos-defaults.com/dock/autohide.html">https://macos-defaults.com/dock/autohide.html</a></p></li>
+<li><p><a class="reference external" href="https://macos-defaults.com/dock/autohide-time-modifier.html">https://macos-defaults.com/dock/autohide-time-modifier.html</a></p></li>
+<li><p><a class="reference external" href="https://macos-defaults.com/dock/autohide-delay.html">https://macos-defaults.com/dock/autohide-delay.html</a></p></li>
+</ul>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="hint-hidden">
+<h2>hint_hidden<a class="headerlink" href="#hint-hidden" title="Permalink to this headline"></a></h2>
+<blockquote>
+<div><p>Customizes dock hints regarding hidden apps (Cmd + h =&gt; translucent dock icon).</p>
+<dl class="simple">
+<dt>Values:</dt><dd><ul class="simple">
+<li><p>bool [default: false]</p></li>
+</ul>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="hint-running">
+<h2>hint_running<a class="headerlink" href="#hint-running" title="Permalink to this headline"></a></h2>
+<blockquote>
+<div><p>Customizes dock hints regarding running apps (dot below).</p>
+<dl class="simple">
+<dt>Values:</dt><dd><ul class="simple">
+<li><p>bool [default: true]</p></li>
+</ul>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="magnification">
+<h2>magnification<a class="headerlink" href="#magnification" title="Permalink to this headline"></a></h2>
+<blockquote>
+<div><p>Customizes dock behavior on hover (magnification).</p>
+<dl>
+<dt>Values:</dt><dd><ul>
+<li><p>dict</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>enabled: bool [default: false]</p></li>
+<li><p>size: int [default: 128]</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</dd>
+</dl>
+<p>Example:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">magnification</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
+<span class="w">  </span><span class="nt">size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">64</span><span class="w"></span>
+</pre></div>
+</div>
+</div></blockquote>
+</section>
+<section id="minimize-to-icon">
+<h2>minimize_to_icon<a class="headerlink" href="#minimize-to-icon" title="Permalink to this headline"></a></h2>
+<blockquote>
+<div><p>Customizes window minimization behavior (to application icon or separate dock tile).</p>
+<dl class="simple">
+<dt>Values:</dt><dd><ul class="simple">
+<li><p>bool [default: false = minimize to separate dock tile]</p></li>
+</ul>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="persistent-tiles">
+<h2>persistent_tiles<a class="headerlink" href="#persistent-tiles" title="Permalink to this headline"></a></h2>
+<blockquote>
+<div><p>Customizes availability of persistent dock tiles.</p>
+<dl class="simple">
+<dt>Values:</dt><dd><ul class="simple">
+<li><p>bool [default: true]</p></li>
+</ul>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="position">
+<h2>position<a class="headerlink" href="#position" title="Permalink to this headline"></a></h2>
+<blockquote>
+<div><p>Customizes dock position.</p>
+<dl>
+<dt>Values:</dt><dd><ul>
+<li><p>string [default: bottom]</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>bottom</p></li>
+<li><p>left</p></li>
+<li><p>right</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</dd>
+<dt>References:</dt><dd><ul class="simple">
+<li><p><a class="reference external" href="https://macos-defaults.com/dock/orientation.html">https://macos-defaults.com/dock/orientation.html</a></p></li>
+</ul>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="recently-opened">
+<h2>recently_opened<a class="headerlink" href="#recently-opened" title="Permalink to this headline"></a></h2>
+<blockquote>
+<div><p>Customizes dock behavior regarding showing recently opened apps.</p>
+<dl class="simple">
+<dt>Values:</dt><dd><ul class="simple">
+<li><p>bool [default: true]</p></li>
+</ul>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="scroll-to-open">
+<h2>scroll_to_open<a class="headerlink" href="#scroll-to-open" title="Permalink to this headline"></a></h2>
+<blockquote>
+<div><p>Customizes dock behavior regarding scrolling over tiles (open app vs do nothing).</p>
+<dl class="simple">
+<dt>Values:</dt><dd><ul class="simple">
+<li><p>bool [default: false]</p></li>
+</ul>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="single-app">
+<h2>single_app<a class="headerlink" href="#single-app" title="Permalink to this headline"></a></h2>
+<blockquote>
+<div><p>Customizes behavior when selecting an app from the dock.</p>
+<dl class="simple">
+<dt>Values:</dt><dd><ul class="simple">
+<li><p>bool [default: false]</p></li>
+</ul>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="size">
+<h2>size<a class="headerlink" href="#size" title="Permalink to this headline"></a></h2>
+<blockquote>
+<div><p>Customizes dock tile (icon) size and mutability.</p>
+<dl>
+<dt>Values:</dt><dd><ul>
+<li><p>dict</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>immutable: bool [default: false]</p></li>
+<li><p>tiles: int [default: 48]</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</dd>
+<dt>References:</dt><dd><ul class="simple">
+<li><p><a class="reference external" href="https://macos-defaults.com/dock/tilesize.html">https://macos-defaults.com/dock/tilesize.html</a></p></li>
+</ul>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="spring-loading">
+<h2>spring_loading<a class="headerlink" href="#spring-loading" title="Permalink to this headline"></a></h2>
+<blockquote>
+<div><p>Customizes drag hover behavior of all dock tiles (spring loading).</p>
+<dl class="simple">
+<dt>Values:</dt><dd><ul class="simple">
+<li><p>bool [default: false]</p></li>
+</ul>
+</dd>
+<dt>References:</dt><dd><p><a class="reference external" href="https://macos-defaults.com/misc/enable-spring-load-actions-on-all-items.html">https://macos-defaults.com/misc/enable-spring-load-actions-on-all-items.html</a></p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="stack-hover">
+<h2>stack_hover<a class="headerlink" href="#stack-hover" title="Permalink to this headline"></a></h2>
+<blockquote>
+<div><p>Customizes highlight on hover behavior of stack tiles (items).</p>
+<dl class="simple">
+<dt>Values:</dt><dd><ul class="simple">
+<li><p>bool [default: false]</p></li>
+</ul>
+</dd>
+<dt>References:</dt><dd><ul class="simple">
+<li><p><a class="reference external" href="https://macos-defaults.com/misc/enable-spring-load-actions-on-all-items.html">https://macos-defaults.com/misc/enable-spring-load-actions-on-all-items.html</a></p></li>
+</ul>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="tiles">
+<h2>tiles<a class="headerlink" href="#tiles" title="Permalink to this headline"></a></h2>
+<blockquote>
+<div><p>Customizes dock tiles (items).</p>
+<dl>
+<dt>Values:</dt><dd><ul>
+<li><p>dict</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>apps: list of items</p></li>
+<li><p>others: list of items</p></li>
+<li><p>sync: bool [default: true, false = append]</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</dd>
+<dt>Single item possible values:</dt><dd><ul>
+<li><p>type: [possibly autodetected if unspecified]</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>app</p></li>
+<li><p>folder</p></li>
+<li><p>url</p></li>
+<li><p>spacer</p></li>
+<li><p>small-spacer</p></li>
+<li><p>flex-spacer</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>label: string [will be automapped if unspecified]</p></li>
+<li><p>path: string [required]</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>/some/absolute/path</p></li>
+<li><p>some://url</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>displayas: string [directories only, default: stack]</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>folder</p></li>
+<li><p>stack</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>showas: string [directories only, default: auto]</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>auto</p></li>
+<li><p>fan</p></li>
+<li><p>grid</p></li>
+<li><p>list</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>arrangeby: string [directories only, default: added]</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>name</p></li>
+<li><p>added</p></li>
+<li><p>modified</p></li>
+<li><p>created</p></li>
+<li><p>kind</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</dd>
+</dl>
+<p>Example:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">tiles</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">sync</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"> </span><span class="c1"># don&#39;t append, make it exactly like specified</span><span class="w"></span>
+<span class="w">  </span><span class="nt">apps</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/Applications/TextEdit.app</span><span class="w">  </span><span class="c1"># paths can be specified, type will be autodetected</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w">                             </span><span class="c1"># empty items are spacers</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">file</span><span class="w">                  </span><span class="c1"># this is the verbose variant for app definition</span><span class="w"></span>
+<span class="w">      </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/Applications/Sublime Text.app</span><span class="w"></span>
+<span class="w">      </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Sublime</span><span class="w">              </span><span class="c1"># the label will otherwise equal app name without .app</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">small-spacer</span><span class="w">                </span><span class="c1"># add different spacers with [small-/flex-]spacer</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/Applications/Firefox.app</span><span class="w"></span>
+<span class="w">      </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">FF</span><span class="w">                   </span><span class="c1"># type will be autodetected as above</span><span class="w"></span>
+<span class="w">  </span><span class="nt">others</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/Users/user/Downloads</span><span class="w"></span>
+<span class="w">      </span><span class="nt">displayas</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">stack</span><span class="w">            </span><span class="c1"># stack / folder</span><span class="w"></span>
+<span class="w">      </span><span class="nt">showas</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">grid</span><span class="w">                </span><span class="c1"># auto / fan / grid / list</span><span class="w"></span>
+<span class="w">      </span><span class="nt">arrangement</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">added</span><span class="w">          </span><span class="c1"># name / added / modified / created / kind</span><span class="w"></span>
+<span class="w">      </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DL</span><span class="w">                   </span><span class="c1"># the label would be set to Downloads otherwise</span><span class="w"></span>
+<span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">directory</span><span class="w">             </span><span class="c1"># will be autodetected as well</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spacer</span><span class="w">                      </span><span class="c1"># spacers can be defined like this as well</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/Users/user/Documents</span><span class="w">       </span><span class="c1"># defaults: stack + auto + added. label: Documents.</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">flex-spacer</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://www.github.com</span><span class="w">      </span><span class="c1"># urls can be added as well</span><span class="w"></span>
+</pre></div>
+</div>
+</div></blockquote>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="display.html" class="btn btn-neutral float-left" title="Display" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="files.html" class="btn btn-neutral float-right" title="Files" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, jeanluc.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

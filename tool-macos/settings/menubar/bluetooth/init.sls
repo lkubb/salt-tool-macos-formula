@@ -1,6 +1,8 @@
 {#-
     Customizes display status of Bluetooth widget in Menu Bar.
-    Values: bool [default: false]
+
+    Values:
+        - bool [default: false]
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}
@@ -12,6 +14,7 @@ include:
 
 {%- for user in macos.users | selectattr('macos.menubar', 'defined') | selectattr('macos.menubar.bluetooth', 'defined') %}
   {%- set status = 2 if user.macos.menubar.bluetooth else 8 %}
+
 Display status of Bluetooth widget in Menu Bar is managed for user {{ user.name }}:
   macosdefaults.write:
     - host: current

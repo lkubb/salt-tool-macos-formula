@@ -1,9 +1,12 @@
 {#-
     Customizes MacOS window animation activation status.
 
-    This might need a reboot to apply.
+    .. note::
 
-    Values: bool [default: true]
+        This might need a reboot to apply.
+
+    Values:
+        - bool [default: true]
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

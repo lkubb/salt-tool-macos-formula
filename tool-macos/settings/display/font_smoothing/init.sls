@@ -2,15 +2,23 @@
     Sets global font smoothing behavior.
 
     Values:
-      font_smoothing: disabled(0) / light(1) / medium(2) / heavy(3)
-          [default: 2 since 10.11/El Capitan, before 3]
+        - string [default: medium since 10.11/El Capitan, before heavy]
 
-    Needs reboot (probably).
+            * disabled
+            * light
+            * medium
+            * heavy
+
+        - or int [0-3]
+
+    .. note::
+
+        Needs reboot (probably).
 
     References:
-      https://tonsky.me/blog/monitors/#turn-off-font-smoothing
-      https://github.com/bouncetechnologies/Font-Smoothing-Adjuster
-      https://github.com/kevinSuttle/macOS-Defaults/issues/17
+        * https://tonsky.me/blog/monitors/#turn-off-font-smoothing
+        * https://github.com/bouncetechnologies/Font-Smoothing-Adjuster
+        * https://github.com/kevinSuttle/macOS-Defaults/issues/17
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

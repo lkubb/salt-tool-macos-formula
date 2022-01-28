@@ -1,0 +1,284 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>macprofile &#8212; salt-tool-macos-config 0.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for macprofile</h1><div class="highlight"><pre>
+<span></span><span class="c1"># adapted from https://github.com/mosen/salt-osx/ by lkubb</span>
+
+<span class="c1"># The MIT License (MIT)</span>
+
+<span class="c1"># Copyright (c) 2014 mosen</span>
+
+<span class="c1"># Permission is hereby granted, free of charge, to any person obtaining a copy</span>
+<span class="c1"># of this software and associated documentation files (the &quot;Software&quot;), to deal</span>
+<span class="c1"># in the Software without restriction, including without limitation the rights</span>
+<span class="c1"># to use, copy, modify, merge, publish, distribute, sublicense, and/or sell</span>
+<span class="c1"># copies of the Software, and to permit persons to whom the Software is</span>
+<span class="c1"># furnished to do so, subject to the following conditions:</span>
+
+<span class="c1"># The above copyright notice and this permission notice shall be included in all</span>
+<span class="c1"># copies or substantial portions of the Software.</span>
+
+<span class="c1"># THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR</span>
+<span class="c1"># IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,</span>
+<span class="c1"># FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE</span>
+<span class="c1"># AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER</span>
+<span class="c1"># LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,</span>
+<span class="c1"># OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE</span>
+<span class="c1"># SOFTWARE.</span>
+
+<span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">create and install configuration profiles.</span>
+
+<span class="sd"> .. code-block:: yaml</span>
+
+<span class="sd">    example_state_profile:</span>
+<span class="sd">      profile.installed:</span>
+<span class="sd">        - name: example name</span>
+<span class="sd">        - description: &#39;Example Description&#39;</span>
+<span class="sd">        - displayname: &#39;Managing a Preference&#39;</span>
+<span class="sd">        - organization: MegaCorp</span>
+<span class="sd">        - removaldisallowed: True</span>
+<span class="sd">        - scope: System</span>
+<span class="sd">        - content:</span>
+<span class="sd">            - PayloadType: com.apple.ManagedClient.preferences</span>
+<span class="sd">              PayloadContent:</span>
+<span class="sd">                com.megacorp.preference: &lt;- preference domain</span>
+<span class="sd">                  Forced:</span>
+<span class="sd">                    - mcx_preference_settings:</span>
+<span class="sd">                        ExamplePreferenceKey: True</span>
+<span class="sd">                ...</span>
+
+<span class="sd">&#39;&#39;&#39;</span>
+
+
+<span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="kn">import</span> <span class="nn">salt.exceptions</span>
+<span class="kn">import</span> <span class="nn">salt.utils</span>
+<span class="kn">import</span> <span class="nn">salt.utils.platform</span>
+
+
+<span class="n">log</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="n">__virtualname__</span> <span class="o">=</span> <span class="s1">&#39;macprofile&#39;</span>
+
+
+<span class="k">def</span> <span class="nf">__virtual__</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">salt</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">platform</span><span class="o">.</span><span class="n">is_darwin</span><span class="p">():</span>
+        <span class="k">return</span> <span class="n">__virtualname__</span>
+
+    <span class="k">return</span> <span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;state.macprofile only available on macOS.&#39;</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="installed"><a class="viewcode-back" href="../states/macprofile.html#macprofile.installed">[docs]</a><span class="k">def</span> <span class="nf">installed</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ptype</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">validate</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Create and install the specified configuration profile, using the supplied payload content.</span>
+<span class="sd">    This state module is not intended to be used at the command line.</span>
+
+<span class="sd">    name:</span>
+<span class="sd">        The name of the resource is the payload identifier, which is used to determine whether the payload is</span>
+<span class="sd">        installed.</span>
+
+<span class="sd">    force:</span>
+<span class="sd">        True or False, will overwrite existing profile with the same name.</span>
+
+<span class="sd">    ptype</span>
+<span class="sd">        If the payload contents all have the same PayloadType (configuration target, eg &#39;com.apple.Finder&#39;), specify</span>
+<span class="sd">        it here to skip having to add it to each payload</span>
+
+<span class="sd">    validate:</span>
+<span class="sd">        bool. Since MacOS Big Sur, silent installation of profiles is impossible without MDM.</span>
+<span class="sd">        Validate the interactive installation of the profile – requires waiting for the user to confirm.</span>
+
+<span class="sd">    Keyword Arguments:</span>
+
+<span class="sd">        description:</span>
+<span class="sd">            Description shown below profile name in profile preferences.</span>
+
+<span class="sd">        displayname:</span>
+<span class="sd">            The main title shown that identifies the profile.</span>
+
+<span class="sd">        organization:</span>
+<span class="sd">            The organization responsible for creating the profile.</span>
+
+<span class="sd">        removaldisallowed:</span>
+<span class="sd">            Whether or not to disallow removal of this profile.</span>
+
+<span class="sd">        content:</span>
+<span class="sd">            The payload data contained within this profile. Should be generated by another formula.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">ret</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span>
+           <span class="s1">&#39;result&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+           <span class="s1">&#39;changes&#39;</span><span class="p">:</span> <span class="p">{},</span>
+           <span class="s1">&#39;comment&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">}</span>
+
+    <span class="n">exists</span> <span class="o">=</span> <span class="n">__salt__</span><span class="p">[</span><span class="s1">&#39;macprofile.exists&#39;</span><span class="p">](</span><span class="n">name</span><span class="p">)</span>
+
+    <span class="n">content</span> <span class="o">=</span> <span class="n">__salt__</span><span class="p">[</span><span class="s1">&#39;macprofile.generate&#39;</span><span class="p">](</span>
+        <span class="n">name</span><span class="p">,</span>
+        <span class="kc">None</span><span class="p">,</span>
+        <span class="n">ptype</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span>
+    <span class="p">)</span>
+
+    <span class="n">valid</span> <span class="o">=</span> <span class="n">__salt__</span><span class="p">[</span><span class="s1">&#39;macprofile.validate&#39;</span><span class="p">](</span><span class="n">name</span><span class="p">,</span> <span class="n">content</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">exists</span> <span class="ow">and</span> <span class="n">valid</span><span class="p">[</span><span class="s1">&#39;installed&#39;</span><span class="p">]:</span>
+        <span class="n">ret</span><span class="p">[</span><span class="s1">&#39;comment&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Profile identifier &quot;</span><span class="si">{}</span><span class="s1">&quot;, already installed.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">ret</span>
+
+    <span class="n">mcpath</span> <span class="o">=</span> <span class="n">__salt__</span><span class="p">[</span><span class="s1">&#39;temp.file&#39;</span><span class="p">](</span><span class="s1">&#39;.mobileconfig&#39;</span><span class="p">,</span> <span class="s1">&#39;salt&#39;</span><span class="p">)</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">mcpath</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Wrote .mobileconfig in secure temporary location: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mcpath</span><span class="p">))</span>
+
+    <span class="k">if</span> <span class="n">__opts__</span><span class="p">[</span><span class="s1">&#39;test&#39;</span><span class="p">]:</span>
+        <span class="n">ret</span><span class="p">[</span><span class="s1">&#39;result&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">ret</span><span class="p">[</span><span class="s1">&#39;comment&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;New profile would have been generated, property list follows: </span><span class="si">{0}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+        <span class="n">ret</span><span class="p">[</span><span class="s1">&#39;changes&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="n">name</span><span class="p">:</span> <span class="s1">&#39;need to make profile&#39;</span><span class="p">}</span>
+        <span class="k">return</span> <span class="n">ret</span>
+
+    <span class="k">if</span> <span class="n">validate</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">ret</span><span class="p">[</span><span class="s1">&#39;result&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">__salt__</span><span class="p">[</span><span class="s1">&#39;macprofile.install&#39;</span><span class="p">](</span><span class="n">mcpath</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">content</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">salt</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">CommandExecutionError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">ret</span><span class="p">[</span><span class="s1">&#39;result&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="n">ret</span><span class="p">[</span><span class="s1">&#39;comment&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">ret</span><span class="p">[</span><span class="s1">&#39;result&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">__salt__</span><span class="p">[</span><span class="s1">&#39;macprofile.install&#39;</span><span class="p">](</span><span class="n">mcpath</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">ret</span><span class="p">[</span><span class="s1">&#39;result&#39;</span><span class="p">]:</span>
+        <span class="n">ret</span><span class="p">[</span><span class="s1">&#39;comment&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Profile &quot;</span><span class="si">{0}</span><span class="s1">&quot;, installed successfully.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">ret</span><span class="p">[</span><span class="s1">&#39;changes&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">name</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;Old Profile&#39;</span><span class="p">:</span> <span class="n">valid</span><span class="p">[</span><span class="s1">&#39;old_payload&#39;</span><span class="p">],</span>
+                                      <span class="s1">&#39;New Profile&#39;</span><span class="p">:</span> <span class="n">valid</span><span class="p">[</span><span class="s1">&#39;new_payload&#39;</span><span class="p">]}})</span>
+
+    <span class="k">return</span> <span class="n">ret</span></div>
+
+
+<div class="viewcode-block" id="absent"><a class="viewcode-back" href="../states/macprofile.html#macprofile.absent">[docs]</a><span class="k">def</span> <span class="nf">absent</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Remove the configuration profile with the specified identifier.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">ret</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span>
+           <span class="s1">&#39;result&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+           <span class="s1">&#39;changes&#39;</span><span class="p">:</span> <span class="p">{},</span>
+           <span class="s1">&#39;comment&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">}</span>
+
+    <span class="n">exists</span> <span class="o">=</span> <span class="n">__salt__</span><span class="p">[</span><span class="s1">&#39;macprofile.exists&#39;</span><span class="p">](</span><span class="n">name</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">exists</span><span class="p">:</span>
+        <span class="n">ret</span><span class="p">[</span><span class="s1">&#39;comment&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Profile is already absent&#39;</span>
+        <span class="k">return</span> <span class="n">ret</span>
+
+    <span class="k">if</span> <span class="n">__opts__</span><span class="p">[</span><span class="s1">&#39;test&#39;</span><span class="p">]:</span>
+        <span class="n">ret</span><span class="p">[</span><span class="s1">&#39;result&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">ret</span><span class="p">[</span><span class="s1">&#39;comment&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Profile with identifier: </span><span class="si">{0}</span><span class="s1"> would have been removed.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">ret</span>
+
+    <span class="n">success</span> <span class="o">=</span> <span class="n">__salt__</span><span class="p">[</span><span class="s1">&#39;macprofile.remove&#39;</span><span class="p">](</span><span class="n">name</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">success</span><span class="p">:</span>
+        <span class="n">ret</span><span class="p">[</span><span class="s1">&#39;comment&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Profile with identifier: </span><span class="si">{0}</span><span class="s1"> successfully removed&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">ret</span><span class="p">[</span><span class="s1">&#39;changes&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">name</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;old&#39;</span><span class="p">:</span> <span class="s1">&#39;Installed&#39;</span><span class="p">,</span>
+                                      <span class="s1">&#39;new&#39;</span><span class="p">:</span> <span class="s1">&#39;Removed&#39;</span><span class="p">}})</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">ret</span><span class="p">[</span><span class="s1">&#39;result&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">ret</span><span class="p">[</span><span class="s1">&#39;comment&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Failed to remove profile with identifier: </span><span class="si">{0}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">ret</span></div>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">salt-tool-macos-config</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2022, jeanluc.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.3.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

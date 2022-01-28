@@ -1,6 +1,14 @@
 {#-
     Customizes swipe pages touch gesture activation status.
-    Values: two / three / both / false [default: two]
+
+    Values:
+        - string [default: two]
+
+            * two
+            * three
+            * both
+
+        - or false
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

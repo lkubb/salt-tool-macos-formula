@@ -1,7 +1,8 @@
 {#-
     Customizes Notification Center notification display time.
 
-    Values: int [seconds, default: 5]
+    Values:
+        - int [seconds, default: 5]
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

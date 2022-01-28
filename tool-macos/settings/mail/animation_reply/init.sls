@@ -1,12 +1,12 @@
 {#-
     Customizes activation status of reply animation.
 
-    Needs Full Disk Access to work (https://lapcatsoftware.com/articles/containers.html).
+    .. note::
 
-    Mind that the actual setting is called "Disable...", so the
-    pillar value is inverted for consistency.
+        Needs Full Disk Access to work (https://lapcatsoftware.com/articles/containers.html).
 
-    Values: bool [default: true]
+    Values:
+        - bool [default: true]
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}
@@ -22,6 +22,8 @@ Activation status of reply animation in Mail.app is managed for user {{ user.nam
   macosdefaults.write:
     - domain: com.apple.mail
     - name: DisableReplyAnimations
+    {#- Mind that the actual setting is called "Disable...", so the
+    pillar value is inverted for consistency. #}
     - value: {{ False == user.macos.mail.animation_reply | to_bool }}
     - vtype: bool
     - user: {{ user.name }}

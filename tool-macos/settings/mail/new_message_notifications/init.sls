@@ -1,9 +1,18 @@
 {#-
     Customizes condition to receive new message alerts.
 
-    Needs Full Disk Access to work (https://lapcatsoftware.com/articles/containers.html).
+    .. note:
 
-    Values: string [inbox, vips, contacts, all. default: inbox]
+        Needs Full Disk Access to work (https://lapcatsoftware.com/articles/containers.html).
+
+    Values:
+
+        - string [default: inbox]
+
+            * inbox
+            * vips
+            * contacts
+            * all
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

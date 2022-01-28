@@ -1,7 +1,12 @@
 {#-
-    Customizes behavior when selecting an app from the dock. When enabled,
-    all other apps will be hidden. (single application mode)
-    Values: bool [default: false]
+    Customizes behavior when selecting an app from the dock.
+
+    .. hint:
+
+        When enabled, when launching an app from the dock, all other apps will be hidden. (single application mode)
+
+    Values:
+        - bool [default: false]
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

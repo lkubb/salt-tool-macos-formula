@@ -2,10 +2,8 @@
     Customizes Finder window animation activation status.
     This mostly affects the File Info dialog.
 
-    Mind that the actual setting is called "Disable...",
-    so the pillar value is inverted for consistency.
-
-    Values: bool [default: true]
+    Values:
+        - bool [default: true]
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}
@@ -21,6 +19,8 @@ Finder window animation activation status is managed for user {{ user.name }}:
   macosdefaults.write:
     - domain: com.apple.finder
     - name: DisableAllAnimations
+    {#- Mind that the actual setting is called "Disable...",
+    so the pillar value is inverted for consistency. #}
     - value: {{ False == user.macos.animations.finder_windows | to_bool }}
     - vtype: bool
     - user: {{ user.name }}

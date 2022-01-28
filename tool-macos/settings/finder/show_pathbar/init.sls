@@ -1,6 +1,8 @@
 {#-
     Customizes Finder Path Bar visibility.
-    Values: bool [default: false]
+
+    Values:
+        - bool [default: false]
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

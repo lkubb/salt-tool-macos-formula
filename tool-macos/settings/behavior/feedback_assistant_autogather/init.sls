@@ -2,10 +2,11 @@
     Customizes whether Feedback Assistant automatically gathers
     large files when submitting a report.
 
-    Values: bool [default: true]
+    Values:
+        - bool [default: true]
 
     References:
-      https://macos-defaults.com/feedback-assistant/autogather.html
+        * https://macos-defaults.com/feedback-assistant/autogather.html
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

@@ -1,9 +1,11 @@
 {#-
     Customizes highlight on hover behavior of stack tiles (items).
-    Values: bool [default: false]
+
+    Values:
+        - bool [default: false]
 
     References:
-      https://macos-defaults.com/misc/enable-spring-load-actions-on-all-items.html
+        * https://macos-defaults.com/misc/enable-spring-load-actions-on-all-items.html
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

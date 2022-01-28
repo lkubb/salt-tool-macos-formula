@@ -1,9 +1,16 @@
 {#-
     Customizes condition to delete downloaded attachments.
 
-    Needs Full Disk Access to work (https://lapcatsoftware.com/articles/containers.html).
+    .. note::
 
-    Values: string [app_quit, message_deleted, never. default: message_deleted]
+        Needs Full Disk Access to work (https://lapcatsoftware.com/articles/containers.html).
+
+    Values:
+        - string [default: message_deleted]
+
+            * app_quit
+            * message_deleted
+            * never
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

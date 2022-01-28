@@ -1,6 +1,8 @@
 {#-
-    Customizes dock behavior regarding scrolling over tiles.
-    Values: bool [default: false]
+    Customizes dock behavior regarding scrolling over tiles (open app vs do nothing).
+
+    Values:
+        - bool [default: false]
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}
