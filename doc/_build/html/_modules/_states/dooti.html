@@ -55,6 +55,13 @@
 <li class="toctree-l3"><a class="reference internal" href="../../settings/animations.html#window-resize-time">window_resize_time</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../../settings/apps/index.html">Apps</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../settings/apps/messages.html">Messages</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../settings/apps/messages.html#read-receipts">read_receipts</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../../settings/audio.html">Audio</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../settings/audio.html#boot-sound">boot_sound</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../settings/audio.html#charging-sound">charging_sound</a></li>
@@ -337,7 +344,7 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../modules/index.html">execution modules</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/index.html">Execution Modules</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../modules/dooti.html">dooti</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../modules/macosdefaults.html">macosdefaults</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../modules/macprofile.html">macprofile</a><ul>
@@ -348,19 +355,17 @@
 <li class="toctree-l2"><a class="reference internal" href="../../modules/pmset.html">pmset</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../states/index.html">state modules</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../states/index.html">State Modules</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../states/dooti.html">dooti</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../states/macosdefaults.html">macosdefaults</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../states/macosdefaults.html#manage-system-configuration-values-on-macos">Manage (system) configuration values on MacOS.</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../states/macprofile.html">macprofile</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../states/pmset.html">pmset</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../states/pmset.html#manage-power-configuration-values-with-pmset-on-macos">Manage power configuration values with pmset on MacOS.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../states/pmset.html">pmset</a></li>
 </ul>
 </li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../../pillar.html">Example Pillar</a></li>
 </ul>
 
         </div>
@@ -411,7 +416,7 @@
     <span class="k">return</span> <span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;Dooti only works on MacOS 12 (Monterey) and above.&quot;</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="ext"><a class="viewcode-back" href="../../states/dooti.html#_states.dooti.ext">[docs]</a><span class="k">def</span> <span class="nf">ext</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">handler</span><span class="p">,</span> <span class="n">allow_dynamic</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="ext"><a class="viewcode-back" href="../../states/dooti.html#_states.dooti.ext">[docs]</a><span class="k">def</span> <span class="nf">ext</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">handler</span><span class="p">,</span> <span class="n">allow_dynamic</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Makes sure the default handler for the specified file extension is set as specified.</span>
 
@@ -421,6 +426,7 @@
 <span class="sd">    handler</span>
 <span class="sd">        Specifies the default handler to assure. It has to be currently installed</span>
 <span class="sd">        for this to work. Allowed formats:</span>
+
 <span class="sd">            * name (&quot;Firefox&quot;, &quot;Sublime Text&quot;)</span>
 <span class="sd">            * bundle ID (&quot;org.mozilla.firefox&quot;, &quot;com.sublimetext.4&quot;)</span>
 <span class="sd">            * absolute path (&quot;/Applications/Firefox.app&quot;, &quot;/Applications/Sublime Text.app&quot;)</span>
@@ -429,14 +435,17 @@
 <span class="sd">        When the specified UTI is not registered with MacOS, it will generate a</span>
 <span class="sd">        dynamic UTI. Those are rejected by default. Set this to true to override.</span>
 <span class="sd">        Defaults to False.</span>
+
+<span class="sd">    user</span>
+<span class="sd">        Specifies the user to associate the handler for. Defaults to salt process user.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">ret</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span> <span class="s2">&quot;result&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;comment&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;changes&quot;</span><span class="p">:</span> <span class="p">{}}</span>
 
-    <span class="n">cur_handler_path</span> <span class="o">=</span> <span class="n">__salt__</span><span class="p">[</span><span class="s1">&#39;dooti.get_ext&#39;</span><span class="p">](</span><span class="n">name</span><span class="p">)</span>
+    <span class="n">cur_handler_path</span> <span class="o">=</span> <span class="n">__salt__</span><span class="p">[</span><span class="s1">&#39;dooti.get_ext&#39;</span><span class="p">](</span><span class="n">name</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">)</span>
 
     <span class="k">try</span><span class="p">:</span>
-        <span class="n">new_handler_path</span> <span class="o">=</span> <span class="n">__salt__</span><span class="p">[</span><span class="s1">&#39;dooti.get_path&#39;</span><span class="p">](</span><span class="n">handler</span><span class="p">)</span>
+        <span class="n">new_handler_path</span> <span class="o">=</span> <span class="n">__salt__</span><span class="p">[</span><span class="s1">&#39;dooti.get_path&#39;</span><span class="p">](</span><span class="n">handler</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">cur_handler_path</span> <span class="o">==</span> <span class="n">new_handler_path</span><span class="p">:</span>
             <span class="n">ret</span><span class="p">[</span><span class="s2">&quot;comment&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Default handler for file extension &#39;</span><span class="si">{}</span><span class="s2">&#39; is already set to application at &#39;</span><span class="si">{}</span><span class="s2">&#39;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">new_handler_path</span><span class="p">)</span>
@@ -448,7 +457,7 @@
             <span class="n">ret</span><span class="p">[</span><span class="s2">&quot;changes&quot;</span><span class="p">][</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_handler_path</span>
             <span class="k">return</span> <span class="n">ret</span>
 
-        <span class="n">__salt__</span><span class="p">[</span><span class="s1">&#39;dooti.ext&#39;</span><span class="p">](</span><span class="n">name</span><span class="p">,</span> <span class="n">new_handler_path</span><span class="p">,</span> <span class="n">allow_dynamic</span><span class="p">)</span>
+        <span class="n">__salt__</span><span class="p">[</span><span class="s1">&#39;dooti.ext&#39;</span><span class="p">](</span><span class="n">name</span><span class="p">,</span> <span class="n">new_handler_path</span><span class="p">,</span> <span class="n">allow_dynamic</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">)</span>
 
         <span class="n">ret</span><span class="p">[</span><span class="s2">&quot;comment&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Default handler for file extension &#39;</span><span class="si">{}</span><span class="s2">&#39; has been set to application at &#39;</span><span class="si">{}</span><span class="s2">&#39;.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">new_handler_path</span><span class="p">)</span>
         <span class="n">ret</span><span class="p">[</span><span class="s2">&quot;changes&quot;</span><span class="p">][</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_handler_path</span>
@@ -460,7 +469,7 @@
     <span class="k">return</span> <span class="n">ret</span></div>
 
 
-<div class="viewcode-block" id="uti"><a class="viewcode-back" href="../../states/dooti.html#_states.dooti.uti">[docs]</a><span class="k">def</span> <span class="nf">uti</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">handler</span><span class="p">):</span>
+<div class="viewcode-block" id="uti"><a class="viewcode-back" href="../../states/dooti.html#_states.dooti.uti">[docs]</a><span class="k">def</span> <span class="nf">uti</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">handler</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Sets a default handler for the specified UTI.</span>
 
@@ -470,16 +479,20 @@
 <span class="sd">    handler</span>
 <span class="sd">        Specifies the default handler to set. It has to be currently installed</span>
 <span class="sd">        for this to work. Allowed formats:</span>
+
 <span class="sd">            * name (&quot;Firefox&quot;, &quot;Sublime Text&quot;)</span>
 <span class="sd">            * bundle ID (&quot;org.mozilla.firefox&quot;, &quot;com.sublimetext.4&quot;)</span>
 <span class="sd">            * absolute path (&quot;/Applications/Firefox.app&quot;, &quot;/Applications/Sublime Text.app&quot;)</span>
+
+<span class="sd">    user</span>
+<span class="sd">        Specifies the user to associate the handler for. Defaults to salt process user.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">ret</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span> <span class="s2">&quot;result&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;comment&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;changes&quot;</span><span class="p">:</span> <span class="p">{}}</span>
 
-    <span class="n">cur_handler_path</span> <span class="o">=</span> <span class="n">__salt__</span><span class="p">[</span><span class="s1">&#39;dooti.get_uti&#39;</span><span class="p">](</span><span class="n">name</span><span class="p">)</span>
+    <span class="n">cur_handler_path</span> <span class="o">=</span> <span class="n">__salt__</span><span class="p">[</span><span class="s1">&#39;dooti.get_uti&#39;</span><span class="p">](</span><span class="n">name</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">)</span>
 
     <span class="k">try</span><span class="p">:</span>
-        <span class="n">new_handler_path</span> <span class="o">=</span> <span class="n">__salt__</span><span class="p">[</span><span class="s1">&#39;dooti.get_path&#39;</span><span class="p">](</span><span class="n">handler</span><span class="p">)</span>
+        <span class="n">new_handler_path</span> <span class="o">=</span> <span class="n">__salt__</span><span class="p">[</span><span class="s1">&#39;dooti.get_path&#39;</span><span class="p">](</span><span class="n">handler</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">cur_handler_path</span> <span class="o">==</span> <span class="n">new_handler_path</span><span class="p">:</span>
             <span class="n">ret</span><span class="p">[</span><span class="s2">&quot;comment&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Default handler for UTI &#39;</span><span class="si">{}</span><span class="s2">&#39; is already set to application at &#39;</span><span class="si">{}</span><span class="s2">&#39;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">new_handler_path</span><span class="p">)</span>
@@ -491,7 +504,7 @@
             <span class="n">ret</span><span class="p">[</span><span class="s2">&quot;changes&quot;</span><span class="p">][</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_handler_path</span>
             <span class="k">return</span> <span class="n">ret</span>
 
-        <span class="n">__salt__</span><span class="p">[</span><span class="s1">&#39;dooti.uti&#39;</span><span class="p">](</span><span class="n">name</span><span class="p">,</span> <span class="n">new_handler_path</span><span class="p">)</span>
+        <span class="n">__salt__</span><span class="p">[</span><span class="s1">&#39;dooti.uti&#39;</span><span class="p">](</span><span class="n">name</span><span class="p">,</span> <span class="n">new_handler_path</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">)</span>
 
         <span class="n">ret</span><span class="p">[</span><span class="s2">&quot;comment&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Default handler for UTI &#39;</span><span class="si">{}</span><span class="s2">&#39; has been set to application at &#39;</span><span class="si">{}</span><span class="s2">&#39;.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">new_handler_path</span><span class="p">)</span>
         <span class="n">ret</span><span class="p">[</span><span class="s2">&quot;changes&quot;</span><span class="p">][</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_handler_path</span>
@@ -503,7 +516,7 @@
     <span class="k">return</span> <span class="n">ret</span></div>
 
 
-<div class="viewcode-block" id="scheme"><a class="viewcode-back" href="../../states/dooti.html#_states.dooti.scheme">[docs]</a><span class="k">def</span> <span class="nf">scheme</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">handler</span><span class="p">):</span>
+<div class="viewcode-block" id="scheme"><a class="viewcode-back" href="../../states/dooti.html#_states.dooti.scheme">[docs]</a><span class="k">def</span> <span class="nf">scheme</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">handler</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Sets a default handler for the specified URL scheme. Note that this might</span>
 <span class="sd">    trigger an interactive dialog for the user to accept.</span>
@@ -514,16 +527,20 @@
 <span class="sd">    handler</span>
 <span class="sd">        Specifies the default handler to set. It has to be currently installed</span>
 <span class="sd">        for this to work. Allowed formats:</span>
+
 <span class="sd">            * name (&quot;Firefox&quot;, &quot;Sublime Text&quot;)</span>
 <span class="sd">            * bundle ID (&quot;org.mozilla.firefox&quot;, &quot;com.sublimetext.4&quot;)</span>
 <span class="sd">            * absolute path (&quot;/Applications/Firefox.app&quot;, &quot;/Applications/Sublime Text.app&quot;)</span>
+
+<span class="sd">    user</span>
+<span class="sd">        Specifies the user to associate the handler for. Defaults to salt process user.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">ret</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span> <span class="s2">&quot;result&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;comment&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;changes&quot;</span><span class="p">:</span> <span class="p">{}}</span>
 
-    <span class="n">cur_handler_path</span> <span class="o">=</span> <span class="n">__salt__</span><span class="p">[</span><span class="s1">&#39;dooti.get_scheme&#39;</span><span class="p">](</span><span class="n">name</span><span class="p">)</span>
+    <span class="n">cur_handler_path</span> <span class="o">=</span> <span class="n">__salt__</span><span class="p">[</span><span class="s1">&#39;dooti.get_scheme&#39;</span><span class="p">](</span><span class="n">name</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">)</span>
 
     <span class="k">try</span><span class="p">:</span>
-        <span class="n">new_handler_path</span> <span class="o">=</span> <span class="n">__salt__</span><span class="p">[</span><span class="s1">&#39;dooti.get_path&#39;</span><span class="p">](</span><span class="n">handler</span><span class="p">)</span>
+        <span class="n">new_handler_path</span> <span class="o">=</span> <span class="n">__salt__</span><span class="p">[</span><span class="s1">&#39;dooti.get_path&#39;</span><span class="p">](</span><span class="n">handler</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">cur_handler_path</span> <span class="o">==</span> <span class="n">new_handler_path</span><span class="p">:</span>
             <span class="n">ret</span><span class="p">[</span><span class="s2">&quot;comment&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Default handler for URL scheme &#39;</span><span class="si">{}</span><span class="s2">&#39; is already set to application at &#39;</span><span class="si">{}</span><span class="s2">&#39;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">new_handler_path</span><span class="p">)</span>
@@ -535,7 +552,7 @@
             <span class="n">ret</span><span class="p">[</span><span class="s2">&quot;changes&quot;</span><span class="p">][</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_handler_path</span>
             <span class="k">return</span> <span class="n">ret</span>
 
-        <span class="n">__salt__</span><span class="p">[</span><span class="s1">&#39;dooti.scheme&#39;</span><span class="p">](</span><span class="n">name</span><span class="p">,</span> <span class="n">new_handler_path</span><span class="p">)</span>
+        <span class="n">__salt__</span><span class="p">[</span><span class="s1">&#39;dooti.scheme&#39;</span><span class="p">](</span><span class="n">name</span><span class="p">,</span> <span class="n">new_handler_path</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">)</span>
 
         <span class="n">ret</span><span class="p">[</span><span class="s2">&quot;comment&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Default handler for URL scheme &#39;</span><span class="si">{}</span><span class="s2">&#39; has been set to application at &#39;</span><span class="si">{}</span><span class="s2">&#39;.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">new_handler_path</span><span class="p">)</span>
         <span class="n">ret</span><span class="p">[</span><span class="s2">&quot;changes&quot;</span><span class="p">][</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_handler_path</span>

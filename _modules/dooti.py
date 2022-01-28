@@ -3,10 +3,11 @@ Get and set default handlers for file extensions, UTI and
 URL schemes on macOS 12.0+.
 
 """
-import os.path
+import sys
 import logging
 
 try:
+    # those are needed in the shim that is needed to switch to different users
     import objc
     import AppKit
     from Foundation import NSURL, NSArray
@@ -33,7 +34,38 @@ def __virtual__():
     return (False, "Dooti only works on MacOS 12 (Monterey) and above and needs pyobj.")
 
 
-def ext(ext, handler, allow_dynamic=False):
+def _gimme_dooti(user=None):
+    # need a shim to call the API as a different user
+    target = __salt__['temp.file']()
+    with open(target, 'w') as f:
+        f.write(program)
+    if user is not None:
+        __salt__['file.chown'](target, user, __salt__['user.primary_group'](user))
+    return target
+
+
+def _call_dooti(func, arguments, user=None):
+    # setting stuff for a different user requires to run python as that user
+    target = _gimme_dooti(user)
+    python = sys.executable
+
+    cmd = [python, target, func] + ["'{}'".format(x) for x in arguments]
+
+    log.debug("dooti: running command '{}'".format(' '.join(cmd)))
+
+    ret = __salt__['cmd.run_all'](' '.join(cmd), runas=user)
+
+    # clean up our shim
+    __salt__['file.remove'](target)
+
+    if 1 == ret['retcode']:
+        raise CommandExecutionError("Error calling dooti: {}".format(ret['stderr']))
+
+    if ret['stdout']:
+        return ret['stdout']
+
+
+def ext(ext, handler, allow_dynamic=False, user=None):
     """
     Sets a default handler for the specified file extension.
 
@@ -58,12 +90,20 @@ def ext(ext, handler, allow_dynamic=False):
         When the specified UTI is not registered with MacOS, it will generate a
         dynamic UTI. Those are rejected by default. Set this to true to override.
         Defaults to False.
+
+    user
+        Specifies the user to associate the handler for. Defaults to salt process user.
     """
-    d = dooti()
-    d.set_default_ext(ext, handler, allow_dynamic)
+    args = [ext, handler]
+
+    # since we need to run this through a shell, passing anything will make it true
+    if allow_dynamic:
+        args.append('true')
+
+    _call_dooti('set_default_ext', args, user)
 
 
-def uti(uti, handler):
+def uti(uti, handler, user=None):
     """
     Sets a default handler for the specified UTI.
 
@@ -83,12 +123,14 @@ def uti(uti, handler):
             * name ("Firefox", "Sublime Text")
             * bundle ID ("org.mozilla.firefox", "com.sublimetext.4")
             * absolute path ("/Applications/Firefox.app", "/Applications/Sublime Text.app")
+
+    user
+        Specifies the user to associate the handler for. Defaults to salt process user.
     """
-    d = dooti()
-    d.set_default_uti(uti, handler)
+    _call_dooti('set_default_uti', [handler], user)
 
 
-def scheme(scheme, handler):
+def scheme(scheme, handler, user=None):
     """
     Sets a default handler for the specified URL scheme. Note that this might
     trigger an interactive dialog for the user to accept.
@@ -109,12 +151,14 @@ def scheme(scheme, handler):
             * name ("Firefox", "Sublime Text")
             * bundle ID ("org.mozilla.firefox", "com.sublimetext.4")
             * absolute path ("/Applications/Firefox.app", "/Applications/Sublime Text.app")
+
+    user
+        Specifies the user to associate the handler for. Defaults to salt process user.
     """
-    d = dooti()
-    d.set_default_scheme(scheme, handler)
+    _call_dooti('set_default_scheme', [handler], user)
 
 
-def get_ext(ext):
+def get_ext(ext, user=None):
     """
     Returns the absolute filesystem path of the
     default handler for the specified file extension.
@@ -127,12 +171,14 @@ def get_ext(ext):
 
     ext
         Specifies the file extension to get the default handler's absolute path for.
+
+    user
+        Specifies the user to retrieve the handler for. Defaults to salt process user.
     """
-    d = dooti()
-    return d.get_default_ext(ext)
+    return _call_dooti('get_default_ext', [ext], user)
 
 
-def get_scheme(scheme):
+def get_scheme(scheme, user=None):
     """
     Returns the absolute filesystem path of the
     default handler for the specified URL scheme.
@@ -145,12 +191,14 @@ def get_scheme(scheme):
 
     scheme
         Specifies the URL scheme to get the default handler's absolute path for.
+
+    user
+        Specifies the user to retrieve the handler for. Defaults to salt process user.
     """
-    d = dooti()
-    return d.get_default_scheme(scheme)
+    return _call_dooti('get_default_scheme', [scheme], user)
 
 
-def get_uti(uti):
+def get_uti(uti, user=None):
     """
     Returns the absolute filesystem path of the
     default handler for the specified UTI.
@@ -163,12 +211,14 @@ def get_uti(uti):
 
     uti
         Specifies the UTI to get the default handler's absolute path for.
+
+    user
+        Specifies the user to retrieve the handler for. Defaults to salt process user.
     """
-    d = dooti()
-    return d.get_default_uti(uti)
+    return _call_dooti('get_default_uti', [uti], user)
 
 
-def get_path(app):
+def get_path(app, user=None):
     """
     Returns the absolute filesystem path of the app as seen from dooti.
 
@@ -181,17 +231,32 @@ def get_path(app):
 
     app
         Specifies the app to get the absolute path for.
+
+    user
+        Specifies the user to retrieve the application for. Defaults to salt process user.
     """
-    d = dooti()
-    path = d.get_app_path(app)
-    return path.fileSystemRepresentation().decode()
+
+    path = _call_dooti('get_app_path', [app], user)
+    # trim file:// from beginning and / from end to sync output with other functions
+    # it's formatted differently because the underlying function returns the actual URL
+    # object for use in other parts of the script
+    return path[7:].rstrip('/')
 
 
-class ExtHasNoRegisteredUTI(CommandExecutionError):
+program = '''
+import sys
+
+import objc
+import AppKit
+from Foundation import NSURL, NSArray
+from UniformTypeIdentifiers import UTType, UTTagClassFilenameExtension
+
+
+class ExtHasNoRegisteredUTI(ValueError):
     pass
 
 
-class ApplicationNotFound(CommandExecutionError):
+class ApplicationNotFound(ValueError):
     pass
 
 
@@ -416,3 +481,27 @@ class dooti:
             )
 
         return NSURL.fileURLWithPath_(path)
+
+    def __call__(self, method, arguments):
+        call = getattr(self, method)
+        return call(*arguments)
+
+
+if __name__ == '__main__':
+    method = sys.argv[1]
+    arguments = sys.argv[2:]
+
+    d = dooti()
+
+    try:
+        ret = d(method, arguments)
+
+        if ret:
+            print(ret)
+
+        exit(0)
+
+    except ValueError as e:
+        print(str(e), file=sys.stderr)
+        exit(1)
+'''

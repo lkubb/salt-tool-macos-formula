@@ -58,6 +58,13 @@
 <li class="toctree-l3"><a class="reference internal" href="../settings/animations.html#window-resize-time">window_resize_time</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../settings/apps/index.html">Apps</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../settings/apps/messages.html">Messages</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../settings/apps/messages.html#read-receipts">read_receipts</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../settings/audio.html">Audio</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../settings/audio.html#boot-sound">boot_sound</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../settings/audio.html#charging-sound">charging_sound</a></li>
@@ -358,12 +365,10 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../states/macprofile.html">macprofile</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../states/pmset.html">pmset</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../states/pmset.html#manage-power-configuration-values-with-pmset-on-macos">Manage power configuration values with pmset on MacOS.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../states/pmset.html">pmset</a></li>
 </ul>
 </li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../pillar.html">Example Pillar</a></li>
 </ul>
 
         </div>
@@ -397,7 +402,7 @@
 URL schemes on macOS 12.0+.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="modules.dooti.ext">
-<span id="_modules.dooti.ext"></span><span class="sig-prename descclassname"><span class="pre">_modules.dooti.</span></span><span class="sig-name descname"><span class="pre">ext</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ext</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">handler</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">allow_dynamic</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/_modules/dooti.html#ext"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modules.dooti.ext" title="Permalink to this definition"></a></dt>
+<span id="_modules.dooti.ext"></span><span class="sig-prename descclassname"><span class="pre">_modules.dooti.</span></span><span class="sig-name descname"><span class="pre">ext</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ext</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">handler</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">allow_dynamic</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/_modules/dooti.html#ext"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modules.dooti.ext" title="Permalink to this definition"></a></dt>
 <dd><p>Sets a default handler for the specified file extension.</p>
 <p>CLI Example:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>salt <span class="s1">&#39;*&#39;</span> dooti.ext csv <span class="s2">&quot;Sublime Text&quot;</span>
@@ -420,12 +425,14 @@ for this to work. Allowed formats:</p>
 dynamic UTI. Those are rejected by default. Set this to true to override.
 Defaults to False.</p>
 </dd>
+<dt>user</dt><dd><p>Specifies the user to associate the handler for. Defaults to salt process user.</p>
+</dd>
 </dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="modules.dooti.get_ext">
-<span id="_modules.dooti.get_ext"></span><span class="sig-prename descclassname"><span class="pre">_modules.dooti.</span></span><span class="sig-name descname"><span class="pre">get_ext</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ext</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/_modules/dooti.html#get_ext"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modules.dooti.get_ext" title="Permalink to this definition"></a></dt>
+<span id="_modules.dooti.get_ext"></span><span class="sig-prename descclassname"><span class="pre">_modules.dooti.</span></span><span class="sig-name descname"><span class="pre">get_ext</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ext</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/_modules/dooti.html#get_ext"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modules.dooti.get_ext" title="Permalink to this definition"></a></dt>
 <dd><p>Returns the absolute filesystem path of the
 default handler for the specified file extension.</p>
 <p>CLI Example:</p>
@@ -435,12 +442,14 @@ default handler for the specified file extension.</p>
 <dl class="simple">
 <dt>ext</dt><dd><p>Specifies the file extension to get the default handler’s absolute path for.</p>
 </dd>
+<dt>user</dt><dd><p>Specifies the user to retrieve the handler for. Defaults to salt process user.</p>
+</dd>
 </dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="modules.dooti.get_path">
-<span id="_modules.dooti.get_path"></span><span class="sig-prename descclassname"><span class="pre">_modules.dooti.</span></span><span class="sig-name descname"><span class="pre">get_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/_modules/dooti.html#get_path"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modules.dooti.get_path" title="Permalink to this definition"></a></dt>
+<span id="_modules.dooti.get_path"></span><span class="sig-prename descclassname"><span class="pre">_modules.dooti.</span></span><span class="sig-name descname"><span class="pre">get_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/_modules/dooti.html#get_path"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modules.dooti.get_path" title="Permalink to this definition"></a></dt>
 <dd><p>Returns the absolute filesystem path of the app as seen from dooti.</p>
 <p>CLI Example:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>salt <span class="s1">&#39;*&#39;</span> dooti.get_path Firefox
@@ -450,12 +459,14 @@ salt <span class="s1">&#39;*&#39;</span> dooti.get_path com.sublimetext.4
 <dl class="simple">
 <dt>app</dt><dd><p>Specifies the app to get the absolute path for.</p>
 </dd>
+<dt>user</dt><dd><p>Specifies the user to retrieve the application for. Defaults to salt process user.</p>
+</dd>
 </dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="modules.dooti.get_scheme">
-<span id="_modules.dooti.get_scheme"></span><span class="sig-prename descclassname"><span class="pre">_modules.dooti.</span></span><span class="sig-name descname"><span class="pre">get_scheme</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scheme</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/_modules/dooti.html#get_scheme"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modules.dooti.get_scheme" title="Permalink to this definition"></a></dt>
+<span id="_modules.dooti.get_scheme"></span><span class="sig-prename descclassname"><span class="pre">_modules.dooti.</span></span><span class="sig-name descname"><span class="pre">get_scheme</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scheme</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/_modules/dooti.html#get_scheme"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modules.dooti.get_scheme" title="Permalink to this definition"></a></dt>
 <dd><p>Returns the absolute filesystem path of the
 default handler for the specified URL scheme.</p>
 <p>CLI Example:</p>
@@ -465,12 +476,14 @@ default handler for the specified URL scheme.</p>
 <dl class="simple">
 <dt>scheme</dt><dd><p>Specifies the URL scheme to get the default handler’s absolute path for.</p>
 </dd>
+<dt>user</dt><dd><p>Specifies the user to retrieve the handler for. Defaults to salt process user.</p>
+</dd>
 </dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="modules.dooti.get_uti">
-<span id="_modules.dooti.get_uti"></span><span class="sig-prename descclassname"><span class="pre">_modules.dooti.</span></span><span class="sig-name descname"><span class="pre">get_uti</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">uti</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/_modules/dooti.html#get_uti"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modules.dooti.get_uti" title="Permalink to this definition"></a></dt>
+<span id="_modules.dooti.get_uti"></span><span class="sig-prename descclassname"><span class="pre">_modules.dooti.</span></span><span class="sig-name descname"><span class="pre">get_uti</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">uti</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/_modules/dooti.html#get_uti"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modules.dooti.get_uti" title="Permalink to this definition"></a></dt>
 <dd><p>Returns the absolute filesystem path of the
 default handler for the specified UTI.</p>
 <p>CLI Example:</p>
@@ -480,12 +493,14 @@ default handler for the specified UTI.</p>
 <dl class="simple">
 <dt>uti</dt><dd><p>Specifies the UTI to get the default handler’s absolute path for.</p>
 </dd>
+<dt>user</dt><dd><p>Specifies the user to retrieve the handler for. Defaults to salt process user.</p>
+</dd>
 </dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="modules.dooti.scheme">
-<span id="_modules.dooti.scheme"></span><span class="sig-prename descclassname"><span class="pre">_modules.dooti.</span></span><span class="sig-name descname"><span class="pre">scheme</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scheme</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">handler</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/_modules/dooti.html#scheme"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modules.dooti.scheme" title="Permalink to this definition"></a></dt>
+<span id="_modules.dooti.scheme"></span><span class="sig-prename descclassname"><span class="pre">_modules.dooti.</span></span><span class="sig-name descname"><span class="pre">scheme</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scheme</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">handler</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/_modules/dooti.html#scheme"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modules.dooti.scheme" title="Permalink to this definition"></a></dt>
 <dd><p>Sets a default handler for the specified URL scheme. Note that this might
 trigger an interactive dialog for the user to accept.</p>
 <p>CLI Example:</p>
@@ -505,12 +520,14 @@ for this to work. Allowed formats:</p>
 </ul>
 </div></blockquote>
 </dd>
+<dt>user</dt><dd><p>Specifies the user to associate the handler for. Defaults to salt process user.</p>
+</dd>
 </dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="modules.dooti.uti">
-<span id="_modules.dooti.uti"></span><span class="sig-prename descclassname"><span class="pre">_modules.dooti.</span></span><span class="sig-name descname"><span class="pre">uti</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">uti</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">handler</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/_modules/dooti.html#uti"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modules.dooti.uti" title="Permalink to this definition"></a></dt>
+<span id="_modules.dooti.uti"></span><span class="sig-prename descclassname"><span class="pre">_modules.dooti.</span></span><span class="sig-name descname"><span class="pre">uti</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">uti</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">handler</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/_modules/dooti.html#uti"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#modules.dooti.uti" title="Permalink to this definition"></a></dt>
 <dd><p>Sets a default handler for the specified UTI.</p>
 <p>CLI Example:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>salt <span class="s1">&#39;*&#39;</span> dooti.uti public.plain-text <span class="s2">&quot;Sublime Text&quot;</span>
@@ -528,6 +545,8 @@ for this to work. Allowed formats:</p>
 <li><p>absolute path (“/Applications/Firefox.app”, “/Applications/Sublime Text.app”)</p></li>
 </ul>
 </div></blockquote>
+</dd>
+<dt>user</dt><dd><p>Specifies the user to associate the handler for. Defaults to salt process user.</p>
 </dd>
 </dl>
 </dd></dl>

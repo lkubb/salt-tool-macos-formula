@@ -46,12 +46,13 @@ include:
 
 {%- for user in macos.users | selectattr('macos.files', 'defined') | selectattr('macos.files.default_handlers', 'defined') %}
 
-  {%- for ext, handler in user.macos.files.default_handlers.get('extensions', {}).items() %}
+  {%- for extension, handler in user.macos.files.default_handlers.get('extensions', {}).items() %}
 
 Default handler for file extension '{{ extension }}' is managed for user {{ user.name }}:
   dooti.ext:
     - name: {{ extension }}
     - handler: {{ handler }}
+    - user: {{ user.name }}
     - watch_in:
       - Finder was reloaded
   {%- endfor %}
@@ -62,6 +63,7 @@ Default handler for URL scheme '{{ scheme }}' is managed for user {{ user.name }
   dooti.scheme:
     - name: {{ scheme }}
     - handler: {{ handler }}
+    - user: {{ user.name }}
     - watch_in:
       - Finder was reloaded
   {%- endfor %}
@@ -72,6 +74,7 @@ Default handler for UTI '{{ uti }}' is managed for user {{ user.name }}:
   dooti.uti:
     - name: {{ uti }}
     - handler: {{ handler }}
+    - user: {{ user.name }}
     - watch_in:
       - Finder was reloaded
   {%- endfor %}

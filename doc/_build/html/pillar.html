@@ -426,7 +426,6 @@
 <span class="w">      </span><span class="nt">timezone</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GMT</span><span class="w"></span>
 <span class="w">    </span><span class="nt">power</span><span class="p">:</span><span class="w"> </span><span class="c1"># power settings for pmset per scope. valid scopes: all, ac, battery, ups</span><span class="w"></span>
 <span class="w">      </span><span class="nt">all</span><span class="p">:</span><span class="w"></span>
-<span class="w">        </span><span class="nt">standby</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span><span class="w">  </span><span class="c1"># enable automatic sleep -&gt; standby</span><span class="w"></span>
 <span class="w">        </span><span class="nt">hibernatemode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span><span class="w"> </span><span class="c1"># 0 / 3 / 25 sleep / safe sleep / true hibernation for standby</span><span class="w"></span>
 <span class="w">        </span><span class="nt">acwake</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span><span class="w">  </span><span class="c1"># wake when plugging ac in</span><span class="w"></span>
 <span class="w">        </span><span class="nt">autopoweroff</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span><span class="w">  </span><span class="c1"># enable automatic poweroff (mostly the same as standby)</span><span class="w"></span>
@@ -443,7 +442,7 @@
 <span class="w">        </span><span class="nt">powernap</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span><span class="w"></span>
 <span class="w">        </span><span class="nt">proximitywake</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span><span class="w"></span>
 <span class="w">        </span><span class="nt">sleep</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span><span class="w"></span>
-<span class="w">        </span><span class="nt">standby</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span><span class="w"></span>
+<span class="w">        </span><span class="nt">standby</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span><span class="w">  </span><span class="c1"># enable automatic sleep -&gt; standby</span><span class="w"></span>
 <span class="w">        </span><span class="nt">standbydelayhigh</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">86400</span><span class="w"></span>
 <span class="w">        </span><span class="nt">standbydelaylow</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10800</span><span class="w"></span>
 <span class="w">        </span><span class="nt">tcpkeepalive</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span><span class="w"> </span><span class="c1"># ?</span><span class="w"></span>
@@ -492,6 +491,7 @@
 <span class="w">      </span><span class="nt">root_disabled_check</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w">        </span><span class="c1"># disable/enable check if root user account is disabled</span><span class="w"></span>
 <span class="c1">#     wake_on_lan: false                # enabled by default for ac actually. fine-grained</span><span class="w"></span>
 <span class="w">                                        </span><span class="c1"># settings in macos.power. this is mostly for disabling</span><span class="w"></span>
+<span class="w">    </span><span class="c1"># Time Machine configuration needs Full Disk Access for your terminal emulator.</span><span class="w"></span>
 <span class="w">    </span><span class="nt">timemachine</span><span class="p">:</span><span class="w"></span>
 <span class="w">      </span><span class="nt">backup_on_battery</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w"></span>
 <span class="w">      </span><span class="nt">offer_new_disks</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w">             </span><span class="c1"># disable this to suppress TimeMachine popup</span><span class="w"></span>
@@ -517,6 +517,9 @@
 <span class="w">          </span><span class="nt">motion_reduced</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w">         </span><span class="c1"># &quot;reduce motions&quot; in Accessibility. eg changes space swiping to fade</span><span class="w"></span>
 <span class="w">          </span><span class="nt">multidisplay_swoosh</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
 <span class="w">          </span><span class="nt">window_resize_time</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.5</span><span class="w"></span>
+<span class="w">        </span><span class="nt">apps</span><span class="p">:</span><span class="w"></span>
+<span class="w">          </span><span class="nt">messages</span><span class="p">:</span><span class="w"></span>
+<span class="w">            </span><span class="nt">read_receipts</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
 <span class="w">        </span><span class="nt">audio</span><span class="p">:</span><span class="w"></span>
 <span class="w">          </span><span class="nt">charging_sound</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
 <span class="w">          </span><span class="nt">sound_effects_system</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w">    </span><span class="c1"># this only affects macOS</span><span class="w"></span>
@@ -529,6 +532,7 @@
 <span class="w">          </span><span class="nt">confirm_on_close</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w">       </span><span class="c1"># default behavior: silently save changes and exit. true to prompt</span><span class="w"></span>
 <span class="w">          </span><span class="nt">crashreporter</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
 <span class="w">          </span><span class="nt">feedback_assistant_autogather</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"> </span><span class="c1"># whether Feedback Assistant autogathers large files</span><span class="w"></span>
+<span class="w">          </span><span class="nt">handoff_allow</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
 <span class="w">          </span><span class="nt">help_window_floats</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
 <span class="w">          </span><span class="nt">media_inserted</span><span class="p">:</span><span class="w">               </span><span class="c1"># str [ignore / ask / finder / itunes / disk_utility] or dict for specific</span><span class="w"></span>
 <span class="w">            </span><span class="nt">blank_cd</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ask</span><span class="w"></span>
@@ -547,24 +551,19 @@
 <span class="w">          </span><span class="nt">spaces_span_displays</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w"></span>
 <span class="w">          </span><span class="nt">spaces_switch_running</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w">   </span><span class="c1"># when clicking a running app in the Dock, switch to space with it</span><span class="w"></span>
 <span class="w">          </span><span class="nt">tab_preference</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fullscreen</span><span class="w">    </span><span class="c1"># generally prefer tabs to windows: manual, fullscreen or always</span><span class="w"></span>
-<span class="w">        </span><span class="nt">desktop_icons</span><span class="p">:</span><span class="w"></span>
-<span class="w">          </span><span class="nt">show</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
-<span class="w">          </span><span class="nt">arrange</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">grid</span><span class="w"> </span><span class="c1"># none, grid, name, kind, last_opened, added, modified, created, size, tags</span><span class="w"></span>
-<span class="w">          </span><span class="nt">size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">64</span><span class="w"></span>
-<span class="w">          </span><span class="nt">spacing</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">54</span><span class="w"></span>
-<span class="w">          </span><span class="nt">info</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w"></span>
-<span class="w">          </span><span class="nt">info_bottom</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
-<span class="w">          </span><span class="nt">text_size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">12</span><span class="w"></span>
 <span class="w">        </span><span class="nt">display</span><span class="p">:</span><span class="w"></span>
 <span class="w">          </span><span class="nt">antialias_subpixel</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w">     </span><span class="c1"># false = disabled (default), true = enabled</span><span class="w"></span>
-<span class="w">          </span><span class="nt">antialias_threshold</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">16</span><span class="w">       </span><span class="c1"># font size in pixels</span><span class="w"></span>
-<span class="w">          </span><span class="nt">font_smoothing</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">disabled</span><span class="w">      </span><span class="c1"># disabled(0) / light(1) /medium(2) / heavy(3)</span><span class="w"></span>
+<span class="w">          </span><span class="nt">antialias_threshold</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4</span><span class="w">        </span><span class="c1"># font size in pixels</span><span class="w"></span>
+<span class="w">          </span><span class="nt">font_smoothing</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">medium</span><span class="w">        </span><span class="c1"># disabled(0) / light(1) /medium(2) / heavy(3)</span><span class="w"></span>
 <span class="w">          </span><span class="nt">nightshift</span><span class="p">:</span><span class="w"></span>
 <span class="w">            </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
 <span class="w">            </span><span class="nt">temperature</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4100</span><span class="w">           </span><span class="c1"># 2700-6000</span><span class="w"></span>
 <span class="w">            </span><span class="nt">schedule</span><span class="p">:</span><span class="w"></span>
-<span class="w">              </span><span class="nt">start</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8</span><span class="w">                  </span><span class="c1"># HH:mm or HH</span><span class="w"></span>
-<span class="w">              </span><span class="nt">end</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">13:37</span><span class="w">                </span><span class="c1"># HH:mm or HH</span><span class="w"></span>
+<span class="w">              </span><span class="c1"># &#39;HH:mm&#39; or HH</span><span class="w"></span>
+<span class="w">              </span><span class="c1"># make sure to quote the former to stop yaml from doing weird stuff</span><span class="w"></span>
+<span class="w">              </span><span class="c1"># why is 22:15 = 1335?</span><span class="w"></span>
+<span class="w">              </span><span class="nt">start</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span><span class="w"></span>
+<span class="w">              </span><span class="nt">end</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;13:37&#39;</span><span class="w">              </span><span class="c1"># &#39;HH:mm&#39; or HH</span><span class="w"></span>
 <span class="w">          </span><span class="nt">truetone</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
 <span class="w">        </span><span class="nt">dock</span><span class="p">:</span><span class="w"></span>
 <span class="w">          </span><span class="nt">autohide</span><span class="p">:</span><span class="w"></span>
@@ -610,14 +609,33 @@
 <span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">flex-spacer</span><span class="w"></span>
 <span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://www.github.com</span><span class="w">      </span><span class="c1"># urls can be added as well</span><span class="w"></span>
 <span class="w">        </span><span class="nt">files</span><span class="p">:</span><span class="w"></span>
+<span class="w">          </span><span class="nt">default_handlers</span><span class="p">:</span><span class="w"></span>
+<span class="w">            </span><span class="c1"># extensions will be automatically resolved to all associated UTI</span><span class="w"></span>
+<span class="w">            </span><span class="nt">extensions</span><span class="p">:</span><span class="w"></span>
+<span class="w">              </span><span class="nt">csv</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Sublime Text</span><span class="w">             </span><span class="c1"># handler can be specified by name, bundle ID or path</span><span class="w"></span>
+<span class="w">              </span><span class="nt">html</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Firefox</span><span class="w"></span>
+<span class="w">            </span><span class="nt">schemes</span><span class="p">:</span><span class="w"></span>
+<span class="w">              </span><span class="nt">http</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">org.mozilla.Firefox</span><span class="w">     </span><span class="c1"># this will set https as well, user prompt is shown</span><span class="w"></span>
+<span class="w">              </span><span class="nt">ipfs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/Applications/Brave Browser.app</span><span class="w"></span>
+<span class="w">              </span><span class="nt">torrent</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Transmission</span><span class="w"></span>
+<span class="w">            </span><span class="nt">utis</span><span class="p">:</span><span class="w"></span>
+<span class="w">              </span><span class="nt">public.plain-text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TextEdit</span><span class="w"></span>
 <span class="w">          </span><span class="nt">dsstore_avoid</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">all</span><span class="w">                </span><span class="c1"># usb / network / all [= both types] / none</span><span class="w"></span>
-<span class="w">          </span><span class="nt">save_locally</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w">               </span><span class="c1"># default location of &quot;Save as...&quot;. iCloud vs local</span><span class="w"></span>
+<span class="w">          </span><span class="nt">save_icloud</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w">                 </span><span class="c1"># default location of &quot;Save as...&quot;. iCloud vs local</span><span class="w"></span>
 <span class="w">          </span><span class="nt">screenshots</span><span class="p">:</span><span class="w"></span>
 <span class="w">            </span><span class="nt">format</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">png</span><span class="w">                     </span><span class="c1"># png / bmp / gif / jp(e)g / pdf / tiff</span><span class="w"></span>
 <span class="w">            </span><span class="nt">location</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">~/Desktop</span><span class="w"></span>
 <span class="w">            </span><span class="nt">shadow</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w">                    </span><span class="c1"># actually called dropshadow</span><span class="w"></span>
 <span class="w">        </span><span class="nt">finder</span><span class="p">:</span><span class="w"></span>
 <span class="w">          </span><span class="nt">airdrop_extended</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w">           </span><span class="c1"># enable AirDrop on Ethernet and unsupported Macs</span><span class="w"></span>
+<span class="w">          </span><span class="nt">desktop_icons</span><span class="p">:</span><span class="w"></span>
+<span class="w">            </span><span class="nt">show</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
+<span class="w">            </span><span class="nt">arrange</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">grid</span><span class="w"> </span><span class="c1"># none, grid, name, kind, last_opened, added, modified, created, size, tags</span><span class="w"></span>
+<span class="w">            </span><span class="nt">size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">64</span><span class="w"></span>
+<span class="w">            </span><span class="nt">spacing</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">54</span><span class="w"></span>
+<span class="w">            </span><span class="nt">info</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w"></span>
+<span class="w">            </span><span class="nt">info_bottom</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
+<span class="w">            </span><span class="nt">text_size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">12</span><span class="w"></span>
 <span class="w">          </span><span class="nt">dmg_verify</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
 <span class="w">          </span><span class="nt">fileinfo_popup</span><span class="p">:</span><span class="w"></span>
 <span class="w">            </span><span class="nt">comments</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w"></span>
@@ -654,7 +672,7 @@
 <span class="w">              </span><span class="nt">style</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">icon</span><span class="w">                   </span><span class="c1"># icon / list / gallery / column [coverflow deprecated]</span><span class="w"></span>
 
 <span class="w">            </span><span class="nt">column</span><span class="p">:</span><span class="w"></span>
-<span class="w">              </span><span class="nt">arrange</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">name</span><span class="w"> </span><span class="c1"># none, grid, kind, last_opened, added, modified, created, size, tags</span><span class="w"></span>
+<span class="w">              </span><span class="nt">arrange</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">name</span><span class="w"> </span><span class="c1"># none, kind, last_opened, added, modified, created, size, tags</span><span class="w"></span>
 <span class="w">              </span><span class="nt">col_width</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">245</span><span class="w"></span>
 <span class="w">              </span><span class="nt">folder_arrow</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
 <span class="w">              </span><span class="nt">icons</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
@@ -665,7 +683,7 @@
 <span class="w">              </span><span class="nt">thumbnails</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
 
 <span class="w">            </span><span class="nt">gallery</span><span class="p">:</span><span class="w"></span>
-<span class="w">              </span><span class="nt">arrange</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">name</span><span class="w"> </span><span class="c1"># none, grid, kind, last_opened, added, modified, created, size, tags</span><span class="w"></span>
+<span class="w">              </span><span class="nt">arrange</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">name</span><span class="w"> </span><span class="c1"># none, kind, last_opened, added, modified, created, size, tags</span><span class="w"></span>
 <span class="w">              </span><span class="nt">icon_size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">48</span><span class="w"></span>
 <span class="w">              </span><span class="nt">preview</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
 <span class="w">              </span><span class="nt">preview_pane</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
@@ -722,7 +740,6 @@
 <span class="w">          </span><span class="nt">unread_bold</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w">                </span><span class="c1"># show unread messages in bold font</span><span class="w"></span>
 <span class="w">          </span><span class="nt">view_conversations_highlight</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w">  </span><span class="c1"># this is different from highlight_related</span><span class="w"></span>
 <span class="w">          </span><span class="nt">view_date_time</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w"></span>
-<span class="w">          </span><span class="nt">view_desc</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
 <span class="w">          </span><span class="nt">view_fullscreen_split</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w">       </span><span class="c1"># preview messages in split view when fullscreen</span><span class="w"></span>
 <span class="w">          </span><span class="nt">view_message_size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w">          </span><span class="c1"># display message size in overview</span><span class="w"></span>
 <span class="w">          </span><span class="nt">view_threaded</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
@@ -763,6 +780,8 @@
 <span class="w">            </span><span class="nt">after</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">300</span><span class="w">            </span><span class="c1"># seconds. 0 to disable</span><span class="w"></span>
 <span class="w">            </span><span class="nt">clock</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w">          </span><span class="c1"># show clock with screensaver</span><span class="w"></span>
 <span class="w">        </span><span class="nt">privacy</span><span class="p">:</span><span class="w"></span>
+<span class="w">          </span><span class="nt">allow_targeted_ads</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
+<span class="w">          </span><span class="nt">crashreporter_allow</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apple</span><span class="w"> </span><span class="c1"># none, apple, third_party</span><span class="w"></span>
 <span class="w">          </span><span class="nt">siri_share_recordings</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w"></span>
 <span class="w">        </span><span class="nt">security</span><span class="p">:</span><span class="w"></span>
 <span class="w">          </span><span class="nt">airdrop</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>

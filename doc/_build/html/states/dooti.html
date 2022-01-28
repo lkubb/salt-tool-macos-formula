@@ -19,7 +19,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="macosdefaults" href="macosdefaults.html" />
-    <link rel="prev" title="state modules" href="index.html" /> 
+    <link rel="prev" title="State Modules" href="index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -56,6 +56,13 @@
 <li class="toctree-l3"><a class="reference internal" href="../settings/animations.html#motion-reduced">motion_reduced</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../settings/animations.html#multidisplay-swoosh">multidisplay_swoosh</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../settings/animations.html#window-resize-time">window_resize_time</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../settings/apps/index.html">Apps</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../settings/apps/messages.html">Messages</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../settings/apps/messages.html#read-receipts">read_receipts</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../settings/audio.html">Audio</a><ul>
@@ -340,7 +347,7 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../modules/index.html">execution modules</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../modules/index.html">Execution Modules</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../modules/dooti.html">dooti</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../modules/macosdefaults.html">macosdefaults</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../modules/macprofile.html">macprofile</a><ul>
@@ -351,19 +358,17 @@
 <li class="toctree-l2"><a class="reference internal" href="../modules/pmset.html">pmset</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">state modules</a><ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">State Modules</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">dooti</a></li>
 <li class="toctree-l2"><a class="reference internal" href="macosdefaults.html">macosdefaults</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="macosdefaults.html#manage-system-configuration-values-on-macos">Manage (system) configuration values on MacOS.</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="macprofile.html">macprofile</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pmset.html">pmset</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="pmset.html#manage-power-configuration-values-with-pmset-on-macos">Manage power configuration values with pmset on MacOS.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pmset.html">pmset</a></li>
 </ul>
 </li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../pillar.html">Example Pillar</a></li>
 </ul>
 
         </div>
@@ -380,7 +385,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="index.html">state modules</a> &raquo;</li>
+          <li><a href="index.html">State Modules</a> &raquo;</li>
       <li>dooti</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/states/dooti.rst.txt" rel="nofollow"> View page source</a>
@@ -397,7 +402,7 @@
 URL schemes on macOS 12.0+.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="states.dooti.ext">
-<span id="_states.dooti.ext"></span><span class="sig-prename descclassname"><span class="pre">_states.dooti.</span></span><span class="sig-name descname"><span class="pre">ext</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">handler</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">allow_dynamic</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/_states/dooti.html#ext"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#states.dooti.ext" title="Permalink to this definition"></a></dt>
+<span id="_states.dooti.ext"></span><span class="sig-prename descclassname"><span class="pre">_states.dooti.</span></span><span class="sig-name descname"><span class="pre">ext</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">handler</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">allow_dynamic</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/_states/dooti.html#ext"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#states.dooti.ext" title="Permalink to this definition"></a></dt>
 <dd><p>Makes sure the default handler for the specified file extension is set as specified.</p>
 <dl>
 <dt>name</dt><dd><p>Specifies the file extension to assure the default handler for.</p>
@@ -416,12 +421,14 @@ for this to work. Allowed formats:</p>
 dynamic UTI. Those are rejected by default. Set this to true to override.
 Defaults to False.</p>
 </dd>
+<dt>user</dt><dd><p>Specifies the user to associate the handler for. Defaults to salt process user.</p>
+</dd>
 </dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="states.dooti.scheme">
-<span id="_states.dooti.scheme"></span><span class="sig-prename descclassname"><span class="pre">_states.dooti.</span></span><span class="sig-name descname"><span class="pre">scheme</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">handler</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/_states/dooti.html#scheme"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#states.dooti.scheme" title="Permalink to this definition"></a></dt>
+<span id="_states.dooti.scheme"></span><span class="sig-prename descclassname"><span class="pre">_states.dooti.</span></span><span class="sig-name descname"><span class="pre">scheme</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">handler</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/_states/dooti.html#scheme"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#states.dooti.scheme" title="Permalink to this definition"></a></dt>
 <dd><p>Sets a default handler for the specified URL scheme. Note that this might
 trigger an interactive dialog for the user to accept.</p>
 <dl>
@@ -437,12 +444,14 @@ for this to work. Allowed formats:</p>
 </ul>
 </div></blockquote>
 </dd>
+<dt>user</dt><dd><p>Specifies the user to associate the handler for. Defaults to salt process user.</p>
+</dd>
 </dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="states.dooti.uti">
-<span id="_states.dooti.uti"></span><span class="sig-prename descclassname"><span class="pre">_states.dooti.</span></span><span class="sig-name descname"><span class="pre">uti</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">handler</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/_states/dooti.html#uti"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#states.dooti.uti" title="Permalink to this definition"></a></dt>
+<span id="_states.dooti.uti"></span><span class="sig-prename descclassname"><span class="pre">_states.dooti.</span></span><span class="sig-name descname"><span class="pre">uti</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">handler</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/_states/dooti.html#uti"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#states.dooti.uti" title="Permalink to this definition"></a></dt>
 <dd><p>Sets a default handler for the specified UTI.</p>
 <dl>
 <dt>name</dt><dd><p>Specifies the UTI to set the default handler for.</p>
@@ -457,6 +466,8 @@ for this to work. Allowed formats:</p>
 </ul>
 </div></blockquote>
 </dd>
+<dt>user</dt><dd><p>Specifies the user to associate the handler for. Defaults to salt process user.</p>
+</dd>
 </dl>
 </dd></dl>
 
@@ -466,7 +477,7 @@ for this to work. Allowed formats:</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="index.html" class="btn btn-neutral float-left" title="state modules" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="index.html" class="btn btn-neutral float-left" title="State Modules" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="macosdefaults.html" class="btn btn-neutral float-right" title="macosdefaults" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
