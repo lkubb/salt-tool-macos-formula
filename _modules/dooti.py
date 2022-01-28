@@ -15,6 +15,7 @@ try:
 except ImportError:
     LIBS_AVAILABLE=False
 
+import salt.utils.platform
 from salt.exceptions import CommandExecutionError
 
 log = logging.getLogger(__name__)
