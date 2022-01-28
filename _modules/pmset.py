@@ -156,7 +156,9 @@ def get_all(name):
     #   settings = custom | live
 
     for scope in GET_SCOPES.keys():
-        if (val := settings.get(GET_SCOPES[scope], {}).get(name)) is not None:
+        val = settings.get(GET_SCOPES[scope], {}).get(name)
+        # if (val := settings.get(GET_SCOPES[scope], {}).get(name)) is not None:
+        if val is not None:
             data.update({scope: val})
 
     return data
