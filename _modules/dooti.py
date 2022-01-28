@@ -206,7 +206,7 @@ class dooti:
         self.workspace = workspace
 
     @staticmethod
-    def ext_to_utis(ext: str) -> NSArray[UTType]:
+    def ext_to_utis(ext):
         """
         Returns all UTI associated with specified file extension.
         If the extension is not registered with MacOS, will return
@@ -218,7 +218,7 @@ class dooti:
             ext, UTTagClassFilenameExtension, objc.nil
         )
 
-    def set_default_uti(self, uti: str | UTType, app: str) -> None:
+    def set_default_uti(self, uti, app):
         """
         Sets a default handler for a specific UTI.
 
@@ -234,7 +234,7 @@ class dooti:
             path, uti, objc.nil
         )
 
-    def set_default_scheme(self, scheme: str, app: str) -> None:
+    def set_default_scheme(self, scheme, app):
         """
         Sets a default handler for a specific URL scheme.
 
@@ -248,7 +248,7 @@ class dooti:
             path, scheme, objc.nil
         )
 
-    def set_default_ext(self, ext: str, app: str, allow_dynamic: bool = False) -> None:
+    def set_default_ext(self, ext, app, allow_dynamic=False):
         """
         Sets a default handler for all UTI registered to a file extension.
 
@@ -271,12 +271,12 @@ class dooti:
         for uti in utis:
             self.set_default_uti(uti, app)
 
-    def get_default_uti(self, uti: str | UTType) -> str | None:
+    def get_default_uti(self, uti):
         """
         Returns the filesystem path to the default handler for the
         specified UTI.
 
-        :param str uti: UTI to look up the default handler path for
+        :param str uti | UTType: UTI to look up the default handler path for
         """
 
         if not isinstance(uti, UTType):
@@ -291,7 +291,7 @@ class dooti:
 
         return handler.fileSystemRepresentation().decode()
 
-    def get_default_ext(self, ext: str) -> str | None:
+    def get_default_ext(self, ext):
         """
         Returns the filesystem path to the default handler for the
         specified file extension.
@@ -312,7 +312,7 @@ class dooti:
 
         return handler.fileSystemRepresentation().decode()
 
-    def get_default_scheme(self, scheme: str) -> str | None:
+    def get_default_scheme(self, scheme):
         """
         Returns the filesystem path to the default handler for the
         specified URL scheme.
@@ -333,7 +333,7 @@ class dooti:
 
         return handler.fileSystemRepresentation().decode()
 
-    def get_app_path(self, app: str) -> NSURL:
+    def get_app_path(self, app):
         """
         Returns a URL (filesystem path prefixed with 'file://' scheme) to an
         application specified by name, absolute path or bundle ID.
@@ -360,7 +360,7 @@ class dooti:
                 )
             )
 
-    def bundle_to_url(self, bundle_id: str) -> NSURL:
+    def bundle_to_url(self, bundle_id):
         """
         Returns a URL (filesystem path prefixed with 'file://' scheme) to an
         application with the specified bundle ID.
@@ -379,7 +379,7 @@ class dooti:
 
         return path
 
-    def name_to_url(self, app_name: str) -> NSURL:
+    def name_to_url(self, app_name):
         """
         Returns a URL (filesystem path prefixed with 'file://' scheme) to an
         application with the specified name.
@@ -398,7 +398,7 @@ class dooti:
 
         return NSURL.fileURLWithPath_(path)
 
-    def path_to_url(self, path: str, skip_check: bool = False) -> NSURL:
+    def path_to_url(self, path, skip_check=False):
         """
         Translates an absolute filesystem path to a URL.
 
