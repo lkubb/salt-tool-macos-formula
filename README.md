@@ -335,7 +335,6 @@ user:
         clock: false          # show clock with screensaver
     privacy:
       allow_targeted_ads: true
-      crashreporter_allow: apple # none, apple, third_party
       siri_share_recordings: false
     security:
       airdrop: true
