@@ -29,7 +29,7 @@
 # -*- coding: utf-8 -*-
 '''
 Macprofiles Module
-===============
+==================
 
 Manage locally installed configuration profiles (.mobileconfig)
 

@@ -186,6 +186,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../settings/mail.html">Mail</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../settings/mail.html#accounts">accounts</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../settings/mail.html#animation-reply">animation_reply</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../settings/mail.html#animation-sent">animation_sent</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../settings/mail.html#attachments-inline">attachments_inline</a></li>
@@ -416,10 +417,16 @@ salt <span class="s1">&#39;*&#39;</span> pmset.get destroyfvkeyonstandby <span c
 <dt>name</dt><dd><p>Specifies the setting to retrieve. See <cite>man pmset</cite> for valid
 arguments. To dig further, see <cite>pmset -g getters</cite>.</p>
 </dd>
-<dt>scope</dt><dd><dl class="simple">
-<dt>The scope to look up the setting for. Valid scopes are:</dt><dd><p>battery, ac, ups, current, system</p>
-</dd>
-</dl>
+<dt>scope</dt><dd><p>The scope to look up the setting for. Valid scopes are:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>battery</p></li>
+<li><p>ac</p></li>
+<li><p>ups</p></li>
+<li><p>current</p></li>
+<li><p>system</p></li>
+</ul>
+</div></blockquote>
 <p>Defaults to current.</p>
 </dd>
 </dl>
@@ -465,10 +472,16 @@ salt <span class="s1">&#39;*&#39;</span> pmset.get_scope battery
 </pre></div>
 </div>
 <dl>
-<dt>scope</dt><dd><dl class="simple">
-<dt>The scope to look up the settings for. Valid scopes are:</dt><dd><p>battery, ac, ups, current, system</p>
-</dd>
-</dl>
+<dt>scope</dt><dd><p>The scope to look up the settings for. Valid scopes are:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>battery</p></li>
+<li><p>ac</p></li>
+<li><p>ups</p></li>
+<li><p>current</p></li>
+<li><p>system</p></li>
+</ul>
+</div></blockquote>
 <p>Defaults to current.</p>
 </dd>
 </dl>
@@ -506,10 +519,16 @@ scope.</p>
 To dig further, see <cite>pmset -g getters</cite>. If value is a dict,
 this parameter is not needed.</p>
 </dd>
-<dt>scope</dt><dd><dl class="simple">
-<dt>The scope to apply the setting to. Valid scopes are:</dt><dd><p>battery, ac, ups, all</p>
-</dd>
-</dl>
+<dt>scope</dt><dd><p>The scope to apply the setting to. Valid scopes are:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>battery</p></li>
+<li><p>ac</p></li>
+<li><p>ups</p></li>
+<li><p>current</p></li>
+<li><p>system</p></li>
+</ul>
+</div></blockquote>
 <p>Defaults to all.</p>
 </dd>
 </dl>

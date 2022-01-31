@@ -58,6 +58,13 @@
 <li class="toctree-l3"><a class="reference internal" href="animations.html#window-resize-time">window_resize_time</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="apps/index.html">Apps</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="apps/messages.html">Messages</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="apps/messages.html#read-receipts">read_receipts</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="audio.html">Audio</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="audio.html#boot-sound">boot_sound</a></li>
 <li class="toctree-l3"><a class="reference internal" href="audio.html#charging-sound">charging_sound</a></li>
@@ -179,6 +186,7 @@
 </ul>
 </li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Mail</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#accounts">accounts</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#animation-reply">animation_reply</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#animation-sent">animation_sent</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#attachments-inline">attachments_inline</a></li>
@@ -340,7 +348,7 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../modules/index.html">execution modules</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../modules/index.html">Execution Modules</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../modules/dooti.html">dooti</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../modules/macosdefaults.html">macosdefaults</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../modules/macprofile.html">macprofile</a><ul>
@@ -351,19 +359,17 @@
 <li class="toctree-l2"><a class="reference internal" href="../modules/pmset.html">pmset</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../states/index.html">state modules</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../states/index.html">State Modules</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../states/dooti.html">dooti</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../states/macosdefaults.html">macosdefaults</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../states/macosdefaults.html#manage-system-configuration-values-on-macos">Manage (system) configuration values on MacOS.</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../states/macprofile.html">macprofile</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../states/pmset.html">pmset</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../states/pmset.html#manage-power-configuration-values-with-pmset-on-macos">Manage power configuration values with pmset on MacOS.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../states/pmset.html">pmset</a></li>
 </ul>
 </li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../pillar.html">Example Pillar</a></li>
 </ul>
 
         </div>
@@ -393,6 +399,79 @@
              
   <section id="mail">
 <h1>Mail<a class="headerlink" href="#mail" title="Permalink to this headline"></a></h1>
+<section id="accounts">
+<h2>accounts<a class="headerlink" href="#accounts" title="Permalink to this headline"></a></h2>
+<blockquote>
+<div><p>Allows to configure mail accounts for Apple Mail.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This will install a configuration profile interactively. The user
+has to accept the installation manually.
+Full Disk Access on your terminal emulator application is not required.</p>
+</div>
+<dl>
+<dt>Values:</dt><dd><ul>
+<li><p>list of dicts</p>
+<blockquote>
+<div><ul>
+<li><p>address: string</p></li>
+<li><p>description: string [default: &lt;address&gt;]</p></li>
+<li><p>name: string [default: &lt;username part of address&gt;]</p></li>
+<li><p>type: string [imap, pop. default: imap]</p></li>
+<li><p>server_in:</p>
+<blockquote>
+<div><ul>
+<li><p>auth: string [default: password]</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>none</p></li>
+<li><p>password</p></li>
+<li><p>crammd5</p></li>
+<li><p>ntlm</p></li>
+<li><p>httpmd5</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>domain: string</p></li>
+<li><p>port: int [default: 993]</p></li>
+<li><p>ssl: bool [default: true]</p></li>
+<li><p>username: string [default: &lt;address&gt;]</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>server_out:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>auth: string [default: password]</p></li>
+<li><p>domain: string</p></li>
+<li><p>port: int [default: 465]</p></li>
+<li><p>ssl: bool [default: true]</p></li>
+<li><p>username: string [default: &lt;address&gt;]</p></li>
+<li><p>password_sameas_in: bool [default: true]</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</dd>
+</dl>
+<p>Example:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">accounts</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">address</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">elliotalderson@protonmail.ch</span><span class="w"></span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dox</span><span class="w"></span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Elliot</span><span class="w"></span>
+<span class="w">    </span><span class="nt">server_in</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="nt">domain</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">127.0.0.1</span><span class="w"></span>
+<span class="w">      </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1143</span><span class="w"></span>
+<span class="w">    </span><span class="nt">server_out</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="nt">domain</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">127.0.0.1</span><span class="w"></span>
+<span class="w">      </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1025</span><span class="w"></span>
+</pre></div>
+</div>
+</div></blockquote>
+</section>
 <section id="animation-reply">
 <h2>animation_reply<a class="headerlink" href="#animation-reply" title="Permalink to this headline"></a></h2>
 <blockquote>

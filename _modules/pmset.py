@@ -64,7 +64,13 @@ def set_(value, name=None, scope="all"):
 
     scope
         The scope to apply the setting to. Valid scopes are:
-            battery, ac, ups, all
+
+            * battery
+            * ac
+            * ups
+            * current
+            * system
+
         Defaults to all.
 
     """
@@ -107,7 +113,13 @@ def get(name, scope="current"):
 
     scope
         The scope to look up the setting for. Valid scopes are:
-            battery, ac, ups, current, system
+
+            * battery
+            * ac
+            * ups
+            * current
+            * system
+
         Defaults to current.
 
     """
@@ -179,7 +191,13 @@ def get_scope(scope="current"):
 
     scope
         The scope to look up the settings for. Valid scopes are:
-            battery, ac, ups, current, system
+
+            * battery
+            * ac
+            * ups
+            * current
+            * system
+
         Defaults to current.
 
     """

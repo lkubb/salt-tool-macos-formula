@@ -58,6 +58,13 @@
 <li class="toctree-l3"><a class="reference internal" href="animations.html#window-resize-time">window_resize_time</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="apps/index.html">Apps</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="apps/messages.html">Messages</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="apps/messages.html#read-receipts">read_receipts</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="audio.html">Audio</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="audio.html#boot-sound">boot_sound</a></li>
 <li class="toctree-l3"><a class="reference internal" href="audio.html#charging-sound">charging_sound</a></li>
@@ -179,6 +186,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="mail.html">Mail</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="mail.html#accounts">accounts</a></li>
 <li class="toctree-l3"><a class="reference internal" href="mail.html#animation-reply">animation_reply</a></li>
 <li class="toctree-l3"><a class="reference internal" href="mail.html#animation-sent">animation_sent</a></li>
 <li class="toctree-l3"><a class="reference internal" href="mail.html#attachments-inline">attachments_inline</a></li>
@@ -340,28 +348,28 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../modules/index.html">execution modules</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../modules/macosdefaults.html">macosdefaults execution module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../modules/macprofile.html">macprofile execution module</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../modules/index.html">Execution Modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../modules/dooti.html">dooti</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../modules/macosdefaults.html">macosdefaults</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../modules/macprofile.html">macprofile</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../modules/macprofile.html#macprofiles-module">Macprofiles Module</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../modules/macsettings.html">macsettings execution module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../modules/pmset.html">pmset execution module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../modules/macsettings.html">macsettings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../modules/pmset.html">pmset</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../states/index.html">state modules</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../states/macosdefaults.html">macosdefaults state module</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../states/index.html">State Modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../states/dooti.html">dooti</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../states/macosdefaults.html">macosdefaults</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../states/macosdefaults.html#manage-system-configuration-values-on-macos">Manage (system) configuration values on MacOS.</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../states/macprofile.html">macprofile state module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../states/pmset.html">pmset state module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../states/pmset.html#manage-power-configuration-values-with-pmset-on-macos">Manage power configuration values with pmset on MacOS.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../states/macprofile.html">macprofile</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../states/pmset.html">pmset</a></li>
 </ul>
 </li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../pillar.html">Example Pillar</a></li>
 </ul>
 
         </div>
@@ -513,20 +521,16 @@ that means you need to re-enter your encryption password during wakeup
 from hibernation.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>This might not make a big difference on current M1 Macs and those with
-T2 security chip:</p>
+<p>This <a class="reference external" href="https://discussions.apple.com/thread/253568420">might not make a big difference</a> on current M1 Macs and those with
+T2 security chip.</p>
+<p>This configuration <a class="reference external" href="https://github.com/drduh/macOS-Security-and-Privacy-Guide/issues/283">might be redundant</a> on APFS volumes, see</p>
+<p>Mind that this might make problems, at least on older Macs:</p>
 <blockquote>
-<div><p><a class="reference external" href="https://discussions.apple.com/thread/253568420">https://discussions.apple.com/thread/253568420</a></p>
-</div></blockquote>
-<p>This configuration might be redundant on APFS volumes, see
-<a class="reference external" href="https://github.com/drduh/macOS-Security-and-Privacy-Guide/issues/283">https://github.com/drduh/macOS-Security-and-Privacy-Guide/issues/283</a></p>
-<dl class="simple">
-<dt>Mind that this might make problems, at least on older Macs:</dt><dd><p>If you choose to evict FileVault keys in standby mode, you should also modify
+<div><p>If you choose to evict FileVault keys in standby mode, you should also modify
 your standby and power nap settings. Otherwise, your machine may wake while in
 standby mode and then power off due to the absence of the FileVault key.
 (<a class="reference external" href="https://github.com/drduh/macOS-Security-and-Privacy-Guide">https://github.com/drduh/macOS-Security-and-Privacy-Guide</a>)</p>
-</dd>
-</dl>
+</div></blockquote>
 </div>
 <div class="admonition hint">
 <p class="admonition-title">Hint</p>

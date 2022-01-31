@@ -185,6 +185,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="settings/mail.html">Mail</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="settings/mail.html#accounts">accounts</a></li>
 <li class="toctree-l3"><a class="reference internal" href="settings/mail.html#animation-reply">animation_reply</a></li>
 <li class="toctree-l3"><a class="reference internal" href="settings/mail.html#animation-sent">animation_sent</a></li>
 <li class="toctree-l3"><a class="reference internal" href="settings/mail.html#attachments-inline">attachments_inline</a></li>
@@ -718,6 +719,24 @@
 <span class="w">          </span><span class="nt">measurements</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">metric</span><span class="w">              </span><span class="c1"># metric, US, UK</span><span class="w"></span>
 <span class="w">        </span><span class="c1"># customize Mail.app. note that your terminal application needs Full Disk Access for this to work</span><span class="w"></span>
 <span class="w">        </span><span class="nt">mail</span><span class="p">:</span><span class="w"></span>
+<span class="w">          </span><span class="nt">accounts</span><span class="p">:</span><span class="w">                         </span><span class="c1"># those accounts will be installed interactively (profile)</span><span class="w"></span>
+<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">address</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">elliotalderson@protonmail.ch</span><span class="w"></span>
+<span class="w">              </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dox</span><span class="w">              </span><span class="c1"># default: address</span><span class="w"></span>
+<span class="w">              </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Elliot</span><span class="w">                  </span><span class="c1"># default: &lt;username portion of address&gt;</span><span class="w"></span>
+<span class="w">              </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">imap</span><span class="w">                    </span><span class="c1"># imap, pop</span><span class="w"></span>
+<span class="w">              </span><span class="nt">server_in</span><span class="p">:</span><span class="w"></span>
+<span class="w">                </span><span class="nt">auth</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">password</span><span class="w">              </span><span class="c1"># none, password, crammd5, ntlm, httpmd5</span><span class="w"></span>
+<span class="w">                </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">elliotalderson@protonmail.ch</span><span class="w">    </span><span class="c1"># default: address</span><span class="w"></span>
+<span class="w">                </span><span class="nt">domain</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">127.0.0.1</span><span class="w"></span>
+<span class="w">                </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1143</span><span class="w">                  </span><span class="c1"># default: 993</span><span class="w"></span>
+<span class="w">                </span><span class="nt">ssl</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
+<span class="w">              </span><span class="nt">server_out</span><span class="p">:</span><span class="w"></span>
+<span class="w">                </span><span class="nt">auth</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">password</span><span class="w">              </span><span class="c1"># none, password, crammd5, ntlm, httpmd5</span><span class="w"></span>
+<span class="w">                </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">elliotalderson@protonmail.ch</span><span class="w">    </span><span class="c1"># default: address</span><span class="w"></span>
+<span class="w">                </span><span class="nt">domain</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">127.0.0.1</span><span class="w"></span>
+<span class="w">                </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1025</span><span class="w">                  </span><span class="c1"># default: 465</span><span class="w"></span>
+<span class="w">                </span><span class="nt">ssl</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
+<span class="w">                </span><span class="nt">password_sameas_in</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
 <span class="w">          </span><span class="nt">animation_reply</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w">             </span><span class="c1"># whether to animate sending replies</span><span class="w"></span>
 <span class="w">          </span><span class="nt">animation_sent</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w">              </span><span class="c1"># whether to animate sending messages</span><span class="w"></span>
 <span class="w">          </span><span class="nt">attachments_inline</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w">          </span><span class="c1"># whether to show attachments inline</span><span class="w"></span>
@@ -781,7 +800,6 @@
 <span class="w">            </span><span class="nt">clock</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w">          </span><span class="c1"># show clock with screensaver</span><span class="w"></span>
 <span class="w">        </span><span class="nt">privacy</span><span class="p">:</span><span class="w"></span>
 <span class="w">          </span><span class="nt">allow_targeted_ads</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
-<span class="w">          </span><span class="nt">crashreporter_allow</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apple</span><span class="w"> </span><span class="c1"># none, apple, third_party</span><span class="w"></span>
 <span class="w">          </span><span class="nt">siri_share_recordings</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w"></span>
 <span class="w">        </span><span class="nt">security</span><span class="p">:</span><span class="w"></span>
 <span class="w">          </span><span class="nt">airdrop</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>

@@ -5,18 +5,17 @@
 
     .. note::
 
-        This might not make a big difference on current M1 Macs and those with
-        T2 security chip:
-          https://discussions.apple.com/thread/253568420
+        This `might not make a big difference <https://discussions.apple.com/thread/253568420>`_ on current M1 Macs and those with
+        T2 security chip.
 
-        This configuration might be redundant on APFS volumes, see
-        https://github.com/drduh/macOS-Security-and-Privacy-Guide/issues/283
+        This configuration `might be redundant <https://github.com/drduh/macOS-Security-and-Privacy-Guide/issues/283>`_ on APFS volumes, see
 
         Mind that this might make problems, at least on older Macs:
-          If you choose to evict FileVault keys in standby mode, you should also modify
-          your standby and power nap settings. Otherwise, your machine may wake while in
-          standby mode and then power off due to the absence of the FileVault key.
-          (https://github.com/drduh/macOS-Security-and-Privacy-Guide)
+
+              If you choose to evict FileVault keys in standby mode, you should also modify
+              your standby and power nap settings. Otherwise, your machine may wake while in
+              standby mode and then power off due to the absence of the FileVault key.
+              (https://github.com/drduh/macOS-Security-and-Privacy-Guide)
 
     .. hint::
         It is always better to power off completely when not in use.
