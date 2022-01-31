@@ -46,7 +46,7 @@ include:
   - {{ tplroot }}.onchanges
   - {{ tplroot }}.require
 
-{%- for user in macos.users | selectattr('macos.finder', 'defined') selectattr('macos.finder.desktop_icons', 'defined') %}
+{%- for user in macos.users | selectattr('macos.finder', 'defined') | selectattr('macos.finder.desktop_icons', 'defined') %}
   {%- from tpldir ~ '/map.jinja' import user_settings with context %}
 
   {%- if user.macos.finder.desktop_icons.show is defined %}
