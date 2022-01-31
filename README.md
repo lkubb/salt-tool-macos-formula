@@ -177,9 +177,13 @@ user:
       dsstore_avoid: all                # usb / network / all [= both types] / none
       save_icloud: true                 # default location of "Save as...". iCloud vs local
       screenshots:
+        basename: custom_prefix
         format: png                     # png / bmp / gif / jp(e)g / pdf / tiff
-        location: ~/Desktop
+        include_date: true              # whether to include date in filename
+        include_cursor: false           # whether to show cursor in screenshots
+        location: /Users/h4xx0r/screenshots # default: $HOME/Desktop (absolute path)
         shadow: true                    # actually called dropshadow
+        thumbnail: true                 # show floating thumbnail
     finder:
       airdrop_extended: false           # enable AirDrop on Ethernet and unsupported Macs
       desktop_icons:

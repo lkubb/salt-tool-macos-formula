@@ -14,8 +14,10 @@
                 - tiff
 
             * include_date: bool [default: true]
+            * include_cursor: bool [default: false?]
             * location: string [default: $HOME/Desktop]
             * shadow: bool [default: true]
+            * thumbnail: bool [default: true?]
 
     Example:
 
@@ -25,8 +27,10 @@
           basename: s1(k
           format: bmp
           include_date: true
+          include_cursor: false
           location: /Users/h4xx0r/screenshots
           shadow: false
+          thumbnail: true
 
     References:
         * https://ss64.com/osx/screencapture.html
@@ -47,6 +51,11 @@ Screenshot settings are managed for user {{ user.name }}:
   macosdefaults.write:
     - domain: com.apple.screencapture
     - names:
+  {%- if user.macos.files.screenshots.location is defined %}
+      - location:
+          - value: {{ user.macos.files.screenshots.location }}
+          - vtype: string
+  {%- endif %}
   {%- if user.macos.files.screenshots.basename is defined %}
       - name:
           - value: {{ user.macos.files.screenshots.basename }}
@@ -62,9 +71,9 @@ Screenshot settings are managed for user {{ user.name }}:
           - value: {{ user.macos.files.screenshots.include_date | to_bool }}
           - vtype: bool
   {%- endif %}
-  {%- if user.macos.files.screenshots.include_mouse is defined %}
+  {%- if user.macos.files.screenshots.include_cursor is defined %}
       - showsCursor:
-          - value: {{ user.macos.files.screenshots.include_mouse | to_bool }}
+          - value: {{ user.macos.files.screenshots.include_cursor | to_bool }}
           - vtype: bool
   {%- endif %}
   {%- if user.macos.files.screenshots.shadow is defined %}

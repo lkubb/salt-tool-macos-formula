@@ -16,6 +16,9 @@ Screenshot settings are reset to defaults for user {{ user.name }}:
   macosdefaults.absent:
     - domain: com.apple.screencapture
     - names:
+  {%- if user.macos.files.screenshots.location is defined %}
+      - location
+  {%- endif %}
   {%- if user.macos.files.screenshots.basename is defined %}
       - name
   {%- endif %}
