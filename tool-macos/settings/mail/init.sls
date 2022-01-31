@@ -1,4 +1,5 @@
 include:
+  - .accounts
   - .animation_reply
   - .animation_sent
   - .attachments_inline

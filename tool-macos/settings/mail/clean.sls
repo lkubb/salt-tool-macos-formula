@@ -1,4 +1,5 @@
 include:
+  - .accounts.clean
   - .animation_reply.clean
   - .animation_sent.clean
   - .attachments_inline.clean

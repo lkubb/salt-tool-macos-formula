@@ -320,6 +320,24 @@ tool:
           measurements: metric              # metric, US, UK
         # customize Mail.app. note that your terminal application needs Full Disk Access for this to work
         mail:
+          accounts:                         # those accounts will be installed interactively (profile)
+            - address: elliotalderson@protonmail.ch
+              description: dox              # default: address
+              name: Elliot                  # default: <username portion of address>
+              type: imap                    # imap, pop
+              server_in:
+                auth: password              # none, password, crammd5, ntlm, httpmd5
+                username: elliotalderson@protonmail.ch    # default: address
+                domain: 127.0.0.1
+                port: 1143                  # default: 993
+                ssl: true
+              server_out:
+                auth: password              # none, password, crammd5, ntlm, httpmd5
+                username: elliotalderson@protonmail.ch    # default: address
+                domain: 127.0.0.1
+                port: 1025                  # default: 465
+                ssl: true
+                password_sameas_in: true
           animation_reply: true             # whether to animate sending replies
           animation_sent: true              # whether to animate sending messages
           attachments_inline: true          # whether to show attachments inline
