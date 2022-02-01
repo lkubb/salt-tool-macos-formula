@@ -3,7 +3,15 @@
 {%- set users = {} -%}
 
 {%- set console_user = salt['cmd.run_stdout']('id -n -u $(stat -f "%u" /dev/console)', python_shell=True) %}
-{%- do macos.update({'_console_user': console_user}) %}
+{%- set brew_prefix = salt['cmd.run_stdout']('brew --prefix') %}
+{%- if not brew_prefix %}
+  {%- if 'Apple' in grains['cpu_model'] %}
+    {%- set brew_prefix = '/opt/homebrew' %}
+  {%- else %}
+    {%- set brew_prefix = '/usr/local' %}
+  {%- endif %}
+{%- endif %}
+{%- do macos.update({'_console_user': console_user, '_brew_prefix': brew_prefix}) %}
 
 {#- rejectattr filter does not fit with mapping. need to filter out users before merging default values -#}
 {%- for tool_user, tool_user_conf in salt['pillar.get']('tool:users', {}).items() -%}

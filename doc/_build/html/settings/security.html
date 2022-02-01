@@ -275,6 +275,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#require-admin-for-system-settings">require_admin_for_system_settings</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#root-disabled-check">root_disabled_check</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#smartcard-only-auth">smartcard-only-auth</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sudo-touchid">sudo_touchid</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#user-hidden">user-hidden</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#user-no-filevault">user_no_filevault</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#wake-on-lan">wake_on_lan</a></li>
@@ -840,6 +841,42 @@ and <cite>/usr/sbin/dsenableroot -d</cite> to disable. The process is interactiv
 <dt>References;</dt><dd><ul class="simple">
 <li><p><a class="reference external" href="https://support.apple.com/guide/deployment/configure-macos-smart-cardonly-authentication-depfce8de48b/1/web/1.0">https://support.apple.com/guide/deployment/configure-macos-smart-cardonly-authentication-depfce8de48b/1/web/1.0</a></p></li>
 <li><p><a class="reference external" href="https://support.apple.com/HT208372">https://support.apple.com/HT208372</a></p></li>
+</ul>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="sudo-touchid">
+<h2>sudo_touchid<a class="headerlink" href="#sudo-touchid" title="Permalink to this headline"></a></h2>
+<blockquote>
+<div><p>Customizes availability of Touch ID and pam_reattach for sudo authentication.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Since <code class="docutils literal notranslate"><span class="pre">/etc/pam.d/sudo</span></code> is reset after a system upgrade, you will
+need to reapply this state occasionally.</p>
+</div>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>pam_reattach might be needed for Touch ID authentication inside
+tmux sessions and iTerm saved sessions to work.</p>
+</div>
+<dl>
+<dt>Values:</dt><dd><ul>
+<li><p>bool [default: false]</p></li>
+<li><p>or dict:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>enabled: bool [default: false]</p></li>
+<li><p>pam_reattach: bool [default:false]</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</dd>
+<dt>References;</dt><dd><ul class="simple">
+<li><p><a class="reference external" href="https://derflounder.wordpress.com/2017/11/17/enabling-touch-id-authorization-for-sudo-on-macos-high-sierra/">https://derflounder.wordpress.com/2017/11/17/enabling-touch-id-authorization-for-sudo-on-macos-high-sierra/</a></p></li>
+<li><p><a class="reference external" href="https://akrabat.com/add-touchid-authentication-to-sudo/">https://akrabat.com/add-touchid-authentication-to-sudo/</a></p></li>
+<li><p><a class="reference external" href="https://github.com/fabianishere/pam_reattach">https://github.com/fabianishere/pam_reattach</a></p></li>
 </ul>
 </dd>
 </dl>

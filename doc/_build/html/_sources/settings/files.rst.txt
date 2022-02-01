@@ -75,8 +75,10 @@ screenshots
                 - tiff
 
             * include_date: bool [default: true]
+            * include_cursor: bool [default: false?]
             * location: string [default: $HOME/Desktop]
             * shadow: bool [default: true]
+            * thumbnail: bool [default: true?]
 
     Example:
 
@@ -86,8 +88,10 @@ screenshots
           basename: s1(k
           format: bmp
           include_date: true
+          include_cursor: false
           location: /Users/h4xx0r/screenshots
           shadow: false
+          thumbnail: true
 
     References:
         * https://ss64.com/osx/screencapture.html

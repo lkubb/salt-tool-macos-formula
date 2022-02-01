@@ -22,6 +22,7 @@ include:
   - .require_admin_for_system_settings
   - .root_disabled_check
   - .smartcard-only-auth
+  - .sudo_touchid
   #- .thumbnails-disabled
   - .user-hidden
   - .user_no_filevault

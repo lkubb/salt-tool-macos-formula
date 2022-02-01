@@ -274,6 +274,7 @@
 <li class="toctree-l3"><a class="reference internal" href="settings/security.html#require-admin-for-system-settings">require_admin_for_system_settings</a></li>
 <li class="toctree-l3"><a class="reference internal" href="settings/security.html#root-disabled-check">root_disabled_check</a></li>
 <li class="toctree-l3"><a class="reference internal" href="settings/security.html#smartcard-only-auth">smartcard-only-auth</a></li>
+<li class="toctree-l3"><a class="reference internal" href="settings/security.html#sudo-touchid">sudo_touchid</a></li>
 <li class="toctree-l3"><a class="reference internal" href="settings/security.html#user-hidden">user-hidden</a></li>
 <li class="toctree-l3"><a class="reference internal" href="settings/security.html#user-no-filevault">user_no_filevault</a></li>
 <li class="toctree-l3"><a class="reference internal" href="settings/security.html#wake-on-lan">wake_on_lan</a></li>
@@ -623,10 +624,14 @@
 <span class="w">              </span><span class="nt">public.plain-text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TextEdit</span><span class="w"></span>
 <span class="w">          </span><span class="nt">dsstore_avoid</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">all</span><span class="w">                </span><span class="c1"># usb / network / all [= both types] / none</span><span class="w"></span>
 <span class="w">          </span><span class="nt">save_icloud</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w">                 </span><span class="c1"># default location of &quot;Save as...&quot;. iCloud vs local</span><span class="w"></span>
-<span class="w">          </span><span class="nt">screenshots</span><span class="p">:</span><span class="w"></span>
-<span class="w">            </span><span class="nt">format</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">png</span><span class="w">                     </span><span class="c1"># png / bmp / gif / jp(e)g / pdf / tiff</span><span class="w"></span>
-<span class="w">            </span><span class="nt">location</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">~/Desktop</span><span class="w"></span>
-<span class="w">            </span><span class="nt">shadow</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w">                    </span><span class="c1"># actually called dropshadow</span><span class="w"></span>
+<span class="w">        </span><span class="nt">screenshots</span><span class="p">:</span><span class="w"></span>
+<span class="w">          </span><span class="nt">basename</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">custom_prefix</span><span class="w"></span>
+<span class="w">          </span><span class="nt">format</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">png</span><span class="w">                     </span><span class="c1"># png / bmp / gif / jp(e)g / pdf / tiff</span><span class="w"></span>
+<span class="w">          </span><span class="nt">include_date</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w">              </span><span class="c1"># whether to include date in filename</span><span class="w"></span>
+<span class="w">          </span><span class="nt">include_cursor</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w">           </span><span class="c1"># whether to show cursor in screenshots</span><span class="w"></span>
+<span class="w">          </span><span class="nt">location</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/Users/h4xx0r/screenshots</span><span class="w"> </span><span class="c1"># default: $HOME/Desktop (absolute path)</span><span class="w"></span>
+<span class="w">          </span><span class="nt">shadow</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w">                    </span><span class="c1"># actually called dropshadow</span><span class="w"></span>
+<span class="w">          </span><span class="nt">thumbnail</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w">                 </span><span class="c1"># show floating thumbnail</span><span class="w"></span>
 <span class="w">        </span><span class="nt">finder</span><span class="p">:</span><span class="w"></span>
 <span class="w">          </span><span class="nt">airdrop_extended</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w">           </span><span class="c1"># enable AirDrop on Ethernet and unsupported Macs</span><span class="w"></span>
 <span class="w">          </span><span class="nt">desktop_icons</span><span class="p">:</span><span class="w"></span>

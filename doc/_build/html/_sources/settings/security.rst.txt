@@ -306,6 +306,32 @@ smartcard-only-auth
         * https://support.apple.com/guide/deployment/configure-macos-smart-cardonly-authentication-depfce8de48b/1/web/1.0
         * https://support.apple.com/HT208372
 
+sudo_touchid
+------------
+    Customizes availability of Touch ID and pam_reattach for sudo authentication.
+
+    .. note::
+
+        Since ``/etc/pam.d/sudo`` is reset after a system upgrade, you will
+        need to reapply this state occasionally.
+
+    .. hint::
+
+        pam_reattach might be needed for Touch ID authentication inside
+        tmux sessions and iTerm saved sessions to work.
+
+    Values:
+        - bool [default: false]
+        - or dict:
+
+            * enabled: bool [default: false]
+            * pam_reattach: bool [default:false]
+
+    References;
+        * https://derflounder.wordpress.com/2017/11/17/enabling-touch-id-authorization-for-sudo-on-macos-high-sierra/
+        * https://akrabat.com/add-touchid-authentication-to-sudo/
+        * https://github.com/fabianishere/pam_reattach
+
 user-hidden
 -----------
     Manages visibility of user accounts.

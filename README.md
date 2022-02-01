@@ -568,6 +568,11 @@ tool:
       remote_desktop_disabled: true     # this setting only works to disable
       remote_login: false               # state of SSH server
       root_disabled_check: false        # disable/enable check if root user account is disabled
+      # allow sudo auth with Touch ID
+      sudo_touchid:
+        enabled: false
+        # pam_reattach might be required to make this work with tmux and iTerm saved sessions
+        pam_reattach: false
 #     wake_on_lan: false                # enabled by default for ac actually. fine-grained
                                         # settings in macos.power. this is mostly for disabling
     # Time Machine configuration needs Full Disk Access for your terminal emulator.

@@ -20,5 +20,6 @@ include:
   - .remote_login.clean
   - .require_admin_for_system_settings.clean
   - .smartcard-only-auth.clean
+  - .sudo_touchid.clean
   - .user-hidden.clean
   - .wake_on_lan.clean
