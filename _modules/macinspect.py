@@ -3,7 +3,7 @@ from Foundation import NSURL, NSBundle
 import LaunchServices
 
 # https://michaellynn.github.io/2015/08/08/learn-you-a-better-pyobjc-bridgesupport-signature/
-def schemes_and_handlers() -> dict:
+def schemes_and_handlers():  # -> dict:
     las = {}
     las_path = "/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework"
 
@@ -18,7 +18,7 @@ def schemes_and_handlers() -> dict:
     return dict(zip(schemes, handlers))
 
 
-def all_registered_apps() -> list[NSURL]:
+def all_registered_apps():  # -> list[NSURL]:
     urls = LaunchServices._LSCopyAllApplicationURLs(None)
 
     if not urls:
@@ -28,5 +28,6 @@ def all_registered_apps() -> list[NSURL]:
 
 
 def utis():
+    pass
     # seems like _UTCopyDeclaredTypeIdentifiers in Foundation is not available anymore
     # /System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -dump
