@@ -643,3 +643,10 @@ If you can't find the file, you might be dealing with a sandboxed application (l
 - https://github.com/zcutlip/prefsniff
 - https://github.com/mosen/salt-osx
 - specific ones found in some of the state files
+
+## Interesting Links
+https://managingosx.wordpress.com/2015/02/05/accessing-more-frameworks-with-python-2/
+https://gist.github.com/pudquick/1362a8908be01e23041d
+https://github.com/robperc/FinderSidebarEditor
+https://michaellynn.github.io/2015/08/08/learn-you-a-better-pyobjc-bridgesupport-signature/
+https://github.com/colin-stubbs/salt-formula-macos
