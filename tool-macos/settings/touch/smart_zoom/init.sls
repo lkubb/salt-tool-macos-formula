@@ -18,8 +18,8 @@ Smart Zoom touch gesture on internal trackpad is managed for user {{ user.name }
   macosdefaults.write:
     - domain: com.apple.AppleMultitouchTrackpad
     - name: TrackpadTwoFingerDoubleTapGesture
-    - value: {{ user.macos.touch.smart_zoom | to_bool }}
-    - vtype: bool
+    - value: {{ user.macos.touch.smart_zoom | to_bool | int }}
+    - vtype: int
     - user: {{ user.name }}
     - require:
       - System Preferences is not running
@@ -30,8 +30,8 @@ Smart Zoom touch gesture on bluetooth trackpad is managed for user {{ user.name 
   macosdefaults.write:
     - domain: com.apple.driver.AppleBluetoothMultitouch.trackpad
     - name: TrackpadTwoFingerDoubleTapGesture
-    - value: {{ user.macos.touch.smart_zoom | to_bool }}
-    - vtype: bool
+    - value: {{ user.macos.touch.smart_zoom | to_bool | int }}
+    - vtype: int
     - user: {{ user.name }}
     - require:
       - System Preferences is not running
@@ -42,8 +42,8 @@ Smart Zoom touch gesture on current host is managed for user {{ user.name }}:
   macosdefaults.write:
     - host: current
     - name: com.apple.trackpad.twoFingerDoubleTapGesture # in Apple Global Domain
-    - value: {{ user.macos.touch.smart_zoom | to_bool }}
-    - vtype: bool
+    - value: {{ user.macos.touch.smart_zoom | to_bool | int }}
+    - vtype: int
     - user: {{ user.name }}
     - require:
       - System Preferences is not running

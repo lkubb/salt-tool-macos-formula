@@ -18,8 +18,8 @@ Zoom touch gesture on internal trackpad is managed for user {{ user.name }}:
   macosdefaults.write:
     - domain: com.apple.AppleMultitouchTrackpad
     - name: TrackpadPinch
-    - value: {{ user.macos.touch.zoom | to_bool }}
-    - vtype: bool
+    - value: {{ user.macos.touch.zoom | to_bool | int }}
+    - vtype: int
     - user: {{ user.name }}
     - require:
       - System Preferences is not running
@@ -30,8 +30,8 @@ Zoom touch gesture on bluetooth trackpad is managed for user {{ user.name }}:
   macosdefaults.write:
     - domain: com.apple.driver.AppleBluetoothMultitouch.trackpad
     - name: TrackpadPinch
-    - value: {{ user.macos.touch.zoom | to_bool }}
-    - vtype: bool
+    - value: {{ user.macos.touch.zoom | to_bool | int }}
+    - vtype: int
     - user: {{ user.name }}
     - require:
       - System Preferences is not running

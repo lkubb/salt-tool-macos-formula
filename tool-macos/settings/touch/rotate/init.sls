@@ -18,8 +18,8 @@ Rotate gesture on internal trackpad is managed for user {{ user.name }}:
   macosdefaults.write:
     - domain: com.apple.AppleMultitouchTrackpad
     - name: TrackpadRotate
-    - value: {{ user.macos.touch.rotate | to_bool }}
-    - vtype: bool
+    - value: {{ user.macos.touch.rotate | to_bool | int }}
+    - vtype: int
     - user: {{ user.name }}
     - require:
       - System Preferences is not running
@@ -31,8 +31,8 @@ Rotate gesture on bluetooth trackpad is managed for user {{ user.name }}:
   macosdefaults.write:
     - domain: com.apple.driver.AppleBluetoothMultitouch.trackpad
     - name: TrackpadRotate
-    - value: {{ user.macos.touch.rotate | to_bool }}
-    - vtype: bool
+    - value: {{ user.macos.touch.rotate | to_bool | int }}
+    - vtype: int
     - user: {{ user.name }}
     - require:
       - System Preferences is not running

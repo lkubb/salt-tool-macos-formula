@@ -32,8 +32,8 @@ Tap to click touch gesture on internal trackpad is managed for user {{ user.name
   macosdefaults.write:
     - domain: com.apple.AppleMultitouchTrackpad
     - name: Clicking
-    - value: {{ value | to_bool }}
-    - vtype: bool
+    - value: {{ value | to_bool | int }}
+    - vtype: int
     - user: {{ user.name }}
     - require:
       - System Preferences is not running
@@ -44,8 +44,8 @@ Tap to click touch gesture on bluetooth trackpad is managed for user {{ user.nam
   macosdefaults.write:
     - domain: com.apple.driver.AppleBluetoothMultitouch.trackpad
     - name: Clicking
-    - value: {{ value | to_bool }}
-    - vtype: bool
+    - value: {{ value | to_bool | int }}
+    - vtype: int
     - user: {{ user.name }}
     - require:
       - System Preferences is not running
