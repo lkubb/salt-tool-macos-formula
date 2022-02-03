@@ -24,7 +24,7 @@ Read receipts are managed for user {{ user.name }}:
     - vtype: bool
     - user: {{ user.name }}
     - require:
-      - Messages is not running
+      - Messages.app is not running
       - System Preferences is not running
     - watch_in:
       - cfprefsd was reloaded
