@@ -6,6 +6,7 @@
  -#}
 
 include:
+  - .adprivacyd
   - .bluetoothd
   - .cfprefsd
   - .controlcenter
