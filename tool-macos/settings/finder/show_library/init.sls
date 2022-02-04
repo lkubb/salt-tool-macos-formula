@@ -17,8 +17,10 @@ Display status of ~/Library is managed for user {{ user.name }}:
     - name: |
         if [ -n '{{ 'yes' if user.macos.finder.show_library }} ' ]; then
           chflags nohidden {{ user.home }}/Library
-          xattr -l {{ user.home }}/Library | grep com.apple.FinderInfo &&
+          if xattr -l {{ user.home }}/Library | grep com.apple.FinderInfo; then
             xattr -d com.apple.FinderInfo {{ user.home }}/Library
+          else
+            exit 0
         else
           chflags hidden {{ user.home }}/Library
           xattr -wx com.apple.FinderInfo \
