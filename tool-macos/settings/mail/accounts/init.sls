@@ -71,6 +71,7 @@ Mail accounts are configured for user {{ user.name }}:
     - organization: salt.tool
     - removaldisallowed: False
     - ptype: com.apple.mail.managed
+    - scope: User
     - content:
   {%- for account in user_settings %}
       - {{ account | json }}
