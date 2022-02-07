@@ -67,6 +67,7 @@ include:
 Mail accounts are configured for user {{ user.name }}:
   macprofile.installed:
     - name: salt.tool.macos-config.mail
+    - displayname: Mail accounts (salt-tool)
     - description: Mail account configuration managed by Salt state tool-macos.settings.mail.accounts
     - organization: salt.tool
     - removaldisallowed: False
