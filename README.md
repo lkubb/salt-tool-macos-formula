@@ -102,6 +102,7 @@ user:
       printqueue_autoquit: false    # automatically quit print app when all jobs are finished
       resume_app: true              # by default, recreate previously open windows
       save_panel_expanded: false    # default state of save panel
+      spaces_rearrange_recent: true # rearrange spaces based on recent usage
       spaces_span_displays: false
       spaces_switch_running: true   # when clicking a running app in the Dock, switch to space with it
       tab_preference: fullscreen    # generally prefer tabs to windows: manual, fullscreen or always
@@ -128,7 +129,7 @@ user:
       hint_running: true
       magnification:
         enabled: false
-        size: 128 
+        size: 128
       minimize_to_icon: true
       persistent_tiles: true        # false for only running apps
       position: bottom              # bottom, left, right
@@ -249,8 +250,8 @@ user:
 
         icon:
           arrange: grid # none, name, kind, last_opened, added, modified, created, size, tags
-          size: 64     
-          spacing: 54  
+          size: 64
+          spacing: 54
           info: false
           info_bottom: true
           text_size: 12
@@ -392,7 +393,7 @@ user:
       smart_periods: true
       smart_quotes: true
     # Touch gesture configuration is a bit weird regarding three finger gestures.
-    # [three finger] drag and swipe_pages, when set to three [fingers] or 
+    # [three finger] drag and swipe_pages, when set to three [fingers] or
     # both [two and three], need both axes, so app_expose_mission_control and
     # swipe_fullscreen need to be four [fingers] or disabled.
     # You will be warned about misconfiguration, but that might result in an unknown state.
@@ -520,7 +521,7 @@ tool:
         powermode: 0 # ?
         powernap: 1
         proximitywake: 0
-        sleep: 1 
+        sleep: 1
         standby: 1  # enable automatic sleep -> standby
         standbydelayhigh: 86400
         standbydelaylow: 10800

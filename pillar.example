@@ -154,6 +154,7 @@ tool:
           printqueue_autoquit: false    # automatically quit print app when all jobs are finished
           resume_app: true              # by default, recreate previously open windows
           save_panel_expanded: false    # default state of save panel
+          spaces_rearrange_recent: true # rearrange spaces based on recent usage
           spaces_span_displays: false
           spaces_switch_running: true   # when clicking a running app in the Dock, switch to space with it
           tab_preference: fullscreen    # generally prefer tabs to windows: manual, fullscreen or always
