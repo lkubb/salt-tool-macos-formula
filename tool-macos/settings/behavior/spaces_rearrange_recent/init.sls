@@ -19,7 +19,7 @@ Rearrangement of spaces based on recency is managed for user {{ user.name }}:
     - domain: com.apple.dock
     - name: mru-spaces
     - value: {{ user.macos.behavior.spaces_rearrange_recent | to_bool }}
-    - vtype: string
+    - vtype: bool
     - user: {{ user.name }}
     - require:
       - System Preferences is not running
