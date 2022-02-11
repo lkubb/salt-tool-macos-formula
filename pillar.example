@@ -97,6 +97,12 @@ tool:
         pam_reattach: false
 #     wake_on_lan: false                # enabled by default for ac actually. fine-grained
                                         # settings in macos.power. this is mostly for disabling
+    # global services management (user-specific available in user config)
+    services:
+      wanted:                           # list of Launch Items to enable
+        - org.pqrs.karabiner.karabiner_observer
+      unwanted:                         # list of Launch Items to disable
+        - org.cups.cupsd
     # Time Machine configuration needs Full Disk Access for your terminal emulator.
     timemachine:
       backup_on_battery: false
@@ -424,6 +430,12 @@ tool:
                                             # and public share points as well as his home dir
           user_no_filevault: false          # remove this user from FileVault. cannot add back in
                                             # automatically
+        # user-specific services management (system-wide available in formula config)
+        services:
+          wanted:                           # list of Login Items to enable
+            - com.raycast.macos.RaycastLauncher
+          unwanted:                         # list of Login Items to disable
+            - com.spotify.client.startuphelper
         siri:
           enabled: false                    # mind that toggling this setting via sys prefs does much more
           keyboard_shortcut: default        # (=off/hold microphone key), cmd_space, opt_space, fn_space
