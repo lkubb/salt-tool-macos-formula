@@ -24,7 +24,7 @@ include:
 {%- for user in macos.users | selectattr('macos.mail', 'defined') | selectattr('macos.mail.shortcut_send', 'defined') %}
 
 Custom shortcut to send mails in Mail.app is managed for user {{ user.name }}:
-  macosdefaults.write:
+  macosdefaults.set:
     - domain: com.apple.mail
     - name: NSUserKeyEquivalents:Send
     - value: '{{ user.macos.mail.shortcut_send }}'
