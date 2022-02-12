@@ -28,8 +28,8 @@ Requirement to authenticate as an admin to change system-wide settings is manage
         security authorizationdb write system.preferences < /tmp/system.preferences.plist
     - unless:
       - |
-          test -n "$(security authorizationdb read system.preferences 2> /dev/null | \
-          grep -A1 shared | grep -E '(true|false)' | grep '{{ m }}')" ] && exit 0 || exit 1
+          security authorizationdb read system.preferences 2> /dev/null | \
+          grep -A1 shared | grep -E '(true|false)' | grep '{{ m }}'
     - require:
       - System Preferences is not running
 {%- endif %}

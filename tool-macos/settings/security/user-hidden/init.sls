@@ -37,6 +37,8 @@ Visibility of user account {{ user.name }} is managed:
   {#- don't know how to reverse this #}
         dscl . delete "/SharePoints/{{ salt['user.info'](user.name).fullname }}'s Public Folder"
   {%- endif %}
+    - unless:
+      - dscl . read /Users/{{ user.name }} IsHidden | grep -e '{{ u | int }}$'
     - require:
       - System Preferences is not running
 {%- endfor %}
