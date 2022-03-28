@@ -1,0 +1,49 @@
+{%- set user_settings = {'persistent_apps': [], 'persistent_others': []} %}
+
+{#- loop through the two possible lists, autodetect missing parameters and convert them -#}
+{%- for space, target in {'apps': 'persistent_apps', 'others': 'persistent_others'}.items() %}
+  {%- if user.macos.dock.tiles[space] is defined %}
+    {%- for item in user.macos.dock.tiles[space] %}
+
+      {#- empty items are mapped to small-spacer -#}
+      {%- if not item %}
+        {%- set item = {'type': 'small-spacer'} %}
+      {%- elif item is string %}
+        {#- other spacers can be defined as a string -#}
+        {%- if item in ['spacer', 'small-spacer', 'flex-spacer'] %}
+          {%- set item = {'type': item} %}
+        {#- else assume the string represents a path -#}
+        {%- else %}
+          {%- set item = {'path': item} %}
+        {%- endif %}
+      {%- endif %}
+
+      {#- if item type is not defined, autodetect it -#}
+      {%- if not item.get('type') %}
+        {%- if item.path | regex_match('(.*\.app/?)$') %}
+          {%- do item.update({'type': 'file'}) %}
+        {%- elif not salt['cmd.retcode']("test -d '{}'".format(item.path), ignore_retcode=True) %}
+          {%- do item.update({'type': 'directory'}) %}
+        {%- elif item.path | regex_match('^(\w*://)') %}
+          {%- do item.update({'type': 'url'}) %}
+        {%- else %}
+          {%- do salt['log.error']("Could not autodetect type of path '{}'!".format(item.path)) %}
+        {%- endif %}
+      {%- endif %}
+
+      {#- then import the type-dependent yml file that maps values to target structure
+          and provides reasonable defaults -#}
+      {%- if item.type in ['spacer', 'small-spacer', 'flex-spacer'] %}
+        {%- import_yaml tpldir ~ '/types/{}.yml.j2'.format(item.type) as add_item with context %}
+      {%- elif 'url' == item.type %}
+        {%- import_yaml tpldir ~ '/types/url.yml.j2' as add_item with context %}
+      {%- elif 'file' == item.type %}
+        {%- import_yaml tpldir ~ '/types/file.yml.j2' as add_item with context %}
+      {%- elif item.type in ['directory', 'dir', 'folder'] %}
+        {%- import_yaml tpldir ~ '/types/directory.yml.j2' as add_item with context %}
+      {%- endif %}
+
+      {%- do user_settings[target].append(add_item) %}
+    {%- endfor %}
+  {%- endif %}
+{%- endfor %}

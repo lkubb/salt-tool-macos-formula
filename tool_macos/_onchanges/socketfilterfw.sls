@@ -1,0 +1,7 @@
+socketfilterfw was reloaded:
+  cmd.wait:  # noqa: 213
+    - name: pkill -HUP socketfilterfw
+    - runas: root
+    - watch: []
+    - onlyif:
+        - pgrep socketfilterfw

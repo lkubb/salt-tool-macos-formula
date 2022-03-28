@@ -14,16 +14,16 @@ than individual plist files. Still provides the convenience of PlistBuddy
 when working with nested values.
 
 """
-from base64 import b64encode
 import datetime
 import logging
 import plistlib
 import xml.etree.ElementTree as ET
+from base64 import b64encode
 
 import salt.utils.platform
-from salt.utils.dictupdate import update as update_dict, ensure_dict_key
 from salt.exceptions import CommandExecutionError
-
+from salt.utils.dictupdate import ensure_dict_key
+from salt.utils.dictupdate import update as update_dict
 
 log = logging.getLogger(__name__)
 __virtualname__ = "macosdefaults"

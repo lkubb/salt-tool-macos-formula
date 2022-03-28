@@ -27,7 +27,7 @@
 # SOFTWARE.
 
 # -*- coding: utf-8 -*-
-'''
+"""
 Macprofiles Module
 ==================
 
@@ -37,7 +37,7 @@ Manage locally installed configuration profiles (.mobileconfig)
 :maturity:      new
 :depends:       objc
 :platform:      darwin
-'''
+"""
 
 
 import binascii
@@ -54,41 +54,41 @@ import salt.exceptions
 import salt.utils
 import salt.utils.platform
 
-
 log = logging.getLogger(__name__)
 
-__virtualname__ = 'macprofile'
+__virtualname__ = "macprofile"
 
 
 def __virtual__():
     if salt.utils.platform.is_darwin():
         return __virtualname__
 
-    return (False, 'module.macprofile only available on macOS.')
+    return (False, "module.macprofile only available on macOS.")
 
 
 def _content_to_uuid(payload):
-    '''
+    """
     Generate a UUID based upon the payload content
 
     :param payload:
     :return:
-    '''
-    log.debug('Attempting to Hash {}'.format(payload))
+    """
+    log.debug("Attempting to Hash {}".format(payload))
 
     str_payload = plistlib.dumps(payload)
     hashobj = hashlib.md5(str_payload)
 
     identifier = re.sub(
-        b'([0-9a-f]{8})([0-9a-f]{4})([0-9a-f]{4})([0-9a-f]{4})([0-9a-f]{12})',
-        b'\\1-\\2-\\3-\\4-\\5',
-        binascii.hexlify(hashobj.digest()))
+        b"([0-9a-f]{8})([0-9a-f]{4})([0-9a-f]{4})([0-9a-f]{4})([0-9a-f]{12})",
+        b"\\1-\\2-\\3-\\4-\\5",
+        binascii.hexlify(hashobj.digest()),
+    )
 
     return identifier.decode()
 
 
 def _add_activedirectory_keys(payload):
-    '''
+    """
     As per dayglojesus/managedmac, an excerpt from mobileconfig.rb:199
 
     The Advanced Active Directory profile contains flag keys which inform
@@ -114,86 +114,89 @@ def _add_activedirectory_keys(payload):
     and shoehorn these flag keys into place dynamically, as required.
     :param payload:
     :return:
-    '''
-    needs_flag = ['ADAllowMultiDomainAuth',
-                  'ADCreateMobileAccountAtLogin',
-                  'ADDefaultUserShell',
-                  'ADDomainAdminGroupList',
-                  'ADForceHomeLocal',
-                  'ADNamespace',
-                  'ADPacketEncrypt',
-                  'ADPacketSign',
-                  'ADPreferredDCServer',
-                  'ADRestrictDDNS',
-                  'ADTrustChangePassIntervalDays',
-                  'ADUseWindowsUNCPath',
-                  'ADWarnUserBeforeCreatingMA',
-                  'ADMapUIDAttribute',
-                  'ADMapGIDAttribute',
-                  'ADMapGGIDAttribute']
+    """
+    needs_flag = [
+        "ADAllowMultiDomainAuth",
+        "ADCreateMobileAccountAtLogin",
+        "ADDefaultUserShell",
+        "ADDomainAdminGroupList",
+        "ADForceHomeLocal",
+        "ADNamespace",
+        "ADPacketEncrypt",
+        "ADPacketSign",
+        "ADPreferredDCServer",
+        "ADRestrictDDNS",
+        "ADTrustChangePassIntervalDays",
+        "ADUseWindowsUNCPath",
+        "ADWarnUserBeforeCreatingMA",
+        "ADMapUIDAttribute",
+        "ADMapGIDAttribute",
+        "ADMapGGIDAttribute",
+    ]
 
     for k in payload.keys():
         if k in needs_flag:
-            payload[str(k) + 'Flag'] = True
+            payload[str(k) + "Flag"] = True
 
 
 def _check_top_level_key(old, new):
-    '''
+    """
     checks the old and new profiles to see if there are any top level key
     differences, returns a dictionary of whether they differ and if so what
     the old and new keys pair differences are
-    '''
+    """
     try:
-        log.debug('Checking top level key for profile "{}"'.format(
-            new['PayloadIdentifier']))
+        log.debug(
+            'Checking top level key for profile "{}"'.format(new["PayloadIdentifier"])
+        )
     except KeyError as e:
         log.warning(e)
         pass
 
-    ret = {
-        'differ': False,
-        'old_kv': {},
-        'new_kv': {}
-    }
+    ret = {"differ": False, "old_kv": {}, "new_kv": {}}
     keys_to_check = [
-        'PayloadDescription',
-        'PayloadDisplayName',
-        'PayloadIdentifier',
-        'PayloadOrganization',
-        'PayloadRemovalDisallowed'
+        "PayloadDescription",
+        "PayloadDisplayName",
+        "PayloadIdentifier",
+        "PayloadOrganization",
+        "PayloadRemovalDisallowed",
     ]
     for key, value in new.items():
-        log.trace('Checking top level key {}'.format(key))
+        log.trace("Checking top level key {}".format(key))
         if key not in keys_to_check:
-            log.trace('key {} not in our list of keys to validate'.format(key))
+            log.trace("key {} not in our list of keys to validate".format(key))
             continue
-        if value == 'true':
+        if value == "true":
             value = True
-        if value == 'false':
+        if value == "false":
             value = False
         try:
             old_value = old[key.replace("Payload", "Profile")]
-            if old_value == 'true':
+            if old_value == "true":
                 old_value = True
-            if old_value == 'false':
+            if old_value == "false":
                 old_value = False
         except KeyError as e:
-            log.debug('_check_top_level_key: Caught KeyError on {} trying to replace.'.format(e))
+            log.debug(
+                "_check_top_level_key: Caught KeyError on {} trying to replace.".format(
+                    e
+                )
+            )
             continue
 
         if value != old_value:
-            log.debug('Found difference in profile Key {}'.format(key))
-            ret['differ'] = True
+            log.debug("Found difference in profile Key {}".format(key))
+            ret["differ"] = True
             new_goods = {key: value}
             old_goods = {key: old_value}
-            ret['old_kv'].update(old_goods)
-            ret['new_kv'].update(new_goods)
-    log.trace('will return from profile: _check_top_level_key: {}'.format(ret))
+            ret["old_kv"].update(old_goods)
+            ret["new_kv"].update(new_goods)
+    log.trace("will return from profile: _check_top_level_key: {}".format(ret))
     return ret
 
 
 def _transform_payload(payload, identifier, ptype=None):
-    '''
+    """
     Transform a payload by:
     - Calculating the UUID based upon a hash of the content.
     - Adding common keys required for every payload.
@@ -202,50 +205,50 @@ def _transform_payload(payload, identifier, ptype=None):
     :param payload:
     :param identifier:
     :return:
-    '''
-    if 'PayloadUUID' in payload:
-        log.debug('Found PayloadUUID in Payload removing')
-        del payload['PayloadUUID']
+    """
+    if "PayloadUUID" in payload:
+        log.debug("Found PayloadUUID in Payload removing")
+        del payload["PayloadUUID"]
 
-    if ptype and 'PayloadType' not in payload:
-        payload['PayloadType'] = ptype
+    if ptype and "PayloadType" not in payload:
+        payload["PayloadType"] = ptype
 
     hashed_uuid = _content_to_uuid(payload)
-    log.debug('hashed_uuid = {}'.format(hashed_uuid))
+    log.debug("hashed_uuid = {}".format(hashed_uuid))
 
-    if 'PayloadUUID' not in payload:
-        payload['PayloadUUID'] = hashed_uuid
+    if "PayloadUUID" not in payload:
+        payload["PayloadUUID"] = hashed_uuid
 
     # No identifier supplied for the payload, so we generate one
-    log.debug('Generating PayloadIdentifier')
-    if 'PayloadIdentifier' not in payload:
-        payload['PayloadIdentifier'] = "{0}.{1}".format(identifier, hashed_uuid)
+    log.debug("Generating PayloadIdentifier")
+    if "PayloadIdentifier" not in payload:
+        payload["PayloadIdentifier"] = "{0}.{1}".format(identifier, hashed_uuid)
 
-    payload['PayloadEnabled'] = True
-    payload['PayloadVersion'] = 1
+    payload["PayloadEnabled"] = True
+    payload["PayloadVersion"] = 1
     try:
-        if payload['PayloadType'] == 'com.apple.DirectoryService.managed':
+        if payload["PayloadType"] == "com.apple.DirectoryService.managed":
             _add_activedirectory_keys(payload)
     except Exception as e:
         pass
     return payload
 
 
-def _transform_content(content, identifier,  ptype=None):
-    '''
+def _transform_content(content, identifier, ptype=None):
+    """
     As dayglojesus/managedmac notes:
     PayloadUUID for each Payload is modified MD5sum of the payload itself, minus some keys.
     We can use this to check whether or not the content has been modified. Even when the attributes cannot
     be compared (as with passwords, which are omitted).
-    '''
+    """
     if not content:
-        log.debug('module.profile - Found empty content')
+        log.debug("module.profile - Found empty content")
         return list()
-    log.debug('module.profile - Found GOOD content')
-    log.debug('{}  {}'.format(content, identifier))
+    log.debug("module.profile - Found GOOD content")
+    log.debug("{}  {}".format(content, identifier))
     transformed = []
     for payload in content:
-        log.debug('module.profile - trying to transform {}'.format(payload))
+        log.debug("module.profile - trying to transform {}".format(payload))
         transformed.append(_transform_payload(payload, identifier, ptype))
 
     # transformed = [_transform_payload(payload, identifier) for payload in content]
@@ -254,19 +257,16 @@ def _transform_content(content, identifier,  ptype=None):
 
 
 def validate(identifier, profile_dict):
-    '''will compare the installed identifier if one and get the uuid of the
+    """will compare the installed identifier if one and get the uuid of the
     payload content and compare against that.
-    '''
-    ret = {'installed': False,
-           'changed': False,
-           'old_payload': [],
-           'new_payload': []}
+    """
+    ret = {"installed": False, "changed": False, "old_payload": [], "new_payload": []}
 
     new_prof_data = plistlib.loads(profile_dict)
 
     try:
-        new_prof_data_payload_con = new_prof_data['PayloadContent']
-        ret['new_payload'] = new_prof_data_payload_con
+        new_prof_data_payload_con = new_prof_data["PayloadContent"]
+        ret["new_payload"] = new_prof_data_payload_con
     except KeyError:
         pass
 
@@ -274,59 +274,59 @@ def validate(identifier, profile_dict):
 
     for item in new_prof_data_payload_con:
         try:
-            new_uuids.append(item['PayloadUUID'])
+            new_uuids.append(item["PayloadUUID"])
         except KeyError:
             pass
 
-    current_items = __salt__['macprofile.item_keys'](identifier)
+    current_items = __salt__["macprofile.item_keys"](identifier)
 
     if not current_items:
-        log.debug('Could not find any item keys for {}'.format(identifier))
-        ret['old_payload'] = 'Not installed'
+        log.debug("Could not find any item keys for {}".format(identifier))
+        ret["old_payload"] = "Not installed"
         return ret
 
     try:
-        current_profile_items = current_items['ProfileItems']
-        ret['old_payload'] = current_profile_items
+        current_profile_items = current_items["ProfileItems"]
+        ret["old_payload"] = current_profile_items
     except KeyError:
-        log.debug('Failed to get ProfileItems from installed Profile')
+        log.debug("Failed to get ProfileItems from installed Profile")
         return ret
 
     installed_uuids = []
     for item in current_profile_items:
         try:
-            installed_uuids.append(item['PayloadUUID'])
+            installed_uuids.append(item["PayloadUUID"])
         except KeyError:
             pass
 
-    log.debug('Found installed uuids {}'.format(installed_uuids))
+    log.debug("Found installed uuids {}".format(installed_uuids))
 
-    log.debug('Requested install UUIDs are {}'.format(new_uuids))
+    log.debug("Requested install UUIDs are {}".format(new_uuids))
 
     for new_uuid in new_uuids:
         log.debug('Checking UUID "{}" to is if its installed'.format(new_uuid))
         if new_uuid not in installed_uuids:
-            ret['changed'] = True
+            ret["changed"] = True
             return ret
-        log.debug('Profile UUID of {} appears to be installed'.format(new_uuid))
+        log.debug("Profile UUID of {} appears to be installed".format(new_uuid))
 
     # check the top keys to see if they differ.
     top_keys = _check_top_level_key(current_items, new_prof_data)
 
-    if top_keys['differ']:
-        log.debug('Top Level Keys differ.')
-        ret['installed'] = False
-        ret['old_payload'] = top_keys['old_kv']
-        ret['new_payload'] = top_keys['new_kv']
+    if top_keys["differ"]:
+        log.debug("Top Level Keys differ.")
+        ret["installed"] = False
+        ret["old_payload"] = top_keys["old_kv"]
+        ret["new_payload"] = top_keys["new_kv"]
         return ret
 
     # profile should be correctly installed.
-    ret['installed'] = True
+    ret["installed"] = True
     return ret
 
 
 def items():
-    '''
+    """
     Retrieve all profiles in full
 
     CLI Example:
@@ -334,18 +334,18 @@ def items():
     .. code-block:: bash
 
         salt '*' profiles.items
-    '''
-    tmpdir = tempfile.mkdtemp('.profiles')
-    tmpfile = os.path.join(tmpdir, 'profiles.plist')
+    """
+    tmpdir = tempfile.mkdtemp(".profiles")
+    tmpfile = os.path.join(tmpdir, "profiles.plist")
 
-    status = __salt__['cmd.retcode']('/usr/bin/profiles -P -o {}'.format(tmpfile))
+    status = __salt__["cmd.retcode"]("/usr/bin/profiles -P -o {}".format(tmpfile))
 
     if not status == 0:
         raise salt.exceptions.CommandExecutionError(
-            'Failed to read profiles or write to temporary file'
+            "Failed to read profiles or write to temporary file"
         )
 
-    with open(tmpfile, 'rb') as f:
+    with open(tmpfile, "rb") as f:
         profiles = plistlib.load(f)
     os.unlink(tmpfile)
     os.rmdir(tmpdir)
@@ -354,7 +354,7 @@ def items():
 
 
 def exists(identifier):
-    '''
+    """
     Determine whether a profile with the given identifier is installed.
     Returns True or False
 
@@ -363,19 +363,19 @@ def exists(identifier):
     .. code-block:: bash
 
         salt '*' profiles.installed com.apple.mdm.hostname.local.ABCDEF
-    '''
-    profiles = __salt__['macprofile.items']()
+    """
+    profiles = __salt__["macprofile.items"]()
 
     for domain, payload_content in profiles.items():
         for payload in payload_content:
-            if payload['ProfileIdentifier'] == identifier:
+            if payload["ProfileIdentifier"] == identifier:
                 return True
 
     return False
 
 
 def generate(identifier, profile_uuid=None, ptype=None, **kwargs):
-    '''
+    """
     Generate a configuration profile.
 
     Intended to be used by other execution and state modules to prepare a profile for installation.
@@ -425,48 +425,74 @@ def generate(identifier, profile_uuid=None, ptype=None, **kwargs):
 
         consenttext : { "default": "message" }
             The warning/disclaimer shown when installing the profile interactively.
-    '''
+    """
     if not profile_uuid:
         profile_uuid = uuid.uuid4()
 
     log.debug("Creating new profile with UUID: {}".format(str(profile_uuid)))
 
-    VALID_PROPERTIES = ['description', 'displayname', 'organization', 'content', 'removaldisallowed', 'scope',
-                        'removaldate', 'durationuntilremoval', 'consenttext']
+    VALID_PROPERTIES = [
+        "description",
+        "displayname",
+        "organization",
+        "content",
+        "removaldisallowed",
+        "scope",
+        "removaldate",
+        "durationuntilremoval",
+        "consenttext",
+    ]
 
-    log.debug('Looping through kwargs')
+    log.debug("Looping through kwargs")
     validkwargs = {k: v for k, v in kwargs.items() if k in VALID_PROPERTIES}
 
-    document = {'PayloadScope': 'System', 'PayloadUUID': str(profile_uuid), 'PayloadVersion': 1,
-                'PayloadType': 'Configuration', 'PayloadIdentifier': identifier}
+    document = {
+        "PayloadScope": "System",
+        "PayloadUUID": str(profile_uuid),
+        "PayloadVersion": 1,
+        "PayloadType": "Configuration",
+        "PayloadIdentifier": identifier,
+    }
 
     for k, v in validkwargs.items():
-        if k in ('__id__', 'fun', 'state', '__env__', '__sls__', 'order', 'watch', 'watch_in', 'require',
-                 'require_in', 'prereq', 'prereq_in'):
-            pass # dunno why this is here, validkwargs is already filtered
-        elif k == 'content':
+        if k in (
+            "__id__",
+            "fun",
+            "state",
+            "__env__",
+            "__sls__",
+            "order",
+            "watch",
+            "watch_in",
+            "require",
+            "require_in",
+            "prereq",
+            "prereq_in",
+        ):
+            pass  # dunno why this is here, validkwargs is already filtered
+        elif k == "content":
             # As per managedmac for puppet, it's necessary to generate UUIDs for each payload based upon the content
             # in order to detect changes to the payload.
             # Transform a dict of { type: data } to { PayloadContent: data, }
-            payload_content = _transform_content(kwargs['content'], identifier, ptype)
-            document['PayloadContent'] = payload_content
-        elif k == 'description':
-            document['PayloadDescription'] = v
-        elif k == 'displayname':
-            document['PayloadDisplayName'] = v
-        elif k == 'organization':
-            document['PayloadOrganization'] = v
-        elif k == 'removaldisallowed':
-            document['PayloadRemovalDisallowed'] = (v is True)
-        elif k == 'scope' and v in ['System', 'User']:
-            document['PayloadScope'] = v
+            payload_content = _transform_content(kwargs["content"], identifier, ptype)
+            document["PayloadContent"] = payload_content
+        elif k == "description":
+            document["PayloadDescription"] = v
+        elif k == "displayname":
+            document["PayloadDisplayName"] = v
+        elif k == "organization":
+            document["PayloadOrganization"] = v
+        elif k == "removaldisallowed":
+            document["PayloadRemovalDisallowed"] = v is True
+        elif k == "scope" and v in ["System", "User"]:
+            document["PayloadScope"] = v
 
     plist_content = plistlib.dumps(document)
     return plist_content
 
 
 def install(path, name=None, content=None):
-    '''
+    """
     Install a configuration profile.
 
     path
@@ -480,25 +506,31 @@ def install(path, name=None, content=None):
         The final content that will be installed. If either name or content is None,
         the user will be prompted for installation, but salt will continue. The installation
         status cannot be verified then.
-    '''
+    """
     # since MacOS 11/Big Sur, /usr/bin/profiles -I -F will not be able to silently install profiles
     # therefore, user intervention is needed
     # the user needs to be able to read the file, therefore chown it first
     # /bin/ls -l /dev/console | /usr/bin/awk '{ print $3 }' gets currently logged in user
 
-    current_user = __salt__['cmd.run']("/bin/ls -l /dev/console | /usr/bin/awk '{ print $3 }'",  python_shell=True)
-    current_user_group = __salt__['user.primary_group'](current_user)
+    current_user = __salt__["cmd.run"](
+        "/bin/ls -l /dev/console | /usr/bin/awk '{ print $3 }'", python_shell=True
+    )
+    current_user_group = __salt__["user.primary_group"](current_user)
 
-    if __salt__['file.chown'](path, current_user, current_user_group) is not None:
+    if __salt__["file.chown"](path, current_user, current_user_group) is not None:
         raise salt.exceptions.CommandExecutionError(
-            'Failed to chown the profile at {} to user "{}" group "{}".'.format(path, current_user, current_user_group)
+            'Failed to chown the profile at {} to user "{}" group "{}".'.format(
+                path, current_user, current_user_group
+            )
         )
 
-    status = __salt__['cmd.retcode']('open /System/Library/PreferencePanes/Profiles.prefPane {}'.format(path))
+    status = __salt__["cmd.retcode"](
+        "open /System/Library/PreferencePanes/Profiles.prefPane {}".format(path)
+    )
 
     if not status == 0:
         raise salt.exceptions.CommandExecutionError(
-            'Failed to prompt user to install profile at path: {}'.format(path)
+            "Failed to prompt user to install profile at path: {}".format(path)
         )
 
     if name is None or content is None:
@@ -507,42 +539,49 @@ def install(path, name=None, content=None):
     counter = 0
     max_tries = 60
 
-    while not (validate(name, content)).get('installed', False):
+    while not (validate(name, content)).get("installed", False):
         counter += 1
         time.sleep(1)
 
-        if __salt__['cmd.retcode']('ps -ax | grep /System/Library/PreferencePanes/Profiles.prefPane | grep -v grep', python_shell=True):
+        if __salt__["cmd.retcode"](
+            "ps -ax | grep /System/Library/PreferencePanes/Profiles.prefPane | grep -v grep",
+            python_shell=True,
+        ):
             raise salt.exceptions.CommandExecutionError(
-                'User did not allow installation of profile, System Preferences is closed. Find the profile at: {}'.format(path)
+                "User did not allow installation of profile, System Preferences is closed. Find the profile at: {}".format(
+                    path
+                )
             )
 
         if counter >= max_tries:
             raise salt.exceptions.CommandExecutionError(
-                'Timeout: User did not allow installation of profile in time. Profile found at: {}'.format(path)
+                "Timeout: User did not allow installation of profile in time. Profile found at: {}".format(
+                    path
+                )
             )
 
     return True
 
 
 def remove(identifier):
-    '''
+    """
     Remove a configuration profile by its profile identifier
 
     identifier
         The ProfileIdentifier
-    '''
-    status = __salt__['cmd.retcode']('/usr/bin/profiles -R -p {}'.format(identifier))
+    """
+    status = __salt__["cmd.retcode"]("/usr/bin/profiles -R -p {}".format(identifier))
 
     if not status == 0:
         raise salt.exceptions.CommandExecutionError(
-            'Failed to remove profile with identifier: {}'.format(identifier)
+            "Failed to remove profile with identifier: {}".format(identifier)
         )
 
     return True
 
 
 def item_keys(identifier):
-    '''
+    """
     List all of the keys for an identifier and their values
 
     identifier
@@ -553,12 +592,12 @@ def item_keys(identifier):
     .. code-block:: bash
 
         salt '*' profiles.item_keys com.apple.mdm.hostname.local.ABCDEF
-    '''
+    """
     profiles = items()
 
     for domain, payload_content in profiles.items():
         for payload in payload_content:
-            if payload['ProfileIdentifier'] == identifier:
+            if payload["ProfileIdentifier"] == identifier:
                 return payload
     log.warning('Profile identifier "{}" not found'.format(identifier))
     return False

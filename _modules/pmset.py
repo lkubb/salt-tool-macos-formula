@@ -8,7 +8,6 @@ import re
 import salt.utils.platform
 from salt.exceptions import CommandExecutionError
 
-
 log = logging.getLogger(__name__)
 __virtualname__ = "pmset"
 

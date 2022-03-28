@@ -3,8 +3,11 @@ Get and set default handlers for file extensions, UTI and
 URL schemes on macOS 12.0+.
 
 """
-import sys
 import logging
+import sys
+
+import salt.utils.platform
+from salt.exceptions import CommandExecutionError
 
 try:
     # those are needed in the shim that is needed to switch to different users
@@ -12,12 +15,11 @@ try:
     import AppKit
     from Foundation import NSURL, NSArray
     from UniformTypeIdentifiers import UTType, UTTagClassFilenameExtension
-    LIBS_AVAILABLE=True
-except ImportError:
-    LIBS_AVAILABLE=False
 
-import salt.utils.platform
-from salt.exceptions import CommandExecutionError
+    LIBS_AVAILABLE = True
+except ImportError:
+    LIBS_AVAILABLE = False
+
 
 log = logging.getLogger(__name__)
 
@@ -28,7 +30,9 @@ def __virtual__():
     """
     This only works on MacOS.
     """
-    if salt.utils.platform.is_darwin() and 12 >= int(__salt__['grains.get']('osmajorrelease')):
+    if salt.utils.platform.is_darwin() and 12 >= int(
+        __salt__["grains.get"]("osmajorrelease")
+    ):
         if LIBS_AVAILABLE:
             return __virtualname__
     return (False, "Dooti only works on MacOS 12 (Monterey) and above and needs pyobj.")
@@ -36,11 +40,11 @@ def __virtual__():
 
 def _gimme_dooti(user=None):
     # need a shim to call the API as a different user
-    target = __salt__['temp.file']()
-    with open(target, 'w') as f:
+    target = __salt__["temp.file"]()
+    with open(target, "w") as f:
         f.write(program)
     if user is not None:
-        __salt__['file.chown'](target, user, __salt__['user.primary_group'](user))
+        __salt__["file.chown"](target, user, __salt__["user.primary_group"](user))
     return target
 
 
@@ -51,18 +55,18 @@ def _call_dooti(func, arguments, user=None):
 
     cmd = [python, target, func] + ["'{}'".format(x) for x in arguments]
 
-    log.debug("dooti: running command '{}'".format(' '.join(cmd)))
+    log.debug("dooti: running command '{}'".format(" ".join(cmd)))
 
-    ret = __salt__['cmd.run_all'](' '.join(cmd), runas=user)
+    ret = __salt__["cmd.run_all"](" ".join(cmd), runas=user)
 
     # clean up our shim
-    __salt__['file.remove'](target)
+    __salt__["file.remove"](target)
 
-    if 1 == ret['retcode']:
-        raise CommandExecutionError("Error calling dooti: {}".format(ret['stderr']))
+    if 1 == ret["retcode"]:
+        raise CommandExecutionError("Error calling dooti: {}".format(ret["stderr"]))
 
-    if ret['stdout']:
-        return ret['stdout']
+    if ret["stdout"]:
+        return ret["stdout"]
 
 
 def ext(ext, handler, allow_dynamic=False, user=None):
@@ -98,9 +102,9 @@ def ext(ext, handler, allow_dynamic=False, user=None):
 
     # since we need to run this through a shell, passing anything will make it true
     if allow_dynamic:
-        args.append('true')
+        args.append("true")
 
-    _call_dooti('set_default_ext', args, user)
+    _call_dooti("set_default_ext", args, user)
 
 
 def uti(uti, handler, user=None):
@@ -127,7 +131,7 @@ def uti(uti, handler, user=None):
     user
         Specifies the user to associate the handler for. Defaults to salt process user.
     """
-    _call_dooti('set_default_uti', [uti, handler], user)
+    _call_dooti("set_default_uti", [uti, handler], user)
 
 
 def scheme(scheme, handler, user=None):
@@ -155,7 +159,7 @@ def scheme(scheme, handler, user=None):
     user
         Specifies the user to associate the handler for. Defaults to salt process user.
     """
-    _call_dooti('set_default_scheme', [scheme, handler], user)
+    _call_dooti("set_default_scheme", [scheme, handler], user)
 
 
 def get_ext(ext, user=None):
@@ -175,7 +179,7 @@ def get_ext(ext, user=None):
     user
         Specifies the user to retrieve the handler for. Defaults to salt process user.
     """
-    return _call_dooti('get_default_ext', [ext], user)
+    return _call_dooti("get_default_ext", [ext], user)
 
 
 def get_scheme(scheme, user=None):
@@ -195,7 +199,7 @@ def get_scheme(scheme, user=None):
     user
         Specifies the user to retrieve the handler for. Defaults to salt process user.
     """
-    return _call_dooti('get_default_scheme', [scheme], user)
+    return _call_dooti("get_default_scheme", [scheme], user)
 
 
 def get_uti(uti, user=None):
@@ -215,7 +219,7 @@ def get_uti(uti, user=None):
     user
         Specifies the user to retrieve the handler for. Defaults to salt process user.
     """
-    return _call_dooti('get_default_uti', [uti], user)
+    return _call_dooti("get_default_uti", [uti], user)
 
 
 def get_path(app, user=None):
@@ -238,7 +242,7 @@ def get_path(app, user=None):
 
     # we need the application's path, not the URL, so pass anything as second argument
     # to set as_path to True
-    return _call_dooti('get_app_path', [app, 'true'], user)
+    return _call_dooti("get_app_path", [app, "true"], user)
 
 
 program = '''

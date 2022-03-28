@@ -4,9 +4,9 @@ Manage (system) configuration values on MacOS.
 
 """
 
-from base64 import b64encode
 import datetime
 import logging
+from base64 import b64encode
 
 import salt.utils.dictdiffer
 import salt.utils.platform
@@ -663,9 +663,7 @@ def _compare_dicts(current, new, merge_mode):
     cumulative = []
 
     # tell dictdiffer to include newly missing keys if using classic update mode
-    diff = PatchedRecursiveDiffer(
-        current, new, ignore_missing_keys=merge_mode
-    )
+    diff = PatchedRecursiveDiffer(current, new, ignore_missing_keys=merge_mode)
     changed = diff.changed()
     added = diff.added()
     removed = diff.removed()
@@ -767,7 +765,9 @@ class PatchedRecursiveDiffer(salt.utils.dictdiffer.RecursiveDictDiffer):
             for key in diffs.keys():
                 if isinstance(diffs[key], dict):
                     if "old" not in diffs[key]:
-                        keys.extend(_added(diffs[key], prefix="{}{}.".format(prefix, key)))
+                        keys.extend(
+                            _added(diffs[key], prefix="{}{}.".format(prefix, key))
+                        )
                     elif diffs[key]["old"] == self.NONE_VALUE:
                         keys.append("{}{}".format(prefix, key))
             return keys

@@ -1,117 +1,146 @@
 # -*- coding: utf-8 -*-
 # vim: ft=yaml
+# yamllint disable rule:comments-indentation
 ---
-tool:
-  macos:
-    audio:
-      boot_sound: false
-      devices:
-        "device.AppleUSBAudioEngine:Native Instruments:Komplete Audio 6 MK2:ABCD1EF2:1,2":
-          output.stereo.left: 5
-          output.stereo.right: 6
-    bluetooth:
-      enabled: true
-      enabled_airplane: true
-      ignored:
-        sync: false
-        devices:
-          - <MAC 1>
-          - <MAC 2>
-    finder:
-      show_volumes: false               # show/hide /Volumes folder
-    keyboard:
-      brightness_adjustment:
-        low_light: true                 # adjust keyboard brightness in low light
-        after: 0                        # dim keyboard brightness after x seconds of inactivity (0=disable)
-    localization:
-      hostname: localmac                # this will be set as computer name, hostname, NetBIOS name
-      timezone: GMT
-    power: # power settings for pmset per scope. valid scopes: all, ac, battery, ups
-      all:
-        hibernatemode: 3 # 0 / 3 / 25 sleep / safe sleep / true hibernation for standby
-        acwake: 0  # wake when plugging ac in
-        autopoweroff: 0  # enable automatic poweroff (mostly the same as standby)
-        autopoweroffdelay: 0 # [in seconds]
-        disksleep: 10
-        displaysleep: 2
-        halfdim: 1  # displaysleep means less bright instead of fully off
-        highpowermode: 0 # ?
-        highstandbythreshold: 50  # threshold in percent for toggling standbydelayhigh/low
-        lessbright: 0 # whether display max brightness is lowered
-        lidwake: 1  # whether to wake when opening lid
-        lowpowermode: 0 # ?
-        powermode: 0 # ?
-        powernap: 1
-        proximitywake: 0
-        sleep: 1
-        standby: 1  # enable automatic sleep -> standby
-        standbydelayhigh: 86400
-        standbydelaylow: 10800
-        tcpkeepalive: 0 # ?
-        ttyskeepawake: 0  # prevent sleep when active tty connection, even remote
-        womp: 0  # wake on ethernet magic packet
-      battery: # different scope
-        lessbright: 1
-    privacy:
-      crashreporter_allow: apple        # none, apple, third_party
-    security:
-      autologin: false                  # false to disable, otherwise username
-      autoupdate:
-        check: true                     # enable automatic updates
-        download: true                  # automatically download updates
-        install_app: true               # App Store app updates
-        install_config: true            # System Preferences combines this with critical
-        install_critical: true          # System Preferences combines this with config
-        install_system: true            # MacOS updates
-        schedule: 1                     # check every i day(s)
-      captive_portal_detection: true
-      cupsd: true                       # load/unload cupsd
-      filevault_autologin: true         # automatically log in user when filevault is enabled
-      filevault_evict_keys_standby: false
-      firewall:
-        # automatically allow incoming connections for Apple-signed binaries
-        apple_signed_ok: true
-        # automatically allow incoming connections for downloaded signed binaries
-        download_signed_ok: false
-        enabled: true
-        incoming_block: false           # block all incoming connections
-        logging: true
-        stealth: false                  # ignore incoming ICMP + TCP/UDP to closed ports
-      gatekeeper: true
-      guest_account: false
-      internet_sharing: false
-      ipv6: true    # sets ipv6 automatic/off on all network interfaces. debatable if sensible
-      mdns: true                        # send multicast DNS advertisements
-      ntp:
-        enabled: true                   # sync time using ntp
-        server: time.apple.com          # specify ntp server
-      printer_sharing: false
-      remote_apple_events: false
-      require_admin_for_system_settings: true
-      remote_desktop_disabled: true     # this setting only works to disable
-      remote_login: false               # state of SSH server
-      root_disabled_check: false        # disable/enable check if root user account is disabled
-      sudo_touchid:
-        enabled: false
-        # pam_reattach might be required to make this work with tmux and iTerm saved sessions
-        pam_reattach: false
-#     wake_on_lan: false                # enabled by default for ac actually. fine-grained
-                                        # settings in macos.power. this is mostly for disabling
-    # global services management (user-specific available in user config)
-    services:
-      wanted:                           # list of Launch Items to enable
-        - org.pqrs.karabiner.karabiner_observer
-      unwanted:                         # list of Launch Items to disable
-        - org.cups.cupsd
-    # Time Machine configuration needs Full Disk Access for your terminal emulator.
-    timemachine:
-      backup_on_battery: false
-      offer_new_disks: true             # disable this to suppress TimeMachine popup
-                                        # offering an unknown disk as backup target
-    uix:
-      login_window_input_menu: true     # show language selection menu in login window
+######################################################################
+# Mind that this is to be read as an overview of available
+# settings which can be set in many different ways, not only
+# by providing pillar values.
+# The different sources will be merged. For further information,
+# please see the docs, `libmapstack.jinja` as well as the configured
+# default sources in `parameters/map_jinja.yaml`.
+#
+# This documentation will need to be updated once there is
+# some learned experience. @TODO
+######################################################################
 
-    defaults: {}                        # default formula user configurations for all users
+# Apart from the various source files, there are two independent source trees
+# for user-specific configuration.
+# Generally tool_macos > tool_global.
+# `tool_global` focuses on specific users, of which most values
+# will be respected by all formulae in the `tool` suite.
+
+######################################################################
+# The following values need to be set system-wide, requiring root
+# privileges and are therefore not found inside the user scope.
+######################################################################
+
+tool_macos:
+  audio:
+    boot_sound: false
+    devices:
+      "device.AppleUSBAudioEngine:Native Instruments:Komplete Audio 6 MK2:ABCD1EF2:1,2":
+        output.stereo.left: 5
+        output.stereo.right: 6
+  bluetooth:
+    enabled: true
+    enabled_airplane: true
+    ignored:
+      sync: false
+      devices:
+        - <MAC 1>
+        - <MAC 2>
+  finder:
+    show_volumes: false               # show/hide /Volumes folder
+  keyboard:
+    brightness_adjustment:
+      low_light: true                 # adjust keyboard brightness in low light
+      after: 0                        # dim keyboard brightness after x seconds of inactivity (0=disable)
+  localization:
+    hostname: localmac                # this will be set as computer name, hostname, NetBIOS name
+    timezone: GMT
+  power: # power settings for pmset per scope. valid scopes: all, ac, battery, ups
+    all:
+      hibernatemode: 3 # 0 / 3 / 25 sleep / safe sleep / true hibernation for standby
+      acwake: 0  # wake when plugging ac in
+      autopoweroff: 0  # enable automatic poweroff (mostly the same as standby)
+      autopoweroffdelay: 0 # [in seconds]
+      disksleep: 10
+      displaysleep: 2
+      halfdim: 1  # displaysleep means less bright instead of fully off
+      highpowermode: 0 # ?
+      highstandbythreshold: 50  # threshold in percent for toggling standbydelayhigh/low
+      lessbright: 0 # whether display max brightness is lowered
+      lidwake: 1  # whether to wake when opening lid
+      lowpowermode: 0 # ?
+      powermode: 0 # ?
+      powernap: 1
+      proximitywake: 0
+      sleep: 1
+      standby: 1  # enable automatic sleep -> standby
+      standbydelayhigh: 86400
+      standbydelaylow: 10800
+      tcpkeepalive: 0 # ?
+      ttyskeepawake: 0  # prevent sleep when active tty connection, even remote
+      womp: 0  # wake on ethernet magic packet
+    battery: # different scope
+      lessbright: 1
+  privacy:
+    crashreporter_allow: apple        # none, apple, third_party
+  security:
+    autologin: false                  # false to disable, otherwise username
+    autoupdate:
+      check: true                     # enable automatic updates
+      download: true                  # automatically download updates
+      install_app: true               # App Store app updates
+      install_config: true            # System Preferences combines this with critical
+      install_critical: true          # System Preferences combines this with config
+      install_system: true            # MacOS updates
+      schedule: 1                     # check every i day(s)
+    captive_portal_detection: true
+    cupsd: true                       # load/unload cupsd
+    filevault_autologin: true         # automatically log in user when filevault is enabled
+    filevault_evict_keys_standby: false
+    firewall:
+      # automatically allow incoming connections for Apple-signed binaries
+      apple_signed_ok: true
+      # automatically allow incoming connections for downloaded signed binaries
+      download_signed_ok: false
+      enabled: true
+      incoming_block: false           # block all incoming connections
+      logging: true
+      stealth: false                  # ignore incoming ICMP + TCP/UDP to closed ports
+    gatekeeper: true
+    guest_account: false
+    internet_sharing: false
+    ipv6: true    # sets ipv6 automatic/off on all network interfaces. debatable if sensible
+    mdns: true                        # send multicast DNS advertisements
+    ntp:
+      enabled: true                   # sync time using ntp
+      server: time.apple.com          # specify ntp server
+    printer_sharing: false
+    remote_apple_events: false
+    require_admin_for_system_settings: true
+    remote_desktop_disabled: true     # this setting only works to disable
+    remote_login: false               # state of SSH server
+    root_disabled_check: false        # disable/enable check if root user account is disabled
+    sudo_touchid:
+      enabled: false
+      # pam_reattach might be required to make this work with tmux and iTerm saved sessions
+      pam_reattach: false
+#     wake_on_lan: false                # enabled by default for ac actually. fine-grained
+                                      # settings in macos.power. this is mostly for disabling
+  # global services management (user-specific available in user config)
+  services:
+    wanted:                           # list of Launch Items to enable
+      - org.pqrs.karabiner.karabiner_observer
+    unwanted:                         # list of Launch Items to disable
+      - org.cups.cupsd
+  # Time Machine configuration needs Full Disk Access for your terminal emulator.
+  timemachine:
+    backup_on_battery: false
+    offer_new_disks: true             # disable this to suppress TimeMachine popup
+                                      # offering an unknown disk as backup target
+  uix:
+    login_window_input_menu: true     # show language selection menu in login window
+
+  defaults: {}                        # default formula user configurations for all users
+
+######################################################################
+# This is where system settings requiring admin privilees end and
+# user-specific settins begin.
+######################################################################
+
   users:
     user:
       macos:
@@ -538,3 +567,50 @@ tool:
             modifier: ctrl                  # ctrl, opt, cmd
             zoom_mode: full                 # full, split, in_picture
             follow_keyboard_focus: never    # never, always, when_typing
+
+
+######################################################################
+# The following settings define default values for this formula,
+# depending on different grains. You should not have to modify them
+# in most cases. For a full overview, see the different files
+# in `parameters`.
+######################################################################
+  lookup:
+    brew_prefix: /usr/local/bin
+    console_user: <username>
+    rootgroup: staff
+
+######################################################################
+# This is where `tool` suite settings end and Salt behavior settings
+# inherited from `salt-formulas/template-formula` start. They will
+# influence how exactly the TOFS pattern is applied. Mind that
+# parts of this are disabled for `configsync.sls`.
+######################################################################
+  tofs:
+    # The files_switch key serves as a selector for alternative
+    # directories under the formula files directory. See TOFS pattern
+    # doc for more info.
+    # Note: Any value not evaluated by `config.get` will be used literally.
+    # This can be used to set custom paths, as many levels deep as required.
+    files_switch:
+      - any/path/can/be/used/here
+      - id
+      - roles
+      - osfinger
+      - os
+      - os_family
+
+    # All aspects of path/file resolution are customisable using the options below.
+    # This is unnecessary in most cases; there are sensible defaults.
+    # Default path: salt://< path_prefix >/< dirs.files >/< dirs.default >
+    # I.e.: salt://tool_macos/files/default
+    # path_prefix: template_alt
+    # dirs:
+    #   files: files_alt
+    #   default: default_alt
+    # The entries under `source_files` are prepended to the default source files
+    # given for the state
+    source_files:
+      macOS config file is managed for user 'user':
+        - 'example_alt.tmpl'
+        - 'example_alt.tmpl.jinja'

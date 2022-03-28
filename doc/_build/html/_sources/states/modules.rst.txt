@@ -1,9 +1,0 @@
-state modules
-=======
-
-.. toctree::
-   :maxdepth: 4
-
-   macosdefaults
-   macprofile
-   pmset

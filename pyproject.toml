@@ -1,24 +1,23 @@
 [tool.poetry]
-name = "salt-tool-macos-config"
-version = "0.1.0"
-description = "Saltstack execution/state modules and states to manage macOS settings"
-authors = ["jeanluc"]
+name = "salt_tool_macos"
+version = "1.0.0"
+description = "Saltstack execution/state modules and states to manage macOS"
+authors = ["lkubb"]
 
 [tool.poetry.dependencies]
 python = "^3.6.2"
-pyobjc = "^8.2"
+pyobjc-framework-UniformTypeIdentifiers = "^8.2"
 
 [tool.poetry.dev-dependencies]
 salt = "^3004"
-Sphinx = "^4"
-salt-lint = "^0.8.0"
-yamllint = "^1.26.3"
 black = "^21.12b0"
 mypy = "^0.931"
 flake8 = "^4"
-sphinx-material-saltstack = "^1.0.5"
-sphinx-material = "^0.0.35"
+Sphinx = "^4"
+# this is the official saltstack theme
+# sphinx-material-saltstack = "^1.0.5"
 sphinx-rtd-theme = "^1.0.0"
+# fulltoc has an issue with recent Sphinx versions ('easily' fixable in the source code though)
 sphinxcontrib-fulltoc = "^1.2.0"
 
 [build-system]

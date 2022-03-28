@@ -1,7 +1,0 @@
-GUID: {{ range(10000, 99999) | random }}{{ range(10000, 99999) | random }}
-tile-data:
-  label: '{{ item.get("label", item.path) }}'
-  url:
-    _CFURLString: '{{ item.path }}'
-    _CFURLStringType: 15
-tile-type: url-tile
