@@ -22,12 +22,12 @@ sys.path.insert(0, os.path.abspath('..'))
 
 # -- Project information -----------------------------------------------------
 
-project = 'salt-tool-macos-config'
-copyright = '2022, jeanluc'
-author = 'jeanluc'
+project = 'salt-tool-macos-formula'
+copyright = '2022, lkubb'
+author = 'lkubb'
 
 # The full version, including alpha/beta/rc tags
-release = '0.1.0'
+release = '1.0.0'
 
 
 # -- General configuration ---------------------------------------------------

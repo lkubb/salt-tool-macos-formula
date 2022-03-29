@@ -25,8 +25,8 @@
   {%- endif -%}
 {%- endfor -%}
 
-{#- update all user configuration for macos with its defaults -#}
-{%- do salt['defaults.update'](users, {'macos': mapdata.get('defaults', {})}) -%}
+{#- update all users' configurations for this formula with the formula defaults -#}
+{%- do salt['defaults.update'](users, {tplroot[5:]: mapdata | traverse(tplroot ~ ':defaults', {})}) -%}
 
 {#- embed user information that will be reused (home, primary group, shell, paths) -#}
 {%- for user in users.keys() -%}
@@ -41,4 +41,5 @@ shell: {{ user_info.shell.split('/')[-1] }}
   {%- do users[user].update(salt['defaults.merge'](user_info, users[user], in_place=False)) -%}
 {%- endfor -%}
 
+{#- finally embed parsed user config and info in mapdata -#}
 {%- do mapdata.update({'users': users.values() | list}) -%}

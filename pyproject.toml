@@ -6,7 +6,7 @@ authors = ["lkubb"]
 
 [tool.poetry.dependencies]
 python = "^3.6.2"
-pyobjc-framework-UniformTypeIdentifiers = "^8.2"
+pyobjc-framework-UniformTypeIdentifiers = "^7.2"
 
 [tool.poetry.dev-dependencies]
 salt = "^3004"
