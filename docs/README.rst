@@ -3,7 +3,9 @@
 macOS Configuration Formula
 ===========================
 
-Configures MacOS. This formula is a collection of knowledge I collected or discovered. It is intended as both documentation and to provide automation. Many of the options in MacOS are poorly documented and change frequently and without notice. This is my attempt to mitigate a small part of that **for macOS Monterey**.
+Configures MacOS. This formula is a collection of knowledge I collected or discovered. It is intended as both documentation and to provide automation. Many of the options in MacOS are poorly documented and change frequently and without notice. This is my attempt to mitigate a small part of that (especially **for macOS Monterey**).
+
+Please be aware that this formula reaches deeply into your system and is to be considered highly experimental. Use it as you see fit. Things are probably going to be fine, but there are no warranties.
 
 .. contents:: **Table of Contents**
    :depth: 1
@@ -12,11 +14,13 @@ Usage
 -----
 Applying ``tool_macos`` will make sure MacOS is configured as specified.
 
-To manage defaults for sandboxed applications (like Mail, Messages), your terminal emulator will need `Full Disk Access` (grant it in System Preferences -> Security & Privacy). This is also true for Time Machine configuration and some other protected files.
+To manage defaults for sandboxed applications (like Mail, Messages), your terminal emulator will need **Full Disk Access** (grant it in System Preferences -> Security & Privacy). This is also true for Time Machine configuration and some other protected files.
 
 Execution and state module
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
-This formula provides several execution modules and states to manage `defaults`, profiles and power management settings as well as default handlers for files and URL schemes. The functions are self-explanatory, please see the source code or the rendered docs at :ref:`execution_modules:` and :ref:`state_modules`.
+This formula provides several execution modules and states to manage ``defaults``, profiles and power management settings as well as default handlers for files and URL schemes. The functions are self-explanatory, please see the source code or the rendered docs at :ref:`execution_modules:` and :ref:`state_modules`.
+
+Some of them are patched variants of modules written by other people, mostly `mosen <https://github.com/mosen/salt-osx>`_ in particular (``macprofile``, afaik he is also the original author of the official ``macdefaults`` modules). They were either not working on modern systems (profile installation cannot be done non-interactively without being enrolled in an MDM anymore) or lacking features I needed (e.g. ``defaults -currentHost``).
 
 Configuration
 -------------
@@ -26,7 +30,7 @@ Performance
 ~~~~~~~~~~~
 This formula bends Salt quite a bit. It also features an exorbitant amount of atomic state files that are always rendered during every run. Since Salt currently `has some caching issues <https://github.com/saltstack/salt/issues/39017>`_ regarding Jinja variables, it was necessary to introduce a workaround to avoid excessive rendering times.
 
-This workaround requires to have access to a pillar dictionary found at ``tool_macos``. It can be empty if you so desire, just has to be there. In case you do all your configuration in fileserver YAML files, make sure to **include ``tool_macos: {}`` in your pillar**, otherwise your system might go for an extended run on an imaginary hamster wheel while you are sitting there reconsidering your life choices.
+This workaround requires to have access to a pillar dictionary found at ``tool_macos``. It can be empty if you so desire, just has to be there. In case you do all your configuration in fileserver YAML files, make sure to **include** ``tool_macos: {}`` **in your pillar**, otherwise your system might go for an extended run on an imaginary hamster wheel while you are sitting there reconsidering your life choices.
 
 This formula
 ~~~~~~~~~~~~
@@ -634,47 +638,7 @@ This means if you feel a state should be documented, make sure to write a commen
 Testing
 ~~~~~~~
 
-Linux testing is done with ``kitchen-salt``.
-
-Requirements
-^^^^^^^^^^^^
-
-* Ruby
-* Docker
-
-.. code-block:: bash
-
-  $ gem install bundler
-  $ bundle install
-  $ bin/kitchen test [platform]
-
-Where ``[platform]`` is the platform name defined in ``kitchen.yml``,
-e.g. ``debian-9-2019-2-py3``.
-
-``bin/kitchen converge``
-^^^^^^^^^^^^^^^^^^^^^^^^
-
-Creates the docker instance and runs the ``tool_macos`` main state, ready for testing.
-
-``bin/kitchen verify``
-^^^^^^^^^^^^^^^^^^^^^^
-
-Runs the ``inspec`` tests on the actual instance.
-
-``bin/kitchen destroy``
-^^^^^^^^^^^^^^^^^^^^^^^
-
-Removes the docker instance.
-
-``bin/kitchen test``
-^^^^^^^^^^^^^^^^^^^^
-
-Runs all of the stages above in one go: i.e. ``destroy`` + ``converge`` + ``verify`` + ``destroy``.
-
-``bin/kitchen login``
-^^^^^^^^^^^^^^^^^^^^^
-
-Gives you SSH access to the instance for manual testing.
+Linux testing is done with ``kitchen-salt``. It follows follows there is none currently and anyone running this formula is a substitute for the missing tests. I still left the ``test`` directory inherited from the template for philosophical reasons (for the time being). :)
 
 Todo
 ----
