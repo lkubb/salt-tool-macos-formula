@@ -17,7 +17,9 @@ include:
 Autohide behavior of MacOS Menu Bar in fullscreen mode is managed for user {{ user.name }}:
   macosdefaults.write:
     - name: AppleMenuBarVisibleInFullscreen # in NSGlobalDomain
-    - value: {{ user.macos.menubar.autohide_fullscreen | to_bool }}
+    {#- Mind that the actual setting is called "...Visible...". For consistency,
+    the pillar value is inverted. pillar False => disabled True #}
+    - value: {{ False == user.macos.menubar.autohide_fullscreen | to_bool }}
     - vtype: bool
     - user: {{ user.name }}
     - require:
