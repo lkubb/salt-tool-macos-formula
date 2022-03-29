@@ -3,6 +3,26 @@
 
 {#- Get the `tplroot` from `tpldir` #}
 {%- set tplroot = tpldir.split("/")[0] %}
+
+{#- ----------- dirty hack part 1 begin -----------------------------
+    This formula features an exorbitant amount of atomic states.
+    Currently, even importing without context does not use
+    cached variables. Thus, for the time, a dirty hack is needed.
+    This speeds execution a lot, but requires the user
+    to have set at least an empty "tool_macos" key in the pillar.
+
+    https://github.com/saltstack/salt/issues/59441
+    https://github.com/saltstack/salt/issues/39017
+#}
+
+{%- set cache = salt["pillar.get"](tplroot, {}) %}
+
+{%- if "__cache" in cache %}
+{%-   set mapdata = cache["__cache"] %}
+{%- else %}
+
+{#- ----------- dirty hack part 1 end-- ----------------------------- #}
+
 {%- from tplroot ~ "/libmapstack.jinja" import mapstack with context %}
 
 {#- Where to lookup parameters source files #}
@@ -64,3 +84,8 @@
 {#- Per formula post-processing of `mapdata` if it exists #}
 {%- do salt["log.debug"]("map.jinja: post-processing of 'mapdata'") %}
 {%- include tplroot ~ "/post-map.jinja" ignore missing %}
+
+{#- ----------- dirty hack part 2 begin ----------------------------- #}
+{%- do cache.update({"__cache": mapdata}) %}
+{%- endif %}
+{#- ----------- dirty hack part 2 end ------------------------------- #}

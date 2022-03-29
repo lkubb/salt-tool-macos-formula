@@ -20,10 +20,13 @@ This formula provides several execution modules and states to manage `defaults`,
 
 Configuration
 -------------
+The options described below are organized as I saw fit. If you don't understand something or want further information, look in ``docs/settings`` or the state source files. The state files that apply the settings are laid out exactly like the option dictionary.
 
-General remarks
-~~~~~~~~~~~~~~~
-The options described below are organized as I saw fit. If you don't understand something or want to see further information, look in ``docs/settings`` or the state source files. The state files that apply the settings are laid out exactly like the option dictionary.
+Performance
+~~~~~~~~~~~
+This formula bends Salt quite a bit. It also features an exorbitant amount of atomic state files that are always rendered during every run. Since Salt currently `has some caching issues <https://github.com/saltstack/salt/issues/39017>`_ regarding Jinja variables, it was necessary to introduce a workaround to avoid excessive rendering times.
+
+This workaround requires to have access to a pillar dictionary found at ``tool_macos``. It can be empty if you so desire, just has to be there. In case you do all your configuration in fileserver YAML files, make sure to **include ``tool_macos: {}`` in your pillar**, otherwise your system might go for an extended run on an imaginary hamster wheel while you are sitting there reconsidering your life choices.
 
 This formula
 ~~~~~~~~~~~~
@@ -679,7 +682,7 @@ Todo
 - incorporate some important settings, maybe in the form of a profile (screensaver config!)
 - install arbitrary profiles
 - finish adding all options from previous iteration
-- add following system preferences settins:
+- add following system preferences settings:
 
   + Notifications & Focus (file: ``~/Library/Preferences/com.apple.ncprefs.plist``), example:
 
