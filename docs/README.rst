@@ -46,19 +46,40 @@ The following shows an example of ``tool_macos`` per-user configuration. If prov
 .. code-block:: yaml
 
   user:
+
+      # Persist environment variables used by this formula for this
+      # user to this file (will be appended to a file relative to $HOME)
+    persistenv: '.config/zsh/zshenv'
+
+      # Add runcom hooks specific to this formula to this file
+      # for this user (will be appended to a file relative to $HOME)
+    rchook: '.config/zsh/zshrc'
+
+      # This user's configuration for this formula. Will be overridden by
+      # user-specific configuration in `tool_macos:users`.
+      # Set this to `false` to disable configuration for this user.
     macos:
       animations:
-        # cursor_blinking:            # false to disable, or dict: {on: float, off: float} for periods
-        #   on: 1.5
-        #   off: 1.5
-        dock_bounce: true             # enable/disable app icons bouncing when needing attention
+          # False to disable, or dict: {on: float, off: float} for periods
+        cursor_blinking:
+          'off': 1.5
+          'on': 1.5
+          # Enable/disable app icons bouncing when needing attention.
+        dock_bounce: true
         dock_launch: true
-        dock_minimize: genie          # or scale, suck
-        finder_windows: true          # this mostly affects the File Info dialog.
-        focus_ring: true              # focus ring blend-in animation
-        macos_windows: true           # new window animations in MacOS
-        mission_control: 0.5          # animation time (float)
-        motion_reduced: false         # "reduce motions" in Accessibility. eg changes space swiping to fade
+          # genie, scale, suck
+        dock_minimize: genie
+          # This mostly affects the `File Info` dialog.
+        finder_windows: true
+          # Focus ring blend-in animation.
+        focus_ring: true
+          # New window animations in MacOS.
+        macos_windows: true
+          # Mission Control animation time (float).
+        mission_control: 0.5
+          # `reduce motions` in `Accessibility`.
+          # E.g. changes space swiping to fade.
+        motion_reduced: false
         multidisplay_swoosh: true
         window_resize_time: 0.5
       apps:
@@ -66,124 +87,188 @@ The following shows an example of ``tool_macos`` per-user configuration. If prov
           read_receipts: true
       audio:
         charging_sound: true
-        sound_effects_system: true    # this only affects macOS
-        sound_effects_ui: true        # this is global default for any app
-        sound_effect_alert: Tink      # Basso, Blow, Bottle, Frog, Funk, Glass, Hero, Morse, Ping, Pop, Purr, Sosumi, Submarine, Tink
-        sound_effect_volume: 1        # in parts of output volume. 0.5 = 50% etc
+          # Basso, Blow, Bottle, Frog, Funk, Glass, Hero, Morse, Ping,
+          # Pop, Purr, Sosumi, Submarine, Tink
+        sound_effect_alert: Tink
+          # Sound effect volume in parts of current output volume. 0.5 = 50% etc.
+        sound_effect_volume: 1
         sound_effect_volumechange: false
-        spatial_follow_head: true     # spatial audio follows head movements
-      behavior: # default "background" behavior. UI/UX in uix
-        confirm_on_close: false       # default behavior: silently save changes and exit. true to prompt
+          # This only affects macOS, not apps.
+        sound_effects_system: true
+          # This is the global default for any app.
+        sound_effects_ui: true
+          # Spatial audio follows head movements.
+        spatial_follow_head: true
+        # Default "background/magic" behavior. Find UI/UX in uix.
+      behavior:
+          # Default behavior: silently save changes and exit.
+          # Set to true to force prompts.
+        confirm_on_close: false
         crashreporter: true
-        feedback_assistant_autogather: true # whether Feedback Assistant autogathers large files
+          # Controls whether `Feedback Assistant` autogathers large files.
+        feedback_assistant_autogather: true
         handoff_allow: true
         help_window_floats: true
-        media_inserted:               # str [ignore / ask / finder / itunes / disk_utility] or dict for specific
+          # Controls what happens when media was inserted.
+          # Can be str [ignore / ask / finder / itunes / disk_utility]
+          # to control all or dict for specific types.
+        media_inserted:
           blank_cd: ask
           blank_dvd: ask
           music: itunes
           picture: ask
           video: ask
-        mission_control_grouping: true  # Mission Control groups windows by application
-        notification_display_time: 5  # seconds
-        photos_hotplug: true          # Photos app opens automatically when iPhone is plugged in
-        power_button_sleep: true      # true = power button induces sleep, false = prompt what to do
-        print_panel_expanded: false   # default state of print panel
-        printqueue_autoquit: false    # automatically quit print app when all jobs are finished
-        resume_app: true              # by default, recreate previously open windows
-        save_panel_expanded: false    # default state of save panel
-        spaces_rearrange_recent: true # rearrange spaces based on recent usage
+          # `Mission Control groups windows by application`
+        mission_control_grouping: true
+          # Display time for notifications in seconds.
+        notification_display_time: 5
+          # Photos app is launched automatically when iPhone is plugged in.
+        photos_hotplug: true
+          # Controls the behavior when the power button is pressed.
+          # true = power button induces sleep, false = prompt what to do
+        power_button_sleep: true
+          # Controls the default state of the print panel.
+        print_panel_expanded: false
+          # Automatically quit print app when all jobs are finished.
+        printqueue_autoquit: false
+          # By default, recreate previously open windows.
+        resume_app: true
+          # Controls the default state of the save panel.
+        save_panel_expanded: false
+          # `Automatically rearrange spaces based on recent usage`
+        spaces_rearrange_recent: true
         spaces_span_displays: false
-        spaces_switch_running: true   # when clicking a running app in the Dock, switch to space with it
-        tab_preference: fullscreen    # generally prefer tabs to windows: manual, fullscreen or always
+          # When clicking a running app in the Dock, switch to a containing workspace.
+        spaces_switch_running: true
+          # Generally prefer tabs to windows:
+          #     manual, fullscreen or always
+        tab_preference: fullscreen
       display:
-        antialias_subpixel: false     # false = disabled (default), true = enabled
-        antialias_threshold: 4        # font size in pixels
-        font_smoothing: medium        # disabled(0) / light(1) /medium(2) / heavy(3)
+          # false = disabled (default), true = enabled
+        antialias_subpixel: false
+          # Threshold for enabling antialiasing (font size in pixels).
+        antialias_threshold: 4
+          # disabled(0) / light(1) /medium(2) / heavy(3)
+        font_smoothing: medium
         nightshift:
           enabled: true
-          temperature: 4100           # 2700-6000
           schedule:
             # 'HH:mm' or HH
-            # make sure to quote the former to stop yaml from doing weird stuff
-            # why is 22:15 = 1335?
+            # Make sure to quote the former to stop YAML from doing weird stuff.
+            # Why is 22:15 = 1335?
+            end: '13:37'
             start: 3
-            end: '13:37'              # 'HH:mm' or HH
+            # 2700-6000
+          temperature: 4100
         truetone: true
       dock:
         autohide:
+          delay: 0.5
           enabled: false
           time: 0.5
-          delay: 0.5
         hint_hidden: false
         hint_running: true
         magnification:
           enabled: false
           size: 128
         minimize_to_icon: true
-        persistent_tiles: true        # false for only running apps
-        position: bottom              # bottom, left, right
+          # Persistent Dock tiles. `false` for running apps only.
+        persistent_tiles: true
+          # Dock position: bottom, left, right
+        position: bottom
         recently_opened: true
         scroll_to_open: false
-        single_app: false             # single-app mode: launch from dock, hide all others
+          # Single-app mode: Launching from dock hides all other apps.
+        single_app: false
         size:
-          tiles: 48
           immutable: false
+          tiles: 48
         spring_loading: false
         stack_hover: false
         tiles:
-          sync: true # don't append, make it exactly like specified. currently forced to true
           apps:
-            - /Applications/TextEdit.app  # paths can be specified, type will be autodetected
-            -                             # empty items are small-spacer[s]
-            - type: file                  # this is the verbose variant for app definition
+                # Paths can be specified, type will be autodetected.
+            - /Applications/TextEdit.app
+              # Empty items are small-spacer[s].
+            -
+              # This is the verbose variant for app definition.
+                # The label will otherwise equal the app name without .app.
+            - label: Sublime
               path: /Applications/Sublime Text.app
-              label: Sublime              # the label will otherwise equal app name without .app
-            - small-spacer                # add different spacers with [small-/flex-]spacer
-            - path: /Applications/Firefox.app
-              label: FF                   # type will be autodetected as above
+              type: file
+                # Add different spacers with [small-/flex-]spacer.
+            - small-spacer
+            - label: FF
+                # The type will be autodetected as above.
+              path: /Applications/Firefox.app
           others:
-            - path: /Users/user/Downloads
-              displayas: stack            # stack / folder
-              showas: grid                # auto / fan / grid / list
-              arrangement: added          # name / added / modified / created / kind
-              label: DL                   # the label would be set to Downloads otherwise
-              type: directory             # will be autodetected as well
+                # Sort by: name / added / modified / created / kind
+            - arrangement: added
+                # View items as `stack` or `folder`.
+              displayas: stack
+                # The label would be set to `Downloads` otherwise.
+              label: DL
+              path: /Users/user/Downloads
+                # Layout: auto / fan / grid / list.
+              showas: grid
+                # The type will be autodetected as well.
+              type: directory
             - spacer
-            - /Users/user/Documents       # defaults: stack + auto + added. label: Documents.
+                # Defaults: sort by added, display as stack,
+                #           layout auto. Label: Documents.
+            - /Users/user/Documents
             - flex-spacer
-            - https://www.github.com      # urls can be added as well
+                # URL can be added as well.
+            - https://www.github.com
+            # Don't append, make it exactly like specified.
+            # Note: Currently forced to `true`.
+          sync: true
       files:
         default_handlers:
-          # extensions will be automatically resolved to all associated UTI
+            # File extensions will be automatically resolved to all associated UTI.
+            # Handlers can be specified by name, bundle ID or absolute path.
           extensions:
-            csv: Sublime Text             # handler can be specified by name, bundle ID or path
+            csv: Sublime Text
             html: Firefox
           schemes:
-            http: org.mozilla.Firefox     # this will set https as well, user prompt is shown
+              # This will set https as well, a user prompt is shown for confirmation.
+            http: org.mozilla.Firefox
             ipfs: /Applications/Brave Browser.app
             torrent: Transmission
           utis:
             public.plain-text: TextEdit
-        dsstore_avoid: all                # usb / network / all [= both types] / none
-        save_icloud: true                 # default location of "Save as...". iCloud vs local
+          # Avoid cluttering usb / network / all [= both types] / none
+          # mounts with .DS_Store files.
+        dsstore_avoid: all
+          # Default location of "Save as...". iCloud vs local.
+        save_icloud: true
         screenshots:
           basename: custom_prefix
-          format: png                     # png / bmp / gif / jp(e)g / pdf / tiff
-          include_date: true              # whether to include date in filename
-          include_cursor: false           # whether to show cursor in screenshots
-          location: /Users/h4xx0r/screenshots # default: $HOME/Desktop (absolute path)
-          shadow: true                    # actually called dropshadow
-          thumbnail: true                 # show floating thumbnail
+            # Image format: png / bmp / gif / jp(e)g / pdf / tiff
+          format: png
+            # Whether to show the cursor in screenshots.
+          include_cursor: false
+            # Whether to include date in the filename.
+          include_date: true
+            # Default: ~/Desktop. Needs absolute path!
+          location: /Users/h4xx0r/screenshots
+            # Actually called `dropshadow`.
+          shadow: true
+            # Show floating thumbnail.
+          thumbnail: true
       finder:
-        airdrop_extended: false           # enable AirDrop on Ethernet and unsupported Macs
+          # Enable AirDrop over Ethernet and on unsupported Macs.
+        airdrop_extended: false
         desktop_icons:
-          show: true
-          arrange: grid # none, grid, name, kind, last_opened, added, modified, created, size, tags
-          size: 64
-          spacing: 54
+            # Arrange icons automatically by:
+            #   none, grid, name, kind, last_opened, added,
+            #   modified, created, size, tags
+          arrange: grid
           info: false
           info_bottom: true
+          show: true
+          size: 64
+          spacing: 54
           text_size: 12
         dmg_verify: true
         fileinfo_popup:
@@ -193,35 +278,47 @@ The following shows an example of ``tool_macos`` per-user configuration. If prov
           openwith: true
           privileges: true
         folders_on_top: false
-        home: recent # computer / volume / home / desktop / documents / </my/custom/path>
-        new_window_on_mount: # finder opens a new window on volume mount. empty to disable all
+          # New finder windows open at:
+          #   computer / volume / home / desktop / documents / </my/custom/path>
+        home: recent
+          # Open a new window on mount of volume of type.
+        new_window_on_mount:
           - ro
           - rw
           - disk
         pathbar_home_is_root: false
         prefer_tabs: true
-        quittable: false                  # Finder can be quit
-        search_scope_default: mac         # mac, current, previous
-        show_ext_hdd: true                # show external HDD on desktop
+          # Finder can be quit => no desktop icons shown.
+        quittable: false
+          # Finder searches by default relative to
+          #   mac, current, previous
+        search_scope_default: mac
+          # Show external HDD on the desktop.
+        show_ext_hdd: true
         show_extensions: false
-        show_hidden: false                # show hidden files
-        show_int_hdd: false               # show internal HDD on desktop
+          # Show hidden files.
+        show_hidden: false
+          # Show internal HDD on the desktop.
+        show_int_hdd: false
         show_library: false
-        show_nas: true                    # show mounted NAS drives on desktop
+          # Show mounted NAS drives on the desktop.
+        show_nas: true
         show_pathbar: false
-        spring_loading:                   # open folder when dragging file on top
-          enabled: true
+          # Open folder when dragging file on top.
+        spring_loading:
           delay: 0.5
-        title_hover_delay: 0.5            # delay on hover for proxy icons to show up
-        title_path: false                 # show full POSIX path in window title
-        trash_old_auto: true     # remove items older than 30 days automatically from trash
+          enabled: true
+          # Delay on hover for proxy icons to show up.
+        title_hover_delay: 0.5
+          # Show full POSIX path in window title.
+        title_path: false
+          # Remove items older than 30 days automatically from trash.
+        trash_old_auto: true
         view:
-          preferred:
-            groupby: none # name, app, kind, last_opened, added, modified, created, size, tags
-            style: icon                   # icon / list / gallery / column [coverflow deprecated]
-
           column:
-            arrange: name # none, kind, last_opened, added, modified, created, size, tags
+              # By default, sort items by
+              #   none, name, kind, last_opened, added, modified, created, size, tags
+            arrange: name
             col_width: 245
             folder_arrow: true
             icons: true
@@ -230,85 +327,149 @@ The following shows an example of ``tool_macos`` per-user configuration. If prov
             shared_arrange: kind
             text_size: 13
             thumbnails: true
-
           gallery:
-            arrange: name # none, kind, last_opened, added, modified, created, size, tags
+              # By default, sort items by
+              #   none, name, kind, last_opened, added, modified, created, size, tags
+            arrange: name
             icon_size: 48
             preview: true
             preview_pane: true
             titles: false
-
           icon:
-            arrange: grid # none, name, kind, last_opened, added, modified, created, size, tags
-            size: 64
-            spacing: 54
+              # By default, sort items by
+              #   none, name, grid, kind, last_opened, added,
+              #   modified, created, size, tags
+            arrange: grid
             info: false
             info_bottom: true
+            size: 64
+            spacing: 54
             text_size: 12
-
           list:
             calc_all_sizes: false
             icon_size: 16
             preview: true
-            sort_col: name  # name, kind, last_opened, added, modified, created, size, tags
-            text_size: 13
             relative_dates: true
-        warn_on_extchange: true           # warn when changing a file extension
-        warn_on_icloud_remove: true       # warn when removing files from iCloud drive
-        warn_on_trash: true               # warn when emptying trash
+              # By default, sort rows by
+              #   name, kind, last_opened, added, modified, created, size, tags
+            sort_col: name
+            text_size: 13
+          preferred:
+              # By default, automatically group by:
+              #   name, app, kind, last_opened, added, modified, created, size, tags
+            groupby: none
+              # By default, open Finder folders with layout set as
+              #   icon / list / gallery / column [coverflow deprecated]
+            style: icon
+          # Show warning when changing a file extension.
+        warn_on_extchange: true
+          # Show warning when removing files from iCloud Drive.
+        warn_on_icloud_remove: true
+          # Show warning when emptying the trash.
+        warn_on_trash: true
       keyboard:
-        fn_action: none                   # none, dictation, emoji, input_source
-        function_keys_standard: false     # use function keys as standard function keys by default
+          # Fn triggers:
+          #   none, dictation, emoji, input_source
+        fn_action: none
+          # Use function keys as standard function keys instead of system keys
+          # by default. Press Fn + F1-12 to trigger system actions.
+        function_keys_standard: false
       localization:
-        force_124h: 24h                   # 12h or 24h. possibility to force format.
-        languages:                        # name-country separated with dash
+          # `12h` or `24h`. This forces the format, regardless of locale.
+        force_124h: 24h
+          # List of active system languages. `name-country` separated by dash.
+        languages:
           - en-US
           - en-NZ
-        measurements: metric              # metric, US, UK
-      # customize Mail.app. note that your terminal application needs Full Disk Access for this to work
+          # Show measurements in
+          #   metric, US, UK
+        measurements: metric
+        # Customize Mail.app. Note that your terminal application
+        # needs Full Disk Access for this to work.
       mail:
-        accounts:                         # those accounts will be installed interactively (profile)
+          # Those accounts will be installed interactively (as profile).
+        accounts:
           - address: elliotalderson@protonmail.ch
-            description: dox              # default: address
-            name: Elliot                  # default: <username portion of address>
-            type: imap                    # imap, pop
+              # Account description. Default: <address>
+            description: dox
+              # Name shown as sender. Default: <username portion of address>
+            name: Elliot
+              # Incoming mailserver settings.
             server_in:
-              auth: password              # none, password, crammd5, ntlm, httpmd5
-              username: elliotalderson@protonmail.ch    # default: address
+                # IMAP/POP authentication type is
+                #   none, password, crammd5, ntlm, httpmd5
+              auth: password
               domain: 127.0.0.1
-              port: 1143                  # default: 993
+                # IMAP/POP port on the server. Default: 993
+              port: 1143
               ssl: true
+                # Username for IMAP/POP auth. Default: <address>
+              username: elliotalderson@protonmail.ch
             server_out:
-              auth: password              # none, password, crammd5, ntlm, httpmd5
-              username: elliotalderson@protonmail.ch    # default: address
+                # SMTP authentication type is
+                #   none, password, crammd5, ntlm, httpmd5
+              auth: password
               domain: 127.0.0.1
-              port: 1025                  # default: 465
-              ssl: true
+                # Use the same password as for IMAP/POP and SMTP.
               password_sameas_in: true
-        animation_reply: true             # whether to animate sending replies
-        animation_sent: true              # whether to animate sending messages
-        attachments_inline: true          # whether to show attachments inline
-        auto_resend_later: true           # suppress warning on fail, silently try later again
-        conv_mark_all_read: true          # whether to mark all messages as read when viewing conversation
-        conv_most_recent_top: true        # whether to display the latest message on top (sort asc/desc)
-        dock_unread_count: inbox          # inbox or all
-        downloads_remove: when_deleted    # delete unedited attachments: never, app_quit, message_deleted
-        format_match_reply: true          # automatically match format when replying
-        format_preferred: rich            # rich / plain. prefer sending messages in that format
-        highlight_related: true           # highlight conversations with color when not grouped
-        include_related: true             # Include related messages
-        include_names_oncopy: true        # whether to include names when copying mail addresses
-        new_message_notifications: inbox  # inbox, vips, contacts, all
-        new_message_sound: New Mail       # '' to disable, else see audio.sound_effect_alert
-        poll: auto                        # auto, manual or int [minutes between polls]
-        remote_content: true              # whether to load remote content in mails
+                # SMTP port on the server. Default: 465
+              port: 1025
+              ssl: true
+                # Username for SMTP auth. Default: <address>
+              username: elliotalderson@protonmail.ch
+              # The protocol used by the MUA for this account:
+              #   imap, pop
+            type: imap
+          # Whether to animate sending replies.
+        animation_reply: true
+          # Whether to animate sending messages.
+        animation_sent: true
+          # Whether to show attachments inline.
+        attachments_inline: true
+          # Suppress warning on fail, silently try later again.
+        auto_resend_later: true
+          # Whether to mark all messages as read when viewing conversation.
+        conv_mark_all_read: true
+          # Whether to display the latest message on top (sort asc/desc).
+        conv_most_recent_top: true
+          # Unread count in dock depends on
+          #   inbox / all
+        dock_unread_count: inbox
+          # Delete unedited attachments on: never, app_quit, message_deleted
+        downloads_remove: when_deleted
+          # Automatically match format when replying (HTML vs plaintext)
+        format_match_reply: true
+          # Prefer sending messages in
+          #   rich / plain
+        format_preferred: rich
+          # Highlight conversations with color when not grouped.
+        highlight_related: true
+          # Whether to include names when copying mail addresses.
+        include_names_oncopy: true
+          # Include related messages.
+        include_related: true
+          # Show notification when a new message is received in / from:
+          #   inbox, vips, contacts, all
+        new_message_notifications: inbox
+          # '' to disable, else see `audio.sound_effect_alert`.
+        new_message_sound: New Mail
+          # Poll for new mesages:
+          #   auto, manual or int [minutes between polls]
+        poll: auto
+          # Whether to load remote content in mails automatically.
+        remote_content: true
         respond_with_quote: true
-        shortcut_send: '@\U21a9'          # set custom shortcut to send message. this is Cmd + Enter e.g.
-        unread_bold: false                # show unread messages in bold font
-        view_conversations_highlight: true  # this is different from highlight_related
+          # Set custom shortcut to send message. E.g., this is Cmd + Enter.
+        shortcut_send: '@\U21a9'
+          # Show unread messages in bold font.
+        unread_bold: false
+          # This is different from highlight_related.
+        view_conversations_highlight: true
         view_date_time: false
-        view_fullscreen_split: true       # preview messages in split view when fullscreen
-        view_message_size: false          # display message size in overview
+          # Preview messages in split view when in fullscreen mode.
+        view_fullscreen_split: true
+          # Display message sizes in overview.
+        view_message_size: false
         view_threaded: true
       menubar:
         accessibility:
@@ -325,120 +486,175 @@ The following shows an example of ``tool_macos`` per-user configuration. If prov
         clock:
           analog: false
           flash_seconds: false
-          format: 'EEE HH:mm'
+          format: EEE HH:mm
         display: when_active
         focus: when_active
         keyboard_brightness: false
         now_playing: when_active
         screen_mirroring: when_active
         siri: true
-        sound: when_active                # true, false, when_active
+          # Show sound icon: true, false, when_active
+        sound: when_active
         spotlight: false
         timemachine: false
         userswitcher:
           control: false
           menu: false
-          menu_show: icon                 # icon, username, fullname
+            # Userswitcher shows:
+            #   icon, username, fullname
+          menu_show: icon
         wifi: true
       performance:
         app_nap: true
         auto_termination: true
         screensaver:
-          after: 300            # seconds. 0 to disable
-          clock: false          # show clock with screensaver
+            # Seconds of inactivity until screensaver starts. 0 to disable.
+          after: 300
+            # Show clock with screensaver.
+          clock: false
       privacy:
         allow_targeted_ads: true
         siri_share_recordings: false
       security:
         airdrop: true
-        # password_after_sleep:           # this is sadly deprecated and would need a
-        #   require: true                 # profile to be supported still
-        #   delay: 0
-        password_hint_after: 3  # 0 to disable
-        quarantine_logs:                  # MacOS keeps a log of all downloaded files
-          clear: false                    # enable this to clear logs
-          enabled: true                   # disable this to prevent keeping logs
-        user_hidden: false                # allows to hide this user from login window,
-                                          # and public share points as well as his home dir
-        user_no_filevault: false          # remove this user from FileVault. cannot add back in
-                                          # automatically
-      # user-specific services management (system-wide available in formula config)
+          # Require password after sleep.
+          # This is sadly deprecated and would
+          # need to install a profile to be supported still.
+        password_after_sleep:
+          delay: 0
+          require: true
+        password_hint_after: 3
+          # Fun fact: MacOS keeps a log of all downloaded files ever.
+        quarantine_logs:
+            # Enable this to clear logs during the salt run.
+          clear: false
+            # Disable this to prevent keeping logs at all.
+          enabled: true
+          # Allows to hide this user from login window
+          # and public share points as well as his home dir from Finder.
+        user_hidden: false
+          # Remove this user from FileVault. Cannot be added back automatically.
+        user_no_filevault: false
+        # User-specific services management.
+        # (system-wide is available in formula config)
       services:
-        wanted:                           # list of Login Items to enable
-          - com.raycast.macos.RaycastLauncher
-        unwanted:                         # list of Login Items to disable
+          # List of Login Items to disable.
+        unwanted:
           - com.spotify.client.startuphelper
+          # List of Login Items to enable.
+        wanted:
+          - com.raycast.macos.RaycastLauncher
       siri:
-        enabled: false                    # mind that toggling this setting via sys prefs does much more
-        keyboard_shortcut: default        # (=off/hold microphone key), cmd_space, opt_space, fn_space
-        language: en-US                   # locale as shown
+          # Mind that toggling this setting via System Preferences does much more.
+        enabled: false
+          # Trigger siri with
+          #   default (=off/hold microphone key), cmd_space, opt_space, fn_space
+        keyboard_shortcut: default
+          # Locale as shown.
+        language: en-US
         voice_feedback: true
-        voice_variety:                    # customize variety
-          language: en-AU                 # accent
-          speaker: gordon                 # the speaker's name
+        voice_variety:
+            # Accent
+          language: en-AU
+            # The speaker's name.
+          speaker: gordon
       textinput:
         autocapitalization: true
         autocorrection: true
         dictation: false
-        press_and_hold: true              # disable this for faster key repeats
+          # Trigger alternative chars when long-pressing keys.
+          # Disable this for faster key repeats.
+        press_and_hold: true
         repeat:
-          rate: 10
           delay: 1
+          rate: 10
         slow_keys: false
         smart_dashes: true
         smart_periods: true
         smart_quotes: true
-      # Touch gesture configuration is a bit weird regarding three finger gestures.
-      # [three finger] drag and swipe_pages, when set to three [fingers] or
-      # both [two and three], need both axes, so app_expose_mission_control and
-      # swipe_fullscreen need to be four [fingers] or disabled.
-      # You will be warned about misconfiguration, but that might result in an unknown state.
-      # Also note that currently, these settings will only be applied after a
-      # reboot. I'm working on an execution module to be able to set those on the fly.
+        # Touch gesture configuration is a bit weird regarding three finger gestures.
+        # [three finger] drag and swipe_pages, when set to three [fingers] or
+        # both [two and three], need both axes, so app_expose_mission_control and
+        # swipe_fullscreen need to be four [fingers] or disabled.
+        # You will be warned about misconfiguration, but that might result in an unknown state.
+        # Also note that currently, these settings will only be applied after a
+        # reboot. I'm working on an execution module to be able to set those on the fly.
       touch:
-        app_expose: true                  # enable/disable App Exposé gesture
-        app_expose_mission_control: three # three [fingers], four or false for both gestures
-        drag: false                       # three finger drag
+          # Enable/disable App Exposé gesture.
+        app_expose: true
+          # App Expose and Mission Control gestures use
+          # `three` [fingers], `four` or false (disabled)
+        app_expose_mission_control: three
+        drag: false
         force_click: true
         haptic_feedback_click: true
-        haptic_resistance_click: medium   # low (=light) / medium / high (=firm)
-        launchpad: true                   # enable/disable Launchpad pinch gesture
-        lookup: true                      # true [force click] / three [finger tap] / false
-        mission_control: true             # enable/disable Mission Control gesture
+          # low (=light) / medium / high (=firm)
+        haptic_resistance_click: medium
+          # Enable/disable Launchpad pinch gesture.
+        launchpad: true
+          # Trigger lookup:
+          #   true [force click] / three [finger tap] / false
+        lookup: true
+          # Enable/disable Mission Control gesture.
+        mission_control: true
         natural_scrolling: true
         notification_center: true
         rotate: true
-        secondary_click: two              # false, two [fingers], corner-right [bottom], corner-left [bottom]
-        show_desktop: true                # enable/disable Show Desktop pinch gesture
+          # Enable secondary click with
+          #   false, two [fingers], corner-right [bottom], corner-left [bottom] click
+        secondary_click: two
+          # Enable/disable Show Desktop pinch gesture.
+        show_desktop: true
         smart_zoom: true
-        swipe_fullscreen: three           # three [fingers] / four / false
-        swipe_pages: two                  # two [finger scroll], three, both or false
+          # Swiping fullscreen apps/workspaces requires
+          # three [fingers] / four / false
+        swipe_fullscreen: three
+          # Swiping pages requires
+          #   two [finger scroll], three, both or false
+        swipe_pages: two
         tap_to_click: false
-        tracking_speed: 1                 # 0-3, is float
+          # Trackpad acceleration: 0-3 [float]
+        tracking_speed: 1
         zoom: true
-      uix: # UI / UX with user input. default behaviors in behavior
+        # UI / UX with user input. Default background behaviors in behavior.
+      uix:
         colors:
-          accent: multi # blue, purple, pink, red, orange, yellow, green, graphite
-          highlight: accent_color # blue, purple, pink, red, orange, yellow, green, graphite
-        doubleclick_title: maximize       # or 'none', minimize. action when doubleclicking a window's title
-        hot_corners:                      # hot corner configuration. if no modifier, can be just str per corner
-          # action can be 'none', mission-control, app-windows, desktop, screensaver, stop-screensaver,
-          # displaysleep, launchpad, notification-center, lock-screen, quick-note
-          top_left: 'none' # mind the '' - yaml things
-          top_right: notification-center
+            # MacOS accent color:
+            #   multi, blue, purple, pink, red, orange, yellow, green, graphite
+          accent: multi
+            # MacOS highlight color:
+            #   accent_color, blue, purple, pink, red, orange,
+            #   yellow, green, graphite
+          highlight: accent_color
+            # Action triggered when doubleclicking a window title:
+            #   `maximize` / `'none'` (f yaml), `minimize`
+        doubleclick_title: maximize
+          # Hot corner configuration. If no modifier, can be just a string per corner.
+        hot_corners:
           bottom_left:
+              # Action can be 'none', mission-control, app-windows, desktop,
+              # screensaver, stop-screensaver, displaysleep, launchpad,
+              # notification-center, lock-screen, quick-note
             action: screensaver
-            # modifier can be 'none', shift, ctrl, opt, cmd
-            modifier: 'none' # mind the '' - yaml things
+              # Modifier can be 'none', shift, ctrl, opt, cmd.
+            modifier: none
           bottom_right:
             action: stop-screensaver
             modifier: shift
+          top_left: none
+          top_right: notification-center
         live_text: true
-        locate_pointer: false             # locate the pointer by shaking it
-        scrollbar_jump_click: false       # true: jump to spot that was clicked. false: next page
-        scrollbars_visibility: automatic  # always, automatic, when_scrolling
-        sidebar_iconsize: medium          # small, medium, large
-        spotlight_index:                  # list of items to enable in spotlight index. rest is disabled
+          # Locate the pointer by shaking it.
+        locate_pointer: false
+          # true: Jump to spot that was clicked. false: Go to next page.
+        scrollbar_jump_click: false
+          # Show scroll bars
+          #   always, automatic, when_scrolling
+        scrollbars_visibility: automatic
+          # Sidebar icon size: small, medium, large
+        sidebar_iconsize: medium
+          # List of items to enable in the Spotlight index. The rest is disabled.
+        spotlight_index:
           - applications
           - bookmarks-history
           - calculator
@@ -460,16 +676,27 @@ The following shows an example of ``tool_macos`` per-user configuration. If prov
           - siri
           - spreadsheets
           - system-preferences
-        tab_ui_elements: false            # use tab to cycle through UI elements (~ full keyboard access)
-        theme: light                      # auto, dark, light
+          # Use tab to cycle through UI elements (~ full keyboard access).
+        tab_ui_elements: false
+          # System theme: auto, dark, light
+        theme: light
+          # Show outlines around toolbar buttons (from Accessibility).
+        toolbar_button_shapes: false
         transparency_reduced: false
-        toolbar_button_shapes: false      # outlines around toolbar buttons (Accessibility)
-        wallpaper_tinting: true           # windows are tinted in the wallpaper median color
-        zoom_scroll_ui:                   # if you want to leave defaults, can be boolean instead of mapping
-          enabled: false                  # enable/disable zoom UI by scrolling with modifier feature
-          modifier: ctrl                  # ctrl, opt, cmd
-          zoom_mode: full                 # full, split, in_picture
-          follow_keyboard_focus: never    # never, always, when_typing
+          # Windows are tinted in the wallpaper median color.
+        wallpaper_tinting: true
+          # Customize UI zooming (from Accessibility).
+          # If you want to leave defaults, can be boolean instead of mapping.
+        zoom_scroll_ui:
+            # Enable/disable zoom UI by scrolling with modifier feature.
+          enabled: false
+            # Follow keyboard focus:
+            #   never, always, when_typing
+          follow_keyboard_focus: never
+            # Modifier to trigger this behavior: ctrl, opt, cmd
+          modifier: ctrl
+            # Zoom: full, split, in_picture
+          zoom_mode: full
 
 Formula-specific
 ^^^^^^^^^^^^^^^^
@@ -478,116 +705,172 @@ These are macOS system-wide preferences that need to run as root.
 .. code-block:: yaml
 
   tool_macos:
+
     audio:
       boot_sound: false
       devices:
-        "device.AppleUSBAudioEngine:Native Instruments:Komplete Audio 6 MK2:ABCD1EF2:1,2":
+        device.AppleUSBAudioEngine:Native Instruments:Komplete Audio 6 MK2:ABCD1EF2:1,2:
           output.stereo.left: 5
           output.stereo.right: 6
     bluetooth:
       enabled: true
       enabled_airplane: true
       ignored:
-        sync: false
         devices:
           - <MAC 1>
           - <MAC 2>
+        sync: false
     finder:
-      show_volumes: false               # show/hide /Volumes folder
+        # Show/hide `/Volumes` folder.
+      show_volumes: false
     keyboard:
       brightness_adjustment:
-        low_light: true                 # adjust keyboard brightness in low light
-        after: 0                        # dim keyboard brightness after x seconds of inactivity (0=disable)
+          # Dim keyboard brightness after x seconds of inactivity (0=disable).
+        after: 0
+          # Adjust keyboard brightness in low light.
+        low_light: true
     localization:
-      hostname: localmac                # this will be set as computer name, hostname, NetBIOS name
+        # This will be set as computer name, hostname, NetBIOS name.
+      hostname: localmac
       timezone: GMT
-    power: # power settings for pmset per scope. valid scopes: all, ac, battery, ups
+      # Power settings for pmset per scope. Valid scopes: all, ac, battery, ups.
+    power:
       all:
-        hibernatemode: 3 # 0 / 3 / 25 sleep / safe sleep / true hibernation for standby
-        acwake: 0  # wake when plugging ac in
-        autopoweroff: 0  # enable automatic poweroff (mostly the same as standby)
-        autopoweroffdelay: 0 # [in seconds]
+          # Wake when plugging in AC adapter.
+        acwake: 0
+          # Enable automatic poweroff (mostly the same as standby).
+        autopoweroff: 0
+          # Trigger autopoweroff after x seconds of inactivity.
+        autopoweroffdelay: 0
+          # Sleep the display after x minutes of inactivity.
         disksleep: 10
         displaysleep: 2
-        halfdim: 1  # displaysleep means less bright instead of fully off
-        highpowermode: 0 # ?
-        highstandbythreshold: 50  # threshold in percent for toggling standbydelayhigh/low
-        lessbright: 0 # whether display max brightness is lowered
-        lidwake: 1  # whether to wake when opening lid
-        lowpowermode: 0 # ?
-        powermode: 0 # ?
+          # Dim the display instead of powering it off when display-sleeping.
+        halfdim: 1
+          # Which mode to use for hibernation:
+          #   0   /     3      /      25
+          # sleep / safe sleep / true hibernation for standby
+        hibernatemode: 3
+        highpowermode: 0
+          # Threshold in percent for toggling standbydelayhigh/-low.
+        highstandbythreshold: 50
+          # Whether display max brightness is reduced. Works for `battery` scope.
+        lessbright: 0
+          # Whether to wake when opening the laptop lid.
+        lidwake: 1
+        lowpowermode: 0
+        powermode: 0
         powernap: 1
         proximitywake: 0
         sleep: 1
-        standby: 1  # enable automatic sleep -> standby
+          # Enable automatic sleep -> standby
+        standby: 1
         standbydelayhigh: 86400
         standbydelaylow: 10800
-        tcpkeepalive: 0 # ?
-        ttyskeepawake: 0  # prevent sleep when active tty connection, even remote
-        womp: 0  # wake on ethernet magic packet
-      battery: # different scope
+        tcpkeepalive: 0
+          # Prevent sleep when there is an active tty connection, even if it's remote.
+        ttyskeepawake: 0
+          # Wake on receiving an ethernet magic packet.
+        womp: 0
+      battery:
         lessbright: 1
     privacy:
-      crashreporter_allow: apple        # none, apple, third_party
+        # Allow Crash Reporter to send reports to
+        #   none, apple, third_party
+      crashreporter_allow: apple
     security:
-      autologin: false                  # false to disable, otherwise username
+        # Automatically login a user after booting.
+        #   false to disable, otherwise username
+      autologin: false
       autoupdate:
-        check: true                     # enable automatic updates
-        download: true                  # automatically download updates
-        install_app: true               # App Store app updates
-        install_config: true            # System Preferences combines this with critical
-        install_critical: true          # System Preferences combines this with config
-        install_system: true            # MacOS updates
-        schedule: 1                     # check every i day(s)
+          # Enable automatic updates.
+        check: true
+          # Automatically download updates.
+        download: true
+          # Automatically install App Store app updates.
+        install_app: true
+          # Automatically install (critical) config updates.
+          # System Preferences combines this with critical.
+        install_config: true
+          # Automatically install critical system updates.
+          # System Preferences combines this with config.
+        install_critical: true
+          # Automatically install MacOS updates.
+        install_system: true
+          # Check every i day(s) for updates. (might be deprecated)
+        schedule: 1
       captive_portal_detection: true
-      cupsd: true                       # load/unload cupsd
-      filevault_autologin: true         # automatically log in user when filevault is enabled
+        # Load/unload cupsd service.
+      cupsd: true
+        # Automatically log in a user after authenticating with FileVault.
+      filevault_autologin: true
       filevault_evict_keys_standby: false
       firewall:
-        # automatically allow incoming connections for Apple-signed binaries
+          # Automatically allow incoming connections for Apple-signed binaries.
         apple_signed_ok: true
-        # automatically allow incoming connections for downloaded signed binaries
+          # Automatically allow incoming connections for downloaded signed binaries.
         download_signed_ok: false
         enabled: true
-        incoming_block: false           # block all incoming connections
+          # Block all incoming connections.
+        incoming_block: false
         logging: true
-        stealth: false                  # ignore incoming ICMP + TCP/UDP to closed ports
+          # Ignore incoming ICMP + TCP/UDP packets to closed ports.
+        stealth: false
       gatekeeper: true
       guest_account: false
       internet_sharing: false
-      ipv6: true    # sets ipv6 automatic/off on all network interfaces. debatable if sensible
-      mdns: true                        # send multicast DNS advertisements
+        # Sets ipv6 automatic/off on all network interfaces. Debatable if sensible.
+      ipv6: true
+        # Send multicast DNS advertisements.
+      mdns: true
       ntp:
-        enabled: true                   # sync time using ntp
-        server: time.apple.com          # specify ntp server
+          # Sync the system time using ntp.
+        enabled: true
+          # Specify ntp server to use.
+        server: time.apple.com
       printer_sharing: false
       remote_apple_events: false
+        # This setting only works to disable remote desktop connections.
+      remote_desktop_disabled: true
+        # State of SSH server.
+      remote_login: false
       require_admin_for_system_settings: true
-      remote_desktop_disabled: true     # this setting only works to disable
-      remote_login: false               # state of SSH server
-      root_disabled_check: false        # disable/enable check if root user account is disabled
-      # allow sudo auth with Touch ID
+        # Disable/enable check if root user account is disabled.
+        # Cannot modify the state.
+      root_disabled_check: false
       sudo_touchid:
         enabled: false
-        # pam_reattach might be required to make this work with tmux and iTerm saved sessions
+          # pam_reattach might be required to make this work
+          # with tmux and iTerm saved sessions
         pam_reattach: false
-      wake_on_lan: false                # enabled by default for ac actually. fine-grained
-                                        # settings in macos.power. this is mostly for disabling
-    # global services management (user-specific available in user config)
+        # Wake on receiving magic ethernet package.
+        # Enabled by default for AC actually.
+        # More finegrained control: `womp` in power settings (`macos.power`).
+        # This is mostly for disabling the feature.
+      wake_on_lan: false
+      # Global services management.
+      # (user-specific available in user config)
     services:
-      wanted:                           # list of Launch Items to enable
-        - org.pqrs.karabiner.karabiner_observer
-      unwanted:                         # list of Launch Items to disable
+        # List of Launch Items to disable.
+      unwanted:
         - org.cups.cupsd
-    # Time Machine configuration needs Full Disk Access for your terminal emulator.
+        # List of Launch Items to enable.
+      wanted:
+        - org.pqrs.karabiner.karabiner_observer
+      # Time Machine configuration
+      # needs Full Disk Access for your terminal emulator.
     timemachine:
       backup_on_battery: false
-      offer_new_disks: true             # disable this to suppress TimeMachine popup
-                                        # offering an unknown disk as backup target
+        # Disable this to suppress a TimeMachine popup
+        # offering an unknown disk as backup target on mount.
+      offer_new_disks: true
     uix:
-      login_window_input_menu: true     # show language selection menu in login window
+        # Show language selection menu in login window.
+      login_window_input_menu: true
 
-    defaults: {}                        # default formula user configurations for all users
+      # Default formula configuration for all users.
+    defaults:
+      animations: default value for all users
 
 
 Development
@@ -638,7 +921,7 @@ This means if you feel a state should be documented, make sure to write a commen
 Testing
 ~~~~~~~
 
-Linux testing is done with ``kitchen-salt``. It follows follows there is none currently and anyone running this formula is a substitute for the missing tests. I still left the ``test`` directory inherited from the template for philosophical reasons (for the time being). :)
+Linux testing is done with ``kitchen-salt``. It follows follows there is none currently and anyone running this formula is a substitute for the missing tests.
 
 Todo
 ----

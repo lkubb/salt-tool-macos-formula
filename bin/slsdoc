@@ -19,6 +19,7 @@ without editing the source code for that. @TODO
 from pathlib import Path
 
 from jinja2 import Environment
+from jinja2.exceptions import TemplateSyntaxError
 
 # import sphinx.util.docstrings as d
 
@@ -29,6 +30,7 @@ class State:
     """
     Object representing a documented state.
     """
+
     def __init__(self, path, comment):
         self.path = path
         self.comment = comment
@@ -63,6 +65,7 @@ class StateRegistry:
     All of them are guaranteed to be sorted, which is required
     by some of the downstream classes.
     """
+
     def __init__(self, reg=None, states=None, prefixes=None):
         if reg is None:
             reg = {}
@@ -166,6 +169,7 @@ class Renderer:
     """
     Base class for Renderer objects.
     """
+
     opts = {}
 
     def __init__(self, target="docs", opts=None):
@@ -187,8 +191,10 @@ class Renderer:
         This is bad form though, implicitly requires
         self.f to be set before being called
         """
-        if not hasattr(self, 'f'):
-            raise ValueError("Sorry, you need to set self.f to a file pointer before calling self._write methods.")
+        if not hasattr(self, "f"):
+            raise ValueError(
+                "Sorry, you need to set self.f to a file pointer before calling self._write methods."
+            )
         self.f.write(text + "\n" * ncount)
 
     def _write_heading(self, text, uline="-"):
@@ -355,9 +361,7 @@ class DepthRenderer(Renderer):
         # delegate renderer, by default SingleRenderer
     }
 
-    def __init__(
-        self, max_depth=1, target="docs/states", delegate_cls=None, opts=None
-    ):
+    def __init__(self, max_depth=1, target="docs/states", delegate_cls=None, opts=None):
         if delegate_cls is None:
             delegate_cls = SingleRenderer
 
@@ -496,7 +500,14 @@ class SaltAutodoc:
         for file in self.glob(src):
             with open(file, "r") as f:
                 text = "".join(f.readlines())
-            comment = self.find_comment(text)
+            try:
+                comment = self.find_comment(text)
+            except TemplateSyntaxError as e:
+                raise RuntimeError(
+                    "There was an error parsing the Jinja syntax in file '{}':\n\n{}".format(
+                        file, str(e)
+                    )
+                )
 
             if comment and not comment.startswith(self.SKIP_FILE):
                 path = self.path2saltpath(file)
@@ -556,6 +567,6 @@ if __name__ == "__main__":
     # - skip clean.sls descriptions
     # - do not include .init suffix on state ID
     # - do not include prefix => there is ~ 1:1 mapping to settings
-    r = DepthRenderer(max_depth=1, target='docs/states', opts=options)
+    r = DepthRenderer(max_depth=1, target="docs/states", opts=options)
     a = SaltAutodoc(renderer=r)
     a.run()

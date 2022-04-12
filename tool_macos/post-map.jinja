@@ -1,3 +1,6 @@
+{#- -*- coding: utf-8 -*- #}
+{#- vim: ft=jinja #}
+
 {%- set users = {} -%}
 
 {%- set brew_prefix = mapdata.lookup.get('brew_prefix') %}
@@ -10,13 +13,13 @@
 {%- endif %}
 {%- do mapdata.lookup.update({'brew_prefix': brew_prefix}) %}
 
-{%- set user_settings = ['macos'] %}
+{%- set user_settings = ['xdg', 'completions', 'dotconfig', 'persistenv', 'rchook', 'completions', 'macos'] -%}
 
 {#- rejectattr filter does not fit with mapping. need to filter out users before merging default values -#}
 {%- for tool_user, tool_user_conf in mapdata.get('users', {}).items() -%}
 {#- by default, install tool if it was targeted. explicitly deny for a specific user to override -#}
-  {%- if tool_user_conf.get(tplroot[5:], True) -%}
-    {%- do users.update({tool_user: {tplroot[5:]: {}}}) -%}
+  {%- if tool_user_conf.get('macos', true) -%}
+    {%- do users.update({tool_user: {'macos': {}}}) -%}
     {%- for user_setting in user_settings -%}
       {%- if tool_user_conf.get(user_setting) is not equalto None -%}
         {%- do users[tool_user].update({user_setting: salt['defaults.deepcopy'](tool_user_conf[user_setting])}) -%}
@@ -26,10 +29,11 @@
 {%- endfor -%}
 
 {#- update all users' configurations for this formula with the formula defaults -#}
-{%- do salt['defaults.update'](users, {tplroot[5:]: mapdata | traverse(tplroot ~ ':defaults', {})}) -%}
+{%- do salt['defaults.update'](users, {'macos': mapdata.get('defaults', {})}) -%}
 
 {#- embed user information that will be reused (home, primary group, shell, paths) -#}
 {%- for user in users.keys() -%}
+  {%- do users[user].update({'_macos': {}}) -%}
   {%- do users[user].update({'name': user}) -%}
   {%- set user_info = salt['user.info'](user) -%}
   {%- load_yaml as user_info -%}
@@ -38,7 +42,7 @@ guid: {{ salt['cmd.run_stdout']("dscl . -read ~ GeneratedUID | sed 's/GeneratedU
 home: {{ user_info.home }}
 shell: {{ user_info.shell.split('/')[-1] }}
   {%- endload -%}
-  {%- do users[user].update(salt['defaults.merge'](user_info, users[user], in_place=False)) -%}
+  {%- do users[user].update(salt['defaults.merge'](user_info, users[user], in_place=false)) -%}
 {%- endfor -%}
 
 {#- finally embed parsed user config and info in mapdata -#}
