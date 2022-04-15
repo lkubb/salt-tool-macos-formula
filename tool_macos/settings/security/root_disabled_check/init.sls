@@ -19,9 +19,11 @@
 {%- if macos.security is defined and macos.security.root_disabled_check is defined and macos.security.root_disabled_check %}
 
 Check if root user account is disabled:
-  cmd.run:
-    - name: |
-        plutil -p /var/db/dslocal/nodes/Default/users/root.plist | \
-        grep -A 1 \"passwd\" | grep '0 => "\*"'
+  test.fail_without_changes:
+    - name: Root user account is disabled.
+    - unless:
+      - >
+          test "$(dscl localhost -read /Local/Default/Users/root passwd
+          | sed 's/dsAttrTypeNative:passwd: //')" = "*"
     - runas: root
 {%- endif %}
