@@ -553,8 +553,8 @@
           "dictation": false,
           "press_and_hold": true,
           "repeat": {
-            "rate": 10,
-            "delay": 1
+            "delay": 10,
+            "rate": 1
           },
           "slow_keys": false,
           "smart_dashes": true,

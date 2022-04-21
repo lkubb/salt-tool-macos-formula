@@ -566,8 +566,8 @@ The following shows an example of ``tool_macos`` per-user configuration. If prov
           # Disable this for faster key repeats.
         press_and_hold: true
         repeat:
-          delay: 1
-          rate: 10
+          delay: 10
+          rate: 1
         slow_keys: false
         smart_dashes: true
         smart_periods: true
