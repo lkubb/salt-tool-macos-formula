@@ -477,7 +477,7 @@ class SaltAutodoc:
         """
         if base is None:
             base = list(base_dir.glob("tool_*"))[0]
-            self.base = base
+        self.base = base
         if renderer is None:
             renderer = SingleRenderer()
         self.renderer = renderer

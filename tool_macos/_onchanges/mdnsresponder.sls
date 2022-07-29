@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+# vim: ft=sls
+
 mDNSResponder was reloaded:
   cmd.wait:  # noqa: 213
     - name: killall mDNSResponder
