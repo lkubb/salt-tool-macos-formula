@@ -1,6 +1,24 @@
-import LaunchServices
-import objc
-from Foundation import NSURL, NSBundle
+import salt.utils.platform
+
+try:
+    import LaunchServices
+    import objc
+    from Foundation import NSURL, NSBundle
+
+    HAS_LIBS = True
+except ImportError:
+    HAS_LIBS = False
+
+
+__virtualname__ = "macinspect"
+
+
+def __virtual__():
+    if not salt.utils.platform.is_darwin():
+        return False, "Only available on MacOS"
+    if not HAS_LIBS:
+        return False, "Missing required libraries"
+    return __virtualname__
 
 
 # https://michaellynn.github.io/2015/08/08/learn-you-a-better-pyobjc-bridgesupport-signature/
