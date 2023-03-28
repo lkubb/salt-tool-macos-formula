@@ -1,6 +1,6 @@
 {
   "template": "https://github.com/lkubb/salt-tool-template-formula",
-  "commit": "8eb784d74343e8fe8ef8a6c66dc50e5f0456981f",
+  "commit": "4f70fccaf0c7de83bf646d329e936011fb7c1600",
   "checkout": null,
   "context": {
     "cookiecutter": {
@@ -37,8 +37,8 @@
       "has_completions": "n",
       "has_tests": "n",
       "git_username": "lkubb",
-      "_lookup": {},
-      "_settings": {
+      "lookup": {},
+      "settings": {
         "audio": {
           "boot_sound": false,
           "devices": {
@@ -164,7 +164,7 @@
           "login_window_input_menu": true
         }
       },
-      "_usersettings": {
+      "usersettings": {
         "animations": {
           "cursor_blinking": {
             "on": 1.5,
