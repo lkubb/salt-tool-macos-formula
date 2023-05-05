@@ -799,6 +799,8 @@ These are macOS system-wide preferences that need to run as root.
         install_system: true
           # Check every i day(s) for updates. (might be deprecated)
         schedule: 1
+        # List of custom CA root certificates (PEM) to install on the system
+      ca_root: []
       captive_portal_detection: true
         # Load/unload cupsd service.
       cupsd: true

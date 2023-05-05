@@ -57,6 +57,20 @@ References:
     * https://derflounder.wordpress.com/2019/10/10/enable-automatic-macos-and-app-store-updates-on-macos-catalina-with-a-profile/
 
 
+ca_root
+-------
+Installs custom CA root certificates.
+
+Requires ``x509_v2`` modules.
+
+.. note::
+
+    This requires user interaction.
+
+Values:
+    - list [default: []]
+
+
 captive_portal_detection
 ------------------------
 Customizes automatic detection of captive portals.

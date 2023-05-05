@@ -2,6 +2,7 @@ include:
   - .airdrop_disabled.clean
   - .autologin.clean
   - .autoupdate.clean
+  - .ca_root.clean
   - .captive_portal_detection.clean
   - .cupsd.clean
   - .filevault_autologin.clean

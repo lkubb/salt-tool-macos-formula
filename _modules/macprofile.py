@@ -40,6 +40,7 @@ Manage locally installed configuration profiles (.mobileconfig)
 """
 
 
+import base64
 import binascii
 import hashlib
 import logging
@@ -76,7 +77,7 @@ def _content_to_uuid(payload):
     log.debug("Attempting to Hash {}".format(payload))
 
     str_payload = plistlib.dumps(payload)
-    hashobj = hashlib.md5(str_payload)
+    hashobj = hashlib.md5(str_payload)  # nosec
 
     identifier = re.sub(
         b"([0-9a-f]{8})([0-9a-f]{4})([0-9a-f]{4})([0-9a-f]{4})([0-9a-f]{12})",
@@ -231,6 +232,15 @@ def _transform_payload(payload, identifier, ptype=None):
             _add_activedirectory_keys(payload)
     except Exception as e:
         pass
+    if payload.get("PayloadContent", "").startswith("base64:"):
+        try:
+            payload["PayloadContent"] = base64.b64decode(
+                payload["PayloadContent"].lstrip("base64:")
+            )
+        except ValueError:
+            raise salt.exceptions.CommandExecutionError(
+                f"Failed decoding base64: {payload['PayloadContent']}"
+            )
     return payload
 
 

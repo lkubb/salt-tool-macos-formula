@@ -115,6 +115,7 @@
             "install_system": true,
             "schedule": 1
           },
+          "ca_root": [],
           "captive_portal_detection": true,
           "cupsd": true,
           "filevault_autologin": true,

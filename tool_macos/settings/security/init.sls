@@ -2,6 +2,7 @@ include:
   - .airdrop_disabled
   - .autologin
   - .autoupdate
+  - .ca_root
   - .captive_portal_detection
   - .cupsd
   - .filevault_autologin
