@@ -29,5 +29,19 @@ Custom CA root certificates are installed:
 {%-   for crt in macos.security.ca_root %}
       - PayloadType: com.apple.security.pem
         PayloadContent: {{ "base64:" ~ salt["x509.encode_certificate"](crt, "der") | json }}
-  {%- endfor %}
+{%-   endfor %}
+
+# Always handy to have them ready - e.g. for importing to Firefox via Enterprise Policies
+Custom CA root certificates are also present on the file system:
+  x509.pem_managed:
+    - names:
+{%-   for crt in macos.security.ca_root %}
+      - /etc/pki/cas/{{ salt["x509.read_certificate"](crt).issuer.CN | replace(" ", "_") | lower }}.pem:
+        - text: {{ crt | json }}
+{%-   endfor %}
+    - makedirs: true
+    - user: root
+    - group: {{ macos.lookup.rootgroup }}
+    - mode: '0444'
+    - dir_mode: '0755'
 {%- endif %}
