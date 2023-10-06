@@ -9,7 +9,6 @@
         find a GUI to set this value.
 
     Values:
-
         - bool [default: true - wtf]
 -#}
 

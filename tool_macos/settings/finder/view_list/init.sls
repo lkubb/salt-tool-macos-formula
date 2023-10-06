@@ -4,12 +4,12 @@
     Values:
         - dict
 
-            * calc_all_sizes: bool [default: false]
-            * icon_size: float [default: 16]
-            * preview: bool [default: true]
-            * sort_col: string [default: name]
-            * text_size: float [default: 13]
-            * relative_dates: bool [default: true]
+          * calc_all_sizes: bool [default: false]
+          * icon_size: float [default: 16]
+          * preview: bool [default: true]
+          * sort_col: string [default: name]
+          * text_size: float [default: 13]
+          * relative_dates: bool [default: true]
 
     .. warning::
 

@@ -8,9 +8,9 @@
     Values:
         - string [default: message_deleted]
 
-            * app_quit
-            * message_deleted
-            * never
+          * app_quit
+          * message_deleted
+          * never
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

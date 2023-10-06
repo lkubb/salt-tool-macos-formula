@@ -4,9 +4,9 @@
     Values:
         - string [default: bottom]
 
-            * bottom
-            * left
-            * right
+          * bottom
+          * left
+          * right
 
     References:
         * https://macos-defaults.com/dock/orientation.html

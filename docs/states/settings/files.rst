@@ -10,17 +10,18 @@ Customizes the default handler for file types and URL schemes.
 
 Values:
     - dict
-        * extensions: dict
 
-            - extension: handler
+      * extensions: dict
 
-        * schemes: dict
+        ``extension: handler``
 
-            - scheme: handler
+      * schemes: dict
 
-        * utis: dict
+        ``scheme: handler``
 
-            - uti: handler
+      * utis: dict
+
+        ``uti: handler``
 
 .. note::
 
@@ -50,10 +51,10 @@ Customizes creation of .DS_Store files on network shares and USB devices.
 
 Values:
     - string [default: none = dump everywhere]
-        * none
-        * network
-        * usb
-        * all
+      * none
+      * network
+      * usb
+      * all
 
 
 save_icloud
@@ -71,20 +72,19 @@ Customizes screenshot creation settings.
 Values:
     - dict
 
-        * basename: string [default: Screenshot]
-        * format: string [default: png]
-            - png
-            - bmp
-            - gif
-            - jp(e)g
-            - pdf
-            - tiff
-
-        * include_date: bool [default: true]
-        * include_cursor: bool [default: false?]
-        * location: string [default: $HOME/Desktop]
-        * shadow: bool [default: true]
-        * thumbnail: bool [default: true?]
+      * basename: string [default: Screenshot]
+      * format: string [default: png]
+        - png
+        - bmp
+        - gif
+        - jp(e)g
+        - pdf
+        - tiff
+      * include_date: bool [default: true]
+      * include_cursor: bool [default: false?]
+      * location: string [default: $HOME/Desktop]
+      * shadow: bool [default: true]
+      * thumbnail: bool [default: true?]
 
 Example:
 

@@ -8,8 +8,8 @@
     Values:
       - dict:
 
-          * devices: list (default: [])
-          * sync: bool (default: false)
+        * devices: list (default: [])
+        * sync: bool (default: false)
 
     Example:
 

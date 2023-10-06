@@ -4,9 +4,9 @@
     Values:
         - string [default: two]
 
-            * two [fingers]
-            * corner-right [bottom]
-            * corner-left [bottom]
+          * two [fingers]
+          * corner-right [bottom]
+          * corner-left [bottom]
 
         - or false
 -#}

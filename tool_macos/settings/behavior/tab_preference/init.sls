@@ -4,9 +4,9 @@
     Values:
         - string [default: fullscreen]
 
-            * manual
-            * fullscreen
-            * always
+          * manual
+          * fullscreen
+          * always
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

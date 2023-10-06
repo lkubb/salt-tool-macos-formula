@@ -38,14 +38,13 @@ Customizes automatic update settings.
 
 Values:
     - dict
-
-        * check: bool [default: true]
-        * download: bool [default: true]
-        * install_app: bool [default: true]
-        * install_config: bool [default: true]
-        * install_critical: bool [default: true]
-        * install_system: bool [default: true]
-        * schedule: int [every i day(s), default: 1]
+      * check: bool [default: true]
+      * download: bool [default: true]
+      * install_app: bool [default: true]
+      * install_config: bool [default: true]
+      * install_critical: bool [default: true]
+      * install_system: bool [default: true]
+      * schedule: int [every i day(s), default: 1]
 
 .. note::
 
@@ -141,12 +140,12 @@ Customizes state of inbuilt application firewall (blocks incoming connections on
 Values:
     - dict
 
-        * apple_signed_ok: bool [default: true]
-        * download_signed_ok: bool [default: false]
-        * enabled: bool [default: true]
-        * incoming_block: bool [default: false]
-        * logging: bool [default: true]
-        * stealth: bool [default: false]
+      * apple_signed_ok: bool [default: true]
+      * download_signed_ok: bool [default: false]
+      * enabled: bool [default: true]
+      * incoming_block: bool [default: false]
+      * logging: bool [default: true]
+      * stealth: bool [default: false]
 
 .. hint::
 
@@ -206,8 +205,8 @@ Customizes activation status of multicast DNS advertisements.
     work on modern systems with System Integrity Protection.
 
 References:
-  https://git.herrbischoff.com/awesome-macos-command-line/about/#bonjour-service
-  https://old.reddit.com/r/macsysadmin/comments/poxv5q/disabling_bonjour_on_bigsur/
+    * https://git.herrbischoff.com/awesome-macos-command-line/about/#bonjour-service
+    * https://old.reddit.com/r/macsysadmin/comments/poxv5q/disabling_bonjour_on_bigsur/
 
 Values:
     - bool [default: true]
@@ -220,8 +219,8 @@ Customizes NTP synchronization activation status and server.
 Values:
     - dict
 
-        * enabled: bool [default: true]
-        * server: string [default: time.apple.com]
+      * enabled: bool [default: true]
+      * server: string [default: time.apple.com]
 
 
 password_hint_after
@@ -249,6 +248,9 @@ Customizes keeping of Quarantine logs.
     It's a bit surprising the logs are never cleared.
 
     See for yourself:
+
+    .. code-block:: bash
+
       echo 'SELECT datetime(LSQuarantineTimeStamp + 978307200, "unixepoch") as LSQuarantineTimeStamp, ' \
         'LSQuarantineAgentName, LSQuarantineOriginURLString, LSQuarantineDataURLString from LSQuarantineEvent;' | \
         sqlite3 /Users/$USER/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV2
@@ -256,8 +258,8 @@ Customizes keeping of Quarantine logs.
 Values:
     - dict
 
-        * clear: bool [default: false]
-        * enabled: bool [default: true]
+      * clear: bool [default: false]
+      * enabled: bool [default: true]
 
 
 remote_apple_events
@@ -364,8 +366,8 @@ Values:
     - bool [default: false]
     - or dict:
 
-        * enabled: bool [default: false]
-        * pam_reattach: bool [default:false]
+      * enabled: bool [default: false]
+      * pam_reattach: bool [default:false]
 
 References;
     * https://derflounder.wordpress.com/2017/11/17/enabling-touch-id-authorization-for-sudo-on-macos-high-sierra/
@@ -402,7 +404,7 @@ Removes FileVault unlock privileges from an account.
 
     The reverse is interactive::
 
-        `sudo fdesetup add -usertoadd username`
+        sudo fdesetup add -usertoadd username
 
     Handy for e.g. complex FileVault password that's different from your usual account.
 

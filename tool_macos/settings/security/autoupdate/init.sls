@@ -8,14 +8,13 @@
 
     Values:
         - dict
-
-            * check: bool [default: true]
-            * download: bool [default: true]
-            * install_app: bool [default: true]
-            * install_config: bool [default: true]
-            * install_critical: bool [default: true]
-            * install_system: bool [default: true]
-            * schedule: int [every i day(s), default: 1]
+          * check: bool [default: true]
+          * download: bool [default: true]
+          * install_app: bool [default: true]
+          * install_config: bool [default: true]
+          * install_critical: bool [default: true]
+          * install_system: bool [default: true]
+          * schedule: int [every i day(s), default: 1]
 
     .. note::
 

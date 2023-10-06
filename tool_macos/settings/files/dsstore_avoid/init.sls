@@ -3,10 +3,10 @@
 
     Values:
         - string [default: none = dump everywhere]
-            * none
-            * network
-            * usb
-            * all
+          * none
+          * network
+          * usb
+          * all
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

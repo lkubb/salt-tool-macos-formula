@@ -4,20 +4,20 @@
     Values:
         - string [default: Tink = Boop in System Preferences]
 
-            * Basso
-            * Blow
-            * Bottle
-            * Frog
-            * Funk
-            * Glass
-            * Hero
-            * Morse,
-            * Ping
-            * Pop
-            * Purr
-            * Sosumi
-            * Submarine
-            * Tink
+          * Basso
+          * Blow
+          * Bottle
+          * Frog
+          * Funk
+          * Glass
+          * Hero
+          * Morse,
+          * Ping
+          * Pop
+          * Purr
+          * Sosumi
+          * Submarine
+          * Tink
 
     .. hint::
 

@@ -4,12 +4,12 @@
     Values:
         - dict
 
-            * apple_signed_ok: bool [default: true]
-            * download_signed_ok: bool [default: false]
-            * enabled: bool [default: true]
-            * incoming_block: bool [default: false]
-            * logging: bool [default: true]
-            * stealth: bool [default: false]
+          * apple_signed_ok: bool [default: true]
+          * download_signed_ok: bool [default: false]
+          * enabled: bool [default: true]
+          * incoming_block: bool [default: false]
+          * logging: bool [default: true]
+          * stealth: bool [default: false]
 
     .. hint::
 

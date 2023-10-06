@@ -4,9 +4,9 @@
     Values:
         - dict
 
-            * menu: bool [default: true]
-            * control: bool [default: false]
-            * percent: bool [default: false]
+          * menu: bool [default: true]
+          * control: bool [default: false]
+          * percent: bool [default: false]
 -#}
 
 {#- Before Big Sur, percent status was found in com.apple.menuextra.battery as ShowPercent. -#}

@@ -4,8 +4,8 @@
     Values:
         - dict
 
-            * immutable: bool [default: false]
-            * tiles: int [default: 48]
+          * immutable: bool [default: false]
+          * tiles: int [default: 48]
 
     References:
         * https://macos-defaults.com/dock/tilesize.html

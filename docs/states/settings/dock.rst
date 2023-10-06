@@ -11,9 +11,9 @@ Customizes dock autohide behavior.
 Values:
     - dict
 
-        * enabled: bool [default: false]
-        * time: float [default: 0.5]
-        * delay: float [default: 0.5]
+      * enabled: bool [default: false]
+      * time: float [default: 0.5]
+      * delay: float [default: 0.5]
 
 Example:
 
@@ -53,8 +53,8 @@ Customizes dock behavior on hover (magnification).
 Values:
     - dict
 
-        * enabled: bool [default: false]
-        * size: int [default: 128]
+      * enabled: bool [default: false]
+      * size: int [default: 128]
 
 Example:
 
@@ -88,9 +88,9 @@ Customizes dock position.
 Values:
     - string [default: bottom]
 
-        * bottom
-        * left
-        * right
+      * bottom
+      * left
+      * right
 
 References:
     * https://macos-defaults.com/dock/orientation.html
@@ -131,8 +131,8 @@ Customizes dock tile (icon) size and mutability.
 Values:
     - dict
 
-        * immutable: bool [default: false]
-        * tiles: int [default: 48]
+      * immutable: bool [default: false]
+      * tiles: int [default: 48]
 
 References:
     * https://macos-defaults.com/dock/tilesize.html
@@ -172,45 +172,45 @@ Customizes dock tiles (items).
 Values:
     - dict
 
-        * apps: list of items
-        * others: list of items
-        * sync: true [appending is currently very broken]
+      * apps: list of items
+      * others: list of items
+      * sync: true [appending is currently very broken]
 
 Single item possible values:
     - type: [possibly autodetected if unspecified]
 
-        * app
-        * folder
-        * url
-        * spacer
-        * small-spacer
-        * flex-spacer
+      * app
+      * folder
+      * url
+      * spacer
+      * small-spacer
+      * flex-spacer
 
     - label: string [will be automapped if unspecified]
     - path: string [required]
 
-        * /some/absolute/path
-        * some://url
+      * /some/absolute/path
+      * some://url
 
     - displayas: string [directories only, default: stack]
 
-        * folder
-        * stack
+      * folder
+      * stack
 
     - showas: string [directories only, default: auto]
 
-        * auto
-        * fan
-        * grid
-        * list
+      * auto
+      * fan
+      * grid
+      * list
 
     - arrangeby: string [directories only, default: added]
 
-        * name
-        * added
-        * modified
-        * created
-        * kind
+      * name
+      * added
+      * modified
+      * created
+      * kind
 
 Example:
 

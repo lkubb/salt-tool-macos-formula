@@ -8,20 +8,20 @@
     Values:
         - string [default: New Mail]
 
-              * Basso
-              * Blow
-              * Bottle
-              * Frog
-              * Funk
-              * Glass
-              * Hero
-              * Morse
-              * Ping
-              * Pop
-              * Purr
-              * Sosumi
-              * Submarine
-              * Tink
+          * Basso
+          * Blow
+          * Bottle
+          * Frog
+          * Funk
+          * Glass
+          * Hero
+          * Morse
+          * Ping
+          * Pop
+          * Purr
+          * Sosumi
+          * Submarine
+          * Tink
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

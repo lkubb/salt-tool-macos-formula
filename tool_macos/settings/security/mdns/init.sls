@@ -7,8 +7,8 @@
         work on modern systems with System Integrity Protection.
 
     References:
-      https://git.herrbischoff.com/awesome-macos-command-line/about/#bonjour-service
-      https://old.reddit.com/r/macsysadmin/comments/poxv5q/disabling_bonjour_on_bigsur/
+        * https://git.herrbischoff.com/awesome-macos-command-line/about/#bonjour-service
+        * https://old.reddit.com/r/macsysadmin/comments/poxv5q/disabling_bonjour_on_bigsur/
 
     Values:
         - bool [default: true]

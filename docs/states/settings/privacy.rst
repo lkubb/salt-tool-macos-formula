@@ -16,7 +16,6 @@ This probably superseded com.apple.AdLib forceLimitAdTracking (on Monterey?).
     find a GUI to set this value.
 
 Values:
-
     - bool [default: true - wtf]
 
 
@@ -27,9 +26,9 @@ Customizes state of sending analytics and crash reports.
 Values:
     - string
 
-        * none
-        * apple
-        * third_party
+      * none
+      * apple
+      * third_party
 
 
 siri_share_recordings

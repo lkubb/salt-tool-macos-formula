@@ -56,7 +56,7 @@ Customizes Siri voice variety.
 Values:
     - dict
 
-        * language: string [e.g. en-AU]
-        * speaker: string [e.g. gordon]
+      * language: string [e.g. ``en-AU``]
+      * speaker: string [e.g. ``gordon``]
 
 

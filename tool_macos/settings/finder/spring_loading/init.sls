@@ -4,8 +4,8 @@
     Values:
         - dict
 
-            * enabled: bool (default: true)
-            * delay: float (default: 0.5)
+          * enabled: bool (default: true)
+          * delay: float (default: 0.5)
 
     Example:
 

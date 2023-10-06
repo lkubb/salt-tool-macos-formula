@@ -4,13 +4,12 @@
     Values:
         - dict
 
-            * menu: bool [default: false]
-            * control: bool [default: false]
-            * menu_show: string [default: icon]
-
-                - icon
-                - username
-                - fullname
+          * menu: bool [default: false]
+          * control: bool [default: false]
+          * menu_show: string [default: icon]
+            - icon
+            - username
+            - fullname
 
     References:
         * https://github.com/joeyhoer/starter/blob/master/system/users-groups.sh

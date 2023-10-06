@@ -15,8 +15,8 @@
         - bool [default: false]
         - or dict:
 
-            * enabled: bool [default: false]
-            * pam_reattach: bool [default:false]
+          * enabled: bool [default: false]
+          * pam_reattach: bool [default:false]
 
     References;
         * https://derflounder.wordpress.com/2017/11/17/enabling-touch-id-authorization-for-sudo-on-macos-high-sierra/

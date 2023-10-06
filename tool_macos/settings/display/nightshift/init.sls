@@ -4,11 +4,11 @@
     Values:
         - dict
 
-            * enabled: bool [default: true]
-            * temperature: float [2700-6000, default: 4100]
-            * schedule: dict
-                - start: HH:mm or HH [default: 22:00]
-                - end:   HH:mm or HH [default: 07:00]
+          * enabled: bool [default: true]
+          * temperature: float [2700-6000, default: 4100]
+          * schedule: dict
+            - start: HH:mm or HH [default: 22:00]
+            - end:   HH:mm or HH [default: 07:00]
 
     .. note::
 

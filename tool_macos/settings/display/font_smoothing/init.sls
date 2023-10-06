@@ -4,10 +4,10 @@
     Values:
         - string [default: medium since 10.11/El Capitan, before heavy]
 
-            * disabled
-            * light
-            * medium
-            * heavy
+          * disabled
+          * light
+          * medium
+          * heavy
 
         - or int [0-3]
 

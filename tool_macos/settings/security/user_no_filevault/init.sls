@@ -5,7 +5,7 @@
 
         The reverse is interactive::
 
-            `sudo fdesetup add -usertoadd username`
+            sudo fdesetup add -usertoadd username
 
         Handy for e.g. complex FileVault password that's different from your usual account.
 

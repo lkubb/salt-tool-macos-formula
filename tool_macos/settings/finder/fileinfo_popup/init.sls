@@ -4,11 +4,11 @@
     Values:
         - dict
 
-            * comments: bool [default: false]
-            * metadata: bool [default: true]
-            * name: bool [default: false]
-            * openwith: bool [default: true]
-            * privileges: bool [default: true]
+          * comments: bool [default: false]
+          * metadata: bool [default: true]
+          * name: bool [default: false]
+          * openwith: bool [default: true]
+          * privileges: bool [default: true]
 
     Example:
 

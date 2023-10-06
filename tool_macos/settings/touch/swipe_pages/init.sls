@@ -3,11 +3,9 @@
 
     Values:
         - string [default: two]
-
-            * two
-            * three
-            * both
-
+          * two
+          * three
+          * both
         - or false
 -#}
 

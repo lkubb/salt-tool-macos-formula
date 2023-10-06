@@ -4,9 +4,9 @@
     Values:
         - string [default: mac]
 
-            * mac
-            * current
-            * previous
+          * mac
+          * current
+          * previous
 
     References:
         * https://github.com/joeyhoer/starter/blob/master/apps/finder.sh

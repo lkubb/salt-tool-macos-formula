@@ -4,37 +4,33 @@
     Values:
         - dict
 
-            * arrange: string [default: name]
-
-                - none
-                - name
-                - kind
-                - last_opened
-                - added
-                - modified
-                - created
-                - size
-                - tags
-
-            * col_width: int [default: 245]
-            * folder_arrow: bool [default: true]
-            * icons: bool [default: true]
-            * preview: bool [default: true]
-            * preview_disclosure: bool [default: true]
-            * shared_arrange: string [default: none]
-
-                - none
-                - name
-                - kind
-                - last_opened
-                - added
-                - modified
-                - created
-                - size
-                - tags
-
-            * text_size: int [default: 13]
-            * thumbnails: bool [default: true]
+          * arrange: string [default: name]
+            - none
+            - name
+            - kind
+            - last_opened
+            - added
+            - modified
+            - created
+            - size
+            - tags
+          * col_width: int [default: 245]
+          * folder_arrow: bool [default: true]
+          * icons: bool [default: true]
+          * preview: bool [default: true]
+          * preview_disclosure: bool [default: true]
+          * shared_arrange: string [default: none]
+            - none
+            - name
+            - kind
+            - last_opened
+            - added
+            - modified
+            - created
+            - size
+            - tags
+          * text_size: int [default: 13]
+          * thumbnails: bool [default: true]
 
     Example:
 

@@ -4,24 +4,22 @@
     Values:
         - dict
 
-            * arrange: string [default: none]
-
-                - none
-                - grid
-                - name
-                - kind
-                - last_opened
-                - added
-                - modified
-                - created
-                - size
-                - tags
-
-            * size: float [default: 64]
-            * spacing: float [default: 54]
-            * info: bool [default: false]
-            * info_bottom: bool [default: true]
-            * text_size: float [default: 12]
+          * arrange: string [default: none]
+            - none
+            - grid
+            - name
+            - kind
+            - last_opened
+            - added
+            - modified
+            - created
+            - size
+            - tags
+          * size: float [default: 64]
+          * spacing: float [default: 54]
+          * info: bool [default: false]
+          * info_bottom: bool [default: true]
+          * text_size: float [default: 12]
 
     Example:
 

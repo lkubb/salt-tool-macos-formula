@@ -4,20 +4,19 @@
     Values:
         - dict
 
-            * basename: string [default: Screenshot]
-            * format: string [default: png]
-                - png
-                - bmp
-                - gif
-                - jp(e)g
-                - pdf
-                - tiff
-
-            * include_date: bool [default: true]
-            * include_cursor: bool [default: false?]
-            * location: string [default: $HOME/Desktop]
-            * shadow: bool [default: true]
-            * thumbnail: bool [default: true?]
+          * basename: string [default: Screenshot]
+          * format: string [default: png]
+            - png
+            - bmp
+            - gif
+            - jp(e)g
+            - pdf
+            - tiff
+          * include_date: bool [default: true]
+          * include_cursor: bool [default: false?]
+          * location: string [default: $HOME/Desktop]
+          * shadow: bool [default: true]
+          * thumbnail: bool [default: true?]
 
     Example:
 

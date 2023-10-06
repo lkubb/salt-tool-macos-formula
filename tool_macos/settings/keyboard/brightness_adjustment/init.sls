@@ -4,8 +4,8 @@
     Values:
         - dict
 
-            * low_light: bool [default: true]
-            * after: int [seconds of inactivity, default: 0 = disabled]
+          * low_light: bool [default: true]
+          * after: int [seconds of inactivity, default: 0 = disabled]
 
     Example:
 

@@ -21,18 +21,16 @@ Values:
 
       * show: bool [default: true]
       * arrange: string [default: none]
-
-          - none
-          - grid
-          - name
-          - kind
-          - last_opened
-          - added
-          - modified
-          - created
-          - size
-          - tags
-
+        - none
+        - grid
+        - name
+        - kind
+        - last_opened
+        - added
+        - modified
+        - created
+        - size
+        - tags
       * size: float [default: 64.0]
       * spacing: float [default: 54.0]
       * info: bool [default: false]
@@ -69,11 +67,11 @@ Customizes file info popup expanded panes.
 Values:
     - dict
 
-        * comments: bool [default: false]
-        * metadata: bool [default: true]
-        * name: bool [default: false]
-        * openwith: bool [default: true]
-        * privileges: bool [default: true]
+      * comments: bool [default: false]
+      * metadata: bool [default: true]
+      * name: bool [default: false]
+      * openwith: bool [default: true]
+      * privileges: bool [default: true]
 
 Example:
 
@@ -103,13 +101,13 @@ Customizes new Finder window default path.
 Values:
     - string [default: recent]
 
-        * computer
-        * volume
-        * home
-        * desktop
-        * documents
-        * recent
-        * </my/custom/path>
+      * computer
+      * volume
+      * home
+      * desktop
+      * documents
+      * recent
+      * </my/custom/path>
 
 References:
     * https://github.com/joeyhoer/starter/blob/master/apps/finder.sh
@@ -122,9 +120,9 @@ Customizes Finder behavior when a new volume/disk is mounted.
 Values:
     - list [default: all]
 
-        * ro
-        * rw
-        * disk
+      * ro
+      * rw
+      * disk
 
 Example:
 
@@ -164,9 +162,9 @@ Customizes default search scope.
 Values:
     - string [default: mac]
 
-        * mac
-        * current
-        * previous
+      * mac
+      * current
+      * previous
 
 References:
     * https://github.com/joeyhoer/starter/blob/master/apps/finder.sh
@@ -251,8 +249,8 @@ Customizes Finder spring loading behavior (open folder on drag).
 Values:
     - dict
 
-        * enabled: bool (default: true)
-        * delay: float (default: 0.5)
+      * enabled: bool (default: true)
+      * delay: float (default: 0.5)
 
 Example:
 
@@ -302,37 +300,33 @@ Customizes default Finder Column View settings for all folders.
 Values:
     - dict
 
-        * arrange: string [default: name]
-
-            - none
-            - name
-            - kind
-            - last_opened
-            - added
-            - modified
-            - created
-            - size
-            - tags
-
-        * col_width: int [default: 245]
-        * folder_arrow: bool [default: true]
-        * icons: bool [default: true]
-        * preview: bool [default: true]
-        * preview_disclosure: bool [default: true]
-        * shared_arrange: string [default: none]
-
-            - none
-            - name
-            - kind
-            - last_opened
-            - added
-            - modified
-            - created
-            - size
-            - tags
-
-        * text_size: int [default: 13]
-        * thumbnails: bool [default: true]
+      * arrange: string [default: name]
+        - none
+        - name
+        - kind
+        - last_opened
+        - added
+        - modified
+        - created
+        - size
+        - tags
+      * col_width: int [default: 245]
+      * folder_arrow: bool [default: true]
+      * icons: bool [default: true]
+      * preview: bool [default: true]
+      * preview_disclosure: bool [default: true]
+      * shared_arrange: string [default: none]
+        - none
+        - name
+        - kind
+        - last_opened
+        - added
+        - modified
+        - created
+        - size
+        - tags
+      * text_size: int [default: 13]
+      * thumbnails: bool [default: true]
 
 Example:
 
@@ -355,22 +349,22 @@ Customizes default Finder Gallery View settings for all folders.
 Values:
     - dict
 
-        * arrange: string [default: name]
+      * arrange: string [default: name]
 
-            - none
-            - name
-            - kind
-            - last_opened
-            - added
-            - modified
-            - created
-            - size
-            - tags
+        - none
+        - name
+        - kind
+        - last_opened
+        - added
+        - modified
+        - created
+        - size
+        - tags
 
-        * icon_size: float [default: 48]
-        * preview: bool [default: true]
-        * preview_pane: bool [default: true]
-        * titles: bool [default: false]
+      * icon_size: float [default: 48]
+      * preview: bool [default: true]
+      * preview_pane: bool [default: true]
+      * titles: bool [default: false]
 
 Example:
 
@@ -389,24 +383,22 @@ Customizes default Finder Icon View settings for all folders (except Desktop).
 Values:
     - dict
 
-        * arrange: string [default: none]
-
-            - none
-            - grid
-            - name
-            - kind
-            - last_opened
-            - added
-            - modified
-            - created
-            - size
-            - tags
-
-        * size: float [default: 64]
-        * spacing: float [default: 54]
-        * info: bool [default: false]
-        * info_bottom: bool [default: true]
-        * text_size: float [default: 12]
+      * arrange: string [default: none]
+        - none
+        - grid
+        - name
+        - kind
+        - last_opened
+        - added
+        - modified
+        - created
+        - size
+        - tags
+      * size: float [default: 64]
+      * spacing: float [default: 54]
+      * info: bool [default: false]
+      * info_bottom: bool [default: true]
+      * text_size: float [default: 12]
 
 Example:
 
@@ -431,12 +423,12 @@ Customizes default Finder List View settings for all folders.
 Values:
     - dict
 
-        * calc_all_sizes: bool [default: false]
-        * icon_size: float [default: 16]
-        * preview: bool [default: true]
-        * sort_col: string [default: name]
-        * text_size: float [default: 13]
-        * relative_dates: bool [default: true]
+      * calc_all_sizes: bool [default: false]
+      * icon_size: float [default: 16]
+      * preview: bool [default: true]
+      * sort_col: string [default: name]
+      * text_size: float [default: 13]
+      * relative_dates: bool [default: true]
 
 .. warning::
 
@@ -450,31 +442,28 @@ Customizes preferred Finder view settings.
 Values:
     - dict
 
-        * groupby: string [default: none]
-
-            - none
-            - name
-            - app
-            - kind
-            - last_opened
-            - added
-            - modified
-            - created
-            - size
-            - tags
-
-        * style: string [default: icon]
-
-            - icon
-            - list
-            - gallery [coverflow deprecated?]
-            - column
+      * groupby: string [default: none]
+        - none
+        - name
+        - app
+        - kind
+        - last_opened
+        - added
+        - modified
+        - created
+        - size
+        - tags
+      * style: string [default: icon]
+        - icon
+        - list
+        - gallery [coverflow deprecated?]
+        - column
 
 .. note::
 
     Those values are set when selecting from View menu.
 
-    They are different from [FK\_][Standard,Default]ViewSettings.
+    They are different from ``[FK\_][Standard,Default]ViewSettings.``
 
 .. note::
 

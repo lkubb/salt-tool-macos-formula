@@ -4,27 +4,27 @@
     Values:
         - array [of items to enable]
 
-            * applications
-            * bookmarks-history
-            * calculator
-            * contacts
-            * conversion,
-            * definition
-            * developer
-            * documents
-            * events-reminders
-            * folders
-            * fonts,
-            * images
-            * mail-messages
-            * movies
-            * music
-            * other
-            * pdf
-            * presentations,
-            * siri
-            * spreadsheets
-            * system-preferences
+          * applications
+          * bookmarks-history
+          * calculator
+          * contacts
+          * conversion
+          * definition
+          * developer
+          * documents
+          * events-reminders
+          * folders
+          * fonts
+          * images
+          * mail-messages
+          * movies
+          * music
+          * other
+          * pdf
+          * presentations
+          * siri
+          * spreadsheets
+          * system-preferences
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

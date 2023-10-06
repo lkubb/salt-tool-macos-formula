@@ -12,8 +12,8 @@ Values:
     - false to disable
     - or dict
 
-        * on: float [default: ?]
-        * off: float [default: ?]
+      * on: float [default: ?]
+      * off: float [default: ?]
 
 Example:
 

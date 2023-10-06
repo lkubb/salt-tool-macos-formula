@@ -4,9 +4,9 @@
     Values:
         - str [default: maximize]
 
-            * none
-            * minimize
-            * maximize
+          * none
+          * minimize
+          * maximize
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

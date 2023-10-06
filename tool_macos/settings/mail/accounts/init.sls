@@ -10,33 +10,33 @@
     Values:
         - list of dicts
 
-            * address: string
-            * description: string [default: <address>]
-            * name: string [default: <username part of address>]
-            * type: string [imap, pop. default: imap]
-            * server_in:
+          * address: string
+          * description: string [default: <address>]
+          * name: string [default: <username part of address>]
+          * type: string [imap, pop. default: imap]
+          * server_in:
 
-                - auth: string [default: password]
+            - auth: string [default: password]
 
-                    * none
-                    * password
-                    * crammd5
-                    * ntlm
-                    * httpmd5
+              * none
+              * password
+              * crammd5
+              * ntlm
+              * httpmd5
 
-                - domain: string
-                - port: int [default: 993]
-                - ssl: bool [default: true]
-                - username: string [default: <address>]
+            - domain: string
+            - port: int [default: 993]
+            - ssl: bool [default: true]
+            - username: string [default: <address>]
 
-            * server_out:
+          * server_out:
 
-                - auth: string [default: password]
-                - domain: string
-                - port: int [default: 465]
-                - ssl: bool [default: true]
-                - username: string [default: <address>]
-                - password_sameas_in: bool [default: true]
+            - auth: string [default: password]
+            - domain: string
+            - port: int [default: 465]
+            - ssl: bool [default: true]
+            - username: string [default: <address>]
+            - password_sameas_in: bool [default: true]
 
     Example:
 

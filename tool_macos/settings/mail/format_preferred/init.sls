@@ -8,8 +8,8 @@
     Values:
         - string [default: rich]
 
-            * plain
-            * rich
+          * plain
+          * rich
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

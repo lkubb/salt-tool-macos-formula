@@ -5,8 +5,8 @@
         - bool [default: true = force click]
         - or string
 
-            * three
-            * four
+          * three
+          * four
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

@@ -4,31 +4,28 @@
     Values:
         - dict
 
-            * groupby: string [default: none]
-
-                - none
-                - name
-                - app
-                - kind
-                - last_opened
-                - added
-                - modified
-                - created
-                - size
-                - tags
-
-            * style: string [default: icon]
-
-                - icon
-                - list
-                - gallery [coverflow deprecated?]
-                - column
+          * groupby: string [default: none]
+            - none
+            - name
+            - app
+            - kind
+            - last_opened
+            - added
+            - modified
+            - created
+            - size
+            - tags
+          * style: string [default: icon]
+            - icon
+            - list
+            - gallery [coverflow deprecated?]
+            - column
 
     .. note::
 
         Those values are set when selecting from View menu.
 
-        They are different from [FK\_][Standard,Default]ViewSettings.
+        They are different from ``[FK\_][Standard,Default]ViewSettings.``
 
     .. note::
 

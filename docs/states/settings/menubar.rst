@@ -11,8 +11,8 @@ Customizes display status of Accesibility Shortcuts widget in Menu Bar and Contr
 Values:
     - dict
 
-        * menu: bool [default: false]
-        * control: bool [default: false]
+      * menu: bool [default: false]
+      * control: bool [default: false]
 
 
 airdrop
@@ -46,9 +46,9 @@ Customizes display behavior of Battery widget in Menu Bar and Control Center.
 Values:
     - dict
 
-        * menu: bool [default: true]
-        * control: bool [default: false]
-        * percent: bool [default: false]
+      * menu: bool [default: true]
+      * control: bool [default: false]
+      * percent: bool [default: false]
 
 
 bluetooth
@@ -66,9 +66,9 @@ Customizes display behavior of Clock widget in Menu Bar.
 Values:
     - dict
 
-        * analog: bool [default: false]
-        * flash_seconds: bool [default: false]
-        * format: string [default: 'EEE HH:mm' for EU]
+      * analog: bool [default: false]
+      * flash_seconds: bool [default: false]
+      * format: string [default: ``EEE HH:mm`` for EU]
 
 .. note::
 
@@ -160,13 +160,12 @@ Customizes display status of User Switcher widget in Menu Bar and Control Center
 Values:
     - dict
 
-        * menu: bool [default: false]
-        * control: bool [default: false]
-        * menu_show: string [default: icon]
-
-            - icon
-            - username
-            - fullname
+      * menu: bool [default: false]
+      * control: bool [default: false]
+      * menu_show: string [default: icon]
+        - icon
+        - username
+        - fullname
 
 References:
     * https://github.com/joeyhoer/starter/blob/master/system/users-groups.sh

@@ -6,18 +6,16 @@
 
           * show: bool [default: true]
           * arrange: string [default: none]
-
-              - none
-              - grid
-              - name
-              - kind
-              - last_opened
-              - added
-              - modified
-              - created
-              - size
-              - tags
-
+            - none
+            - grid
+            - name
+            - kind
+            - last_opened
+            - added
+            - modified
+            - created
+            - size
+            - tags
           * size: float [default: 64.0]
           * spacing: float [default: 54.0]
           * info: bool [default: false]

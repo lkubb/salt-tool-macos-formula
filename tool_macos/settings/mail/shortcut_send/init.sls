@@ -6,7 +6,7 @@
         Needs Full Disk Access to work (https://lapcatsoftware.com/articles/containers.html).
 
     Values:
-        - string [example: '@\U21a9' for Cmd+Enter]
+        - string [example: ``@\U21a9`` for Cmd+Enter]
 
     References:
         * https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/EventOverview/TextDefaultsBindings/TextDefaultsBindings.html

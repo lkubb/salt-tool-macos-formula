@@ -13,8 +13,8 @@
     Values:
         - string [default: inbox]
 
-            * all
-            * inbox
+          * all
+          * inbox
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

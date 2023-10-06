@@ -11,8 +11,8 @@ Customizes keyboard brightness adjustment behavior.
 Values:
     - dict
 
-        * low_light: bool [default: true]
-        * after: int [seconds of inactivity, default: 0 = disabled]
+      * low_light: bool [default: true]
+      * after: int [seconds of inactivity, default: 0 = disabled]
 
 Example:
 
@@ -33,10 +33,10 @@ Customizes action when pressing Fn key.
 Values:
     - string [default: input_source ?]
 
-        * none
-        * dictation
-        * emoji
-        * input_source
+      * none
+      * dictation
+      * emoji
+      * input_source
 
 
 function_keys_standard

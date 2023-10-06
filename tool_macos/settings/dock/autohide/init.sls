@@ -4,9 +4,9 @@
     Values:
         - dict
 
-            * enabled: bool [default: false]
-            * time: float [default: 0.5]
-            * delay: float [default: 0.5]
+          * enabled: bool [default: false]
+          * time: float [default: 0.5]
+          * delay: float [default: 0.5]
 
     Example:
 

@@ -8,27 +8,27 @@
     Values:
         - dict
 
-            * accent: string [default: multi]
-                - multi
-                - blue
-                - purple
-                - pink
-                - red
-                - orange
-                - yellow
-                - green
-                - graphite
+          * accent: string [default: multi]
+            - multi
+            - blue
+            - purple
+            - pink
+            - red
+            - orange
+            - yellow
+            - green
+            - graphite
 
-            * highlight: string [default: accent_color]
-                - accent_color
-                - blue
-                - purple
-                - pink
-                - red
-                - orange
-                - yellow
-                - green
-                - graphite
+          * highlight: string [default: accent_color]
+            - accent_color
+            - blue
+            - purple
+            - pink
+            - red
+            - orange
+            - yellow
+            - green
+            - graphite
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

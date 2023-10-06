@@ -9,8 +9,8 @@
     Values:
         - dict
 
-            * rate: int [default: ?]
-            * delay: int [default: ?]
+          * rate: int [default: ?]
+          * delay: int [default: ?]
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

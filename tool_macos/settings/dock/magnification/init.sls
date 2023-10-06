@@ -4,8 +4,8 @@
     Values:
         - dict
 
-            * enabled: bool [default: false]
-            * size: int [default: 128]
+          * enabled: bool [default: false]
+          * size: int [default: 128]
 
     Example:
 

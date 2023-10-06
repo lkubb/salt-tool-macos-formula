@@ -4,9 +4,9 @@
     Values:
         - str [default: medium]
 
-            * small
-            * medium
-            * large
+          * small
+          * medium
+          * large
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

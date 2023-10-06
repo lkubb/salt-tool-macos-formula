@@ -17,11 +17,11 @@
         - string [one value for all, see above]
         - or dict
 
-            * blank_cd: string [see above]
-            * blank_dvd: string [see above]
-            * music: string [see above]
-            * picture: string [see above]
-            * video: string [see above]
+          * blank_cd: string [see above]
+          * blank_dvd: string [see above]
+          * music: string [see above]
+          * picture: string [see above]
+          * video: string [see above]
 
     Example:
 

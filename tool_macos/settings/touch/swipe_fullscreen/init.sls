@@ -3,10 +3,8 @@
 
     Values:
         - string [default: three]
-
-            * three
-            * four
-
+          * three
+          * four
         - or false
 -#}
 

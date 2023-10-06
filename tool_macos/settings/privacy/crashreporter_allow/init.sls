@@ -4,9 +4,9 @@
     Values:
         - string
 
-            * none
-            * apple
-            * third_party
+          * none
+          * apple
+          * third_party
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

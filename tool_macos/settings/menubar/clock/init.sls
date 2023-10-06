@@ -4,9 +4,9 @@
     Values:
         - dict
 
-            * analog: bool [default: false]
-            * flash_seconds: bool [default: false]
-            * format: string [default: 'EEE HH:mm' for EU]
+          * analog: bool [default: false]
+          * flash_seconds: bool [default: false]
+          * format: string [default: ``EEE HH:mm`` for EU]
 
     .. note::
 

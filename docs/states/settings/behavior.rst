@@ -68,11 +68,11 @@ Values:
     - string [one value for all, see above]
     - or dict
 
-        * blank_cd: string [see above]
-        * blank_dvd: string [see above]
-        * music: string [see above]
-        * picture: string [see above]
-        * video: string [see above]
+      * blank_cd: string [see above]
+      * blank_dvd: string [see above]
+      * music: string [see above]
+      * picture: string [see above]
+      * video: string [see above]
 
 Example:
 
@@ -125,8 +125,8 @@ Customizes behavior when pressing the power button.
 Values:
     - bool [default: true]
 
-        * true = put system to sleep
-        * false = show prompt
+      * true = put system to sleep
+      * false = show prompt
 
 
 print_panel_expanded
@@ -196,8 +196,8 @@ Customizes global preference for tabs.
 Values:
     - string [default: fullscreen]
 
-        * manual
-        * fullscreen
-        * always
+      * manual
+      * fullscreen
+      * always
 
 

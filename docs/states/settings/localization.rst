@@ -11,8 +11,8 @@ Customizes forcing of 12h / 24h format.
 Values:
     - string [default: none]
 
-         * 12h
-         * 24h
+      * 12h
+      * 24h
 
 
 hostname
@@ -46,9 +46,9 @@ Customizes measurement units.
 Values:
     - string
 
-        * metric
-        * US
-        * UK
+      * metric
+      * US
+      * UK
 
 
 timezone

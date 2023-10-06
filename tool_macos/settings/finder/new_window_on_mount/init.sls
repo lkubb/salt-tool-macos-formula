@@ -4,9 +4,9 @@
     Values:
         - list [default: all]
 
-            * ro
-            * rw
-            * disk
+          * ro
+          * rw
+          * disk
 
     Example:
 

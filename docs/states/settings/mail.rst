@@ -17,33 +17,33 @@ Allows to configure mail accounts for Apple Mail.
 Values:
     - list of dicts
 
-        * address: string
-        * description: string [default: <address>]
-        * name: string [default: <username part of address>]
-        * type: string [imap, pop. default: imap]
-        * server_in:
+      * address: string
+      * description: string [default: <address>]
+      * name: string [default: <username part of address>]
+      * type: string [imap, pop. default: imap]
+      * server_in:
 
-            - auth: string [default: password]
+        - auth: string [default: password]
 
-                * none
-                * password
-                * crammd5
-                * ntlm
-                * httpmd5
+          * none
+          * password
+          * crammd5
+          * ntlm
+          * httpmd5
 
-            - domain: string
-            - port: int [default: 993]
-            - ssl: bool [default: true]
-            - username: string [default: <address>]
+        - domain: string
+        - port: int [default: 993]
+        - ssl: bool [default: true]
+        - username: string [default: <address>]
 
-        * server_out:
+      * server_out:
 
-            - auth: string [default: password]
-            - domain: string
-            - port: int [default: 465]
-            - ssl: bool [default: true]
-            - username: string [default: <address>]
-            - password_sameas_in: bool [default: true]
+        - auth: string [default: password]
+        - domain: string
+        - port: int [default: 465]
+        - ssl: bool [default: true]
+        - username: string [default: <address>]
+        - password_sameas_in: bool [default: true]
 
 Example:
 
@@ -149,8 +149,8 @@ Customizes dock unread messages count of Mail.app.
 Values:
     - string [default: inbox]
 
-        * all
-        * inbox
+      * all
+      * inbox
 
 
 downloads_remove
@@ -164,9 +164,9 @@ Customizes condition to delete downloaded attachments.
 Values:
     - string [default: message_deleted]
 
-        * app_quit
-        * message_deleted
-        * never
+      * app_quit
+      * message_deleted
+      * never
 
 
 format_match_reply
@@ -192,8 +192,8 @@ Customizes whether to prefer sending plaintext or richtext messages.
 Values:
     - string [default: rich]
 
-        * plain
-        * rich
+      * plain
+      * rich
 
 
 highlight_related
@@ -241,13 +241,12 @@ Customizes condition to receive new message alerts.
     Needs Full Disk Access to work (https://lapcatsoftware.com/articles/containers.html).
 
 Values:
-
     - string [default: inbox]
 
-        * inbox
-        * vips
-        * contacts
-        * all
+      * inbox
+      * vips
+      * contacts
+      * all
 
 
 new_message_sound
@@ -261,20 +260,20 @@ Customizes Mail.app new message alert sound.
 Values:
     - string [default: New Mail]
 
-          * Basso
-          * Blow
-          * Bottle
-          * Frog
-          * Funk
-          * Glass
-          * Hero
-          * Morse
-          * Ping
-          * Pop
-          * Purr
-          * Sosumi
-          * Submarine
-          * Tink
+      * Basso
+      * Blow
+      * Bottle
+      * Frog
+      * Funk
+      * Glass
+      * Hero
+      * Morse
+      * Ping
+      * Pop
+      * Purr
+      * Sosumi
+      * Submarine
+      * Tink
 
 
 poll
@@ -288,8 +287,8 @@ Customizes Mail.app polling behavior.
 Values:
     - str [default: auto]
 
-        * auto
-        * manual
+      * auto
+      * manual
 
     - or int [minutes between polls]
 
@@ -327,7 +326,7 @@ Customizes shortcut to send mails.
     Needs Full Disk Access to work (https://lapcatsoftware.com/articles/containers.html).
 
 Values:
-    - string [example: '@\U21a9' for Cmd+Enter]
+    - string [example: ``@\U21a9`` for Cmd+Enter]
 
 References:
     * https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/EventOverview/TextDefaultsBindings/TextDefaultsBindings.html

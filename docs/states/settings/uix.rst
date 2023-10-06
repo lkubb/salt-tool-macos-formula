@@ -15,27 +15,27 @@ Customizes default system colors for accents and highlights.
 Values:
     - dict
 
-        * accent: string [default: multi]
-            - multi
-            - blue
-            - purple
-            - pink
-            - red
-            - orange
-            - yellow
-            - green
-            - graphite
+      * accent: string [default: multi]
+        - multi
+        - blue
+        - purple
+        - pink
+        - red
+        - orange
+        - yellow
+        - green
+        - graphite
 
-        * highlight: string [default: accent_color]
-            - accent_color
-            - blue
-            - purple
-            - pink
-            - red
-            - orange
-            - yellow
-            - green
-            - graphite
+      * highlight: string [default: accent_color]
+        - accent_color
+        - blue
+        - purple
+        - pink
+        - red
+        - orange
+        - yellow
+        - green
+        - graphite
 
 
 doubleclick_title
@@ -45,9 +45,9 @@ Customizes action when doubleclicking a window's title.
 Values:
     - str [default: maximize]
 
-        * none
-        * minimize
-        * maximize
+      * none
+      * minimize
+      * maximize
 
 
 hot_corners
@@ -55,36 +55,36 @@ hot_corners
 Customizes hot corner settings.
 
 Values:
-    - dict {action: string, modifier: string}
+    - dict ``<corner>: {action: string, modifier: string}``
 
-        * action:
+      * action:
 
-            - none
-            - mission-control
-            - app-windows
-            - desktop
-            - screensaver
-            - stop-screensaver
-            - displaysleep
-            - launchpad
-            - notification-center
-            - lock-screen
-            - quick-note
+        - none
+        - mission-control
+        - app-windows
+        - desktop
+        - screensaver
+        - stop-screensaver
+        - displaysleep
+        - launchpad
+        - notification-center
+        - lock-screen
+        - quick-note
 
-        * modifier: string
+      * modifier: string
 
-            - none
-            - shift
-            - ctrl
-            - opt
-            - cmd
+        - none
+        - shift
+        - ctrl
+        - opt
+        - cmd
 
     - corners:
 
-        * top-left
-        * top-right
-        * bottom-left
-        * bottom-right
+      * top-left
+      * top-right
+      * bottom-left
+      * bottom-right
 
 Example:
 
@@ -144,9 +144,9 @@ Customizes when scrollbars are visible.
 Values:
     - str [default: automatic]]
 
-        * always
-        * automatic
-        * when_scrolling
+      * always
+      * automatic
+      * when_scrolling
 
 
 sidebar_iconsize
@@ -156,9 +156,9 @@ Customizes global prefered sidebar icon size.
 Values:
     - str [default: medium]
 
-        * small
-        * medium
-        * large
+      * small
+      * medium
+      * large
 
 
 spotlight_index
@@ -168,27 +168,27 @@ Customizes Spotlight index items.
 Values:
     - array [of items to enable]
 
-        * applications
-        * bookmarks-history
-        * calculator
-        * contacts
-        * conversion,
-        * definition
-        * developer
-        * documents
-        * events-reminders
-        * folders
-        * fonts,
-        * images
-        * mail-messages
-        * movies
-        * music
-        * other
-        * pdf
-        * presentations,
-        * siri
-        * spreadsheets
-        * system-preferences
+      * applications
+      * bookmarks-history
+      * calculator
+      * contacts
+      * conversion
+      * definition
+      * developer
+      * documents
+      * events-reminders
+      * folders
+      * fonts
+      * images
+      * mail-messages
+      * movies
+      * music
+      * other
+      * pdf
+      * presentations
+      * siri
+      * spreadsheets
+      * system-preferences
 
 
 tab_ui_elements
@@ -212,9 +212,9 @@ Customizes system theme.
 Values:
     - string [default: light]
 
-        * dark
-        * light
-        * auto
+      * dark
+      * light
+      * auto
 
 
 toolbar_button_shapes
@@ -253,23 +253,23 @@ Values:
     - bool [default: false]
     - or mapping
 
-        * enabled: bool [default: false]
-        * follow_keyboard_focus: string [default: never]
+      * enabled: bool [default: false]
 
-            - always
-            - never
-            - when_typing
+      * follow_keyboard_focus: string [default: never]
+        - always
+        - never
+        - when_typing
 
-        * zoom_mode: string [default: full]
+      * zoom_mode: string [default: full]
 
-            - full
-            - split
-            - in_picture
+        - full
+        - split
+        - in_picture
 
-        * modifier: string [default: ctrl]
+      * modifier: string [default: ctrl]
 
-            - ctrl
-            - opt
-            - cmd
+        - ctrl
+        - opt
+        - cmd
 
 

@@ -6,13 +6,12 @@
         Needs Full Disk Access to work (https://lapcatsoftware.com/articles/containers.html).
 
     Values:
-
         - string [default: inbox]
 
-            * inbox
-            * vips
-            * contacts
-            * all
+          * inbox
+          * vips
+          * contacts
+          * all
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

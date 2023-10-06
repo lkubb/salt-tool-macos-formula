@@ -2,36 +2,36 @@
     Customizes hot corner settings.
 
     Values:
-        - dict {action: string, modifier: string}
+        - dict ``<corner>: {action: string, modifier: string}``
 
-            * action:
+          * action:
 
-                - none
-                - mission-control
-                - app-windows
-                - desktop
-                - screensaver
-                - stop-screensaver
-                - displaysleep
-                - launchpad
-                - notification-center
-                - lock-screen
-                - quick-note
+            - none
+            - mission-control
+            - app-windows
+            - desktop
+            - screensaver
+            - stop-screensaver
+            - displaysleep
+            - launchpad
+            - notification-center
+            - lock-screen
+            - quick-note
 
-            * modifier: string
+          * modifier: string
 
-                - none
-                - shift
-                - ctrl
-                - opt
-                - cmd
+            - none
+            - shift
+            - ctrl
+            - opt
+            - cmd
 
         - corners:
 
-            * top-left
-            * top-right
-            * bottom-left
-            * bottom-right
+          * top-left
+          * top-right
+          * bottom-left
+          * bottom-right
 
     Example:
 

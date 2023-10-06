@@ -4,9 +4,9 @@
     Values:
         - string
 
-            * metric
-            * US
-            * UK
+          * metric
+          * US
+          * UK
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

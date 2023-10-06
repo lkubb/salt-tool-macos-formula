@@ -8,8 +8,8 @@
     Values:
         - str [default: auto]
 
-            * auto
-            * manual
+          * auto
+          * manual
 
         - or int [minutes between polls]
 -#}

@@ -9,45 +9,45 @@
     Values:
         - dict
 
-            * apps: list of items
-            * others: list of items
-            * sync: true [appending is currently very broken]
+          * apps: list of items
+          * others: list of items
+          * sync: true [appending is currently very broken]
 
     Single item possible values:
         - type: [possibly autodetected if unspecified]
 
-            * app
-            * folder
-            * url
-            * spacer
-            * small-spacer
-            * flex-spacer
+          * app
+          * folder
+          * url
+          * spacer
+          * small-spacer
+          * flex-spacer
 
         - label: string [will be automapped if unspecified]
         - path: string [required]
 
-            * /some/absolute/path
-            * some://url
+          * /some/absolute/path
+          * some://url
 
         - displayas: string [directories only, default: stack]
 
-            * folder
-            * stack
+          * folder
+          * stack
 
         - showas: string [directories only, default: auto]
 
-            * auto
-            * fan
-            * grid
-            * list
+          * auto
+          * fan
+          * grid
+          * list
 
         - arrangeby: string [directories only, default: added]
 
-            * name
-            * added
-            * modified
-            * created
-            * kind
+          * name
+          * added
+          * modified
+          * created
+          * kind
 
     Example:
 

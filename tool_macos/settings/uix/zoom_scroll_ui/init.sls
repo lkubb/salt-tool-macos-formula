@@ -9,24 +9,24 @@
         - bool [default: false]
         - or mapping
 
-            * enabled: bool [default: false]
-            * follow_keyboard_focus: string [default: never]
+          * enabled: bool [default: false]
 
-                - always
-                - never
-                - when_typing
+          * follow_keyboard_focus: string [default: never]
+            - always
+            - never
+            - when_typing
 
-            * zoom_mode: string [default: full]
+          * zoom_mode: string [default: full]
 
-                - full
-                - split
-                - in_picture
+            - full
+            - split
+            - in_picture
 
-            * modifier: string [default: ctrl]
+          * modifier: string [default: ctrl]
 
-                - ctrl
-                - opt
-                - cmd
+            - ctrl
+            - opt
+            - cmd
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

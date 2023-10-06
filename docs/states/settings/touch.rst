@@ -57,9 +57,9 @@ Customizes resistance and haptic feedback strength for clicks.
 Values:
     - string [default: medium]
 
-        * low
-        * medium
-        * high
+      * low
+      * medium
+      * high
 
 
 launchpad
@@ -82,8 +82,8 @@ Values:
     - bool [default: true = force click]
     - or string
 
-        * three
-        * four
+      * three
+      * four
 
 
 mission_control
@@ -137,9 +137,9 @@ Customizes secondary click touch gesture activation status.
 Values:
     - string [default: two]
 
-        * two [fingers]
-        * corner-right [bottom]
-        * corner-left [bottom]
+      * two [fingers]
+      * corner-right [bottom]
+      * corner-left [bottom]
 
     - or false
 
@@ -170,10 +170,8 @@ Customizes swipe fullscreen apps touch gesture activation status.
 
 Values:
     - string [default: three]
-
-        * three
-        * four
-
+      * three
+      * four
     - or false
 
 
@@ -183,11 +181,9 @@ Customizes swipe pages touch gesture activation status.
 
 Values:
     - string [default: two]
-
-        * two
-        * three
-        * both
-
+      * two
+      * three
+      * both
     - or false
 
 

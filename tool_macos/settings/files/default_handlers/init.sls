@@ -3,17 +3,18 @@
 
     Values:
         - dict
-            * extensions: dict
 
-                - extension: handler
+          * extensions: dict
 
-            * schemes: dict
+            ``extension: handler``
 
-                - scheme: handler
+          * schemes: dict
 
-            * utis: dict
+            ``scheme: handler``
 
-                - uti: handler
+          * utis: dict
+
+            ``uti: handler``
 
     .. note::
 

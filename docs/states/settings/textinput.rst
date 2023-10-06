@@ -56,8 +56,8 @@ To make this have an effect, turn press and hold off.
 Values:
     - dict
 
-        * rate: int [default: ?]
-        * delay: int [default: ?]
+      * rate: int [default: ?]
+      * delay: int [default: ?]
 
 
 slow_keys

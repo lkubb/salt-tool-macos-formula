@@ -4,12 +4,12 @@
     Customizes power settings.
 
     Values:
-        - dict of <scope> => {name: val, othername: otherval} mappings
-          where scope is in [all, ac, battery, ups].
+        - dict of ``<scope> => {name: val, othername: otherval}`` mappings
+          where scope is in ``[all, ac, battery, ups]``.
 
     Example:
 
-    ... code-block:: yaml
+    .. code-block:: yaml
 
         power:
           all:

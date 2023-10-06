@@ -4,22 +4,22 @@
     Values:
         - dict
 
-            * arrange: string [default: name]
+          * arrange: string [default: name]
 
-                - none
-                - name
-                - kind
-                - last_opened
-                - added
-                - modified
-                - created
-                - size
-                - tags
+            - none
+            - name
+            - kind
+            - last_opened
+            - added
+            - modified
+            - created
+            - size
+            - tags
 
-            * icon_size: float [default: 48]
-            * preview: bool [default: true]
-            * preview_pane: bool [default: true]
-            * titles: bool [default: false]
+          * icon_size: float [default: 48]
+          * preview: bool [default: true]
+          * preview_pane: bool [default: true]
+          * titles: bool [default: false]
 
     Example:
 

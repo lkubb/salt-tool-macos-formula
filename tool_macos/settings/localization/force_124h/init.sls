@@ -4,8 +4,8 @@
     Values:
         - string [default: none]
 
-             * 12h
-             * 24h
+          * 12h
+          * 24h
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

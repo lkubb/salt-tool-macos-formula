@@ -8,9 +8,9 @@
     Values:
         - string [default: light]
 
-            * dark
-            * light
-            * auto
+          * dark
+          * light
+          * auto
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

@@ -8,8 +8,8 @@
     Values:
         - bool [default: true]
 
-            * true = put system to sleep
-            * false = show prompt
+          * true = put system to sleep
+          * false = show prompt
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

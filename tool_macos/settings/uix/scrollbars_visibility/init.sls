@@ -4,9 +4,9 @@
     Values:
         - str [default: automatic]]
 
-            * always
-            * automatic
-            * when_scrolling
+          * always
+          * automatic
+          * when_scrolling
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

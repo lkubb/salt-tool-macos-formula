@@ -4,8 +4,8 @@
     Values:
         - dict
 
-            * enabled: bool [default: true]
-            * server: string [default: time.apple.com]
+          * enabled: bool [default: true]
+          * server: string [default: time.apple.com]
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

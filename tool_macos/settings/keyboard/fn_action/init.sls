@@ -7,10 +7,10 @@
     Values:
         - string [default: input_source ?]
 
-            * none
-            * dictation
-            * emoji
-            * input_source
+          * none
+          * dictation
+          * emoji
+          * input_source
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}

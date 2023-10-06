@@ -4,13 +4,13 @@
     Values:
         - string [default: recent]
 
-            * computer
-            * volume
-            * home
-            * desktop
-            * documents
-            * recent
-            * </my/custom/path>
+          * computer
+          * volume
+          * home
+          * desktop
+          * documents
+          * recent
+          * </my/custom/path>
 
     References:
         * https://github.com/joeyhoer/starter/blob/master/apps/finder.sh

@@ -4,8 +4,8 @@
     Values:
         - dict
 
-            * menu: bool [default: false]
-            * control: bool [default: false]
+          * menu: bool [default: false]
+          * control: bool [default: false]
 -#}
 
 {%- set tplroot = tpldir.split('/')[0] -%}
