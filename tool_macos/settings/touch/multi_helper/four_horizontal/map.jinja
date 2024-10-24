@@ -1,5 +1,5 @@
 {%- set u = user.macos.touch %}
-{%- from tpldir ~ '/../three/map.jinja' import three_finger_conflicts with context %}
+{%- from salt["file.dirname"](tpldir) ~ '/three/map.jinja' import three_finger_conflicts with context %}
 
 {%- set status = False %}
 
