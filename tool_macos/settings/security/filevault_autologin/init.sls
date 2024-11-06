@@ -1,10 +1,12 @@
+# vim: ft=sls
+
 {#-
     Customizes automatic login of FileVault authenticated user.
 
     Values: bool [default: true]
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:

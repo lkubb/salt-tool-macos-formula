@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 {#-
     Power
 
@@ -27,7 +29,7 @@
         * man pmset
         * https://en.wikipedia.org/wiki/Pmset
         * https://apple.stackexchange.com/a/262593
--#}
+#}
 
 {#- This could be managed with macosdefaults as well, the files are
         * /Library/Preferences/com.apple.PowerManagement.plist and
@@ -82,7 +84,7 @@
       };
 #}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:

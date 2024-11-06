@@ -1,8 +1,10 @@
+# vim: ft=sls
+
 {#-
     Resets Launchpad touch gesture activation status to default (enabled).
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
@@ -10,7 +12,7 @@ include:
   - {{ tplroot }}._require
   - ..multi_helper.pinch.clean
 
-{%- for user in macos.users | selectattr('macos.touch', 'defined') | selectattr('macos.touch.launchpad', 'defined') %}
+{%- for user in macos.users | selectattr("macos.touch", "defined") | selectattr("macos.touch.launchpad", "defined") %}
 
 Launchpad touch gesture activation status is reset to default for user {{ user.name }}:
   macosdefaults.absent:

@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 {#-
     Customizes Internet Sharing status.
 
@@ -7,9 +9,9 @@
 
     Values:
         - bool [default: false]
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:

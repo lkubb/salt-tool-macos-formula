@@ -1,18 +1,20 @@
+# vim: ft=sls
+
 {#-
     Customizes activation of smart periods (2x space = .).
 
     Values:
         - bool [default: true]
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.textinput', 'defined') | selectattr('macos.textinput.smart_periods', 'defined') %}
+{%- for user in macos.users | selectattr("macos.textinput", "defined") | selectattr("macos.textinput.smart_periods", "defined") %}
 
 Activation of smart periods is managed for {{ user.name }}:
   macosdefaults.write:

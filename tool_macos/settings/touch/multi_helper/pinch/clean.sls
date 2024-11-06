@@ -1,19 +1,21 @@
+# vim: ft=sls
+
 {#- @internal
     Resets four/five finger pinch gestures to default (enabled).
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.touch', 'defined') %}
-  {%- set u = user.macos.touch %}
-  {%- set managed = (u.show_desktop is defined or u.launchpad is defined) %}
+{%- for user in macos.users | selectattr("macos.touch", "defined") %}
+{%-   set u = user.macos.touch %}
+{%-   set managed = (u.show_desktop is defined or u.launchpad is defined) %}
 
-  {%- if managed %}
+{%-   if managed %}
 
 Pinch gesture activation status for internal trackpad is reset to default (enabled) for user {{ user.name }}:
   macosdefaults.absent:
@@ -54,5 +56,5 @@ Pinch gesture activation status on current host is reset to default (enabled) fo
     - watch_in:
       - cfprefsd was reloaded
       - Dock was reloaded
-  {%- endif %}
+{%-   endif %}
 {%- endfor %}

@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 Safari allows websites to check if Apple Pay is set up:
   macdefaults.write:
     - domain: com.apple.Safari

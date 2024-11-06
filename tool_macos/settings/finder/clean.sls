@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 include:
   - .airdrop_extended.clean
   - .desktop_icons.clean

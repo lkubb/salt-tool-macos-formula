@@ -1,15 +1,17 @@
+# vim: ft=sls
+
 {#-
     Resets Finder Pathbar root directory to default (disk).
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.finder', 'defined') | selectattr('macos.finder.pathbar_home_is_root', 'defined') %}
+{%- for user in macos.users | selectattr("macos.finder", "defined") | selectattr("macos.finder.pathbar_home_is_root", "defined") %}
 
 Finder Pathbar root directory is reset to default (disk) for user {{ user.name }}:
   macosdefaults.absent:

@@ -1,18 +1,21 @@
+# vim: ft=sls
+
 {#- @internal
     Resets four finger vertical swipes to defaults (disabled).
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.touch', 'defined') %}
-  {%- from tpldir ~ '/map.jinja' import status with context %}
+{%- for user in macos.users | selectattr("macos.touch", "defined") %}
+{%-   from tpldir ~ "/map.jinja" import status with context %}
 
-  {%- if status is not sameas False %}
+{%-   if status is not sameas False %}
+
 Four finger vertical swipe on internal trackpad is reset to default (disabled) for user {{ user.name }}:
   macosdefaults.absent:
     - domain: com.apple.AppleMultitouchTrackpad
@@ -45,5 +48,5 @@ Four finger vertical swipe on current host is reset to default (disabled) for us
     - watch_in:
       - cfprefsd was reloaded
       - Dock was reloaded
-  {%- endif %}
+{%-   endif %}
 {%- endfor %}

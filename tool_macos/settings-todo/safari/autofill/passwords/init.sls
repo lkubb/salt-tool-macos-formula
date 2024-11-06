@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 Safari does not autofill passwords:
   macdefaults.write:
     - domain: com.apple.Safari

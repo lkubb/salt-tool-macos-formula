@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 Safari asks daily if a website can access location data:
   macdefaults.write:
     - domain: com.apple.Safari

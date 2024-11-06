@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 Safari prints backgrounds:
   macdefaults.write:
     - domain: com.apple.Safari

@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 # this should work with most other apps as well, e.g. X11-based:
 # defaults write org.x.X11 wm_ffm -bool true
 

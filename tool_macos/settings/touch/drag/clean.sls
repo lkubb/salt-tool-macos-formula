@@ -1,8 +1,10 @@
+# vim: ft=sls
+
 {#-
     Resets three finger drag touch gesture activation status to default (disabled).
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
@@ -11,7 +13,7 @@ include:
   - ..multi_helper.three.clean
   - ..tap_to_click.clean
 
-{%- for user in macos.users | selectattr('macos.touch', 'defined') | selectattr('macos.touch.drag', 'defined') %}
+{%- for user in macos.users | selectattr("macos.touch", "defined") | selectattr("macos.touch.drag", "defined") %}
 
 Three finger drag gesture on internal trackpad reset to default (disabled) for user {{ user.name }}:
   macosdefaults.absent:

@@ -1,4 +1,6 @@
-Safari shows Favorites below Smart Search results:
+# vim: ft=sls
+
+wSafari shows Favorites below Smart Search results:
   macdefaults.write:
     - domain: com.apple.Safari
     - name: ShowFavoritesUnderSmartSearchField

@@ -1,15 +1,17 @@
+# vim: ft=sls
+
 {#-
     Resets scrolling direction to default (natural).
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.touch', 'defined') | selectattr('macos.touch.natural_scrolling', 'defined') %}
+{%- for user in macos.users | selectattr("macos.touch", "defined") | selectattr("macos.touch.natural_scrolling", "defined") %}
 
 Natural scrolling state is reset to default for user {{ user.name }}:
   macosdefaults.absent:

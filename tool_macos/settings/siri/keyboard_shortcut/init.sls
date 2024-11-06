@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 {#-
     Customizes Siri keyboard shortcut.
 
@@ -11,54 +13,54 @@
 
     References:
         * https://github.com/joeyhoer/starter/blob/master/system/siri.sh
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{#- default means Off / Hold microphone key. custom would be 7 and needs CustomizedKeyboardShortcut dict -#}
+{#- default means Off / Hold microphone key. custom would be 7 and needs CustomizedKeyboardShortcut dict #}
 {%- set options = {
-  'default': 0,
-  'cmd_space': 2,
-  'opt_space': 3,
-  'fn_space': 4,
-  'cmd_shift_space': 6,
-  } %}
-
-{%- set symbolichotkey = {
-  'default': {
-    'enabled': False},
-  'cmd_space': {
-    'enabled': True,
-    'value': {
-      'parameters': [32, 49, 2148532224],
-      'type': 'modifier'
-    }},
-  'opt_space': {
-    'enabled': True,
-    'value': {
-      'parameters': [32, 49, 2148007936],
-      'type': 'modifier'
-    }},
-  'fn_space': {
-    'enabled': True,
-    'value': {
-      'parameters': [32, 49, 8388608],
-      'type': 'standard'
-    }},
-  'cmd_shift_space': {
-    'enabled': True,
-    'value': {
-      'parameters': [32, 49, 1179648],
-      'type': 'standard'
-    }},
+      "default": 0,
+      "cmd_space": 2,
+      "opt_space": 3,
+      "fn_space": 4,
+      "cmd_shift_space": 6,
 } %}
 
-{%- for user in macos.users | selectattr('macos.siri', 'defined') | selectattr('macos.siri.keyboard_shortcut', 'defined') %}
+{%- set symbolichotkey = {
+      "default": {
+        "enabled": False},
+      "cmd_space": {
+        "enabled": True,
+        "value": {
+          "parameters": [32, 49, 2148532224],
+          "type": "modifier"
+        }},
+      "opt_space": {
+        "enabled": True,
+        "value": {
+          "parameters": [32, 49, 2148007936],
+          "type": "modifier"
+        }},
+      "fn_space": {
+        "enabled": True,
+        "value": {
+          "parameters": [32, 49, 8388608],
+          "type": "standard"
+        }},
+      "cmd_shift_space": {
+        "enabled": True,
+        "value": {
+          "parameters": [32, 49, 1179648],
+          "type": "standard"
+        }},
+} %}
+
+{%- for user in macos.users | selectattr("macos.siri", "defined") | selectattr("macos.siri.keyboard_shortcut", "defined") %}
 
 Siri keyboard shortcut is managed for user {{ user.name }}:
   macosdefaults.write:

@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 Disk Utility - disable debug menu:
   macdefaults.write:
     - domain: com.apple.DiskUtility

@@ -1,10 +1,12 @@
+# vim: ft=sls
+
 {#-
     Resets Internet Sharing status to default (disabled).
 
     Not sure which service needs restarting, if any.
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:

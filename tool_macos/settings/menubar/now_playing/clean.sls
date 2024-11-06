@@ -1,15 +1,17 @@
+# vim: ft=sls
+
 {#-
     Resets display status of Now Playing widget in Menu Bar to default (when_active).
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.menubar', 'defined') | selectattr('macos.menubar.now_playing', 'defined') %}
+{%- for user in macos.users | selectattr("macos.menubar", "defined") | selectattr("macos.menubar.now_playing", "defined") %}
 
 Display status of Now Playing widget in Menu Bar is reset to default (when active) for user {{ user.name }}:
   macosdefaults.absent:

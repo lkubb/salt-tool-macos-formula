@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 Safari updates extensions automatically:
   macdefaults.write:
     - domain: com.apple.Safari

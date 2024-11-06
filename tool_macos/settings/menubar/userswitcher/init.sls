@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 {#-
     Customizes display status of User Switcher widget in Menu Bar and Control Center.
 
@@ -13,9 +15,9 @@
 
     References:
         * https://github.com/joeyhoer/starter/blob/master/system/users-groups.sh
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
@@ -23,13 +25,13 @@ include:
   - {{ tplroot }}._require
 
 {%- set icon_options = {
-  'icon': 0,
-  'username': 1,
-  'fullname': 2
-  } %}
+      "icon": 0,
+      "username": 1,
+      "fullname": 2
+} %}
 
-{%- for user in macos.users | selectattr('macos.menubar', 'defined') | selectattr('macos.menubar.userswitcher', 'defined') %}
-  {%- from tpldir ~ '/map.jinja' import status with context %}
+{%- for user in macos.users | selectattr("macos.menubar", "defined") | selectattr("macos.menubar.userswitcher", "defined") %}
+{%-   from tpldir ~ "/map.jinja" import status with context %}
 
 Display status of User Switcher widget is managed for user {{ user.name }}:
   macosdefaults.write:
@@ -46,7 +48,8 @@ Display status of User Switcher widget is managed for user {{ user.name }}:
       - ControlCenter was reloaded # either will do
       - SystemUIServer was reloaded # either will do
 
-  {%- if user.macos.menubar.userswitcher.menu_show is defined %}
+{%-   if user.macos.menubar.userswitcher.menu_show is defined %}
+
 User Switcher widget display style is managed for user {{ user.name }}:
   macosdefaults.write:
     - name: userMenuExtraStyle # in NSGlobalDomain
@@ -59,5 +62,5 @@ User Switcher widget display style is managed for user {{ user.name }}:
       - cfprefsd was reloaded
       - ControlCenter was reloaded # either will do
       - SystemUIServer was reloaded # either will do
-  {%- endif %}
+{%-   endif %}
 {%- endfor %}

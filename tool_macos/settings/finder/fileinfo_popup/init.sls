@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 {#-
     Customizes file info popup expanded panes.
 
@@ -20,17 +22,17 @@
           name: false
           openwith: true
           privileges: true
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.finder', 'defined') | selectattr('macos.finder.fileinfo_popup', 'defined') %}
-  {%- from tpldir ~ '/map.jinja' import user_settings with context %}
+{%- for user in macos.users | selectattr("macos.finder", "defined") | selectattr("macos.finder.fileinfo_popup", "defined") %}
+{%-   from tpldir ~ "/map.jinja" import user_settings with context %}
 
 File info popup expanded panes are managed for user {{ user.name }}:
   macosdefaults.update:

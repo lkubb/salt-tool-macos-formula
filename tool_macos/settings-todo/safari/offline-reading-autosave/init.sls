@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 Safari automatically saves sites for offline reading:
   macdefaults.write:
     - domain: com.apple.Safari

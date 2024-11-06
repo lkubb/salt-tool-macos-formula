@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 Safari homepage is set to about:blank:
   macdefaults.write:
     - domain: com.apple.Safari

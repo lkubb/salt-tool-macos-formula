@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 {#-
     Resets Bluetooth bitpool settings to defaults (audio quality/lags).
 
@@ -5,9 +7,9 @@
 
     to reload, kill blued (up to sierra) or bluetoothd
 
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
@@ -15,6 +17,7 @@ include:
   - {{ tplroot }}._require
 
 {%- if macos.bluetooth is defined and macos.bluetooth.bitpool is defined %}
+
 # higher bitpool = better quality, possibly more interruptions
 Bluetooth minimum bitpool is set to custom value:
   macdefaults.write:
@@ -30,9 +33,8 @@ Bluetooth minimum bitpool is set to custom value:
       - bluetoothd was reloaded
 {%- endif %}
 
-
 Bluetooth minimum bitpool is reset to default value:
   macdefaults.absent:
     - domain: com.apple.BluetoothAudioAgent
     - name: Apple Bitpool Min (editable)
-    - user: {{ salt['pillar.get']('macust:user:username') }}
+    - user: {{ salt["pillar.get"]("macust:user:username") }}

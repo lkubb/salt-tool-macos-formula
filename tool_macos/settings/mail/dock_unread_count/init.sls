@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 {#-
     Customizes dock unread messages count of Mail.app.
 
@@ -15,21 +17,21 @@
 
           * all
           * inbox
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 {%- set options = {
-  'inbox': 1,
-  'all': 2
-  } %}
+      "inbox": 1,
+      "all": 2
+} %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.mail', 'defined') | selectattr('macos.mail.dock_unread_count', 'defined') %}
+{%- for user in macos.users | selectattr("macos.mail", "defined") | selectattr("macos.mail.dock_unread_count", "defined") %}
 
 Dock unread count of Mail.app is managed for user {{ user.name }}:
   macosdefaults.write:

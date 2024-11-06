@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 {#-
     Customizes shortcut to send mails.
 
@@ -12,16 +14,16 @@
         * https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/EventOverview/TextDefaultsBindings/TextDefaultsBindings.html
         * https://web.archive.org/web/20160314030051/http://osxnotes.net/keybindings.html
         * https://github.com/ttscoff/KeyBindings
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.mail', 'defined') | selectattr('macos.mail.shortcut_send', 'defined') %}
+{%- for user in macos.users | selectattr("macos.mail", "defined") | selectattr("macos.mail.shortcut_send", "defined") %}
 
 Custom shortcut to send mails in Mail.app is managed for user {{ user.name }}:
   macosdefaults.set:

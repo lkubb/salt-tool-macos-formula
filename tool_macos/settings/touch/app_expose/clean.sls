@@ -1,10 +1,12 @@
+# vim: ft=sls
+
 {#-
     Resets App Exposé touch gesture settings to default (enabled).
 
     Warning: This might reset more than just App Exposé gesture. @TODO
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
@@ -13,7 +15,7 @@ include:
   - ..multi_helper.three.clean
   - ..multi_helper.four_vertical.clean
 
-{%- for user in macos.users | selectattr('macos.touch', 'defined') | selectattr('macos.touch.app_expose', 'defined') %}
+{%- for user in macos.users | selectattr("macos.touch", "defined") | selectattr("macos.touch.app_expose", "defined") %}
 
 App Expose gesture activation state is reset to default for user {{ user.name }}:
   macosdefaults.absent:

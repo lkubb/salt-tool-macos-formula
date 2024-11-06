@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 {#-
     Customizes Spotlight index items.
 
@@ -25,17 +27,17 @@
           * siri
           * spreadsheets
           * system-preferences
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.uix', 'defined') | selectattr('macos.uix.spotlight_index', 'defined') %}
-  {%- from tpldir ~ '/map.jinja' import user_items with context %}
+{%- for user in macos.users | selectattr("macos.uix", "defined") | selectattr("macos.uix.spotlight_index", "defined") %}
+{%-   from tpldir ~ "/map.jinja" import user_items with context %}
 
 Spotlight index items are managed for user {{ user.name }}:
   macosdefaults.set:

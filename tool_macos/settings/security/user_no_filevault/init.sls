@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 {#-
     Removes FileVault unlock privileges from an account.
 
@@ -14,18 +16,18 @@
 
     References:
         * https://support.apple.com/en-gb/HT203998
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.security', 'defined')
-                            | selectattr('macos.security.user_filevault', 'defined')
-                            | selectattr('macos.security.user_filevault') %}
+{%- for user in macos.users | selectattr("macos.security", "defined")
+                            | selectattr("macos.security.user_filevault", "defined")
+                            | selectattr("macos.security.user_filevault") %}
 
 User account {{ user.name }} cannot unlock FileVault volume:
   cmd.run:

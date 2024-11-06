@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 {#-
     Customizes global prefered sidebar icon size.
 
@@ -7,9 +9,9 @@
           * small
           * medium
           * large
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
@@ -17,12 +19,12 @@ include:
   - {{ tplroot }}._require
 
 {%- set options = {
-  'small': 1,
-  'medium': 2,
-  'large': 3
-  } %}
+      "small": 1,
+      "medium": 2,
+      "large": 3,
+} %}
 
-{%- for user in macos.users | selectattr('macos.uix', 'defined') | selectattr('macos.uix.sidebar_iconsize', 'defined') %}
+{%- for user in macos.users | selectattr("macos.uix", "defined") | selectattr("macos.uix.sidebar_iconsize", "defined") %}
 
 Preferred sidebar icon size is managed for user {{ user.name }}:
   macosdefaults.write:

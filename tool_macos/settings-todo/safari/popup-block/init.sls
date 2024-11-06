@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 Safari blocks (JS) popups:
   macdefaults.write:
     - domain: com.apple.Safari

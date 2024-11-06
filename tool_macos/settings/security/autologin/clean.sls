@@ -1,8 +1,10 @@
+# vim: ft=sls
+
 {#-
     Resets automatic login to default (disabled).
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
@@ -10,7 +12,6 @@ include:
   - {{ tplroot }}._require
 
 {%- if macos.security is defined and macos.security.autologin is defined %}
-  {%- set m = macos.security.autologin %}
 
 Automatic login is set to default (disabled):
   macosdefaults.absent:

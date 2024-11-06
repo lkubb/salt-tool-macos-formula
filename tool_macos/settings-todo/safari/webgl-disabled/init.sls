@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 WebGL in Safari is disabled:
   macdefaults.write:
     - domain: com.apple.Safari

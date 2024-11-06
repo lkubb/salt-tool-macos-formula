@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 Reset Activity Monitor sort column:
   macdefaults.absent:
     - domain: com.apple.ActivityMonitor

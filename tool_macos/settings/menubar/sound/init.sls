@@ -1,26 +1,29 @@
+# vim: ft=sls
+
 {#-
     Customizes display status of Sound widget in Menu Bar.
 
     Values:
         - when_active [default: when_active]
         - or bool
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.menubar', 'defined') | selectattr('macos.menubar.sound', 'defined') %}
-  {%- if user.macos.menubar.sound in [True, False] %}
-    {%- set status = 18 if user.macos.menubar.sound else 8 %}
-  {%- elif 'when_active' == user.macos.menubar.sound %}
-    {%- set status = 2 %}
-  {%- else %}
-    {%- do salt['log.error']("Invalid value '{}' specified for macos.menubar.sound for user {}!".format(user.macos.menubar.sound, user.name)) %}
-  {%- endif %}
+{%- for user in macos.users | selectattr("macos.menubar", "defined") | selectattr("macos.menubar.sound", "defined") %}
+{%-   if user.macos.menubar.sound in [True, False] %}
+{%-     set status = 18 if user.macos.menubar.sound else 8 %}
+{%-   elif user.macos.menubar.sound == "when_active" %}
+{%-     set status = 2 %}
+{%-   else %}
+{%-     do salt["log.error"]("Invalid value '{}' specified for macos.menubar.sound for user {}!".format(user.macos.menubar.sound, user.name)) %}
+{%-   endif %}
+
 Display status of Sound widget in Menu Bar is managed for user {{ user.name }}:
   macosdefaults.write:
     - host: current

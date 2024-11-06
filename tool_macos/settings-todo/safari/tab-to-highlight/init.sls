@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 Press Tab to highlight each item on a web page:
   macdefaults.write:
     - domain: com.apple.Safari

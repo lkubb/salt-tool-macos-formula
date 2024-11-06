@@ -1,15 +1,17 @@
+# vim: ft=sls
+
 {#-
     Resets default "Save as" location of save panel to defaults (iCloud).
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.files', 'defined') | selectattr('macos.files.save_icloud', 'defined') %}
+{%- for user in macos.users | selectattr("macos.files", "defined") | selectattr("macos.files.save_icloud", "defined") %}
 
 Default Save As location is reset to default (iCloud) for user {{ user.name }}:
   macosdefaults.absent:

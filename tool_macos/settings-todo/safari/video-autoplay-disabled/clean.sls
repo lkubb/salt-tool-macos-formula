@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 Videos autoplay in Safari part 1:
   macdefaults.write:
     - domain: com.apple.Safari

@@ -1,18 +1,20 @@
+# vim: ft=sls
+
 {#-
     Customizes volume change feedback sound effect behavior.
 
     Values:
         - bool [default: false]
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.audio', 'defined') | selectattr('macos.audio.sound_effect_volumechange', 'defined') %}
+{%- for user in macos.users | selectattr("macos.audio", "defined") | selectattr("macos.audio.sound_effect_volumechange", "defined") %}
 
 Volume change feedback sound effect is managed for user {{ user.name }}:
   macosdefaults.write:

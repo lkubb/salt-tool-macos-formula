@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 Safari prevents tracking over different sites while limiting usability breakage:
   macdefaults.write:
     - domain: com.apple.Safari

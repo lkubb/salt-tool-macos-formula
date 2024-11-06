@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 Safari opens new tabs with homepage:
   macdefaults.write:
     - domain: com.apple.Safari

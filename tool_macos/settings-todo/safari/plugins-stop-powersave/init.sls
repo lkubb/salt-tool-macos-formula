@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 Safari automatically stops plugins to save power:
   macdefaults.write:
     - domain: com.apple.Safari

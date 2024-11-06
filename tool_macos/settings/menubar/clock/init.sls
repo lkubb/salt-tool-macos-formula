@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 {#-
     Customizes display behavior of Clock widget in Menu Bar.
 
@@ -12,36 +14,36 @@
 
         This force-sets the format string. It will work, but applying something
         in System Preferences will reset everything. @TODO parse format string
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.menubar', 'defined') | selectattr('macos.menubar.clock', 'defined') %}
+{%- for user in macos.users | selectattr("macos.menubar", "defined") | selectattr("macos.menubar.clock", "defined") %}
 
 Display behavior of Clock widget is managed for user {{ user.name }}:
   macosdefaults.write:
     - domain: com.apple.menuextra.clock
     - names:
-  {%- if user.macos.menubar.clock.analog is defined %}
+{%-   if user.macos.menubar.clock.analog is defined %}
         - IsAnalog:
             - value: {{ user.macos.menubar.clock.analog | to_bool }}
             - vtype: bool
-  {%- endif %}
-  {%- if user.macos.menubar.clock.flash_seconds is defined %}
+{%-   endif %}
+{%-   if user.macos.menubar.clock.flash_seconds is defined %}
         - FlashDateSeparators:
             - value: {{ user.macos.menubar.clock.flash_seconds | to_bool }}
             - vtype: bool
-  {%- endif %}
-  {%- if user.macos.menubar.clock.format is defined %}
+{%-   endif %}
+{%-   if user.macos.menubar.clock.format is defined %}
         - DateFormat:
             - value: '{{ user.macos.menubar.clock.format }}'
             - vtype: string
-  {%- endif %}
+{%-   endif %}
     - user: {{ user.name }}
     - require:
       - System Preferences is not running

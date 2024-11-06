@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 {#-
     Customizes charging sound (chime) behavior.
 
@@ -10,16 +12,16 @@
 
     References:
         * https://git.herrbischoff.com/awesome-macos-command-line/about/
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.audio', 'defined') | selectattr('macos.audio.charging_sound', 'defined') %}
+{%- for user in macos.users | selectattr("macos.audio", "defined") | selectattr("macos.audio.charging_sound", "defined") %}
 
 Sound when plugging in charging cable is managed for user {{ user.name }}:
   macosdefaults.write:
@@ -31,8 +33,8 @@ Sound when plugging in charging cable is managed for user {{ user.name }}:
     - require:
       - System Preferences is not running
 
-  {#- if managed user is current console user (logged in), apply instantly #}
-  {%- if user.name == macos.lookup.console_user %}
+{#-   if managed user is current console user (logged in), apply instantly #}
+{%-   if user.name == macos.lookup.console_user %}
 PowerChime.app was reloaded for user {{ user.name }}:
   cmd.run:
     - name: |
@@ -44,5 +46,5 @@ PowerChime.app was reloaded for user {{ user.name }}:
     - runas: {{ user.name }}
     - onchanges:
       - Sound when plugging in charging cable is managed for user {{ user.name }}
-  {%- endif %}
+{%-   endif %}
 {%- endfor %}

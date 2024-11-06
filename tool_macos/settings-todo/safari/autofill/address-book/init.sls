@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 Safari autofills from Address Book:
   macdefaults.write:
     - domain: com.apple.Safari

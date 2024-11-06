@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 include:
   - .cursor_blinking.clean
   - .dock_bounce.clean

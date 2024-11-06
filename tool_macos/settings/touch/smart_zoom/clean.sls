@@ -1,16 +1,18 @@
+# vim: ft=sls
+
 {#-
     Resets Smart Zoom touch gesture activation status to default (disabled).
     Values: bool [default: true]
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.touch', 'defined') | selectattr('macos.touch.smart_zoom', 'defined') %}
+{%- for user in macos.users | selectattr("macos.touch", "defined") | selectattr("macos.touch.smart_zoom", "defined") %}
 
 Smart Zoom touch gesture on internal trackpad is reset to default (enabled) for user {{ user.name }}:
   macosdefaults.absent:

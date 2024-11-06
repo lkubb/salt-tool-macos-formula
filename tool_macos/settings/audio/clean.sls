@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 include:
   - .boot_sound.clean
   - .charging_sound.clean

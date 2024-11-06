@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 TextEdit defaults to opening files as UTF-8:
   macdefaults.write:
     - domain: com.apple.TextEdit

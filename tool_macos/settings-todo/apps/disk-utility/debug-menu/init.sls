@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 # DUDebugMenuEnabled only works until Yosemite.
 # https://www.lifewire.com/enable-disk-utilities-debug-menu-2260807
 

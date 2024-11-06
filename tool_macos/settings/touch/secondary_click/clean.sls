@@ -1,15 +1,17 @@
+# vim: ft=sls
+
 {#-
     Resets secondary click touch gesture activation status to default (two-finger enabled).
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.touch', 'defined') | selectattr('macos.touch.secondary_click', 'defined') %}
+{%- for user in macos.users | selectattr("macos.touch", "defined") | selectattr("macos.touch.secondary_click", "defined") %}
 
 Secondary click activation status reset to default (two-finger) for user {{ user.name }}:
   macosdefaults.absent:

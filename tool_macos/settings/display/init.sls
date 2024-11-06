@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 include:
   - .antialias_subpixel
   - .antialias_threshold

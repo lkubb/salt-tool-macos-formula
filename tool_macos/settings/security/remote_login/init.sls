@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 {#-
     Customizes activation state of Remote Login (SSH server).
 
@@ -12,9 +14,9 @@
 
     References:
         * https://www.alansiu.net/2020/09/02/scripting-ssh-off-on-without-needing-a-pppc-tcc-profile/
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
@@ -25,10 +27,10 @@ include:
 
 Activation state of Remote Login (SSH Server) is managed:
   cmd.run:
-    - name: launchctl {{ 'un' if not m }}load -w /System/Library/LaunchDaemons/ssh.plist
+    - name: launchctl {{ "un" if not m }}load -w /System/Library/LaunchDaemons/ssh.plist
     - runas: root
     - require:
       - System Preferences is not running
     - unless:
-        - "/usr/sbin/systemsetup getremotelogin | grep 'Remote Login: {{ 'On' if m else 'Off' }}'"
+        - /usr/sbin/systemsetup getremotelogin | grep 'Remote Login: {{ "On" if m else "Off" }}'
 {%- endif %}

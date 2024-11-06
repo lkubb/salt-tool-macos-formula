@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 {#-
     Customizes default Finder List View settings for all folders.
 
@@ -14,9 +16,9 @@
     .. warning::
 
         This was not tested at all. Proceed with care.
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
@@ -24,8 +26,8 @@ include:
   - {{ tplroot }}._require
 
 # @TODO: specify custom column layout
-{%- for user in macos.users | selectattr('macos.finder', 'defined') | selectattr('macos.finder.view_list', 'defined') %}
-  {%- from tpldir ~ '/map.jinja' import user_settings with context %}
+{%- for user in macos.users | selectattr("macos.finder", "defined") | selectattr("macos.finder.view_list", "defined") %}
+{%-   from tpldir ~ "/map.jinja" import user_settings with context %}
 
 Default List View settings are customized for user {{ user.name }}:
   macosdefaults.update:

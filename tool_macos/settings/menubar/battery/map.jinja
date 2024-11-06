@@ -10,18 +10,18 @@
     bit 2/4 menubar        on / off
 
     Default: 6 (menu on, center off)
- -#}
+-#}
 
 {%- set u = user.macos.menubar.battery %}
 {%- set status = False %}
 
 {%- if u.menu or u.control is defined %}
-  {#- default is menu on -#}
-  {%- set status = 6 %}
-  {%- if u.menu is defined and not u.menu %}
-    {%- set status = status + 6  %}
-  {%- endif %}
-  {%- if u.center is defined and u.center %}
-    {%- set status = status - 3 %}
-  {%- endif %}
+{#-   default is menu on -#}
+{%-   set status = 6 %}
+{%-   if u.menu is defined and not u.menu %}
+{%-     set status = status + 6  %}
+{%-   endif %}
+{%-   if u.center is defined and u.center %}
+{%-     set status = status - 3 %}
+{%-   endif %}
 {%- endif %}

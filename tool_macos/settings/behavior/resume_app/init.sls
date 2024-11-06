@@ -1,18 +1,20 @@
+# vim: ft=sls
+
 {#-
     Customizes default app resume behavior when reopening an app that was quit with open windows.
 
     Values:
       - bool [default: true]
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.behavior', 'defined') | selectattr('macos.behavior.resume_app', 'defined') %}
+{%- for user in macos.users | selectattr("macos.behavior", "defined") | selectattr("macos.behavior.resume_app", "defined") %}
 
 Default app resume behavior for previously open windows is managed for user {{ user.name }}:
   macosdefaults.write:

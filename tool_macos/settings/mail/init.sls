@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 include:
   - .accounts
   - .animation_reply

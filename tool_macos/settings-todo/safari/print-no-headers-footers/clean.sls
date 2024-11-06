@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 Safari prints headers and footers:
   macdefaults.write:
     - domain: com.apple.Safari

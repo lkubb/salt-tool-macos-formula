@@ -1,39 +1,39 @@
 {%- set sort_options = {
-    'none': 'none',
-    'grid': 'grid',
-    'name': 'name',
-    'kind': 'kind',
-    'last_opened': 'dateLastOpened',
-    'added': 'dateAdded',
-    'modified': 'dateModified',
-    'created': 'dateCreated',
-    'size': 'size',
-    'tags': 'label',
+    "none": "none",
+    "grid": "grid",
+    "name": "name",
+    "kind": "kind",
+    "last_opened": "dateLastOpened",
+    "added": "dateAdded",
+    "modified": "dateModified",
+    "created": "dateCreated",
+    "size": "size",
+    "tags": "label",
 } -%}
 
 {%- set u = user.macos.finder.desktop_icons %}
 {%- set user_settings = {} %}
 
 {%- if u.arrange is defined %}
-    {%- do user_settings.update({'arrangeBy': sort_options.get(u.arrange, 'none')}) %}
+{%-   do user_settings.update({"arrangeBy": sort_options.get(u.arrange, "none")}) %}
 {%- endif %}
 
 {%- if u.size is defined %}
-    {%- do user_settings.update({'iconSize': u.size | float}) %}
+{%-   do user_settings.update({"iconSize": u.size | float}) %}
 {%- endif %}
 
 {%- if u.spacing is defined %}
-    {%- do user_settings.update({'gridSpacing': u.spacing | float}) %}
+{%-   do user_settings.update({"gridSpacing": u.spacing | float}) %}
 {%- endif %}
 
 {%- if u.info is defined %}
-    {%- do user_settings.update({'showItemInfo': u.info | to_bool}) %}
+{%-   do user_settings.update({"showItemInfo": u.info | to_bool}) %}
 {%- endif %}
 
 {%- if u.info_bottom is defined %}
-    {%- do user_settings.update({'labelOnBottom': u.info_bottom | to_bool}) %}
+{%-   do user_settings.update({"labelOnBottom": u.info_bottom | to_bool}) %}
 {%- endif %}
 
 {%- if u.text_size is defined %}
-    {%- do user_settings.update({'textSize': u.text_size | float}) %}
+{%-   do user_settings.update({"textSize": u.text_size | float}) %}
 {%- endif %}

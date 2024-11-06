@@ -1,11 +1,13 @@
+# vim: ft=sls
+
 {#-
     Customizes hostname.
 
     Values:
         - string
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:

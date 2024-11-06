@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 Safari does not autofill credit card data:
   macdefaults.write:
     - domain: com.apple.Safari

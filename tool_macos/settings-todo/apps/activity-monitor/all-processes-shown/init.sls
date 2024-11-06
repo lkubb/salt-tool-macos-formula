@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 Show all processes in Activity Monitory:
   macdefaults.write:
     - domain: com.apple.ActivityMonitor

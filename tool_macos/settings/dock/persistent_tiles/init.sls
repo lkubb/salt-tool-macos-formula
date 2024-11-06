@@ -1,18 +1,20 @@
+# vim: ft=sls
+
 {#-
     Customizes availability of persistent dock tiles.
 
     Values:
         - bool [default: true]
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.dock', 'defined') | selectattr('macos.dock.persistent_tiles', 'defined') %}
+{%- for user in macos.users | selectattr("macos.dock", "defined") | selectattr("macos.dock.persistent_tiles", "defined") %}
 
 Availability of persistent dock tiles is managed for user {{ user.name }}:
   macosdefaults.write:

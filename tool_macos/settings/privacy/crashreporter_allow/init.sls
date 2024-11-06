@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 {#-
     Customizes state of sending analytics and crash reports.
 
@@ -7,9 +9,9 @@
           * none
           * apple
           * third_party
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
@@ -23,9 +25,9 @@ Authorization to send analytics is managed:
     - domain: /Library/Application Support/CrashReporter/DiagnosticMessagesHistory.plist
     - names:
         - AutoSubmit:
-            - value: {{ macos.privacy.crashreporter_allow in ['apple', 'third_party'] }}
+            - value: {{ macos.privacy.crashreporter_allow in ["apple", "third_party"] }}
         - ThirdPartyDataSubmit:
-            - value: {{ 'third_party' == macos.privacy.crashreporter_allow }}
+            - value: {{ macos.privacy.crashreporter_allow == "third_party" }}
     - vtype: bool
     - user: root
     - require:

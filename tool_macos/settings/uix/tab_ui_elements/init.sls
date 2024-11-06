@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 {#-
     Customizes tab keypress action in modal dialogs etc.
     When enabled, switches to next UI element.
@@ -5,16 +7,16 @@
 
     Values:
         - bool [default: false]
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.uix', 'defined') | selectattr('macos.uix.tab_ui_elements', 'defined') %}
+{%- for user in macos.users | selectattr("macos.uix", "defined") | selectattr("macos.uix.tab_ui_elements", "defined") %}
 
 Tab keypress action in modal dialogs etc. is managed for user {{ user.name }}:
   macosdefaults.write:

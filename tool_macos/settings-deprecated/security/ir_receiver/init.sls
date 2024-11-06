@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 {#-
     Customizes Infrared sensor activation status.
 
@@ -6,9 +8,9 @@
     https://en.wikipedia.org/wiki/Apple_Remote#Compatibility
 
     Values: bool [default: true]
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:

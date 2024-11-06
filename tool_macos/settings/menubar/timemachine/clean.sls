@@ -1,16 +1,18 @@
+# vim: ft=sls
+
 {#-
     Resets display status of Time Machine widget in Menu Bar to default (hidden).
     Values: bool [default: false]
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.menubar', 'defined') | selectattr('macos.menubar.time_machine', 'defined') %}
+{%- for user in macos.users | selectattr("macos.menubar", "defined") | selectattr("macos.menubar.time_machine", "defined") %}
 
 Display status of Time Machine widget in Menu Bar is managed for user {{ user.name }} part 1:
   macosdefaults.absent:

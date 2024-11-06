@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 # at least on Monterey, this does not work.
 # sorting settings are probably saved in mail.savedState/
 

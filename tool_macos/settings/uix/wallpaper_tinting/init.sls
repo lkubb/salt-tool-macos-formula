@@ -1,18 +1,20 @@
+# vim: ft=sls
+
 {#-
     Customizes wallpaper tinting of windows behavior.
 
     Values:
         - bool [default: true]
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.uix', 'defined') | selectattr('macos.uix.wallpaper_tinting', 'defined') %}
+{%- for user in macos.users | selectattr("macos.uix", "defined") | selectattr("macos.uix.wallpaper_tinting", "defined") %}
 
 Wallpaper tinting of windows behavior is managed for user {{ user.name }}:
   macosdefaults.write:

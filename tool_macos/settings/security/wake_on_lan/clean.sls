@@ -1,8 +1,10 @@
+# vim: ft=sls
+
 {#-
     Resets state of Wake-on-LAN to defaults.
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 {%- if macos.security is defined and macos.security.wake_on_lan is defined %}

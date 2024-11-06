@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 # this has been dysfunctional from El Capitan onwards
 # see eg https://github.com/rodionovd/dotfiles/blob/master/osx.sh
 Quicklook allows text selection:

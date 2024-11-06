@@ -1,8 +1,10 @@
+# vim: ft=sls
+
 {#-
     Resets keyboard brightness adjustment behavior to default (adjust in low light, not on inactivity).
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:

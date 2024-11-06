@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 include:
   - .airdrop_extended
   - .desktop_icons

@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 Safari will autocorrect:
   macdefaults.write:
     - domain: com.apple.Safari

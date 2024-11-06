@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 {#-
     Customizes whether to display message size in overview.
 
@@ -7,16 +9,16 @@
 
     Values:
         - bool [default: false]
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.mail', 'defined') | selectattr('macos.mail.view_message_size', 'defined') %}
+{%- for user in macos.users | selectattr("macos.mail", "defined") | selectattr("macos.mail.view_message_size", "defined") %}
 
 Display status of message size in Mail.app is managed for user {{ user.name }}:
   macosdefaults.write:

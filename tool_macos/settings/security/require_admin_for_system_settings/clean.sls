@@ -1,9 +1,11 @@
+# vim: ft=sls
+
 {#-
     Resets the requirement to authenticate as an admin to change
     system-wide settings to default (enabled).
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:

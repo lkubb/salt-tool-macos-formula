@@ -1,18 +1,20 @@
+# vim: ft=sls
+
 {#-
     Customizes autohide behavior of MacOS Menu Bar (top bar) on Desktop.
 
     Values:
         - bool [default: false]
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.menubar', 'defined') | selectattr('macos.menubar.autohide_desktop', 'defined') %}
+{%- for user in macos.users | selectattr("macos.menubar", "defined") | selectattr("macos.menubar.autohide_desktop", "defined") %}
 
 Autohide behavior of MacOS Menu Bar on Desktop is managed for user {{ user.name }}:
   macosdefaults.write:

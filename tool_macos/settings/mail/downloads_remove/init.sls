@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 {#-
     Customizes condition to delete downloaded attachments.
 
@@ -11,32 +13,32 @@
           * app_quit
           * message_deleted
           * never
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 {%- set options = {
-  'app_quit': {'enabled': True, 'hours': 0},
-  'message_deleted': {'enabled': True, 'hours': 2147483647},
-  'never': {'enabled': False, 'hours': 2147483647},
-  } %}
+      "app_quit": {"enabled": true, "hours": 0},
+      "message_deleted": {"enabled": True, "hours": 2147483647},
+      "never": {"enabled": false, "hours": 2147483647},
+} %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.mail', 'defined') | selectattr('macos.mail.downloads_remove', 'defined') %}
+{%- for user in macos.users | selectattr("macos.mail", "defined") | selectattr("macos.mail.downloads_remove", "defined") %}
 
 Condition to delete downloaded attachments in Mail.app is managed for user {{ user.name }}:
   macosdefaults.write:
     - domain: com.apple.mail
     - names:
         - DeleteAttachmentsEnabled:
-            - value: {{ options.get(user.macos.mail.downloads_remove, {'enabled': True}).enabled | to_bool }}
+            - value: {{ options.get(user.macos.mail.downloads_remove, {"enabled": true}).enabled | to_bool }}
             - vtype: bool
         - DeleteAttachmentsAfterHours:
-            - value: {{ options.get(user.macos.mail.downloads_remove, {'hours': 2147483647}).hours | int }}
+            - value: {{ options.get(user.macos.mail.downloads_remove, {"hours": 2147483647}).hours | int }}
             - vtype: int
     - user: {{ user.name }}
     - require:

@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 {#-
     Customizes hover delay of proxy icons (that can be dragged) in title.
 
@@ -10,16 +12,16 @@
 
     References:
         * https://macos-defaults.com/finder/nstoolbartitleviewrolloverdelay.html
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.finder', 'defined') | selectattr('macos.finder.title_hover_delay', 'defined') %}
+{%- for user in macos.users | selectattr("macos.finder", "defined") | selectattr("macos.finder.title_hover_delay", "defined") %}
 
 Hover delay of proxy icons in title is managed for user {{ user.name }}:
   macosdefaults.write:

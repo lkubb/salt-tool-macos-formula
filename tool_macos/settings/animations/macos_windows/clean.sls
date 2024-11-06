@@ -1,16 +1,18 @@
+# vim: ft=sls
+
 {#-
     Resets MacOS window animation activation status to default (enabled).
     This might need a reboot to apply.
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.animations', 'defined') | selectattr('macos.animations.macos_windows', 'defined') %}
+{%- for user in macos.users | selectattr("macos.animations", "defined") | selectattr("macos.animations.macos_windows", "defined") %}
 
 MacOS window animation activation status is reset to default (enabled) for user {{ user.name }}:
   macosdefaults.absent:

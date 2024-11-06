@@ -1,3 +1,4 @@
+# vim: ft=sls
 # This works from 10.9 - 10.14 (Mavericks to Mojave)
 # Opt + click on Scaled to show
 

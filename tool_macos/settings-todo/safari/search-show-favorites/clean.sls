@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 Safari does not show Favorites below Smart Search results:
   macdefaults.write:
     - domain: com.apple.Safari

@@ -1,19 +1,21 @@
+# vim: ft=sls
+
 {#-
     Resets desktop icon settings to defaults.
 
     References:
       https://github.com/joeyhoer/starter/blob/master/apps/finder.sh
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.finder', 'defined') | selectattr('macos.finder.desktop_icons', 'defined') %}
-  {%- if user.macos.finder.desktop_icons.show is defined %}
+{%- for user in macos.users | selectattr("macos.finder", "defined") | selectattr("macos.finder.desktop_icons", "defined") %}
+{%-   if user.macos.finder.desktop_icons.show is defined %}
 
 Desktop icon visibility is set to defaults for user {{ user.name }}:
   macosdefaults.absent:
@@ -25,9 +27,9 @@ Desktop icon visibility is set to defaults for user {{ user.name }}:
     - watch_in:
       - cfprefsd was reloaded
       - Finder was reloaded
-  {%- endif %}
+{%-   endif %}
 
-  {%- if user.macos.finder.desktop_icons.keys() - 'show' | list %}
+{%-   if user.macos.finder.desktop_icons.keys() - "show" | list %}
 
 Desktop icon settings are reset to defaults for user {{ user.name }}:
   macosdefaults.absent:
@@ -45,5 +47,5 @@ Desktop icon settings cached in ~/Desktop/.DS_Store were flushed for user {{ use
     - name: {{ user.home }}/Desktop/.DS_Store
     - onchanges:
       - Desktop icon settings are reset to defaults for user {{ user.name }}
-  {%- endif %}
+{%-   endif %}
 {%- endfor %}

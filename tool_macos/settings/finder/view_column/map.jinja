@@ -1,51 +1,51 @@
 {%- set sort_options = {
-    'none': 'none',
-    'grid': 'grid',
-    'name': 'dnam',
-    'kind': 'kipl',
-    'last_opened': 'ludt',
-    'added': 'pAdd',
-    'modified': 'modd',
-    'created': 'ascd',
-    'size': 'logs',
-    'tags': 'labl',
+        "none": "none",
+        "grid": "grid",
+        "name": "dnam",
+        "kind": "kipl",
+        "last_opened": "ludt",
+        "added": "pAdd",
+        "modified": "modd",
+        "created": "ascd",
+        "size": "logs",
+        "tags": "labl",
 } -%}
 
 {%- set u = user.macos.finder.view_columns %}
 {%- set user_settings = {} %}
 
 {%- if u.arrange is defined %}
-    {%- do user_settings.update({'ArrangeBy': sort.get(u.arrange, 'name')}) %}
+{%-   do user_settings.update({"ArrangeBy": sort.get(u.arrange, "name")}) %}
 {%- endif %}
 
 {%- if u.col_width is defined %}
-    {%- do user_settings.update({'ColumnWidth': int(u.col_width)}) %}
+{%-   do user_settings.update({"ColumnWidth": int(u.col_width)}) %}
 {%- endif %}
 
 {%- if u.folder_arrow is defined %}
-    {%- do user_settings.update({'ColumnShowFolderArrow': bool(u.folder_arrow)}) %}
+{%-   do user_settings.update({"ColumnShowFolderArrow": bool(u.folder_arrow)}) %}
 {%- endif %}
 
 {%- if u.icons is defined %}
-    {%- do user_settings.update({'ColumnShowIcons':  bool(u.icons) }) %}
+{%-   do user_settings.update({"ColumnShowIcons":  bool(u.icons) }) %}
 {%- endif %}
 
 {%- if u.preview is defined %}
-    {%- do user_settings.update({'ShowPreview':  bool(u.preview) }) %}
+{%-   do user_settings.update({"ShowPreview":  bool(u.preview) }) %}
 {%- endif %}
 
 {%- if u.preview_disclosure is defined %}
-    {%- do user_settings.update({'PreviewDisclosureState':  bool(u.preview_disclosure) }) %}
+{%-   do user_settings.update({"PreviewDisclosureState":  bool(u.preview_disclosure) }) %}
 {%- endif %}
 
 {%- if u.shared_arrange is defined %}
-    {%- do user_settings.update({'SharedArrangeBy': sort.get(u.shared_arrange, 'kind')}) %}
+{%-   do user_settings.update({"SharedArrangeBy": sort.get(u.shared_arrange, "kind")}) %}
 {%- endif %}
 
 {%- if u.text_size is defined %}
-    {%- do user_settings.update({'FontSize': int(u.text_size)}) %}
+{%-   do user_settings.update({"FontSize": int(u.text_size)}) %}
 {%- endif %}
 
 {%- if u.thumbnails is defined %}
-    {%- do user_settings.update({'ShowIconThumbnails': bool(u.thumbnails)}) %}
+{%-   do user_settings.update({"ShowIconThumbnails": bool(u.thumbnails)}) %}
 {%- endif %}

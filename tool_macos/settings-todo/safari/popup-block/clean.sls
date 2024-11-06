@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 Safari does not block (JS) popups:
   macdefaults.write:
     - domain: com.apple.Safari

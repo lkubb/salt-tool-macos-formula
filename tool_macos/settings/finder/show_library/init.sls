@@ -1,21 +1,23 @@
+# vim: ft=sls
+
 {#-
     Customizes display status of ~/Library folder.
 
     Values:
         - bool [default: false]
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 # there is xattr.exists state in saltstack, but I was
 # unsure if there was one for chflags
-{%- for user in macos.users | selectattr('macos.finder', 'defined') | selectattr('macos.finder.show_library', 'defined') %}
+{%- for user in macos.users | selectattr("macos.finder", "defined") | selectattr("macos.finder.show_library", "defined") %}
 
 Display status of ~/Library is managed for user {{ user.name }}:
   cmd.run:
     - name: |
-        if [ -n '{{ 'yes' if user.macos.finder.show_library }}' ]; then
+        if [ -n '{{ "yes" if user.macos.finder.show_library }}' ]; then
           chflags nohidden {{ user.home }}/Library
           if xattr -l {{ user.home }}/Library | grep com.apple.FinderInfo; then
             xattr -d com.apple.FinderInfo {{ user.home }}/Library

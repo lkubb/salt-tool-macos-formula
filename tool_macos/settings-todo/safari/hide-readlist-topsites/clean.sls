@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 Reading List and Top Sites are shown in Safari:
   macdefaults.write:
     - domain: com.apple.Safari

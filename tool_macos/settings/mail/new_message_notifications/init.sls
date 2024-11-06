@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 {#-
     Customizes condition to receive new message alerts.
 
@@ -12,22 +14,23 @@
           * vips
           * contacts
           * all
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 {%- set options = {
-  'inbox': 1,
-  'vips': 2,
-  'contacts': 3,
-  'all': 5} %}
+      "inbox": 1,
+      "vips": 2,
+      "contacts": 3,
+      "all": 5,
+} %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.mail', 'defined') | selectattr('macos.mail.new_message_notifications', 'defined') %}
+{%- for user in macos.users | selectattr("macos.mail", "defined") | selectattr("macos.mail.new_message_notifications", "defined") %}
 
 Condition to receive new message alerts in Mail.app is managed for user {{ user.name }}:
   macosdefaults.write:

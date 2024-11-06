@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 include:
   - .autohide
   - .hint_hidden

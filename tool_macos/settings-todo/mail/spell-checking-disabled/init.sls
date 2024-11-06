@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 Apple Mail does not spell-check automatically:
   macdefaults.write:
     - domain: com.apple.mail

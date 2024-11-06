@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 Quicklook does not allow text selection:
   macdefaults.absent:
     - domain: com.apple.LaunchServices

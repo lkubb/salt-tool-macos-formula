@@ -1,15 +1,17 @@
+# vim: ft=sls
+
 {#-
     Resets status of dictation to default (disabled).
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.textinput', 'defined') | selectattr('macos.textinput.dictation', 'defined') %}
+{%- for user in macos.users | selectattr("macos.textinput", "defined") | selectattr("macos.textinput.dictation", "defined") %}
 
 Dictation reset to default (disabled) for user {{ user.name }} part 1:
   macosdefaults.absent:

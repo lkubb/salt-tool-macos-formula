@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 {#-
     Allows to configure mail accounts for Apple Mail.
 
@@ -52,17 +54,17 @@
             server_out:
               domain: 127.0.0.1
               port: 1025
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.mail', 'defined') | selectattr('macos.mail.accounts', 'defined') %}
-  {%- from tpldir ~ '/map.jinja' import user_settings with context %}
+{%- for user in macos.users | selectattr("macos.mail", "defined") | selectattr("macos.mail.accounts", "defined") %}
+{%-   from tpldir ~ "/map.jinja" import user_settings with context %}
 
 Mail accounts are configured for user {{ user.name }}:
   macprofile.installed:
@@ -74,7 +76,7 @@ Mail accounts are configured for user {{ user.name }}:
     - ptype: com.apple.mail.managed
     - scope: User
     - content:
-  {%- for account in user_settings %}
+{%-   for account in user_settings %}
       - {{ account | json }}
-  {%- endfor %}
+{%-   endfor %}
 {%- endfor %}

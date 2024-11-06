@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 {#-
     Manages Bluetooth bitpool settings (audio quality/lags)
 
@@ -30,9 +32,9 @@
       https://www.reddit.com/r/apple/comments/5rfdj6/pro_tip_significantly_improve_bluetooth_audio/
       https://www.reddit.com/r/sony/comments/oc6ebo/wh1000mx4_bt_sweet_spot_on_osx_with_hi_quality/
 
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
@@ -40,6 +42,7 @@ include:
   - {{ tplroot }}._require
 
 {%- if macos.bluetooth is defined and macos.bluetooth.bitpool is defined %}
+
 # higher bitpool = better quality, possibly more interruptions
 Bluetooth minimum bitpool is set to custom value:
   macdefaults.write:

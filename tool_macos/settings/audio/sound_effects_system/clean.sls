@@ -1,17 +1,19 @@
+# vim: ft=sls
+
 {#-
     Resets system UI sound effect behavior to default (enabled).
 
     This manages system UI sound effects. For all apps, see sound_effects_ui.
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.audio', 'defined') | selectattr('macos.audio.sound_effects_system', 'defined') %}
+{%- for user in macos.users | selectattr("macos.audio", "defined") | selectattr("macos.audio.sound_effects_system", "defined") %}
 
 System sound effect status is reset to default for user {{ user.name }}:
   macosdefaults.absent:

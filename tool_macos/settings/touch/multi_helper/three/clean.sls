@@ -1,15 +1,17 @@
+# vim: ft=sls
+
 {#- @internal
     Resets all three finger gesture mappings to defaults.
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.touch', 'defined') %}
+{%- for user in macos.users | selectattr("macos.touch", "defined") %}
 
 Three finger swipe on USB trackpads is reset to default for user {{ user.name }}:
   macosdefaults.absent:

@@ -1,12 +1,12 @@
 {%- set u = user.macos.touch %}
-{%- from salt["file.dirname"](tpldir) ~ '/three/map.jinja' import three_finger_conflicts with context %}
+{%- from salt["file.dirname"](tpldir) ~ "/three/map.jinja" import three_finger_conflicts with context %}
 
 {%- set status = False %}
 
-{%- if u.get('app_expose') or u.get('mission_control') %}
-  {%- if 'four' == u.get('app_expose_mission_control') or three_finger_conflicts %}
-    {%- set status = 2 %}
-  {%- else %}
-    {%- set status = 0 %}
-  {%- endif %}
+{%- if u.get("app_expose") or u.get("mission_control") %}
+{%-   if u.get("app_expose_mission_control") == "four" or three_finger_conflicts %}
+{%-     set status = 2 %}
+{%-   else %}
+{%-     set status = 0 %}
+{%-   endif %}
 {%- endif %}

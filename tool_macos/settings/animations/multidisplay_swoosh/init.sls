@@ -1,20 +1,22 @@
+# vim: ft=sls
+
 {#-
     Customizes multidisplay swoosh animation activation status.
 
     Values:
         - bool [default: true]
--#}
+#}
 
-{#- There's also workspaces-auto-swoosh that disables the underlying behavior. #}
+{#- There is also workspaces-auto-swoosh that disables the underlying behavior. #}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.animations', 'defined') | selectattr('macos.animations.multidisplay_swoosh', 'defined') %}
+{%- for user in macos.users | selectattr("macos.animations", "defined") | selectattr("macos.animations.multidisplay_swoosh", "defined") %}
 
 Multidisplay swoosh animation activation status is managed for user {{ user.name }}:
   macosdefaults.write:

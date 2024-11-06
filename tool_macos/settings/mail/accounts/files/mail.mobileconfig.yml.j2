@@ -1,34 +1,34 @@
 {%- set password_in = False -%}
 {%- set password_out = False -%}
-{%- if account.server_in.get('password') -%}
-  {%- set password_in = account.server_in.password -%}
-{%- elif account.server_in.get('password_pillar') -%}
-  {%- set password_in = salt['pillar.get'](account.server_in.password_pillar) -%}
+{%- if account.server_in.get("password") -%}
+{%-   set password_in = account.server_in.password -%}
+{%- elif account.server_in.get("password_pillar") -%}
+{%-   set password_in = salt["pillar.get"](account.server_in.password_pillar) -%}
 {%- endif -%}
-{%- if account.server_out.get('password') -%}
-  {%- set password_out = account.server_out.password -%}
-{%- elif account.server_out.get('password_pillar') -%}
-  {%- set password_out = salt['pillar.get'](account.server_out.password_pillar) -%}
+{%- if account.server_out.get("password") -%}
+{%-   set password_out = account.server_out.password -%}
+{%- elif account.server_out.get("password_pillar") -%}
+{%-   set password_out = salt["pillar.get"](account.server_out.password_pillar) -%}
 {%- endif -%}
 
-EmailAccountDescription: {{ account.get('description', account.address) }}
-EmailAccountType: {{ account_types[account.get('type', 'imap')] }}
-EmailAccountName: {{ account.get('name', account.address.split('@')[0]) }}
+EmailAccountDescription: {{ account.get("description", account.address) }}
+EmailAccountType: {{ account_types[account.get("type", "imap")] }}
+EmailAccountName: {{ account.get("name", account.address.split("@")[0]) }}
 EmailAddress: {{ account.address }}
-IncomingMailServerAuthentication: {{ auth_types[account.server_in.get('auth', 'password')] }}
+IncomingMailServerAuthentication: {{ auth_types[account.server_in.get("auth", "password")] }}
 IncomingMailServerHostName: {{ account.server_in.domain }}
-IncomingMailServerPortNumber: {{ account.server_in.get('port', 993) }}
-IncomingMailServerUseSSL:  {{ account.server_in.get('ssl', True) | to_bool }}
-IncomingMailServerUsername: {{ account.server_in.get('username', account.address) }}
+IncomingMailServerPortNumber: {{ account.server_in.get("port", 993) }}
+IncomingMailServerUseSSL:  {{ account.server_in.get("ssl", True) | to_bool }}
+IncomingMailServerUsername: {{ account.server_in.get("username", account.address) }}
 {%- if password_in %}
 IncomingPassword: {{ password_in }}
 {%- endif %}
-OutgoingMailServerAuthentication: {{ auth_types[account.server_out.get('auth', 'password')] }}
+OutgoingMailServerAuthentication: {{ auth_types[account.server_out.get("auth", "password")] }}
 OutgoingMailServerHostName: {{ account.server_out.domain }}
-OutgoingMailServerPortNumber: {{ account.server_out.get('port', 465) }}
-OutgoingMailServerUseSSL:  {{ account.server_out.get('ssl', True) | to_bool }}
-OutgoingMailServerUsername: {{ account.server_out.get('username', account.address) }}
-OutgoingPasswordSameAsIncomingPassword: {{ account.server_out.get('password_sameas_in', True) | to_bool }}
+OutgoingMailServerPortNumber: {{ account.server_out.get("port", 465) }}
+OutgoingMailServerUseSSL:  {{ account.server_out.get("ssl", True) | to_bool }}
+OutgoingMailServerUsername: {{ account.server_out.get("username", account.address) }}
+OutgoingPasswordSameAsIncomingPassword: {{ account.server_out.get("password_sameas_in", True) | to_bool }}
 {%- if password_out %}
 OutgoingPassword: {{ password_out }}
 {%- endif %}

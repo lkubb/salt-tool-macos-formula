@@ -1,18 +1,20 @@
+# vim: ft=sls
+
 {#-
     Customizes Help viewer window floating status.
 
     Values:
         - bool [default: true]
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.behavior', 'defined') | selectattr('macos.behavior.help_window_floats', 'defined') %}
+{%- for user in macos.users | selectattr("macos.behavior", "defined") | selectattr("macos.behavior.help_window_floats", "defined") %}
 
 Help viewer window floating status is managed for user {{ user.name }}:
   macosdefaults.write:

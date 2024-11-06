@@ -874,6 +874,7 @@ These are macOS system-wide preferences that need to run as root.
     defaults:
       animations: default value for all users
 
+<INSERT_STATES>
 
 Development
 -----------

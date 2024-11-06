@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 Set time zome automatically using current location:
   macdefaults.write:
     - domain: /Library/Preferences/com.apple.timezone.auto.plist

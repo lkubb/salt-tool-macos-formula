@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 {#-
     Customizes state of slow keys accessibility feature (delay before
     accepting keypresses).
@@ -8,16 +10,16 @@
 
     Values:
         - bool [default: false]
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.textinput', 'defined') | selectattr('macos.textinput.slow_keys', 'defined') %}
+{%- for user in macos.users | selectattr("macos.textinput", "defined") | selectattr("macos.textinput.slow_keys", "defined") %}
 
 Slow keys accessibility feature is managed for {{ user.name }}:
   macosdefaults.write:

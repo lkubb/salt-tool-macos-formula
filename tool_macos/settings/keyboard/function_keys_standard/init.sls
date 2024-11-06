@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 {#-
     Customizes default state of function keys. Enabling this will
     make F1 to F12 behave like standard F1 to F12, not as system function keys.
@@ -8,16 +10,16 @@
 
     Values:
         - bool [default: false]
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.keyboard', 'defined') | selectattr('macos.keyboard.function_keys_standard', 'defined') %}
+{%- for user in macos.users | selectattr("macos.keyboard", "defined") | selectattr("macos.keyboard.function_keys_standard", "defined") %}
 
 Default state of function keys is managed for {{ user.name }}:
   macosdefaults.write:

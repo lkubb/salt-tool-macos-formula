@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 {#-
     Installs custom CA root certificates.
 
@@ -9,9 +11,9 @@
 
     Values:
         - list [default: []]
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 {%- if macos.security is defined and macos.security.ca_root is defined %}

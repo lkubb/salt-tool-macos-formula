@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 include:
   - .confirm_on_close.clean
   - .crashreporter.clean

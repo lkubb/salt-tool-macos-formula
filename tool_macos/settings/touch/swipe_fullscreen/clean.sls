@@ -1,9 +1,11 @@
+# vim: ft=sls
+
 {#-
     Resets swipe fullscreen apps touch gesture activation status to default (three-finger).
     This might reset more gestures.
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:

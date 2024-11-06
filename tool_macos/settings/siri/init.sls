@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 include:
   - .enabled
   - .keyboard_shortcut

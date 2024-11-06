@@ -1,16 +1,18 @@
+# vim: ft=sls
+
 {#-
     Resets display behavior of Battery widget in Menu Bar and Control Center
     to defaults (shown/hidden/no percentage).
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.menubar', 'defined') | selectattr('macos.menubar.battery', 'defined') %}
+{%- for user in macos.users | selectattr("macos.menubar", "defined") | selectattr("macos.menubar.battery", "defined") %}
 {%- if user.macos.menubar.battery.menu is defined or user.macos.menubar.battery.control is defined %}
   {%- set status = True %}
 {%- endif %}

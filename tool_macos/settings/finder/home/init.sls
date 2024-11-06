@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 {#-
     Customizes new Finder window default path.
 
@@ -14,17 +16,17 @@
 
     References:
         * https://github.com/joeyhoer/starter/blob/master/apps/finder.sh
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.finder', 'defined') | selectattr('macos.finder.home', 'defined') %}
-  {%- from tpldir ~ '/map.jinja' import user_settings with context %}
+{%- for user in macos.users | selectattr("macos.finder", "defined") | selectattr("macos.finder.home", "defined") %}
+  {%- from tpldir ~ "/map.jinja" import user_settings with context %}
 
 New Finder window default path is managed for user {{ user.name }}:
   macosdefaults.write:

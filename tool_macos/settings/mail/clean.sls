@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 include:
   - .accounts.clean
   - .animation_reply.clean

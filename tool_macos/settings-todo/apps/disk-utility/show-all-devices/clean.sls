@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 Disk Utility does not show all devices in sidebar:
   macdefaults.write:
     - domain: com.apple.DiskUtility

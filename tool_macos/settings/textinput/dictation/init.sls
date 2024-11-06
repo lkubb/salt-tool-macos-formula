@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 {#-
     Customizes status of dictation.
 
@@ -6,7 +8,7 @@
 
     References:
         * https://github.com/joeyhoer/starter/blob/master/system/keyboard.sh
--#}
+#}
 
 {#- @TODO
     Use Enhanced Dictation
@@ -21,14 +23,15 @@
     fi
 #}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.textinput', 'defined') | selectattr('macos.textinput.dictation', 'defined') %}
+{%- for user in macos.users | selectattr("macos.textinput", "defined") | selectattr("macos.textinput.dictation", "defined") %}
+
 # @TODO assistantd reload?
 Dictation managed for user {{ user.name }} part 1:
   macosdefaults.write:

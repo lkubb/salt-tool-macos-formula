@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 {#-
     Customizes Finder behavior when a new volume/disk is mounted.
 
@@ -13,25 +15,25 @@
     .. code-block:: yaml
 
         new_window_on_mount: [] # never open a new window
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.finder', 'defined') | selectattr('macos.finder.new_window_on_mount', 'defined') %}
+{%- for user in macos.users | selectattr("macos.finder", "defined") | selectattr("macos.finder.new_window_on_mount", "defined") %}
 
 Finder behavior when a new volume is mounted is managed for user {{ user.name }}:
   macosdefaults.write:
     - domain: com.apple.frameworks.diskimages
     - names:
-  {%- for type in ['ro', 'rw'] %}
+{%-   for type in ["ro", "rw"] %}
       - auto-open-{{ type }}-root:
           - value: {{ type in user.macos.finder.new_window_on_mount }}
-  {%- endfor %}
+{%-   endfor %}
     - vtype: bool
     - user: {{ user.name }}
     - require:
@@ -44,7 +46,7 @@ Finder behavior when a new disk is mounted is managed for user {{ user.name }}:
   macosdefaults.write:
     - domain: com.apple.finder
     - name: OpenWindowForNewRemovableDisk
-    - value: {{ 'disk' in user.macos.finder.new_window_on_mount }}
+    - value: {{ "disk" in user.macos.finder.new_window_on_mount }}
     - vtype: bool
     - user: {{ user.name }}
     - require:

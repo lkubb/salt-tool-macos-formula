@@ -1,18 +1,20 @@
+# vim: ft=sls
+
 {#-
     Customizes Notification Center touch gesture activation status.
 
     Values:
         - bool [default: true]
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.touch', 'defined') | selectattr('macos.touch.notification_center', 'defined') %}
+{%- for user in macos.users | selectattr("macos.touch", "defined") | selectattr("macos.touch.notification_center", "defined") %}
   {%- set status = 3 if user.macos.touch.notification_center else 0 %}
 
 Notification Center gesture on internal trackpad is managed for user {{ user.name }}:

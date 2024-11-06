@@ -1,15 +1,17 @@
+# vim: ft=sls
+
 {#-
     Resets alert sound to default (Tink = Boop).
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.audio', 'defined') | selectattr('macos.audio.sound_effect_volumechange', 'defined') %}
+{%- for user in macos.users | selectattr("macos.audio", "defined") | selectattr("macos.audio.sound_effect_volumechange", "defined") %}
 
 Alert sound is reset to default (Tink/Boop) for user {{ user.name }}:
   macosdefaults.write:

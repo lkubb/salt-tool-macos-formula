@@ -1,18 +1,20 @@
+# vim: ft=sls
+
 {#-
     Customizes Siri recording sharing status.
 
     Values:
         - bool [default: none]
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.privacy', 'defined') | selectattr('macos.privacy.siri_share_recordings', 'defined') %}
+{%- for user in macos.users | selectattr("macos.privacy", "defined") | selectattr("macos.privacy.siri_share_recordings", "defined") %}
 
 Siri recording sharing status is managed for user {{ user.name }}:
   macosdefaults.write:

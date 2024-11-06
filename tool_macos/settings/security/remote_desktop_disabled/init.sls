@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 {#-
     Allows to **disable** Remote Desktop services.
 
@@ -12,9 +14,9 @@
     References:
         * https://support.apple.com/guide/remote-desktop/enable-remote-management-apd8b1c65bd/mac
         * https://support.apple.com/en-us/HT209161
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:

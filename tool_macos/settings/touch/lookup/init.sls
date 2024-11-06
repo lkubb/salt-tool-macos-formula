@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 {#-
     Customizes lookup touch gesture.
 
@@ -7,18 +9,18 @@
 
           * three
           * four
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.touch', 'defined') | selectattr('macos.touch.lookup', 'defined') %}
-  {%- set force_click = (True == user.macos.touch.lookup) %}
-  {%- set three_finger = 2 if 'three' == user.macos.touch.lookup else 0 %}
+{%- for user in macos.users | selectattr("macos.touch", "defined") | selectattr("macos.touch.lookup", "defined") %}
+{%-   set force_click = user.macos.touch.lookup is true %}
+{%-   set three_finger = 2 if user.macos.touch.lookup == "three" else 0 %}
 
 Three finger tap to trigger lookup on internal trackpad is managed for user {{ user.name }}:
   macosdefaults.write:

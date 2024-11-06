@@ -1,15 +1,17 @@
+# vim: ft=sls
+
 {#-
     Resets default state of save panel to default (collapsed).
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.behavior', 'defined') | selectattr('macos.behavior.save_panel_expanded', 'defined') %}
+{%- for user in macos.users | selectattr("macos.behavior", "defined") | selectattr("macos.behavior.save_panel_expanded", "defined") %}
 
 Default state of save panel is reset to default (collapsed) for user {{ user.name }}:
   macosdefaults.absent:

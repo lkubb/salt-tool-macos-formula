@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 {#-
     Manages visibility of user accounts.
 
@@ -16,27 +18,27 @@
 
     References:
         * https://support.apple.com/en-gb/HT203998
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.security', 'defined') | selectattr('macos.security.user_hidden', 'defined') %}
-  {%- set u = user.macos.security.user_hidden %}
+{%- for user in macos.users | selectattr("macos.security", "defined") | selectattr("macos.security.user_hidden", "defined") %}
+{%-   set u = user.macos.security.user_hidden %}
 
 Visibility of user account {{ user.name }} is managed:
   cmd.run:
     - name: |
         dscl . create /Users/{{ user.name }} IsHidden {{ u | to_bool | int }}
-        chflags {{ 'no' if not u }}hidden /Users/{{ user.name }}
-  {%- if u %}
-  {#- don't know how to reverse this #}
+        chflags {{ "no" if not u }}hidden /Users/{{ user.name }}
+{%-   if u %}
+{#-   don't know how to reverse this #}
         dscl . delete "/SharePoints/{{ salt['user.info'](user.name).fullname }}'s Public Folder"
-  {%- endif %}
+{%-   endif %}
     - unless:
       - dscl . read /Users/{{ user.name }} IsHidden | grep -e '{{ u | int }}$'
     - require:

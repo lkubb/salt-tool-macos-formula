@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 {#-
     Customizes keyboard brightness adjustment behavior.
 
@@ -14,13 +16,13 @@
         brightness_adjustment:
           low_light: true # adjust in low light
           after: 30       # adjust after x seconds of inactivity
--#}
+#}
 
 {#- Earlier, this was found in /Library/Preferences/com.apple.iokit.AmbientLightSensor
     as "Automatic Keyboard Enabled" and com.apple.BezelServices as kdim.
 #}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
@@ -34,12 +36,12 @@ Keyboard brightness adjustment behavior is managed:
   # this is the default path of root user for preferences, so it could be run without the full path
     - domain: /var/root/Library/Preferences/com.apple.CoreBrightness.plist
     - names:
-  {%-  if macos.keyboard.brightness_adjustment.low_light is defined %}
+{%-   if macos.keyboard.brightness_adjustment.low_light is defined %}
         - KeyboardBacklightABEnabled:
             - value: {{ macos.keyboard.brightness_adjustment.low_light | to_bool }}
             - vtype: bool
-  {%- endif %}
-  {%-  if macos.keyboard.brightness_adjustment.after is defined %}
+{%-   endif %}
+{%-   if macos.keyboard.brightness_adjustment.after is defined %}
         - KeyboardBacklight:KeyboardBacklightIdleDimTime:
             - value: {{ macos.keyboard.brightness_adjustment.after | int }}
             - vtype: int
@@ -47,7 +49,7 @@ Keyboard brightness adjustment behavior is managed:
         - Keyboard Dim Time:
             - value: {{ macos.keyboard.brightness_adjustment.after | int }}
             - vtype: int
-  {%- endif %}
+{%-   endif %}
     - user: root
     - require:
       - System Preferences is not running

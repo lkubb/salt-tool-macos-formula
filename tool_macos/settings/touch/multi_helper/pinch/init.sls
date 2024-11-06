@@ -1,18 +1,20 @@
+# vim: ft=sls
+
 {#- @internal
     Helper for enabling/disabling four/five finger pinch gestures.
     This is needed for Show Desktop and Launchpad gestures.
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.touch', 'defined') %}
-  {%- set u = user.macos.touch %}
-  {%- set status = (u.get('show_desktop', False) or u.get('launchpad', False)) %}
+{%- for user in macos.users | selectattr("macos.touch", "defined") %}
+{%-   set u = user.macos.touch %}
+{%-   set status = (u.get("show_desktop", false) or u.get("launchpad", false)) %}
 
 Pinch gesture activation status for internal trackpad is managed for user {{ user.name }}:
   macosdefaults.write:

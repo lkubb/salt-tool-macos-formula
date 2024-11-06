@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 include:
 #  - .default-applications.clean
   - .dsstore_avoid.clean

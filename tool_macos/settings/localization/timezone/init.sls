@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 {#-
     Customizes timezone.
 
@@ -9,9 +11,9 @@
     .. code-block:: yaml
 
         timezone: Europe/Paris
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:

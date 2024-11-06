@@ -1,43 +1,43 @@
 {%- set u = user.macos.uix.colors %}
 {%- set user_settings = {
-    'aqua_variant': 1,
-    'accent': False,
-    'highlight': False,
-    } %}
+        "aqua_variant": 1,
+        "accent": False,
+        "highlight": False,
+} %}
 
 {%- set accent_colors = {
-    'multi': False,
-    'blue': 4,
-    'purple': 5,
-    'pink': 6,
-    'red': 0,
-    'orange': 1,
-    'yellow': 2,
-    'green': 3,
-    'graphite': 1,
-    } %}
+        "multi": False,
+        "blue": 4,
+        "purple": 5,
+        "pink": 6,
+        "red": 0,
+        "orange": 1,
+        "yellow": 2,
+        "green": 3,
+        "graphite": 1,
+} %}
 
-{#- highlight colors in particular could be set to 'other' as well, like this:
-     '0.572339 0.502791 0.506187 Other' @TODO -#}
+{#- highlight colors in particular could be set to "other" as well, like this:
+     "0.572339 0.502791 0.506187 Other" @TODO -#}
 {%- set highlight_colors = {
-    'accent_color': False,
-    'blue': '0.698039 0.843137 1.000000 Blue',
-    'purple': '0.968627 0.831373 1.000000 Purple',
-    'pink': '1.000000 0.749020 0.823529 Pink',
-    'red': '1.000000 0.733333 0.721569 Red',
-    'orange': '1.000000 0.874510 0.701961 Orange',
-    'yellow': '1.000000 0.937255 0.690196 Yellow',
-    'green': '0.752941 0.964706 0.678431 Green',
-    'graphite': '0.847059 0.847059 0.862745 Graphite',
-    } %}
+        "accent_color": False,
+        "blue": "0.698039 0.843137 1.000000 Blue",
+        "purple": "0.968627 0.831373 1.000000 Purple",
+        "pink": "1.000000 0.749020 0.823529 Pink",
+        "red": "1.000000 0.733333 0.721569 Red",
+        "orange": "1.000000 0.874510 0.701961 Orange",
+        "yellow": "1.000000 0.937255 0.690196 Yellow",
+        "green": "0.752941 0.964706 0.678431 Green",
+        "graphite": "0.847059 0.847059 0.862745 Graphite",
+} %}
 
-{%- if 'multi' != u.get('accent', 'multi') %}
-  {%- if 'graphite' == u.accent %}
-    {%- do user_settings.update({'aqua_variant': 6}) %}
-  {%- endif %}
-  {%- do user_settings.update({'accent': accent_colors.get(u.accent, False)}) %}
+{%- if "multi" != u.get("accent", "multi") %}
+{%-   if "graphite" == u.accent %}
+{%-     do user_settings.update({"aqua_variant": 6}) %}
+{%-   endif %}
+{%-   do user_settings.update({"accent": accent_colors.get(u.accent, False)}) %}
 {%- endif %}
 
-{%- if 'accent_color' != u.get('highlight', 'accent_color') %}
-  {%- do user_settings.update({'highlight': highlight_colors.get(u.highlight, False)}) %}
+{%- if "accent_color" != u.get("highlight", "accent_color") %}
+{%-   do user_settings.update({"highlight": highlight_colors.get(u.highlight, False)}) %}
 {%- endif %}

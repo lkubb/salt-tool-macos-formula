@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 {#-
     Customizes swipe fullscreen apps touch gesture activation status.
 
@@ -6,9 +8,9 @@
           * three
           * four
         - or false
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:

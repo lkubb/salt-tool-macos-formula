@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 {#-
     Customizes power state of Bluetooth in Airplane Mode.
 
@@ -7,9 +9,9 @@
     .. note::
 
         Needs to run as root.
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:

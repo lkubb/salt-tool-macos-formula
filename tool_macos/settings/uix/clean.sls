@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 include:
   - .colors.clean
   - .doubleclick_title.clean

@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 {#-
     Customizes state of AirDrop.
 
@@ -10,16 +12,16 @@
 
     References:
         * https://github.com/usnistgov/macos_security/blob/main/rules/os/os_airdrop_disable.yaml
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.security', 'defined') | selectattr('macos.security.airdrop', 'defined') %}
+{%- for user in macos.users | selectattr("macos.security", "defined") | selectattr("macos.security.airdrop", "defined") %}
 
 AirDrop state is managed for user {{ user.name }}:
   macosdefaults.write:

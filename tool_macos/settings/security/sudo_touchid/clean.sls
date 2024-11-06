@@ -1,9 +1,11 @@
+# vim: ft=sls
+
 {#-
     Resets availability of Touch ID for sudo authentication and
     pam_reattach to default (disabled).
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 {%- if macos.security is defined and macos.security.sudo_touchid is defined %}

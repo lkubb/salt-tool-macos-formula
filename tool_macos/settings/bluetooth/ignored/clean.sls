@@ -1,8 +1,10 @@
+# vim: ft=sls
+
 {#-
     Removes added bluetooth device MAC from ignore list.
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:

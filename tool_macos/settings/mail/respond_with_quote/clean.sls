@@ -1,16 +1,18 @@
+# vim: ft=sls
+
 {#-
     Resets whether to quote the original mail when sending a reply to default (true).
     Needs Full Disk Access to work.
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.mail', 'defined') | selectattr('macos.mail.respond_with_quote', 'defined') %}
+{%- for user in macos.users | selectattr("macos.mail", "defined") | selectattr("macos.mail.respond_with_quote", "defined") %}
 
 Quote original message setting in Mail.app is reset to default for user {{ user.name }}:
   macosdefaults.absent:

@@ -1,18 +1,20 @@
+# vim: ft=sls
+
 {#-
     Resets global preference for tabs to default (when in fullscreen).
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- set options = ['manual', 'fullscreen', 'always'] %}
+{%- set options = ["manual", "fullscreen", "always"] %}
 
-{%- for user in macos.users | selectattr('macos.behavior', 'defined') | selectattr('macos.behavior.tab_preference', 'defined') %}
-  {%- set u = user.macos.behavior.tab_preference %}
+{%- for user in macos.users | selectattr("macos.behavior", "defined") | selectattr("macos.behavior.tab_preference", "defined") %}
+{%-   set u = user.macos.behavior.tab_preference %}
 
 Global preference for tabs is reset to default (in fullscreen) for user {{ user.name }}:
   macosdefaults.absent:

@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 Safari's bookmark bar is shown by default:
   macdefaults.write:
     - domain: com.apple.Safari

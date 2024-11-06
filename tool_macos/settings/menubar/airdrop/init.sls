@@ -1,9 +1,11 @@
+# vim: ft=sls
+
 {#-
     Customizes display status of Airdorp widget in Menu Bar.
 
     Values:
         - bool [default: false]
--#}
+#}
 
 {#-
     Status values correspond to both menubar and control center settings.
@@ -24,15 +26,16 @@
     1000 =  8: menubar off
  -#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.menubar', 'defined') | selectattr('macos.menubar.airdrop', 'defined') %}
-  {%- set status = 2 if user.macos.menubar.airdrop else 8 %}
+{%- for user in macos.users | selectattr("macos.menubar", "defined") | selectattr("macos.menubar.airdrop", "defined") %}
+{%-   set status = 2 if user.macos.menubar.airdrop else 8 %}
+
 Display status of Airdrop widget in Menu Bar is managed for user {{ user.name }}:
   macosdefaults.write:
     - host: current

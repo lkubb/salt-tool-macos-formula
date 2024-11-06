@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 Hitting backspace in Safari will take you to previous page:
   macdefaults.write:
     - domain: com.apple.Safari

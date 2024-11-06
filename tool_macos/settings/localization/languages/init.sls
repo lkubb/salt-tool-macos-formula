@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 {#-
     Customizes available system languages.
 
@@ -11,9 +13,9 @@
         languages:
           - en-US
           - en-AU
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 {#-
@@ -27,7 +29,7 @@ include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.localization', 'defined') | selectattr('macos.localization.languages', 'defined') %}
+{%- for user in macos.users | selectattr("macos.localization", "defined") | selectattr("macos.localization.languages", "defined") %}
 
 Available system languages are managed for user {{ user.name }}:
   macosdefaults.set:

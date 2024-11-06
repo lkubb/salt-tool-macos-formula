@@ -1,8 +1,10 @@
+# vim: ft=sls
+
 {#-
     Resets Guest account availability to default (disabled).
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:

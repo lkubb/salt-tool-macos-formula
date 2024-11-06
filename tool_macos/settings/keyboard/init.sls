@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 include:
   - .brightness_adjustment
   - .fn_action

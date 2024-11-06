@@ -1,15 +1,17 @@
+# vim: ft=sls
+
 {#-
     Resets Photos hotplug behavior to default (enabled).
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.behavior', 'defined') | selectattr('macos.behavior.photos_hotplug', 'defined') %}
+{%- for user in macos.users | selectattr("macos.behavior", "defined") | selectattr("macos.behavior.photos_hotplug", "defined") %}
 
 Photos hotplug behavior is reset to default (enabled) for user {{ user.name }}:
   macosdefaults.absent:

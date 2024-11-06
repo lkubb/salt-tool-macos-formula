@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 Safari does not preload top hits:
   macdefaults.write:
     - domain: com.apple.Safari

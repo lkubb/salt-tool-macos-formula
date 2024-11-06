@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 Terminal uses UTF-8 only:
   macdefaults.write:
     - domain: com.apple.terminal

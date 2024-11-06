@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 Safari does not autofill miscellaneous forms:
   macdefaults.write:
     - domain: com.apple.Safari

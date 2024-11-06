@@ -1,10 +1,12 @@
+# vim: ft=sls
+
 {#-
     Resets Time Machine backup behavior while on battery to default (disabled)
     You might need to reboot after applying.
     Mind that setting this needs Full Disk Access on your terminal emulator application.
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:

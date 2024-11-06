@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 Safari's debug menu is hidden:
   macdefaults.write:
     - domain: com.apple.Safari

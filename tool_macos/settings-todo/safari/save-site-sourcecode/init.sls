@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 Safari saves sites as sourcecode instead of webarchive by default:
   macdefaults.write:
     - domain: com.apple.Safari

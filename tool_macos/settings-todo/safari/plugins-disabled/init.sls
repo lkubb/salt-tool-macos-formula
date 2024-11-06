@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 Safari plug-ins are disabled:
   macdefaults.write:
     - domain: com.apple.Safari

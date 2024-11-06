@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 Java in Safari is enabled:
   macdefaults.write:
     - domain: com.apple.Safari

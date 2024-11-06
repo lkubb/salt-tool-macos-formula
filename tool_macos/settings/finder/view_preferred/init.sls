@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 {#-
     Customizes preferred Finder view settings.
 
@@ -46,51 +48,51 @@
 
     References:
         * https://github.com/joeyhoer/starter/blob/master/apps/finder.sh
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
-{#- by default, grouping is disabled. there is no FXPreferredSortBy though -#}
+{#- by default, grouping is disabled. there is no FXPreferredSortBy though #}
 {%- set group_opts = {
-  'none': 'None',
-  'name': 'Name',
-  'app': 'Application',
-  'kind': 'Kind',
-  'last_opened': 'Date Last Opened',
-  'added': 'Date Added',
-  'modified': 'Date Modified',
-  'created': 'Date Created',
-  'size': 'Size',
-  'tags': 'Tags'
-  } -%}
+          "none": "None",
+          "name": "Name",
+          "app": "Application",
+          "kind": "Kind",
+          "last_opened": "Date Last Opened",
+          "added": "Date Added",
+          "modified": "Date Modified",
+          "created": "Date Created",
+          "size": "Size",
+          "tags": "Tags"
+} %}
 
-{#- coverflow was deprecated, short value was Flwv -#}
+{#- coverflow was deprecated, short value was Flwv #}
 {%- set style_opts = {
-  'icon': 'icnv',
-  'list': 'Nlsv',
-  'column': 'clmv',
-  'gallery': 'glyv'
-  } -%}
+          "icon": "icnv",
+          "list": "Nlsv",
+          "column": "clmv",
+          "gallery": "glyv"
+} %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.finder', 'defined') | selectattr('macos.finder.view_preferred', 'defined') %}
+{%- for user in macos.users | selectattr("macos.finder", "defined") | selectattr("macos.finder.view_preferred", "defined") %}
 
 Desktop icon settings are customized for user {{ user.name }}:
   macosdefaults.update:
     - domain: com.apple.finder
     - names:
-  {%- if user.macos.finder.view_preferred.groupby is defined %}
+{%-   if user.macos.finder.view_preferred.groupby is defined %}
         - FXPreferredGroupBy:
-            - value: {{ group_opts.get(user.macos.finder.view_preferred.groupby, 'none') }}
-  {%- endif %}
-  {%- if user.macos.finder.view_preferred.style is defined %}
+            - value: {{ group_opts.get(user.macos.finder.view_preferred.groupby, "none") }}
+{%-   endif %}
+{%-   if user.macos.finder.view_preferred.style is defined %}
         - FXPreferredViewStyle:
-            - value: {{ style_opts.get(user.macos.finder.view_preferred.style, 'icon') }}
-  {%- endif %}
+            - value: {{ style_opts.get(user.macos.finder.view_preferred.style, "icon") }}
+{%-   endif %}
     - vtype: string
     - user: {{ user.name }}
     - require:

@@ -1,17 +1,19 @@
+# vim: ft=sls
+
 {#-
     Resets Siri activation status to default (disabled).
     Note that System Preferences does much more when toggling
     the option. This might be very incomplete.
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.siri', 'defined') | selectattr('macos.siri.enabled', 'defined') %}
+{%- for user in macos.users | selectattr("macos.siri", "defined") | selectattr("macos.siri.enabled", "defined") %}
 
 Ask Siri activation status is reset to default (disabled) for user {{ user.name }}:
   macosdefaults.absent:

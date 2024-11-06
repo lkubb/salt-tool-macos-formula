@@ -1,18 +1,20 @@
+# vim: ft=sls
+
 {#-
     Customizes Siri voice feedback.
 
     Values:
         - bool [default: true]
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.siri', 'defined') | selectattr('macos.siri.voice_feedback', 'defined') %}
+{%- for user in macos.users | selectattr("macos.siri", "defined") | selectattr("macos.siri.voice_feedback", "defined") %}
 
 Ask Siri voice feedback status is managed for user {{ user.name }}:
   macosdefaults.write:

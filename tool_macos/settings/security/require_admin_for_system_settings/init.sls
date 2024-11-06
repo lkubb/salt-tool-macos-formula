@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 {#-
     Customizes the requirement to authenticate as an admin to change
     system-wide settings.
@@ -7,9 +9,9 @@
 
     References:
         * https://github.com/SummitRoute/osxlockdown/blob/master/commands.yaml
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
@@ -17,8 +19,8 @@ include:
   - {{ tplroot }}._require
 
 {%- if macos.security is defined and macos.security.require_admin_for_system_settings is defined %}
-  {# the setting is called 'shared', so we need to invert #}
-  {%- set m = 'false' if macos.security.require_admin_for_system_settings else 'true' %}
+{#-   the setting is called 'shared', so we need to invert #}
+{%-   set m = 'false' if macos.security.require_admin_for_system_settings else 'true' %}
 
 Requirement to authenticate as an admin to change system-wide settings is managed:
   cmd.run:

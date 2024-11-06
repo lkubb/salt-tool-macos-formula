@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 {#-
     Customizes MacOS window resize time.
 
@@ -7,16 +9,16 @@
 
     Values:
         - float [default: 0.5?]
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.animations', 'defined') | selectattr('macos.animations.window_resize_time', 'defined') %}
+{%- for user in macos.users | selectattr("macos.animations", "defined") | selectattr("macos.animations.window_resize_time", "defined") %}
 
 MacOS window resize time is managed for user {{ user.name }}:
   macosdefaults.write:

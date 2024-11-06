@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 Safari restores previous session on launch:
   macdefaults.write:
     - domain: com.apple.Safari

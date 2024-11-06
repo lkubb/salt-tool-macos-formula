@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 Disable Secure Keyboard Entry in Terminal.app:
   macdefaults.write:
     - domain: com.apple.terminal

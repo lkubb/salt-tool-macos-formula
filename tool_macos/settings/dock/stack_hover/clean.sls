@@ -1,15 +1,17 @@
+# vim: ft=sls
+
 {#-
     Resets highlight on hover behavior of stack tiles (items) to default (disabled).
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.dock', 'defined') | selectattr('macos.dock.stack_hover', 'defined') %}
+{%- for user in macos.users | selectattr("macos.dock", "defined") | selectattr("macos.dock.stack_hover", "defined") %}
 
 Highlight on hover behavior of stack tiles is reset to default (disabled) for user {{ user.name }}:
   macosdefaults.absent:

@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 {#-
     Customizes whether to show attachments inline.
 
@@ -6,16 +8,16 @@
         Needs Full Disk Access to work (https://lapcatsoftware.com/articles/containers.html).
 
     Values: bool [default: true]
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.mail', 'defined') | selectattr('macos.mail.attachments_inline', 'defined') %}
+{%- for user in macos.users | selectattr("macos.mail", "defined") | selectattr("macos.mail.attachments_inline", "defined") %}
 
 Activation status of inline attachments in Mail.app is managed for user {{ user.name }}:
   macosdefaults.write:

@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 {#-
     Sets global antialiasing threshold font size.
 
@@ -10,16 +12,16 @@
 
     References:
         * https://github.com/kevinSuttle/macOS-Defaults/issues/17
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.display', 'defined') | selectattr('macos.display.antialias_threshold', 'defined') %}
+{%- for user in macos.users | selectattr("macos.display", "defined") | selectattr("macos.display.antialias_threshold", "defined") %}
 
 Custom anti-aliasing threshold font size is set for user {{ user.name }}:
   macosdefaults.write:

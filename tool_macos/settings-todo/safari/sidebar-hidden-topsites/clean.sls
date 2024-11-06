@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 Safari's sidebar is shown in Top Sites:
   macdefaults.write:
     - domain: com.apple.Safari

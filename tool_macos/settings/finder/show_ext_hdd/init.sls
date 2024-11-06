@@ -1,18 +1,20 @@
+# vim: ft=sls
+
 {#-
     Customizes display status of external HDD on desktop.
 
     Values:
         - bool [default: true]
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.finder', 'defined') | selectattr('macos.finder.show_ext_hdd', 'defined') %}
+{%- for user in macos.users | selectattr("macos.finder", "defined") | selectattr("macos.finder.show_ext_hdd", "defined") %}
 
 Display status of external HDD on desktop is managed for user {{ user.name }}:
   macosdefaults.write:

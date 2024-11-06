@@ -1,9 +1,11 @@
+# vim: ft=sls
+
 {#-
     Resets NTP synchronization activation status and server
     to default (enabled / time.apple.com).
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
@@ -12,7 +14,8 @@ include:
 
 {%- if macos.security is defined and macos.security.ntp is defined %}
 
-  {%- if macos.security.ntp.enabled is defined %}
+{%-   if macos.security.ntp.enabled is defined %}
+
 NTP synchronization activation status is reset to default (enabled):
   cmd.run:
     - name: /usr/sbin/systemsetup -setusingnetworktime on
@@ -21,9 +24,10 @@ NTP synchronization activation status is reset to default (enabled):
         - "/usr/sbin/systemsetup -getusingnetworktime | grep 'Network Time: On'"
     - require:
       - System Preferences is not running
-  {%- endif %}
+{%-   endif %}
 
-  {%- if macos.security.ntp.server is defined %}
+{%-   if macos.security.ntp.server is defined %}
+
 NTP server configuration is reset to default (time.apple.com):
   cmd.run:
     - name: /usr/sbin/systemsetup -setnetworktimeserver time.apple.com
@@ -32,5 +36,5 @@ NTP server configuration is reset to default (time.apple.com):
         - "/usr/sbin/systemsetup -getnetworktimeserver | grep 'time.apple.com'"
     - require:
       - System Preferences is not running
-  {%- endif %}
+{%-   endif %}
 {%- endif %}

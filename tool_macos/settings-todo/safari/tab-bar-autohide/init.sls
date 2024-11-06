@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 Safari autohides the tab bar:
   macdefaults.write:
     - domain: com.apple.Safari

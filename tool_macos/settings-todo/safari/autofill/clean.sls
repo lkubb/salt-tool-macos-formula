@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 include:
   - address-book.clean
   - creditcard.clean

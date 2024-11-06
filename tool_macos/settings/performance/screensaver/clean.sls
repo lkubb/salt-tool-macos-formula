@@ -1,15 +1,17 @@
+# vim: ft=sls
+
 {#-
     Resets screensaver behavior to defaults (after 20 min, no clock).
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.performance', 'defined') | selectattr('macos.performance.screensaver', 'defined') %}
+{%- for user in macos.users | selectattr("macos.performance", "defined") | selectattr("macos.performance.screensaver", "defined") %}
 
 Screensaver behavior is reset to defaults (20min/no clock) for user {{ user.name }}:
   macosdefaults.absent:

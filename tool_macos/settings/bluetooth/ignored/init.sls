@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 {#-
     Adds/syncs bluetooth device MAC (to) ignore list.
 
@@ -26,9 +28,9 @@
     .. hint::
 
         Needs to run as root.
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
@@ -36,15 +38,15 @@ include:
   - {{ tplroot }}._require
 
 {%- if macos.bluetooth is defined and macos.bluetooth.ignored is defined %}
-  {%- set sync = macos.bluetooth.ignored.get('sync', False) %}
+{%-   set sync = macos.bluetooth.ignored.get("sync", False) %}
 
 Ignored Bluetooth device list is managed:
-  macosdefaults.{{ 'set' if sync else 'extend' }}:
+  macosdefaults.{{ "set" if sync else "extend" }}:
     - name: IgnoredDevices
     - value: {{ macos.bluetooth.ignored.devices | json }}
-{%- if sync %}
+{%-   if sync %}
     - vtype: array
-{%- endif %}
+{%-   endif %}
     - domain: com.apple.Bluetooth
     # this needs to be run as root since the file is
     # /Library/Preferences/com.apple.Bluetooth.plist

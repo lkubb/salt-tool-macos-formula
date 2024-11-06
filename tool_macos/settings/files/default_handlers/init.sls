@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 {#-
     Customizes the default handler for file types and URL schemes.
 
@@ -36,18 +38,18 @@
             torrent: Transmission
           utis:
             public.plain-text: TextEdit
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.files', 'defined') | selectattr('macos.files.default_handlers', 'defined') %}
+{%- for user in macos.users | selectattr("macos.files", "defined") | selectattr("macos.files.default_handlers", "defined") %}
 
-  {%- for extension, handler in user.macos.files.default_handlers.get('extensions', {}).items() %}
+{%-   for extension, handler in user.macos.files.default_handlers.get("extensions", {}).items() %}
 
 Default handler for file extension '{{ extension }}' is managed for user {{ user.name }}:
   dooti.ext:
@@ -56,9 +58,9 @@ Default handler for file extension '{{ extension }}' is managed for user {{ user
     - user: {{ user.name }}
     - watch_in:
       - Finder was reloaded
-  {%- endfor %}
+{%-   endfor %}
 
-  {%- for scheme, handler in user.macos.files.default_handlers.get('schemes', {}).items() %}
+{%-   for scheme, handler in user.macos.files.default_handlers.get("schemes", {}).items() %}
 
 Default handler for URL scheme '{{ scheme }}' is managed for user {{ user.name }}:
   dooti.scheme:
@@ -67,9 +69,9 @@ Default handler for URL scheme '{{ scheme }}' is managed for user {{ user.name }
     - user: {{ user.name }}
     - watch_in:
       - Finder was reloaded
-  {%- endfor %}
+{%-   endfor %}
 
-  {%- for uti, handler in user.macos.files.default_handlers.get('utis', {}).items() %}
+{%-   for uti, handler in user.macos.files.default_handlers.get("utis", {}).items() %}
 
 Default handler for UTI '{{ uti }}' is managed for user {{ user.name }}:
   dooti.uti:
@@ -78,5 +80,5 @@ Default handler for UTI '{{ uti }}' is managed for user {{ user.name }}:
     - user: {{ user.name }}
     - watch_in:
       - Finder was reloaded
-  {%- endfor %}
+{%-   endfor %}
 {%- endfor %}

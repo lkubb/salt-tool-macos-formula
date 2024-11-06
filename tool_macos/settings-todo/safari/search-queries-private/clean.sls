@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 Safari sends search queries to Apple:
   macdefaults.write:
     - domain: com.apple.Safari

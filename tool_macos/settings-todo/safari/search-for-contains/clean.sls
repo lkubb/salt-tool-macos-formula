@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 Make Safari’s search banners default to Starts With:
   macdefaults.write:
     - domain: com.apple.Safari

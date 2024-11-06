@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 Safari does not warn about fraudulent websites:
   macdefaults.write:
     - domain: com.apple.Safari

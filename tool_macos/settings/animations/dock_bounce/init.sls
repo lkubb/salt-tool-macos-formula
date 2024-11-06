@@ -1,18 +1,20 @@
+# vim: ft=sls
+
 {#-
     Customizes bounce animation in dock (alert on changes/needs attention).
 
     Values:
         - bool [default: true]
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.animations', 'defined') | selectattr('macos.animations.dock_bounce', 'defined') %}
+{%- for user in macos.users | selectattr("macos.animations", "defined") | selectattr("macos.animations.dock_bounce", "defined") %}
 
 Dock bounce animation is managed for user {{ user.name }}:
   macosdefaults.write:

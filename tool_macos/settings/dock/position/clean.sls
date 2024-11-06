@@ -1,15 +1,17 @@
+# vim: ft=sls
+
 {#-
     Resets dock position to default (bottom).
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.dock', 'defined') | selectattr('macos.dock.position', 'defined') %}
+{%- for user in macos.users | selectattr("macos.dock", "defined") | selectattr("macos.dock.position", "defined") %}
 
 Dock position is reset to default (bottom) for user {{ user.name }}:
   macosdefaults.absent:

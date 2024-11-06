@@ -1,15 +1,17 @@
+# vim: ft=sls
+
 {#-
     Resets TrueTone behavior to default (enabled).
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.display', 'defined') | selectattr('macos.display.truetone', 'defined') %}
+{%- for user in macos.users | selectattr("macos.display", "defined") | selectattr("macos.display.truetone", "defined") %}
 
 TrueTone is reset to default (enabled) for user {{ user.name }}:
   macosdefaults.absent_less:

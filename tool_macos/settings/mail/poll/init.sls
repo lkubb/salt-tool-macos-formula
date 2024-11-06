@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 {#-
     Customizes Mail.app polling behavior.
 
@@ -12,17 +14,17 @@
           * manual
 
         - or int [minutes between polls]
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.mail', 'defined') | selectattr('macos.mail.poll', 'defined') %}
-  {%- from tpldir ~ '/map.jinja' import status with context %}
+{%- for user in macos.users | selectattr("macos.mail", "defined") | selectattr("macos.mail.poll", "defined") %}
+{%-   from tpldir ~ "/map.jinja" import status with context %}
 
 Polling behavior of Mail.app is managed for user {{ user.name }}:
   macosdefaults.write:

@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 Safari sends Do Not Track header:
   macdefaults.write:
     - domain: com.apple.Safari

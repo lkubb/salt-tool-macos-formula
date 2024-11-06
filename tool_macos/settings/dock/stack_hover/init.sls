@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 {#-
     Customizes highlight on hover behavior of stack tiles (items).
 
@@ -6,16 +8,16 @@
 
     References:
         * https://macos-defaults.com/misc/enable-spring-load-actions-on-all-items.html
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.dock', 'defined') | selectattr('macos.dock.stack_hover', 'defined') %}
+{%- for user in macos.users | selectattr("macos.dock", "defined") | selectattr("macos.dock.stack_hover", "defined") %}
 
 Highlight on hover behavior of stack tiles is managed for user {{ user.name }}:
   macosdefaults.write:

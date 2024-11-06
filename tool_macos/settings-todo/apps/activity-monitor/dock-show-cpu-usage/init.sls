@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 Visualize CPU usage in Activity Monitor Dock icon:
   macdefaults.write:
     - domain: com.apple.ActivityMonitor

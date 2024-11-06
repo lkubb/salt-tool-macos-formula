@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 {#-
     Customizes whether to view messages grouped by conversation by default.
 
@@ -7,16 +9,16 @@
 
     Values:
         - bool [default: true]
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.mail', 'defined') | selectattr('macos.mail.view_conversations', 'defined') %}
+{%- for user in macos.users | selectattr("macos.mail", "defined") | selectattr("macos.mail.view_conversations", "defined") %}
 
 Preference for conversations in Mail.app is managed for user {{ user.name }}:
   macosdefaults.write:

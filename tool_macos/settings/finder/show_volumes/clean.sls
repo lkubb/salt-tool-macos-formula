@@ -1,9 +1,11 @@
+# vim: ft=sls
+
 {#-
     Resets display status of /Volumes folder to default (hidden).
     Values: bool [default: false]
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 {%- if macos.finder is defined and macos.finder.show_volumes is defined %}

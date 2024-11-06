@@ -1,10 +1,12 @@
+# vim: ft=sls
+
 {#-
     Resets eviction of FileVault keys on standby to defaults (disabled).
     This will also affect some power settings (they will be reset to defaults
     as well).
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 {%- if macos.security is defined and macos.security.filevault_evict_keys_standby is defined %}

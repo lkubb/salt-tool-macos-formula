@@ -1,15 +1,17 @@
+# vim: ft=sls
+
 {#-
     Resets automatic emptying of Trash after 30 days to default (enabled).
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.finder', 'defined') | selectattr('macos.finder.trash_old_auto', 'defined') %}
+{%- for user in macos.users | selectattr("macos.finder", "defined") | selectattr("macos.finder.trash_old_auto", "defined") %}
 
 Automatic emptying of Trash after 30 days is reset to default (enabled) for user {{ user.name }}:
   macosdefaults.absent:

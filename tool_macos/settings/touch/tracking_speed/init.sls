@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 {#-
     Customizes tracking speed.
 
@@ -8,16 +10,16 @@
 
         In System Preferences, the discrete values are:
         0 - 0.125 - 0.5 - 0.685 - 0.875 - 1 - 1.5 - 2 - 2.5 - 3
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.touch', 'defined') | selectattr('macos.touch.tracking_speed', 'defined') %}
+{%- for user in macos.users | selectattr("macos.touch", "defined") | selectattr("macos.touch.tracking_speed", "defined") %}
 
 Tracking speed is managed for user {{ user.name }}:
   macosdefaults.write:

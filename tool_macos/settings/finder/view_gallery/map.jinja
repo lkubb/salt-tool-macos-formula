@@ -1,14 +1,14 @@
 {%- set sort_options = {
-    'none': 'none',
-    'grid': 'grid',
-    'name': 'name',
-    'kind': 'kind',
-    'last_opened': 'dateLastOpened',
-    'added': 'dateAdded',
-    'modified': 'dateModified',
-    'created': 'dateCreated',
-    'size': 'size',
-    'tags': 'label',
+        "none": "none",
+        "grid": "grid",
+        "name": "name",
+        "kind": "kind",
+        "last_opened": "dateLastOpened",
+        "added": "dateAdded",
+        "modified": "dateModified",
+        "created": "dateCreated",
+        "size": "size",
+        "tags": "label",
 } -%}
 
 {%- set u = user.macos.finder.view_gallery %}
@@ -16,21 +16,21 @@
 {%- set user_options = {} %}
 
 {%- if u.arrange is defined %}
-    {%- do user_settings.update({'arrangeBy': sort.get(u.arrange, 'none')}) %}
+{%-   do user_settings.update({"arrangeBy": sort.get(u.arrange, "none")}) %}
 {%- endif %}
 
 {%- if u.icon_size is defined %}
-    {%- do user_settings.update({'iconSize': float(u.icon_size)}) %}
+{%-   do user_settings.update({"iconSize": float(u.icon_size)}) %}
 {%- endif %}
 
 {%- if u.preview is defined %}
-    {%- do user_settings.update({'showIconPreview':  bool(u.preview) }) %}
+{%-   do user_settings.update({"showIconPreview":  bool(u.preview) }) %}
 {%- endif %}
 
 {%- if u.preview_pane is defined %}
-    {%- do user_options.update({'ShowPreviewPane':  bool(u.preview_pane) }) %}
+{%-   do user_options.update({"ShowPreviewPane":  bool(u.preview_pane) }) %}
 {%- endif %}
 
 {%- if u.titles is defined %}
-    {%- do user_options.update({'ShowTitles':  bool(u.titles) }) %}
+{%-   do user_options.update({"ShowTitles":  bool(u.titles) }) %}
 {%- endif %}

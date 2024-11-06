@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 Safari does not clear downloads automatically:
   macdefaults.write:
     - domain: com.apple.Safari

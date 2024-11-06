@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 {#-
     Customizes state of forced smart card authentication.
 
@@ -11,9 +13,9 @@
     References;
         * https://support.apple.com/guide/deployment/configure-macos-smart-cardonly-authentication-depfce8de48b/1/web/1.0
         * https://support.apple.com/HT208372
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:

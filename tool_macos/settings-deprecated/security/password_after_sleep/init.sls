@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 {#-
     Customizes requirement of password after entering sleep/screensaver.
 
@@ -14,37 +16,37 @@
     Values:
       require: bool [default: true]
       delay: int [in seconds, default: 0]
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.security', 'defined') | selectattr('macos.security.password_after_sleep', 'defined') %}
+{%- for user in macos.users | selectattr("macos.security", "defined") | selectattr("macos.security.password_after_sleep", "defined") %}
 
 Requirement of password after entering sleep is managed for user {{ user.name }}:
   macosdefaults.write:
     - domain: com.apple.screensaver
     - names:
-  {%- if user.macos.security.password_after_sleep.require is defined %}
+{%-   if user.macos.security.password_after_sleep.require is defined %}
         - askForPassword:
             - value: {{ user.macos.security.password_after_sleep.require | to_bool }}
             - vtype: bool
-  {%- endif %}
-  {%- if user.macos.security.password_after_sleep.delay is defined %}
+{%-   endif %}
+{%-   if user.macos.security.password_after_sleep.delay is defined %}
         - askForPasswordDelay:
             - value: {{ user.macos.security.password_after_sleep.delay | int }}
             - vtype: int
-    {#- warn if delay is managed, but not the requirement itself -#}
-    {%- if user.macos.security.password_after_sleep.require is not defined %}
-       {%- do salt['log.warning']((
+{#-     warn if delay is managed, but not the requirement itself -#}
+{%-     if user.macos.security.password_after_sleep.require is not defined %}
+ {%-       do salt["log.warning"]((
             "A custom delay for password requirement after sleep was set for user {}, " ~
             "but the requirement of passwords itself is not managed.").format(user.name)) %}
-    {%- endif %}
-  {%- endif %}
+{%-     endif %}
+{%-   endif %}
     - user: {{ user.name }}
     - require:
       - System Preferences is not running

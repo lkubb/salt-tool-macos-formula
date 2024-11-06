@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 Safari displays PDF files:
   macdefaults.write:
     - domain: com.apple.Safari

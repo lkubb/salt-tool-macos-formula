@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 {#-
     Customizes hot corner settings.
 
@@ -51,28 +53,28 @@
             action: lock-screen
             modifier: opt
 
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.uix', 'defined') | selectattr('macos.uix.hot_corners', 'defined') %}
-  {%- from tpldir ~ '/map.jinja' import user_settings, corners with context %}
+{%- for user in macos.users | selectattr("macos.uix", "defined") | selectattr("macos.uix.hot_corners", "defined") %}
+{%-   from tpldir ~ "/map.jinja" import user_settings, corners with context %}
 
 Hot corner configuration is managed for user {{ user.name }}:
   macosdefaults.write:
     - domain: com.apple.dock
     - names:
-  {%- for corner in corners %}
-        - wvous-{{ ''.join(corner.split('_') | map('first')) }}-corner:
+{%-   for corner in corners %}
+        - wvous-{{ "".join(corner.split("_") | map("first")) }}-corner:
             - value: {{ user_settings[corner].action | int }}
-        - wvous-{{ ''.join(corner.split('_') | map('first')) }}-modifier:
+        - wvous-{{ "".join(corner.split("_") | map("first")) }}-modifier:
             - value: {{ user_settings[corner].modifier | int }}
-  {%- endfor %}
+{%-   endfor %}
     - vtype: int
     - user: {{ user.name }}
     - require:

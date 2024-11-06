@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 {#-
     Customizes whether to automatically resend outgoing messages when the server
     was not available (does not warn about failed sends).
@@ -8,16 +10,16 @@
 
     Values:
         - bool [default: true?]
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.mail', 'defined') | selectattr('macos.mail.auto_resend_later', 'defined') %}
+{%- for user in macos.users | selectattr("macos.mail", "defined") | selectattr("macos.mail.auto_resend_later", "defined") %}
 
 Automatically resend outgoing mail setting is managed for user {{ user.name }}:
   macosdefaults.write:

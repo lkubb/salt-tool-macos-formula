@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 {#-
     Customizes default system colors for accents and highlights.
 
@@ -29,36 +31,36 @@
             - yellow
             - green
             - graphite
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.uix', 'defined') | selectattr('macos.uix.colors', 'defined') %}
-  {%- from tpldir ~ '/map.jinja' import user_settings with context %}
+{%- for user in macos.users | selectattr("macos.uix", "defined") | selectattr("macos.uix.colors", "defined") %}
+{%-   from tpldir ~ "/map.jinja" import user_settings with context %}
 
-  {%- if user_settings.highlight is sameas False or user_settings.accent is sameas False %}
-  {#- this is the case for 'multi' accent setting and 'accent_color' highlight setting #}
+{%-   if user_settings.highlight is sameas False or user_settings.accent is sameas False %}
+{#-   this is the case for "multi" accent setting and "accent_color" highlight setting #}
 
 System colors are managed (default) for user {{ user.name }}:
   macosdefaults.absent:
     - names: # in Apple Global Domain
-    {%- if user_settings.accent is sameas False %}
+{%-     if user_settings.accent is sameas False %}
         - AppleAccentColor
-    {%- endif %}
-    {%- if user_settings.highlight is sameas False %}
+{%-     endif %}
+{%-     if user_settings.highlight is sameas False %}
         - AppleHighlightColor
-    {%- endif %}
+{%-     endif %}
     - user: {{ user.name }}
     - require:
       - System Preferences is not running
     - watch_in:
       - cfprefsd was reloaded
-  {%- endif %}
+{%-   endif %}
 
 System colors are managed for user {{ user.name }}:
   macosdefaults.write:
@@ -66,16 +68,16 @@ System colors are managed for user {{ user.name }}:
         - AppleAquaColorVariant:
             - value: {{ user_settings.aqua_variant | int }}
             - vtype: int
-  {%- if user_settings.accent is not sameas False %}
+{%-   if user_settings.accent is not sameas False %}
         - AppleAccentColor:
             - value: {{ user_settings.accent | int }}
             - vtype: int
-  {%- endif %}
-  {%- if user_settings.highlight is not sameas False %}
+{%-   endif %}
+{%-   if user_settings.highlight is not sameas False %}
         - AppleHighlightColor:
             - value: {{ user_settings.highlight }}
             - vtype: string
-  {%- endif %}
+{%-   endif %}
     - user: {{ user.name }}
     - require:
       - System Preferences is not running

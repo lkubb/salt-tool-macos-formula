@@ -1,3 +1,4 @@
+# vim: ft=sls
 # this is very likely deprecated, for documentation purposes only
 # also this is a bad idea in general
 

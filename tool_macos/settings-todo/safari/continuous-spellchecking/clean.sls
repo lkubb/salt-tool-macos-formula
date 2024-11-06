@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 Safari does not spellcheck continuously:
   macdefaults.write:
     - domain: com.apple.Safari

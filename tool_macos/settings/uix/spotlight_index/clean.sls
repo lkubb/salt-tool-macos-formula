@@ -1,15 +1,17 @@
+# vim: ft=sls
+
 {#-
     Resets Spotlight index items to defaults.
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.uix', 'defined') | selectattr('macos.uix.spotlight_index', 'defined') %}
+{%- for user in macos.users | selectattr("macos.uix", "defined") | selectattr("macos.uix.spotlight_index", "defined") %}
 
 Spotlight index items are reset to defaults for user {{ user.name }}:
   macosdefaults.absent:

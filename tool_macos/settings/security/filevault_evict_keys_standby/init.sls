@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 {#-
     Customizes eviction of FileVault keys on standby. When enabled,
     that means you need to re-enter your encryption password during wakeup
@@ -27,7 +29,7 @@
         * man pmset
         * https://eclecticlight.co/2017/01/20/power-management-in-detail-using-pmset/
         * https://github.com/drduh/macOS-Security-and-Privacy-Guide
--#}
+#}
 
 {#- MacOS terminology is a bit all over the place and I'm not sure if I
     understood everything correctly. From what I understood, there are
@@ -53,45 +55,45 @@
     For an overview, see https://apple.stackexchange.com/a/262593
 #}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 {%- if macos.security is defined and macos.security.filevault_evict_keys_standby is defined %}
-  {%- if macos.security.filevault_evict_keys_standby %}
+{%-   if macos.security.filevault_evict_keys_standby %}
 
-    {#- This wall of ifs tries to protect from misconfiguration of this formula.
+{#-     This wall of ifs tries to protect from misconfiguration of this formula.
         Destroying filevault keys on standby only makes sense when RAM is not
         powered during standby. -#}
-    {%- set hibernatemode_managed_and_wrong = None %}
-    {%- if macos.power is defined %}
-      {%- for scope, settings in macos.power %}
-        {%- if 'hibernatemode' in settings.keys() | map('lower') %}
-          {%- if '25' == str(settings.get('hibernatemode')) %}
-            {#- force lowercase hibernatemode to be sure #}
-            {%- set hibernatemode_managed_and_wrong = False %}
-          {%- else %}
-            {%- set hibernatemode_managed_and_wrong = True %}
-          {%- endif %}
-        {%- endif %}
-      {%- endfor %}
-    {%- endif %}
+{%-     set hibernatemode_managed_and_wrong = None %}
+{%-     if macos.power is defined %}
+{%-       for scope, settings in macos.power %}
+{%-         if "hibernatemode" in settings.keys() | map("lower") %}
+{%-           if "25" == str(settings.get("hibernatemode")) %}
+{#-             force lowercase hibernatemode to be sure #}
+{%-             set hibernatemode_managed_and_wrong = False %}
+{%-           else %}
+{%-             set hibernatemode_managed_and_wrong = True %}
+{%-           endif %}
+{%-         endif %}
+{%-       endfor %}
+{%-     endif %}
 
-    {%- if hibernatemode_managed_and_wrong is not sameas None %}
+{%-     if hibernatemode_managed_and_wrong is not sameas None %}
 Hibernatemode is managed and checked:
-  test.{{ 'fail_without_changes' if hibernatemode_managed_and_wrong else 'nop' }}:
-    - name: {{  'You specified hibernatemode in macos.power settings, but the value' ~
-                ' is different than what is needed for destroyfvkeyonstandby.' if hibernatemode_managed_and_wrong
-              else 'Hibernatemode is managed, but not in conflict.' }}
-    {%- endif %}
+  test.{{ "fail_without_changes" if hibernatemode_managed_and_wrong else "nop" }}:
+    - name: {{  "You specified hibernatemode in macos.power settings, but the value" ~
+                " is different than what is needed for destroyfvkeyonstandby." if hibernatemode_managed_and_wrong
+              else "Hibernatemode is managed, but not in conflict." }}
+{%-     endif %}
 
 RAM is not powered during standby:
   pmset.set:
     - name: hibernatemode
     - value: 25
-    {%- if hibernatemode_managed_and_wrong is not sameas None %}
+{%-     if hibernatemode_managed_and_wrong is not sameas None %}
     - require:
       - Hibernatemode is managed and checked
-    {%- endif %}
+{%-     endif %}
 
 FileVault keys are destroyed when going to hibernate:
   pmset.set:
@@ -108,11 +110,11 @@ FileVault keys are destroyed when going to hibernate:
 #         standbydelaylow: 0   # surpassed standbydelay in Mojave
 #         autopoweroff: 0
 
-  {%- else %}
+{%-   else %}
 
 FileVault keys are not destroyed when going to hibernate:
   pmset.set:
     - name: destroyfvkeyonstandby
     - value: 0
-  {%- endif %}
+{%-   endif %}
 {%- endif %}

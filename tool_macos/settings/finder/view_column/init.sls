@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 {#-
     Customizes default Finder Column View settings for all folders.
 
@@ -44,17 +46,17 @@
 
     References:
         * https://github.com/joeyhoer/starter/blob/master/apps/finder.sh
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.finder', 'defined') | selectattr('macos.finder.view_column', 'defined') %}
-  {%- from tpldir ~ '/map.jinja' import user_settings with context %}
+{%- for user in macos.users | selectattr("macos.finder", "defined") | selectattr("macos.finder.view_column", "defined") %}
+{%-   from tpldir ~ "/map.jinja" import user_settings with context %}
 
 Default Column View settings are customized for user {{ user.name }}:
   macosdefaults.update:

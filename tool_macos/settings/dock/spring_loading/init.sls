@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 {#-
     Customizes drag hover behavior of all dock tiles (spring loading).
 
@@ -6,16 +8,16 @@
 
     References:
         https://macos-defaults.com/misc/enable-spring-load-actions-on-all-items.html
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.dock', 'defined') | selectattr('macos.dock.spring_loading', 'defined') %}
+{%- for user in macos.users | selectattr("macos.dock", "defined") | selectattr("macos.dock.spring_loading", "defined") %}
 
 Dock tile drag hover behavior (spring loading) is managed for user {{ user.name }}:
   macosdefaults.write:

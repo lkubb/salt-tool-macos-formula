@@ -1,9 +1,9 @@
 {%- set u = user.macos.mail.poll %}
 
-{%- set status = {'auto': True, 'time': -1} %}
+{%- set status = {"auto": True, "time": -1} %}
 
-{%- if u is string and 'manual' == u %}
-  {%- set status = {'auto': False, 'time': 0} %}
+{%- if u is string and "manual" == u %}
+{%-   set status = {"auto": False, "time": 0} %}
 {%- elif u is integer %}
-  {%- do status.update({'time': u}) %}
+{%-   do status.update({"time": u}) %}
 {%- endif %}

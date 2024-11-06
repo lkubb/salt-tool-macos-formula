@@ -1,12 +1,12 @@
 {%- set u = user.macos.touch %}
-{%- from salt["file.dirname"](tpldir) ~ '/three/map.jinja' import three_finger_conflicts with context %}
+{%- from salt["file.dirname"](tpldir) ~ "/three/map.jinja" import three_finger_conflicts with context %}
 
-{%- set status = False %}
+{%- set status = false %}
 
-{%- if u.get('swipe_fullscreen') %}
-  {%- if 'four' == u.get('swipe_fullscreen') or three_finger_conflicts %}
-    {%- set status = 2 %}
-  {%- else %}
-    {%- set status = 0 %}
-  {%- endif %}
+{%- if u.get("swipe_fullscreen") %}
+{%-   if u.get("swipe_fullscreen") ==  "four" or three_finger_conflicts %}
+{%-     set status = 2 %}
+{%-   else %}
+{%-     set status = 0 %}
+{%-   endif %}
 {%- endif %}

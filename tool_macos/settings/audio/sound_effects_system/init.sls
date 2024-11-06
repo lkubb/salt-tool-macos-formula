@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 {#-
     Customizes system UI sound effect behavior.
 
@@ -11,16 +13,16 @@
     References:
         * https://github.com/joeyhoer/starter/blob/master/system/sound.sh
         * https://discussions.apple.com/thread/253125795
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.audio', 'defined') | selectattr('macos.audio.sound_effects_system', 'defined') %}
+{%- for user in macos.users | selectattr("macos.audio", "defined") | selectattr("macos.audio.sound_effects_system", "defined") %}
 
 System sound effect status is managed for user {{ user.name }}:
   macosdefaults.write:

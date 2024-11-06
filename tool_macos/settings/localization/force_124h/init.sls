@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 {#-
     Customizes forcing of 12h / 24h format.
 
@@ -6,17 +8,17 @@
 
           * 12h
           * 24h
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.localization', 'defined') | selectattr('macos.localization.force_124h', 'defined') %}
-  {%- set twelve = user.macos.localization.force_124h == '12h' %}
+{%- for user in macos.users | selectattr("macos.localization", "defined") | selectattr("macos.localization.force_124h", "defined") %}
+  {%- set twelve = user.macos.localization.force_124h == "12h" %}
 
 Time format forcing is managed for user {{ user.name }}:
   macosdefaults.write:

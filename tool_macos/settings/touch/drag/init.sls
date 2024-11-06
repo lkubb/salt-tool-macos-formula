@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 {#-
     Customizes three finger drag touch gesture activation status.
 
@@ -7,9 +9,9 @@
     .. note::
 
         Tap to click needs to be active as well for this to be active.
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
@@ -18,7 +20,7 @@ include:
   - ..multi_helper.three
   - ..tap_to_click
 
-{%- for user in macos.users | selectattr('macos.touch', 'defined') | selectattr('macos.touch.drag', 'defined') %}
+{%- for user in macos.users | selectattr("macos.touch", "defined") | selectattr("macos.touch.drag", "defined") %}
 
 Three finger drag gesture on internal trackpad is managed for user {{ user.name }}:
   macosdefaults.write:

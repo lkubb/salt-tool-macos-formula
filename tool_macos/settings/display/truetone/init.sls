@@ -1,18 +1,20 @@
+# vim: ft=sls
+
 {#-
     Customizes TrueTone behavior.
 
     Values:
         - bool [default: true]
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.display', 'defined') | selectattr('macos.display.truetone', 'defined') %}
+{%- for user in macos.users | selectattr("macos.display", "defined") | selectattr("macos.display.truetone", "defined") %}
 
 TrueTone is customized for user {{ user.name }}:
   macosdefaults.set:

@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 In Activity Monitor, sort by CPU usage:
   macdefaults.write:
     - domain: com.apple.ActivityMonitor

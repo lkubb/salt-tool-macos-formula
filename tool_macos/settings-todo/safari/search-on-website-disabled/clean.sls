@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 Safari searches on the current website (Quick Website Search):
   macdefaults.write:
     - domain: com.apple.Safari

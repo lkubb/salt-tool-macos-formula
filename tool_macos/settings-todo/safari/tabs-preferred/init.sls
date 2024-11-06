@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 Safari opens sites in new tabs instead of new windows:
   macdefaults.write:
     - domain: com.apple.Safari

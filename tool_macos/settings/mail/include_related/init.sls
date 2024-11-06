@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 {#-
     Customizes whether to include related messages in conversation view.
 
@@ -7,16 +9,16 @@
 
     Values:
         - bool [default: true]
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.mail', 'defined') | selectattr('macos.mail.include_related', 'defined') %}
+{%- for user in macos.users | selectattr("macos.mail", "defined") | selectattr("macos.mail.include_related", "defined") %}
 
 Include related messages in conversation view setting in Mail.app is managed for user {{ user.name }}:
   macosdefaults.write:

@@ -1,10 +1,12 @@
+# vim: ft=sls
+
 {#-
     Resets IPv6 availability on all interfaces to default (automatic).
 
     Values: bool [default: true]
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
@@ -12,7 +14,6 @@ include:
   - {{ tplroot }}._require
 
 {%- if macos.security is defined and macos.security.ip6 is defined %}
-  {%- set m = macos.security.ip6 %}
 
 IPv6 availability on all interfaces is reset to default (automatic):
   cmd.run:

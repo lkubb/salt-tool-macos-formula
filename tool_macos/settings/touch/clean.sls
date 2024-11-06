@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 include:
   - .app_expose.clean
   - .drag.clean

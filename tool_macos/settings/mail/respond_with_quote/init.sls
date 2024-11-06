@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 {#-
     Customizes whether to quote the original mail when sending a reply.
 
@@ -7,9 +9,9 @@
 
     Values:
         - bool [default: true]
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
@@ -18,7 +20,7 @@ include:
 
 {#- The other setting ("Increase quote level") is mapped to SupressQuoteBarsInComposeWindows INVERTED.
     @TODO #}
-{%- for user in macos.users | selectattr('macos.mail', 'defined') | selectattr('macos.mail.respond_with_quote', 'defined') %}
+{%- for user in macos.users | selectattr("macos.mail", "defined") | selectattr("macos.mail.respond_with_quote", "defined") %}
 
 Quote original message setting in Mail.app is managed for user {{ user.name }}:
   macosdefaults.write:

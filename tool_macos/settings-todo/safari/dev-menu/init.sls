@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 Safari's Developer menu is enabled:
   macdefaults.write:
     - domain: com.apple.Safari

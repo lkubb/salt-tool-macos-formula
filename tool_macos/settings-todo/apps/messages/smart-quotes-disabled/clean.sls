@@ -1,7 +1,9 @@
+# vim: ft=sls
+
 Messages 'smartly' substitutes quotes:
   macdefaults.write:
     - domain: com.apple.messageshelper.MessageController
     - name: SOInputLineSettings
-    - value: True
+    - value: true
     - vtype: dict-add automaticQuoteSubstitutionEnabled -bool
     - user: {{ user.name }}

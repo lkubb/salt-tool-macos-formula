@@ -1,8 +1,10 @@
+# vim: ft=sls
+
 {#-
     Animation Settings
 
     Manage activation status and duration of animations system-wide.
--#}
+#}
 
 include:
   - .cursor_blinking

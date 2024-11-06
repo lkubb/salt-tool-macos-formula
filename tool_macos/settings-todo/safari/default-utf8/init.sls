@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 Safari defaults to UTF-8 encoding:
   macdefaults.write:
     - domain: com.apple.Safari

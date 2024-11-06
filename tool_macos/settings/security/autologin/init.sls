@@ -1,11 +1,13 @@
+# vim: ft=sls
+
 {#-
     Customizes automatic login.
 
     Values:
         - false or string [= username. default: false]
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
@@ -13,10 +15,10 @@ include:
   - {{ tplroot }}._require
 
 {%- if macos.security is defined and macos.security.autologin is defined %}
-  {%- set m = macos.security.autologin %}
+{%-   set m = macos.security.autologin %}
 
 Automatic login is managed:
-  macosdefaults.{{ 'absent' if not m else 'write' }}:
+  macosdefaults.{{ "absent" if not m else "write" }}:
     # automatic discovery does not work with files in /Library/Preferences
     # because root preferences are in /var/root/Library/Preferences
     - domain: /Library/Preferences/com.apple.loginwindow

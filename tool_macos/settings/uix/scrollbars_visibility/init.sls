@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 {#-
     Customizes when scrollbars are visible.
 
@@ -7,9 +9,9 @@
           * always
           * automatic
           * when_scrolling
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
@@ -17,17 +19,17 @@ include:
   - {{ tplroot }}._require
 
 {%- set options = {
-  'always': 'Always',
-  'automatic': 'Automatic',
-  'when_scrolling': 'WhenScrolling'
-  } %}
+      "always": "Always",
+      "automatic": "Automatic",
+      "when_scrolling": "WhenScrolling",
+} %}
 
-{%- for user in macos.users | selectattr('macos.uix', 'defined') | selectattr('macos.uix.scrollbars_visibility', 'defined') %}
+{%- for user in macos.users | selectattr("macos.uix", "defined") | selectattr("macos.uix.scrollbars_visibility", "defined") %}
 
 Scrollbars visibility setting is managed for user {{ user.name }}:
   macosdefaults.write:
     - name: AppleShowScrollBars # in NSGlobalDomain
-    - value: {{ options.get(user.macos.uix.scrollbars_visibility, 'Automatic') }}
+    - value: {{ options.get(user.macos.uix.scrollbars_visibility, "Automatic") }}
     - vtype: string
     - user: {{ user.name }}
     - require:

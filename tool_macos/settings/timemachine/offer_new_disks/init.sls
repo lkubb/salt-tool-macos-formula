@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 {#-
     Customizes Time Machine behavior when connecting an unknown disk.
 
@@ -8,9 +10,9 @@
 
     Values:
         - bool [default: true]
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:

@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 {#-
     Customizes automatic update settings.
 
@@ -24,7 +26,7 @@
     References:
         * https://developer.apple.com/documentation/devicemanagement/softwareupdate
         * https://derflounder.wordpress.com/2019/10/10/enable-automatic-macos-and-app-store-updates-on-macos-catalina-with-a-profile/
--#}
+#}
 
 {#- com.apple.appstore should have
         DisableSoftwareUpdateNotifications
@@ -34,7 +36,7 @@
         restrict-store-softwareupdate-only
 #}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
@@ -42,7 +44,7 @@ include:
   - {{ tplroot }}._require
 
 {%- if macos.security is defined and macos.security.autoupdate is defined %}
-  {%- from tpldir ~ '/map.jinja' import system_settings, appstore_setting with context %}
+{%-   from tpldir ~ "/map.jinja" import system_settings, appstore_setting with context %}
 
 Automatic system update settings are managed:
   macosdefaults.write:
@@ -50,16 +52,16 @@ Automatic system update settings are managed:
     # because root preferences are in /var/root/Library/Preferences
     - domain: /Library/Preferences/com.apple.SoftwareUpdate
     - names:
-  {%- for setting, value in system_settings.items() if setting != 'ScheduleFrequency' %}
+{%-   for setting, value in system_settings.items() if setting != "ScheduleFrequency" %}
         - {{ setting }}:
             - value: {{ value | to_bool }}
             - vtype: bool
-  {%- endfor %}
-  {%- if system_settings.get('ScheduleFrequency') %}
+{%-   endfor %}
+{%-   if system_settings.get("ScheduleFrequency") %}
         - ScheduleFrequency:
             - value: {{ system_settings.ScheduleFrequency | int }}
             - vtype: int
-  {%- endif %}
+{%-   endif %}
     - user: root
     - require:
       - System Preferences is not running

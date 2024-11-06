@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 Safari does not automatically open downloaded files it deems safe:
   macdefaults.write:
     - domain: com.apple.Safari

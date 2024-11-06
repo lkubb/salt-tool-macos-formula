@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 {#-
     Checks if the root user is disabled.
 
@@ -11,9 +13,9 @@
 
     References:
         * https://unix.stackexchange.com/questions/232491/how-to-test-if-root-user-is-enabled-in-mac
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 {%- if macos.security is defined and macos.security.root_disabled_check is defined and macos.security.root_disabled_check %}

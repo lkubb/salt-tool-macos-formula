@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 Safari history is not cleared automatically:
   macdefaults.write:
     - domain: com.apple.Safari

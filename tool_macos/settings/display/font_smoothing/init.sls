@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 {#-
     Sets global font smoothing behavior.
 
@@ -19,9 +21,9 @@
         * https://tonsky.me/blog/monitors/#turn-off-font-smoothing
         * https://github.com/bouncetechnologies/Font-Smoothing-Adjuster
         * https://github.com/kevinSuttle/macOS-Defaults/issues/17
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
@@ -29,15 +31,16 @@ include:
   - {{ tplroot }}._require
 
 {%- set options = {
-  'disabled': 0,
-  'light': 1,
-  'medium': 2,
-  'heavy': 3,
-  'default': 2
-  } %}
+      "disabled": 0,
+      "light": 1,
+      "medium": 2,
+      "heavy": 3,
+      "default": 2,
+    }
+%}
 
-{%- for user in macos.users | selectattr('macos.display', 'defined') | selectattr('macos.display.font_smoothing', 'defined') %}
-  {%- set value = user.macos.display.font_smoothing if user.macos.display.font_smoothing is integer
+{%- for user in macos.users | selectattr("macos.display", "defined") | selectattr("macos.display.font_smoothing", "defined") %}
+{%-   set value = user.macos.display.font_smoothing if user.macos.display.font_smoothing is integer
              else options.get(user.macos.display.font_smoothing, 2) %}
 
 Global font smoothing is set to custom value for user {{ user.name }}:

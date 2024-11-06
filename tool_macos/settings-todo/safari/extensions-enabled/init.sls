@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 Safari allows installing extensions:
   macdefaults.write:
     - domain: com.apple.Safari

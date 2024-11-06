@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 {#-
     Customizes activation status of reply animation.
 
@@ -7,16 +9,16 @@
 
     Values:
         - bool [default: true]
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.mail', 'defined') | selectattr('macos.mail.animation_reply', 'defined') %}
+{%- for user in macos.users | selectattr("macos.mail", "defined") | selectattr("macos.mail.animation_reply", "defined") %}
 
 Activation status of reply animation in Mail.app is managed for user {{ user.name }}:
   macosdefaults.write:

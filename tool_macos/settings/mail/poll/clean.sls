@@ -1,16 +1,18 @@
+# vim: ft=sls
+
 {#-
     Resets Mail.app polling behavior to default (auto).
     Needs Full Disk Access to work.
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.mail', 'defined') | selectattr('macos.mail.poll', 'defined') %}
+{%- for user in macos.users | selectattr("macos.mail", "defined") | selectattr("macos.mail.poll", "defined") %}
 
 Polling behavior of Mail.app is reset to default (auto) for user {{ user.name }}:
   macosdefaults.absent:

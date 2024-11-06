@@ -1,19 +1,21 @@
+# vim: ft=sls
+
 {#- @internal
     Helper for enabling/disabling three finger gestures.
     This is needed for App Exposé and Mission Control gestures,
     swiping between pages with three fingers and
     three finger drag.
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.touch', 'defined') %}
-  {%- from tpldir ~ '/map.jinja' import status with context %}
+{%- for user in macos.users | selectattr("macos.touch", "defined") %}
+{%-   from tpldir ~ "/map.jinja" import status with context %}
 
 Three finger swipe on USB trackpads is managed for user {{ user.name }}:
   macosdefaults.write:

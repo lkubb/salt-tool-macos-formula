@@ -1,15 +1,17 @@
+# vim: ft=sls
+
 {#-
     Resets behavior when all print jobs are finished to default (queue keeps running).
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.behavior', 'defined') | selectattr('macos.behavior.printqueue_autoquit', 'defined') %}
+{%- for user in macos.users | selectattr("macos.behavior", "defined") | selectattr("macos.behavior.printqueue_autoquit", "defined") %}
 
 Behavior when all print jobs are finished is reset to default for user {{ user.name }}:
   macosdefaults.absent:

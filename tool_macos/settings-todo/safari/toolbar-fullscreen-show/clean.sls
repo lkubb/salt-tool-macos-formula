@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 Safari autohides the toolbar in fullscreen mode:
   macdefaults.write:
     - domain: com.apple.Safari

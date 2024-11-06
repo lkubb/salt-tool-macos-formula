@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 GPGMail 2 encrypts mails if receiver's key is present:
   macdefaults.write:
     - domain: org.gpgtools.gpgmail

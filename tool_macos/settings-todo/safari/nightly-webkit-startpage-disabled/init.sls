@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 Webkit Nightly startpage is disabled:
   macdefaults.write:
     - domain: org.webkit.nightly.WebKit

@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 Safari saves downloads to custom path:
   macdefaults.write:
     - domain: com.apple.Safari

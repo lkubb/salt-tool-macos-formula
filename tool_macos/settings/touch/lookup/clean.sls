@@ -1,15 +1,17 @@
+# vim: ft=sls
+
 {#-
     Resets lookup touch gesture to default (enabled, force click).
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.touch', 'defined') | selectattr('macos.touch.lookup', 'defined') %}
+{%- for user in macos.users | selectattr("macos.touch", "defined") | selectattr("macos.touch.lookup", "defined") %}
 
 Three finger tap to trigger lookup on internal trackpad is reset to default (disabled) for user {{ user.name }}:
   macosdefaults.absent:

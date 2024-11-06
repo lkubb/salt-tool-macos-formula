@@ -1,15 +1,17 @@
+# vim: ft=sls
+
 {#-
     Resets volume change feedback sound effect behavior to default (disabled).
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.audio', 'defined') | selectattr('macos.audio.sound_effect_volumechange', 'defined') %}
+{%- for user in macos.users | selectattr("macos.audio", "defined") | selectattr("macos.audio.sound_effect_volumechange", "defined") %}
 
 Volume change feedback sound effect is reset to default for user {{ user.name }}:
   macosdefaults.absent:

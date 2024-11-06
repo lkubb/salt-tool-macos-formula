@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 {#-
     Customizes audio device settings. Currently only adds
     default settings for specific devices. @TODO preferred_devices
@@ -15,9 +17,9 @@
         - "device.AppleUSBAudioEngine:Native Instruments:Komplete Audio 6 MK2:ABCD1EF2:1,2":
             output.stereo.left: 5
             output.stereo.right: 6
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
@@ -32,10 +34,10 @@ Audio devices are managed:
     # because root preferences are in /var/root/Library/Preferences
     - domain: /Library/Preferences/Audio/com.apple.audio.SystemSettings
     - names:
-  {%- for uid, settings in macos.audio.devices.items() %}
+{%-   for uid, settings in macos.audio.devices.items() %}
         - {{ uid }}:
             - value: {{ settings | json }}
-  {%- endfor %}
+{%-   endfor %}
     - user: root
     - require:
       - System Preferences is not running

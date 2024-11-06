@@ -1,8 +1,10 @@
+# vim: ft=sls
+
 {#-
     Resets state of sending analytics and crash reports to default (enabled?).
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:

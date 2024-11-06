@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 Safari hides full URL:
   macdefaults.write:
     - domain: com.apple.Safari

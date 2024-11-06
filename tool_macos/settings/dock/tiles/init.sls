@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 {#-
     Customizes dock tiles (items).
 
@@ -75,45 +77,45 @@
             - /Users/user/Documents       # defaults: stack + auto + added. label: Documents.
             - flex-spacer
             - https://www.github.com      # urls can be added as well
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
   - {{ tplroot }}._onchanges
   - {{ tplroot }}._require
 
-{%- for user in macos.users | selectattr('macos.dock', 'defined') | selectattr('macos.dock.tiles', 'defined') %}
-  {%- from tpldir ~ '/map.jinja' import user_settings with context %}
-  {#- appending is currently not supported, need to fix macosdefaults.append A LOT #}
-  {#- set sync = user.macos.dock.tiles.get('sync', False) #}
-  {%- set sync = True %}
+{%- for user in macos.users | selectattr("macos.dock", "defined") | selectattr("macos.dock.tiles", "defined") %}
+{%-   from tpldir ~ "/map.jinja" import user_settings with context %}
+{#-   appending is currently not supported, need to fix macosdefaults.append A LOT #}
+{#-   set sync = user.macos.dock.tiles.get("sync", False) #}
+{%-   set sync = True %}
 
 Dock items are customized for user {{ user.name }}:
-  macosdefaults.{{ 'write' if sync else 'extend' }}:
+  macosdefaults.{{ "write" if sync else "extend" }}:
     - domain: com.apple.dock
     - names:
-  {%- if user_settings.persistent_apps %}
+{%-   if user_settings.persistent_apps %}
         - persistent-apps:
           - value: {{ user_settings.persistent_apps | json }}
-    {%- if sync %}
+{%-     if sync %}
           - vtype: list
-    {%- endif %}
-  {%- endif %}
-  {%- if user_settings.persistent_others %}
+{%-     endif %}
+{%-   endif %}
+{%-   if user_settings.persistent_others %}
         - persistent-others:
           - value: {{ user_settings.persistent_others | json }}
-    {%- if sync %}
+{%-     if sync %}
           - vtype: list
-    {%- endif %}
-  {%- endif %}
-  {%- if not sync %}
+{%-     endif %}
+{%-   endif %}
+{%-   if not sync %}
     - skeleton:
         persistent-apps: []
         persistent-others: []
         version: 1
-  {%- endif %}
+{%-   endif %}
     - user: {{ user.name }}
     - require:
       - System Preferences is not running

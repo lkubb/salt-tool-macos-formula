@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 {#-
     Customizes availability of Touch ID and pam_reattach for sudo authentication.
 
@@ -22,27 +24,27 @@
         * https://derflounder.wordpress.com/2017/11/17/enabling-touch-id-authorization-for-sudo-on-macos-high-sierra/
         * https://akrabat.com/add-touchid-authentication-to-sudo/
         * https://github.com/fabianishere/pam_reattach
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 {%- if macos.security is defined and macos.security.sudo_touchid is defined %}
-  {%- set m = macos.security.sudo_touchid %}
-  {%- if m is mapping %}
-    {%- set enabled, reattach = (m.get('enabled', False), m.get('pam_reattach', False)) %}
-  {%- else %}
-    {%- set enabled, reattach = (m | to_bool, False) %}
-  {%- endif %}
-  {%- set libpam_pre = macos.lookup.brew_prefix ~ '/lib/pam/'
+{%-   set m = macos.security.sudo_touchid %}
+{%-   if m is mapping %}
+{%-     set enabled, reattach = (m.get('enabled', False), m.get('pam_reattach', False)) %}
+{%-   else %}
+{%-     set enabled, reattach = (m | to_bool, False) %}
+{%-   endif %}
+{%-   set libpam_pre = macos.lookup.brew_prefix ~ '/lib/pam/'
                     if macos.lookup.brew_prefix is not sameas '/usr/local' else '' %}
 
-  {%- if reattach %}
+{%-   if reattach %}
 
 pam_reattach is installed:
   pkg.installed:
     - name: pam-reattach
-  {%- endif %}
+{%-   endif %}
 
 Availability of Touch ID and pam_reattach for sudo authentication is managed:
   file.blockreplace:
@@ -59,9 +61,8 @@ Availability of Touch ID and pam_reattach for sudo authentication is managed:
         # nothing to see here
 {%- endif %}
     - insert_after_match: 'sufficient'
-  {%- if reattach %}
+{%-   if reattach %}
     - require:
         - pam_reattach is installed
-  {%- endif %}
-
+{%-   endif %}
 {%- endif %}

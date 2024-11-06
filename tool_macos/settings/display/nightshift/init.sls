@@ -1,3 +1,5 @@
+# vim: ft=sls
+
 {#-
     Customizes NightShift behavior.
 
@@ -30,9 +32,9 @@
         * https://web.archive.org/web/20200316123016/https://github.com/aethys256/notes/blob/master/macOS_defaults.md
         * https://www.reddit.com/r/osx/comments/6334ac/toggling_night_shift_from_script/
         * https://github.com/LukeChannings/dotfiles/blob/main/install.macos#L418-L438
--#}
+#}
 
-{%- set tplroot = tpldir.split('/')[0] -%}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as macos %}
 
 include:
@@ -41,8 +43,8 @@ include:
 
 # This might need to actually use defaults, not skeleton (?) @FIXME
 
-{%- for user in macos.users | selectattr('macos.display', 'defined') | selectattr('macos.display.nightshift', 'defined') %}
-  {%- from tpldir ~ '/map.jinja' import user_settings with context %}
+{%- for user in macos.users | selectattr("macos.display", "defined") | selectattr("macos.display.nightshift", "defined") %}
+{%-   from tpldir ~ "/map.jinja" import user_settings with context %}
 
 NightShift is customized for user {{ user.name }}:
   macosdefaults.update:
