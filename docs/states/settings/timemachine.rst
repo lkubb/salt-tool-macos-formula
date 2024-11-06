@@ -3,6 +3,9 @@ Timemachine
 
 The following states are found in settings.timemachine:
 
+.. contents::
+   :local:
+
 
 backup_on_battery
 -----------------

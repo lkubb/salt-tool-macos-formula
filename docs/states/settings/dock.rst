@@ -3,6 +3,9 @@ Dock
 
 The following states are found in settings.dock:
 
+.. contents::
+   :local:
+
 
 autohide
 --------

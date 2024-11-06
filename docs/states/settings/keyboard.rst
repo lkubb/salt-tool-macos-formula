@@ -3,6 +3,9 @@ Keyboard
 
 The following states are found in settings.keyboard:
 
+.. contents::
+   :local:
+
 
 brightness_adjustment
 ---------------------

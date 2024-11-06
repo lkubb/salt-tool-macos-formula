@@ -3,6 +3,9 @@ Mail
 
 The following states are found in settings.mail:
 
+.. contents::
+   :local:
+
 
 accounts
 --------

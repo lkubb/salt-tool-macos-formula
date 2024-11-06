@@ -3,6 +3,9 @@ Touch
 
 The following states are found in settings.touch:
 
+.. contents::
+   :local:
+
 
 app_expose
 ----------

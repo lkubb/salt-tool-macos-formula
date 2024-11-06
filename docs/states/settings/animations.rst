@@ -3,6 +3,9 @@ Animation Settings
 
 Manage activation status and duration of animations system-wide.
 
+.. contents::
+   :local:
+
 
 cursor_blinking
 ---------------

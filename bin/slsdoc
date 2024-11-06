@@ -42,14 +42,14 @@ default_header = "Available States"
 header = ""
   # Description, overrides everything
 description = ""
-  # Default description, when init.sls is empty
-default_description = """
+description_template = """\
+{text}
+
 .. contents::
    :local:
 """
-  # Always append default description, regardless of
-  # presence in init.sls
-always_include_default_description = false
+  # Default description text, when init.sls is empty
+default_description = "The following states are found in {where}:"
   # Character to use to underline main headings
 main_heading_char = "="
   # Character to use to underline sub headings
@@ -79,7 +79,9 @@ cut_prefix = true
 include_formula_root = false
 '''
 
+import copy
 import re
+import textwrap
 from pathlib import Path
 
 import toml
@@ -330,13 +332,15 @@ class Renderer:
     """
 
     _default_opts = {
-        "default_description": """\
-The following states are found in {where}:
+        "description_template": textwrap.dedent(
+            """
+            {text}
 
-.. contents::
-   :local:
-""",
-        "always_include_default_description": False,
+            .. contents::
+               :local:
+            """
+        ).lstrip("\n"),
+        "default_description": "The following states are found in {where}:",
         "default_header": "Available States",
         "main_heading_char": "=",
         "sub_heading_char": "-",
@@ -424,20 +428,16 @@ The following states are found in {where}:
         2. If a description was specified in opts, return that.
         3. general description
         """
-
-        def get_default_desc():
-            return self.opts["default_description"].format(
-                where=".".join(self.prefix) if self.prefix else "this formula"
-            )
-
+        variables = {
+            "where": ".".join(self.prefix) if self.prefix else "this formula",
+        }
         if desc := self.opts.get("description"):
-            return desc
-        if main := states.lookup(self.prefix + ("init",)):
+            desc = desc.format(**variables)
+        elif (main := states.lookup(self.prefix + ("init",))) and main.comment:
             desc = main.comment
-            if self.opts.get("always_include_default_description"):
-                desc += "\n" + get_default_desc()
-            return desc
-        return get_default_desc()
+        else:
+            desc = self.opts["default_description"].format(**variables)
+        return self.opts["description_template"].format(text=desc, **variables)
 
     def _write_header(self, states):
         """
@@ -556,6 +556,12 @@ class DepthRenderer(Renderer):
     default_opts = {
         # maxdepth for generated index.rst files
         "index_maxdepth": 4,
+        # description template for index files only
+        "description_template": textwrap.dedent(
+            """
+            {text}
+            """
+        ).strip("\n"),
         "single_opts": {
             "init": True,
             "init_suffix": False,
@@ -575,8 +581,14 @@ class DepthRenderer(Renderer):
     ):
         self.max_depth = max_depth
         self.delegate = delegate_cls or SingleRenderer
+        opts = copy.deepcopy(self.default_opts)
+        for kwarg, val in kwargs.items():
+            if kwarg in opts and isinstance(opts[kwarg], dict):
+                opts[kwarg].update(val)
+            else:
+                opts[kwarg] = val
         super().__init__(
-            target=target, basedir=basedir, opts=self.default_opts | (kwargs or {})
+            target=target, basedir=basedir, opts=opts
         )
 
     def render(self, states):
@@ -660,6 +672,10 @@ class DepthRenderer(Renderer):
             if "_index" in indices[sub]:
                 new_prefix = prefix + (sub,)
                 self._render_index(states, indices[sub], new_prefix)
+
+    def _ensurepath(self, path):
+        if not path.is_dir():
+            path.mkdir(parents=True)
 
     def _get_target(self, prefix):
         target_prefix = Path("/".join(prefix))
@@ -776,7 +792,7 @@ if __name__ == "__main__":
     if renderer == "single":
         rend = SingleRenderer(**options.get("single_renderer", {}))
     elif renderer == "depth":
-        rend = DepthRenderer(**options.get("depth_renderer", {}), opts=options.get("single_renderer"))
+        rend = DepthRenderer(**options.get("depth_renderer", {}), single_opts=options.get("single_renderer", {}))
     else:
         raise ValueError(f"Invalid value for renderer: {renderer}")
 

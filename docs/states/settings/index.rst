@@ -4,7 +4,6 @@ Settings
 The following states are found in settings:
 
 
-
 .. toctree::
    :maxdepth: 4
    :caption: Contents:

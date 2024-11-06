@@ -3,6 +3,9 @@ Bluetooth
 
 The following states are found in settings.bluetooth:
 
+.. contents::
+   :local:
+
 
 enabled
 -------

@@ -3,6 +3,9 @@ Security
 
 The following states are found in settings-deprecated.security:
 
+.. contents::
+   :local:
+
 
 ir_receiver
 -----------
@@ -32,5 +35,10 @@ It is still manageable with a configuration profile.
 Values:
   require: bool [default: true]
   delay: int [in seconds, default: 0]
+
+
+swap-encryption-disabled
+------------------------
+
 
 

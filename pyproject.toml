@@ -21,26 +21,13 @@ sphinx-rtd-theme = "^1.0.0"
 sphinxcontrib-fulltoc = "^1.2.0"
 
 [tool.slsdoc]
+ignore = ["_mapdata", "_onchanges", "_require"]
 include_empty = true
 renderer = "depth"
 
 [tool.slsdoc.depth_renderer]
 max_depth = 1
 target = "docs/states"
-
-[tool.slsdoc.single_renderer]
-header = "Available states"
-description = """\
-The following states are found in this formula:
-
-.. contents::
-   :local:
-"""
-main_heading_char = "-"
-sub_heading_char = "~"
-literal_sub_heading = true
-clean = false
-cut_prefix = true
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

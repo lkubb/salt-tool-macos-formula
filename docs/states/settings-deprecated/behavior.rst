@@ -3,6 +3,9 @@ Behavior
 
 The following states are found in settings-deprecated.behavior:
 
+.. contents::
+   :local:
+
 
 quarantine-notification-hidden
 ------------------------------

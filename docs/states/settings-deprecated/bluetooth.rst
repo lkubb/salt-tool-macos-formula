@@ -3,6 +3,9 @@ Bluetooth
 
 The following states are found in settings-deprecated.bluetooth:
 
+.. contents::
+   :local:
+
 
 bluetooth-bitpool
 -----------------

@@ -3,6 +3,9 @@ Security
 
 The following states are found in settings.security:
 
+.. contents::
+   :local:
+
 
 airdrop_disabled
 ----------------

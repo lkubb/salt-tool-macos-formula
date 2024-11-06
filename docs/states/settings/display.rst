@@ -3,6 +3,9 @@ Display
 
 The following states are found in settings.display:
 
+.. contents::
+   :local:
+
 
 antialias_subpixel
 ------------------

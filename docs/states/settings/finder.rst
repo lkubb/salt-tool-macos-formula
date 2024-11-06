@@ -3,6 +3,9 @@ Finder
 
 The following states are found in settings.finder:
 
+.. contents::
+   :local:
+
 
 airdrop_extended
 ----------------

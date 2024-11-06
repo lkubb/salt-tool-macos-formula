@@ -11,10 +11,10 @@ from salt.exceptions import CommandExecutionError
 
 try:
     # those are needed in the shim that is needed to switch to different users
-    import objc
     import AppKit
+    import objc
     from Foundation import NSURL, NSArray
-    from UniformTypeIdentifiers import UTType, UTTagClassFilenameExtension
+    from UniformTypeIdentifiers import UTTagClassFilenameExtension, UTType
 
     LIBS_AVAILABLE = True
 except ImportError:

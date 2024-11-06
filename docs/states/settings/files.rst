@@ -3,6 +3,9 @@ Files
 
 The following states are found in settings.files:
 
+.. contents::
+   :local:
+
 
 default_handlers
 ----------------

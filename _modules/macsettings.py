@@ -5,11 +5,11 @@
 # https://github.com/Homebrew/homebrew-core/pull/52835#issuecomment-617502578
 
 try:
-    import objc
-    import CoreFoundation
     import AppKit
-    from UniformTypeIdentifiers import UTType, UTTagClassFilenameExtension
+    import CoreFoundation
+    import objc
     from Foundation import NSURL
+    from UniformTypeIdentifiers import UTTagClassFilenameExtension, UTType
 
     LIBS_AVAILABLE = True
 except ImportError:

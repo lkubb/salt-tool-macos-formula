@@ -3,6 +3,9 @@ Uix
 
 The following states are found in settings.uix:
 
+.. contents::
+   :local:
+
 
 colors
 ------

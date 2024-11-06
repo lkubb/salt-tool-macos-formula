@@ -3,6 +3,9 @@ Menubar
 
 The following states are found in settings.menubar:
 
+.. contents::
+   :local:
+
 
 accessibility
 -------------

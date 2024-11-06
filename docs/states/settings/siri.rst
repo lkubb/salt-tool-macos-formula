@@ -3,6 +3,9 @@ Siri
 
 The following states are found in settings.siri:
 
+.. contents::
+   :local:
+
 
 enabled
 -------

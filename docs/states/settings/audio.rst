@@ -3,6 +3,9 @@ Audio
 
 The following states are found in settings.audio:
 
+.. contents::
+   :local:
+
 
 boot_sound
 ----------

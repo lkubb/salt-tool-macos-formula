@@ -3,6 +3,9 @@ Privacy
 
 The following states are found in settings.privacy:
 
+.. contents::
+   :local:
+
 
 allow_targeted_ads
 ------------------

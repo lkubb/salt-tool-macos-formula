@@ -3,6 +3,9 @@ Behavior
 
 The following states are found in settings.behavior:
 
+.. contents::
+   :local:
+
 
 confirm_on_close
 ----------------

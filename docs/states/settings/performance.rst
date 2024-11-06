@@ -3,6 +3,9 @@ Performance
 
 The following states are found in settings.performance:
 
+.. contents::
+   :local:
+
 
 app_nap
 -------

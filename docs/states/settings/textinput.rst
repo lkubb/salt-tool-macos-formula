@@ -3,6 +3,9 @@ Textinput
 
 The following states are found in settings.textinput:
 
+.. contents::
+   :local:
+
 
 autocapitalization
 ------------------

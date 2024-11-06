@@ -3,6 +3,9 @@ Localization
 
 The following states are found in settings.localization:
 
+.. contents::
+   :local:
+
 
 force_124h
 ----------

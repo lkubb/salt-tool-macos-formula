@@ -28,4 +28,7 @@ References:
     * https://en.wikipedia.org/wiki/Pmset
     * https://apple.stackexchange.com/a/262593
 
+.. contents::
+   :local:
+
 
