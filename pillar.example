@@ -6,11 +6,8 @@
 # settings which can be set in many different ways, not only
 # by providing pillar values.
 # The different sources will be merged. For further information,
-# please see the docs, `libmapstack.jinja` as well as the configured
-# default sources in `parameters/map_jinja.yaml`.
-#
-# This documentation will need to be updated once there is
-# some learned experience. @TODO
+# please see the docs, https://lkubb.github.io/saltext-formula/
+# as well as the configured default sources in `parameters/map_jinja.yaml`.
 ######################################################################
 
 # Apart from the various source files, there are two independent source trees
@@ -876,10 +873,9 @@ tool_macos:
     rootgroup: staff              # This is actually dynamic.
 
 ######################################################################
-# This is where `tool` suite settings end and Salt behavior settings
-# inherited from `salt-formulas/template-formula` start. They will
-# influence how exactly the TOFS pattern is applied. Mind that
-# parts of this are disabled for `configsync.sls`.
+# The following settings influence which source paths are considered
+# when managing files (TOFS pattern).
+# See docs/TOFS_pattern.rst and https://lkubb.github.io/saltext-formula/
 ######################################################################
   tofs:
     # The files_switch key serves as a selector for alternative

@@ -1,5 +1,5 @@
-Welcome to salt-tool-macos-formula's documentation!
-===================================================
+Welcome to tool-macos-formula's documentation!
+==============================================
 
 .. toctree::
    :maxdepth: 2

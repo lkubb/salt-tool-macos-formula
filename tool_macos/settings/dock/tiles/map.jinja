@@ -22,7 +22,7 @@
 {%-       if not item.get("type") %}
 {%-         if item.path | regex_match("(.*\.app/?)$") %}
 {%-           do item.update({"type": "file"}) %}
-{%-         elif not salt["cmd.retcode"]("test -d "{}"".format(item.path), ignore_retcode=True) %}
+{%-         elif not salt["cmd.retcode"]("test -d '{}'".format(item.path), ignore_retcode=True) %}
 {%-           do item.update({"type": "directory"}) %}
 {%-         elif item.path | regex_match("^(\w*://)") %}
 {%-           do item.update({"type": "url"}) %}

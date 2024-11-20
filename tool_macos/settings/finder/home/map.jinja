@@ -12,7 +12,7 @@
 
 {%- if u in options %}
 {%-   do user_settings.update({"NewWindowTarget": options[u]}) %}
-{%- elif salt["cmd.run"]("test -d "{}"".format(u)) %}
+{%- elif salt["cmd.run"]("test -d '{}'".format(u)) %}
 {%-   do user_settings.update({"NewWindowTarget": "PfLo", "NewWindowTargetPath": "file://localhost" ~ u}) %}
 {%- else %}
 {%-   do salt["log.error"]("Specified Finder home '{}' is neither a valid option nor a valid path.".format(u)) %}

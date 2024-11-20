@@ -20,7 +20,7 @@
   {%- if tool_user_conf.get("macos", true) -%}
     {%- do users.update({tool_user: {"macos": {}}}) -%}
     {%- for user_setting in user_settings -%}
-      {%- if tool_user_conf.get(user_setting) is not equalto None -%}
+      {%- if tool_user_conf.get(user_setting) is not none -%}
         {%- do users[tool_user].update({user_setting: salt["defaults.deepcopy"](tool_user_conf[user_setting])}) -%}
       {%- endif -%}
     {%- endfor -%}

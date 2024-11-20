@@ -26,18 +26,18 @@ TOFS: A pattern for using SaltStack
      - https://github.com/myii
      - 23/02/2019
 
-All that follows is a proposal based on my experience with `SaltStack <http://www.saltstack.com/>`_. The good thing of a piece of software like this is that you can "bend it" to suit your needs in many possible ways, and this is one of them. All the recommendations and thoughts are given "as it is" with no warranty of any type.
+All that follows is a proposal based on my experience with `SaltStack <https://saltproject.io/>`_. The good thing of a piece of software like this is that you can "bend it" to suit your needs in many possible ways, and this is one of them. All the recommendations and thoughts are given "as it is" with no warranty of any type.
 
 .. contents:: **Table of Contents**
 
 Usage of values in pillar vs templates in ``file_roots``
 --------------------------------------------------------
 
-Among other functions, the *master* (or *salt-master*) serves files to the *minions* (or *salt-minions*). The `file_roots <http://docs.saltstack.com/en/latest/ref/file_server/file_roots.html>`_ is the list of directories used in sequence to find a file when a minion requires it: the first match is served to the minion. Those files could be `state files <http://docs.saltstack.com/en/latest/topics/tutorials/starting_states.html>`_ or configuration templates, among others.
+Among other functions, the *master* (or *salt-master*) serves files to the *minions* (or *salt-minions*). The `file_roots <https://docs.saltproject.io/en/latest/ref/file_server/file_roots.html>`_ is the list of directories used in sequence to find a file when a minion requires it: the first match is served to the minion. Those files could be `state files <https://docs.saltproject.io/en/latest/topics/tutorials/starting_states.html>`_ or configuration templates, among others.
 
-Using SaltStack is a simple and effective way to implement configuration management, but even in a `non-multitenant <http://en.wikipedia.org/wiki/Multitenancy>`_ scenario, it is not a good idea to generally access some data (e.g. the database password in our `Zabbix <http://www.zabbix.com/>`_ server configuration file or the private key of our `Nginx <http://nginx.org/en/>`_ TLS certificate).
+Using SaltStack is a simple and effective way to implement configuration management, but even in a `non-multitenant <https://en.wikipedia.org/wiki/Multitenancy>`_ scenario, it is not a good idea to generally access some data (e.g. the database password in our `Zabbix <https://www.zabbix.com/>`_ server configuration file or the private key of our `Nginx <https://nginx.org/en/>`_ TLS certificate).
 
-To avoid this situation we can use the `pillar mechanism <http://docs.saltstack.com/en/latest/topics/pillar/>`_, which is designed to provide controlled access to data from the minions based on some selection rules. As pillar data could be easily integrated in the `Jinja <http://docs.saltstack.com/en/latest/topics/tutorials/pillar.html>`_ templates, it is a good mechanism to store values to be used in the final rendering of state files and templates.
+To avoid this situation we can use the `pillar mechanism <https://docs.saltproject.io/en/latest/topics/pillar/>`_, which is designed to provide controlled access to data from the minions based on some selection rules. As pillar data could be easily integrated in the `Jinja <https://docs.saltproject.io/en/latest/topics/tutorials/pillar.html>`_ templates, it is a good mechanism to store values to be used in the final rendering of state files and templates.
 
 There are a variety of approaches on the usage of pillar and templates as seen in the `saltstack-formulas <https://github.com/saltstack-formulas>`_' repositories. `Some <https://github.com/saltstack-formulas/nginx-formula/pull/18>`_ `developments <https://github.com/saltstack-formulas/php-formula/pull/14>`_ stress the initial purpose of pillar data into a storage for most of the possible variables for a determined system configuration. This, in my opinion, is shifting too much load from the original template files approach. Adding up some `non-trivial Jinja <https://github.com/saltstack-formulas/nginx-formula/blob/f74254c07e188bd448eaf1c5f9c802d78c4c005e/nginx/files/default/nginx.conf>`_ code as essential part of composing the state file definitely makes SaltStack state files (hence formulas) more difficult to read. The extreme of this approach is that we could end up with a new render mechanism, implemented in Jinja, storing everything needed in pillar data to compose configurations. Additionally, we are establishing a strong dependency with the Jinja renderer.
 
@@ -48,7 +48,7 @@ On the reusability of SaltStack state files
 
 There is a brilliant initiative of the SaltStack community called `salt-formulas <https://github.com/saltstack-formulas>`_. Their goal is to provide state files, pillar examples and configuration templates ready to be used for provisioning. I am a contributor for two small ones: `zabbix-formula <https://github.com/saltstack-formulas/zabbix-formula>`_ and `varnish-formula <https://github.com/saltstack-formulas/varnish-formula>`_.
 
-The `design guidelines <http://docs.saltstack.com/en/latest/topics/development/conventions/formulas.html>`_ for formulas are clear in many aspects and it is a recommended reading for anyone willing to write state files, even non-formulaic ones.
+The `design guidelines <https://docs.saltproject.io/en/latest/topics/development/conventions/formulas.html>`_ for formulas are clear in many aspects and it is a recommended reading for anyone willing to write state files, even non-formulaic ones.
 
 In the next section, I am going to describe my proposal to extend further the reusability of formulas, suggesting some patterns of usage.
 
@@ -62,7 +62,7 @@ The customization of a formula should be done mainly by providing pillar data us
 Example: NTP before applying TOFS
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Let's work with the NTP example. A basic formula that follows the `design guidelines <http://docs.saltstack.com/en/latest/topics/development/conventions/formulas.html>`_ has the following files and directories tree:
+Let's work with the NTP example. A basic formula that follows the `design guidelines <https://docs.saltproject.io/en/latest/topics/development/conventions/formulas.html>`_ has the following files and directories tree:
 
 .. code-block:: console
 
@@ -76,7 +76,7 @@ Let's work with the NTP example. A basic formula that follows the `design guidel
            etc/
              ntp.conf.jinja
 
-In order to use it, let's assume a `masterless configuration <http://docs.saltstack.com/en/latest/topics/tutorials/quickstart.html>`_ and this relevant section of ``/etc/salt/minion``:
+In order to use it, let's assume a `masterless configuration <https://docs.saltproject.io/en/latest/topics/tutorials/quickstart.html>`_ and this relevant section of ``/etc/salt/minion``:
 
 .. code-block:: yaml
 
@@ -222,7 +222,7 @@ Files Switch
 
 To bring some order into the set of template files included in a formula, as we commented, we suggest having a similar structure to a normal final file system under ``files/default``.
 
-We can make different templates coexist for different minions, classified by any `grain <http://docs.saltstack.com/en/latest/topics/targeting/grains.html>`_ value, by simply creating new directories under ``files``. This mechanism is based on **using values of some grains as a switch for the directories under** ``files/``.
+We can make different templates coexist for different minions, classified by any `grain <https://docs.saltproject.io/en/latest/topics/targeting/grains.html>`_ value, by simply creating new directories under ``files``. This mechanism is based on **using values of some grains as a switch for the directories under** ``files/``.
 
 If we decide that we want ``os_family`` as switch, then we could provide the formula template variants for both the ``RedHat`` and ``Debian`` families.
 
@@ -232,12 +232,13 @@ If we decide that we want ``os_family`` as switch, then we could provide the for
      default/
        etc/
          ntp.conf.jinja
-     RedHat/
-       etc/
-         ntp.conf.jinja
-     Debian/
-       etc/
-         ntp.conf.jinja
+     os_family/
+       RedHat/
+         etc/
+           ntp.conf.jinja
+       Debian/
+         etc/
+           ntp.conf.jinja
 
 To make this work we need a ``conf.sls`` state file that takes a list of possible files as the configuration template.
 
@@ -254,7 +255,7 @@ To make this work we need a ``conf.sls`` state file that takes a list of possibl
        - name: {{ ntp.config }}
        - template: jinja
        - source:
-         - salt://ntp/files/{{ grains.get('os_family', 'default') }}/etc/ntp.conf.jinja
+         - salt://ntp/files/os_family/{{ grains.get('os_family', 'default') }}/etc/ntp.conf.jinja
          - salt://ntp/files/default/etc/ntp.conf.jinja
        - watch_in:
          - service: Enable and start NTP service
@@ -287,8 +288,8 @@ To make this work we could write a specially crafted ``conf.sls``.
        - name: {{ ntp.config }}
        - template: jinja
        - source:
-         - salt://ntp/files/{{ grains.get('id') }}/etc/ntp.conf.jinja
-         - salt://ntp/files/{{ grains.get('os_family') }}/etc/ntp.conf.jinja
+         - salt://ntp/files/id/{{ grains.get('id') }}/etc/ntp.conf.jinja
+         - salt://ntp/files/os_family/{{ grains.get('os_family') }}/etc/ntp.conf.jinja
          - salt://ntp/files/default/etc/ntp.conf.jinja
        - watch_in:
          - service: Enable and start NTP service
@@ -308,7 +309,7 @@ We can simplify the ``conf.sls`` with the new ``files_switch`` macro to use in t
 
    {%- set tplroot = tpldir.split('/')[0] %}
    {%- from 'ntp/map.jinja' import ntp with context %}
-   {%- from 'ntp/libtofs.jinja' import files_switch %}
+   {%- from 'ntp/libtofsstack.jinja' import files_switch %}
 
    Configure NTP:
      file.managed:
@@ -328,16 +329,16 @@ We can simplify the ``conf.sls`` with the new ``files_switch`` macro to use in t
 * If this returns a result, the default of ``['/etc/ntp.conf.jinja']`` will be appended to it.
 * If this does not yield any results, the default of ``['/etc/ntp.conf.jinja']`` will be used.
 
-In ``libtofs.jinja``, we define this new macro ``files_switch``.
+In ``libtofsstack.jinja``, we define this new macro ``files_switch``.
 
-.. literalinclude:: ../tool_macos/libtofs.jinja
-   :caption: /srv/saltstack/salt-formulas/ntp-saltstack-formula/ntp/libtofs.jinja
+.. literalinclude:: ../tool_macos/libtofsstack.jinja
+   :caption: /srv/saltstack/salt-formulas/ntp-saltstack-formula/ntp/libtofsstack.jinja
    :language: jinja
 
 How to customise the ``source`` further
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The examples below are based on an ``Ubuntu`` minion called ``theminion`` being configured via. pillar.
+The examples below are based on an ``Ubuntu`` minion called ``theminion`` being configured via pillar.
 
 Using the default settings of the ``files_switch`` macro above,
 the ``source`` will be:
@@ -345,8 +346,8 @@ the ``source`` will be:
 .. code-block:: sls
 
          - source:
-           - salt://ntp/files/theminion/etc/ntp.conf.jinja
-           - salt://ntp/files/Debian/etc/ntp.conf.jinja
+           - salt://ntp/files/id/theminion/etc/ntp.conf.jinja
+           - salt://ntp/files/os_family/Debian/etc/ntp.conf.jinja
            - salt://ntp/files/default/etc/ntp.conf.jinja
 
 Customise ``files``
@@ -366,8 +367,8 @@ Resulting in:
 .. code-block:: sls
 
          - source:
-           - salt://ntp/files_alt/theminion/etc/ntp.conf.jinja
-           - salt://ntp/files_alt/Debian/etc/ntp.conf.jinja
+           - salt://ntp/files_alt/id/theminion/etc/ntp.conf.jinja
+           - salt://ntp/files_alt/os_family/Debian/etc/ntp.conf.jinja
            - salt://ntp/files_alt/default/etc/ntp.conf.jinja
 
 Customise the use of grains
@@ -391,9 +392,9 @@ Resulting in:
 
          - source:
            - salt://ntp/files/any/path/can/be/used/here/etc/ntp.conf.jinja
-           - salt://ntp/files/theminion/etc/ntp.conf.jinja
-           - salt://ntp/files/Ubuntu/etc/ntp.conf.jinja
-           - salt://ntp/files/Debian/etc/ntp.conf.jinja
+           - salt://ntp/files/id/theminion/etc/ntp.conf.jinja
+           - salt://ntp/files/os/Ubuntu/etc/ntp.conf.jinja
+           - salt://ntp/files/os_family/Debian/etc/ntp.conf.jinja
            - salt://ntp/files/default/etc/ntp.conf.jinja
 
 Customise the ``default`` path
@@ -434,10 +435,10 @@ Resulting in:
 .. code-block:: sls
 
          - source:
-           - salt://ntp/files/theminion/etc/ntp.conf_alt.jinja
-           - salt://ntp/files/theminion/etc/ntp.conf.jinja
-           - salt://ntp/files/Debian/etc/ntp.conf_alt.jinja
-           - salt://ntp/files/Debian/etc/ntp.conf.jinja
+           - salt://ntp/files/id/theminion/etc/ntp.conf_alt.jinja
+           - salt://ntp/files/id/theminion/etc/ntp.conf.jinja
+           - salt://ntp/files/os_family/Debian/etc/ntp.conf_alt.jinja
+           - salt://ntp/files/os_family/Debian/etc/ntp.conf.jinja
            - salt://ntp/files/default/etc/ntp.conf_alt.jinja
            - salt://ntp/files/default/etc/ntp.conf.jinja
 
@@ -454,7 +455,7 @@ If your formula is composed of several components, you may prefer to provides fi
    /srv/saltstack/systemd-formula/
      systemd/
        init.sls
-       libtofs.jinja
+       libtofsstack.jinja
        map.jinja
        networkd/
          init.sls
@@ -470,20 +471,21 @@ If your formula is composed of several components, you may prefer to provides fi
        timesyncd/
          init.sls
          files/
-           Arch/
-             resolved.conf
-           Debian/
-             resolved.conf
+           os/
+             Arch/
+               resolved.conf
+             Debian/
+               resolved.conf
+             Ubuntu/
+               resolved.conf
            default/
-             resolved.conf
-           Ubuntu/
              resolved.conf
 
 For example, the following ``formula.component.config`` SLS:
 
 .. code-block:: sls
 
-   {%- from "formula/libtofs.jinja" import files_switch with context %}
+   {%- from "formula/libtofsstack.jinja" import files_switch with context %}
 
    formula configuration file:
      file.managed:
@@ -510,9 +512,9 @@ will be rendered on a ``Debian`` minion named ``salt-formula.ci.local`` as:
        - mode: 644
        - template: jinja
        - source:
-         - salt://formula/component/files/salt-formula.ci.local/formula.conf
-         - salt://formula/component/files/Debian/formula.conf
+         - salt://formula/component/files/id/salt-formula.ci.local/formula.conf
+         - salt://formula/component/files/os/Debian/formula.conf
          - salt://formula/component/files/default/formula.conf
-         - salt://formula/files/salt-formula.ci.local/formula.conf
-         - salt://formula/files/Debian/formula.conf
+         - salt://formula/files/id/salt-formula.ci.local/formula.conf
+         - salt://formula/files/os/Debian/formula.conf
          - salt://formula/files/default/formula.conf

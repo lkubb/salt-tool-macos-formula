@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
 # vim: ft=yaml
 #
 # Set default values.
 ---
 values:
   lookup:
-    brew_prefix: '{{ salt['cmd.run_stdout']('brew --prefix') }}'
-    console_user: '{{ salt['cmd.run_stdout']('id -n -u $(stat -f "%u" /dev/console)', python_shell=True) }}'
-    rootgroup: '{{ salt['cmd.run']("stat -f '%Sg' /dev/console") }}'
+    brew_prefix: '{{ salt["cmd.run_stdout"]("brew --prefix") }}'
+    console_user: '{{ salt["cmd.run_stdout"]('id -n -u $(stat -f "%u" /dev/console)', python_shell=True) }}'
+    rootgroup: '{{ salt["cmd.run"]("stat -f '%Sg' /dev/console") }}'
 ...

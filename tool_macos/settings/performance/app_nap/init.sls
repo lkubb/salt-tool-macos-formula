@@ -38,4 +38,3 @@ Global app nap behavior is managed for user {{ user.name }}:
     - watch_in:
       - cfprefsd was reloaded
 {%- endfor %}
-f
