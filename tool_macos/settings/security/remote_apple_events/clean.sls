@@ -18,7 +18,7 @@ Activation state of Remote Apple Events is reset to default (disabled):
     - name: /usr/sbin/systemsetup setremoteappleevents off
     - runas: root
     - unless:
-        - /usr/sbin/systemsetup getremoteappleevents | grep 'Remote Apple Events: Off'
+        - "/usr/sbin/systemsetup getremoteappleevents | grep 'Remote Apple Events: Off'"
     - require:
       - System Preferences is not running
 {%- endif %}

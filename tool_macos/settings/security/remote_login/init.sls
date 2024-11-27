@@ -32,5 +32,6 @@ Activation state of Remote Login (SSH Server) is managed:
     - require:
       - System Preferences is not running
     - unless:
-        - /usr/sbin/systemsetup getremotelogin | grep 'Remote Login: {{ "On" if m else "Off" }}'
+        - >-
+            /usr/sbin/systemsetup getremotelogin | grep 'Remote Login: {{ "On" if m else "Off" }}'
 {%- endif %}

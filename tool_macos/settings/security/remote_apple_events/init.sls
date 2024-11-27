@@ -22,7 +22,8 @@ Activation state of Remote Apple Events is managed:
     - name: /usr/sbin/systemsetup setremoteappleevents {{ "on" if m else "off" }}
     - runas: root
     - unless:
-        - /usr/sbin/systemsetup getremoteappleevents | grep 'Remote Apple Events: {{ "On" if m else "Off" }}'
+        - >-
+            /usr/sbin/systemsetup getremoteappleevents | grep 'Remote Apple Events: {{ "On" if m else "Off" }}'
     - require:
       - System Preferences is not running
 {%- endif %}

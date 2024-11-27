@@ -27,7 +27,8 @@ NTP synchronization activation status is managed:
     - name: /usr/sbin/systemsetup -setusingnetworktime {{ "on" if m else "off" }}
     - runas: root
     - unless:
-        - /usr/sbin/systemsetup -getusingnetworktime | grep 'Network Time: {{ "On" if m else "Off" }}'
+        - >-
+            /usr/sbin/systemsetup -getusingnetworktime | grep 'Network Time: {{ "On" if m else "Off" }}'
     - require:
       - System Preferences is not running
 {%-   endif %}
