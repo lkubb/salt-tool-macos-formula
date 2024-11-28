@@ -30,9 +30,7 @@ def __virtual__():
     """
     This only works on MacOS.
     """
-    if salt.utils.platform.is_darwin() and 12 >= int(
-        __salt__["grains.get"]("osmajorrelease")
-    ):
+    if salt.utils.platform.is_darwin() and int(__grains__["osmajorrelease"] >= 12):
         if LIBS_AVAILABLE:
             return __virtualname__
     return (False, "Dooti only works on MacOS 12 (Monterey) and above and needs pyobj.")
