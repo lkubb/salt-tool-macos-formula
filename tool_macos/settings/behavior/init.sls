@@ -19,3 +19,4 @@ include:
   - .spaces_span_displays
   - .spaces_switch_running
   - .tab_preference
+  - .wallpaper_click_hides_windows

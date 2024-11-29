@@ -606,7 +606,7 @@ class DepthRenderer(Renderer):
         cur_top = ()
 
         # Find at which prefix length the maxdepth is fulfilled
-        for prefix in states.prefixes:
+        for prefix in sorted(states.prefixes):
             # Filtering out more specific = shallower dicts
             # This requires the list to be sorted!
             # This also goes not too well with rendering clean states

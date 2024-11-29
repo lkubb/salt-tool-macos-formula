@@ -19,3 +19,4 @@ include:
   - .spaces_span_displays.clean
   - .spaces_switch_running.clean
   - .tab_preference.clean
+  - .wallpaper_click_hides_windows.clean

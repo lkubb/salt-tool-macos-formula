@@ -204,3 +204,12 @@ Values:
       * always
 
 
+wallpaper_click_hides_windows
+-----------------------------
+Customizes whether a click on the wallpaper hides open windows
+when not using Stage Manager, revealing the desktop.
+
+Values:
+    - bool [default: true]
+
+
