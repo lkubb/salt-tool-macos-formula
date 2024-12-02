@@ -46,6 +46,7 @@ import logging
 import os
 import plistlib
 import re
+import shlex
 import tempfile
 import time
 import uuid
@@ -533,14 +534,20 @@ def install(path, name=None, content=None):
             )
         )
 
-    status = __salt__["cmd.retcode"](
-        "open /System/Library/PreferencePanes/Profiles.prefPane {}".format(path)
-    )
+    status = __salt__["cmd.retcode"](shlex.join(["open", path]))
 
-    if not status == 0:
+    if status != 0:
         raise salt.exceptions.CommandExecutionError(
             "Failed to prompt user to install profile at path: {}".format(path)
         )
+
+    # Opens the Profiles preference pane
+    status = __salt__["cmd.retcode"](
+        "open x-apple.systempreferences:com.apple.preferences.configurationprofiles"
+    )
+
+    if status != 0:
+        raise salt.exceptions.CommandExecutionError("Failed to open preference pane")
 
     if name is None or content is None:
         return True
@@ -553,7 +560,7 @@ def install(path, name=None, content=None):
         time.sleep(1)
 
         if __salt__["cmd.retcode"](
-            "ps -ax | grep /System/Library/PreferencePanes/Profiles.prefPane | grep -v grep",
+            "ps -ax | grep /System/Library/ExtensionKit/Extensions/ProfilesSettingsExt.appex/Contents/MacOS/ProfilesSettingsExt | grep -v grep",
             python_shell=True,
         ):
             raise salt.exceptions.CommandExecutionError(
