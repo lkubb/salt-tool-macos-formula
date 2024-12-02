@@ -3,7 +3,7 @@
 
 {%- set status = false %}
 
-{%- if u.get("swipe_fullscreen") %}
+{%- if u.get("swipe_fullscreen") is not none %}
 {%-   if u.get("swipe_fullscreen") ==  "four" or three_finger_conflicts %}
 {%-     set status = 2 %}
 {%-   else %}
