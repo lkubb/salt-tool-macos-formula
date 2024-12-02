@@ -12,7 +12,6 @@
           * contacts
           * conversion
           * definition
-          * developer
           * documents
           * events-reminders
           * folders
@@ -27,6 +26,7 @@
           * siri
           * spreadsheets
           * system-preferences
+          * tips
 #}
 
 {%- set tplroot = tpldir.split("/")[0] %}

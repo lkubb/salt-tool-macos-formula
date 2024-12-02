@@ -514,6 +514,7 @@ The following shows an example of ``tool_macos`` per-user configuration. If prov
           clock: false
       privacy:
         allow_targeted_ads: true
+        searches_share: true
         siri_share_recordings: false
       security:
         airdrop: true
@@ -661,7 +662,6 @@ The following shows an example of ``tool_macos`` per-user configuration. If prov
           - contacts
           - conversion
           - definition
-          - developer
           - documents
           - events-reminders
           - folders
@@ -676,6 +676,7 @@ The following shows an example of ``tool_macos`` per-user configuration. If prov
           - siri
           - spreadsheets
           - system-preferences
+          - tips
           # Use tab to cycle through UI elements (~ full keyboard access).
         tab_ui_elements: false
           # System theme: auto, dark, light

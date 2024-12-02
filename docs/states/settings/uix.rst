@@ -177,7 +177,6 @@ Values:
       * contacts
       * conversion
       * definition
-      * developer
       * documents
       * events-reminders
       * folders
@@ -192,6 +191,7 @@ Values:
       * siri
       * spreadsheets
       * system-preferences
+      * tips
 
 
 tab_ui_elements

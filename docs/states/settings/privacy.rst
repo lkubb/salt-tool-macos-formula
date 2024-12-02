@@ -34,6 +34,15 @@ Values:
       * third_party
 
 
+searches_share
+--------------
+Customizes whether search queries from Safari, Siri, Spotlight, Lookup
+and others are sent to Apple to be stored.
+
+Values:
+    - bool [default: true]
+
+
 siri_share_recordings
 ---------------------
 Customizes Siri recording sharing status.

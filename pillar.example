@@ -495,6 +495,7 @@ tool_global:
             clock: false
         privacy:
           allow_targeted_ads: true
+          searches_share: true
           siri_share_recordings: false
         security:
           airdrop: true
@@ -642,7 +643,6 @@ tool_global:
             - contacts
             - conversion
             - definition
-            - developer
             - documents
             - events-reminders
             - folders
@@ -657,6 +657,7 @@ tool_global:
             - siri
             - spreadsheets
             - system-preferences
+            - tips
             # Use tab to cycle through UI elements (~ full keyboard access).
           tab_ui_elements: false
             # System theme: auto, dark, light
