@@ -175,6 +175,7 @@ user_settings:
     spaces_span_displays: false
     spaces_switch_running: true
     tab_preference: fullscreen
+    wallpaper_click_hides_windows: true
   display:
     antialias_subpixel: false
     antialias_threshold: 4

@@ -143,6 +143,8 @@ The following shows an example of ``tool_macos`` per-user configuration. If prov
           # Generally prefer tabs to windows:
           #     manual, fullscreen or always
         tab_preference: fullscreen
+          # When clicking the wallpaper, hide open windows to reveal desktop items.
+        wallpaper_click_hides_windows: true
       display:
           # false = disabled (default), true = enabled
         antialias_subpixel: false
